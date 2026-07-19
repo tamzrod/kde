@@ -1,7 +1,7 @@
 # Laboratory Experiment Registry
 
-**Last Updated**: YYYY-MM-DD
-**Total Experiments**: 0
+**Last Updated**: 2026-07-19
+**Total Experiments**: 1
 **Active Experiments**: 0
 **Schema Version**: 2.0
 
@@ -11,7 +11,7 @@
 
 | ID | Title | Status | Domain | Knowledge Tested | Runs | Assessment | Confidence | Reproducibility |
 |----|-------|--------|--------|-----------------|------|------------|------------|-----------------|
-| (No experiments yet) | | | | | | | | |
+| LAB-001 | Tier 1 Knowledge Framework Validation | COMPLETE | Software | KDE-001, KDE-002, KDE-003 | 10 | MIXED | MEDIUM | PARTIAL |
 
 ---
 
