@@ -19,6 +19,7 @@ This is a research-first initiative. We do not know what KDE will become. This r
 │   ├── evidence/       # Collected evidence
 │   └── FOUNDATIONAL-PRINCIPLES.md
 ├── /knowledge/         # Validated concepts
+├── /governance/        # Methodology and rules
 ├── /laboratory/        # Experimental implementations
 │   └── mcp/
 ├── /deployment/        # Production implementations

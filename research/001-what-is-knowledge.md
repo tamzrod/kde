@@ -1,7 +1,10 @@
 # Question: What is Knowledge?
 
-## Question
-What is Knowledge?
+**Session**: RS-001
+**Question**: What is Knowledge?
+**Stage**: Working Definition
+**State**: DRAFT
+**Methodology Version**: v1.0
 
 ## Status
 

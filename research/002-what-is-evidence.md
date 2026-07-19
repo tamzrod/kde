@@ -1,7 +1,10 @@
 # Question: What is Evidence?
 
-## Question
-What is Evidence?
+**Session**: RS-002
+**Question**: What is Evidence?
+**Stage**: Working Definition
+**State**: DRAFT
+**Methodology Version**: v1.0
 
 ## Status
 

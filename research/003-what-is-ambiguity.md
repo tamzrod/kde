@@ -1,7 +1,10 @@
 # Question: What is Ambiguity?
 
-## Question
-What is Ambiguity?
+**Session**: RS-003
+**Question**: What is Ambiguity?
+**Stage**: Working Definition
+**State**: DRAFT
+**Methodology Version**: v1.0
 
 ## Status
 
