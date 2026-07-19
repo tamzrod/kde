@@ -1,7 +1,7 @@
 # Laboratory Experiment Registry
 
 **Last Updated**: 2026-07-19
-**Total Experiments**: 1
+**Total Experiments**: 16
 **Active Experiments**: 0
 **Schema Version**: 2.0
 
@@ -21,6 +21,12 @@
 | LAB-008 | Universal Knowledge DNA Discovery | COMPLETE | Cross-Domain | KDE-001, KDE-002, KDE-003 | 5 | SUPPORTS | HIGH | ESTABLISHED |
 | LAB-009 | Knowledge DNA Discovery | COMPLETE | Cross-Domain | KDE-001, KDE-002, KDE-003 | 5 | SUPPORTS | HIGH | ESTABLISHED |
 | LAB-010 | Knowledge-to-Simulation Validation | COMPLETE | Engineering | KDE-001, KDE-002, KDE-003 | 1 | SUPPORTS | HIGH | ESTABLISHED |
+| LAB-011 | Information DNA Synthesis Validation | COMPLETE | Software | KDE-001, KDE-002, KDE-003 | 6 | SUPPORTS | MEDIUM-HIGH | ESTABLISHED |
+| LAB-012 | Independent DNA Validation | COMPLETE | Cross-Domain | KDE-001, KDE-002, KDE-003 | 6 | MIXED | MEDIUM | ESTABLISHED |
+| LAB-013 | Cross-Domain Applicability | COMPLETE | Meta-Methodology | KDE-001, KDE-002, KDE-003 | 7 | MIXED | HIGH | ESTABLISHED |
+| LAB-014 | Information DNA Genome Formation | COMPLETE | Meta-Methodology | KDE-001, KDE-002, KDE-003 | 1 | SUPPORTS | HIGH | ESTABLISHED |
+| LAB-015 | Genome Evolution Validation | COMPLETE | Meta-Methodology | KDE-001, KDE-002, KDE-003 | 1 | SUPPORTS | HIGH | ESTABLISHED |
+| LAB-016 | Information DNA Application Discovery | COMPLETE | Meta-Methodology | KDE-001, KDE-002, KDE-003 | 1 | SUPPORTS | HIGH | ESTABLISHED |
 
 ---
 
