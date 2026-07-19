@@ -10,14 +10,19 @@ Our fundamental question is:
 
 This is a research-first initiative. We do not know what KDE will become. This roadmap helps us find out.
 
-## Research Structure
+## Repository Structure
 
 ```
-/research/
-├── /logs/          # Research logs by question
-├── /evidence/      # Collected evidence
-└── /questions/     # Question tracking
-/glossary/          # Emerging definitions
+/kde/
+├── /research/           # Research artifacts
+│   ├── questions/     # Individual question investigations
+│   ├── evidence/       # Collected evidence
+│   └── FOUNDATIONAL-PRINCIPLES.md
+├── /knowledge/         # Validated concepts
+├── /laboratory/        # Experimental implementations
+│   └── mcp/
+├── /deployment/        # Production implementations
+└── /meetings/          # Meeting notes
 ```
 
 ## Research Questions
@@ -30,6 +35,12 @@ Research is organized into four tiers:
 | **Tier 2: Relational** | What is Context? What is Authority? | Pending |
 | **Tier 3: Engineering** | What is Engineering? What is an Engineering Subject? What is a Methodology? | Pending |
 | **Tier 4: Process** | How does knowledge become validated? How should knowledge evolve? | Pending |
+
+## Foundational Principle
+
+> **"Experiment before deployment."**
+>
+> Methodology should first be explored in the Laboratory. Only validated concepts should be promoted into deployment targets such as MCP, CLI, API, or other interfaces.
 
 ## How to Contribute
 

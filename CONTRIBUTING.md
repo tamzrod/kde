@@ -3,7 +3,7 @@
 ## Research Workflow
 
 ```
-QUESTION → RESEARCH → EVIDENCE → WORKING DEFINITION → VALIDATION → PROMOTION
+QUESTION → INVESTIGATION → EVIDENCE → WORKING DEFINITION → VALIDATION → KNOWLEDGE
 ```
 
 ### 1. Pick a Question
@@ -12,46 +12,59 @@ Choose a question from the [Question Tracker](./research/questions/README.md) th
 - Not blocked by dependencies
 - Not already being researched
 
-### 2. Research
+### 2. Investigate
 
+- Open the corresponding file in `/research/questions/`
 - Gather existing knowledge on the topic
 - Examine evidence from multiple sources
 - Look for counter-examples
 
 ### 3. Document Evidence
 
-- Place relevant evidence in `/research/evidence/`
-- Name files descriptively: `[question]-[source]-[date].md`
-- Always cite sources
+- Add Evidence to the question file with source citations
+- Place raw evidence in `/research/evidence/` if needed
+- Name files descriptively: `[source]-[topic]-[date].md`
 
-### 4. Write Research Log
-
-- Document your findings in `/research/logs/`
-- Use the template in each log file
-- Note uncertainties and gaps
-
-### 5. Draft Working Definition
+### 4. Draft Working Definition
 
 - Based on evidence, draft a definition
-- Mark as "working" - not yet validated
-- Place in `/research/logs/[question]-definition.md`
+- Mark as "WORKING" - not yet validated
+- Document Counter Evidence that complicates the picture
 
-### 6. Submit for Review
+### 5. Submit for Review
 
 - Open a discussion about your findings
 - Request peer review
 - Be open to counter-examples
+
+### 6. Promote to Knowledge
+
+When validated, move the concept to `/knowledge/`
 
 ## Quality Standards
 
 - All claims must be backed by evidence
 - Cite sources using standard format
 - Acknowledge uncertainty explicitly
+- Document counter-evidence
 - Do not assume - document instead
+
+## Workflow Diagram
+
+```
+RESEARCH → LABORATORY → DEPLOYMENT
+   │           │            │
+   │      Experiment    Stable
+   │           │            │
+   └────► Validate ◄───────┘
+              │
+              ▼
+         Knowledge
+```
 
 ## What We Don't Do
 
-- We don't implement anything yet
-- We don't design systems
+- We don't deploy without experimentation
+- We don't design systems without validated knowledge
 - We don't speculate without evidence
 - We don't rush to conclusions
