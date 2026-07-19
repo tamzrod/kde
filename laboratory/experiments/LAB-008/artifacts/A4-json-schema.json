@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api.example.com/schemas/task.json",
+  "title": "Task",
+  "description": "A task in the task management system",
+  "type": "object",
+  "required": ["id", "title", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique task identifier"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Task title or description"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "in_progress", "completed"],
+      "description": "Current task status"
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "default": 3,
+      "description": "Task priority (1=highest, 5=lowest)"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "created_by": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "title": "Complete quarterly report",
+      "status": "pending",
+      "priority": 1
+    }
+  ]
+}

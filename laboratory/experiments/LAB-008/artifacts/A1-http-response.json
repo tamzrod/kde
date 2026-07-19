@@ -1,0 +1,42 @@
+# Artifact A1: HTTP/1.1 Response Specification
+# Source: RFC 7230/7231
+# Domain: Engineering Standard
+
+{
+  "artifact_id": "A1",
+  "type": "specification",
+  "domain": "engineering_standard",
+  "source": "RFC 7230/7231",
+  "title": "HTTP/1.1 Response Message",
+  
+  "structure": {
+    "status_line": {
+      "components": ["HTTP-version", "SP", "status-code", "SP", "reason-phrase", "CRLF"],
+      "HTTP-version": "HTTP/1.1",
+      "status-code_range": "100-999"
+    },
+    "headers": {
+      "format": "field-name: SP field-value CRLF",
+      "terminator": "empty line (CRLF)",
+      "count": "variable"
+    },
+    "body": {
+      "presence": "optional",
+      "length_indicator": "Content-Length"
+    }
+  },
+  
+  "requirements": {
+    "M-001": "ASCII text encoding",
+    "M-002": "CRLF line terminators",
+    "M-003": "HTTP-version MUST be HTTP/1.1",
+    "M-004": "Status code MUST be 3 digits",
+    "M-005": "Headers MUST end with empty line"
+  },
+  
+  "metadata": {
+    "created": "2026-07-19",
+    "version": "1.0",
+    "standard": "RFC 7230"
+  }
+}
