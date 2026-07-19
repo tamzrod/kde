@@ -6,7 +6,7 @@
 **Executor**: [Name or system identifier]
 **Duration**: [HH:MM:SS]
 **Reproducibility Run**: [YES | NO]
-**Methodology Version**: 2.1
+**Methodology Version**: 2.2
 
 ---
 
@@ -40,31 +40,45 @@
 ## Observation
 
 [ONLY factual observations - no interpretation, no justification, no conclusions]
+[Assign OBS-XXX IDs to each observation]
+[Each observation must reference supporting Evidence IDs]
 
-**Good examples**:
-- "README contained three sections."
-- "No Architecture section existed."
-- "Docker exited with code 127."
-- "Runtime installed into /home/openhands/.kdse."
-- "File permissions were 0644."
+| OBS-ID | Observation | Evidence |
+|--------|-------------|----------|
+| OBS-001 | [Fact] | [EV-XXX] |
+| OBS-002 | [Fact] | [EV-XXX] |
 
 ---
 
 ## Evidence
 
 [Reference independently retrievable artifacts]
+[Assign EV-XXX IDs]
+[Each evidence must identify which Observation(s) it supports]
 
-| Evidence ID | Type | Source | Reference | Description |
-|-------------|------|--------|-----------|-------------|
-| EV-001 | log | terminal | commit:abc123 | Terminal output |
-| EV-002 | file | filesystem | /path/to/file | Source file |
-| EV-003 | commit | git | hash | Git commit |
-| EV-004 | config | file | /etc/config | Configuration |
-| EV-005 | output | runtime | process log | Runtime output |
+| EV-ID | Type | Source | Reference | Description | Supports |
+|-------|------|--------|-----------|-------------|----------|
+| EV-001 | log | terminal | stdout | Output | OBS-001, OBS-002 |
+| EV-002 | file | filesystem | /path | Content | OBS-001 |
 
-**Acceptable evidence**: log files, terminal output, commit hashes, source files, runtime reports, screenshots, configuration files, PDFs, specifications
+---
 
-**Avoid**: "directory structure", "README analysis", "repository review"
+## Traceability Validation
+
+**Status**: [VALID | INVALID]
+
+### Validation Checks
+
+| Check | Result |
+|-------|--------|
+| ✓ Every Observation has Evidence | [PASS/FAIL] |
+| ✓ Every Evidence supports Observation | [PASS/FAIL] |
+
+### Invalid Observations
+[None / List invalid observation IDs with reason]
+
+### Unused Evidence
+[None / List unused evidence IDs]
 
 ---
 
@@ -97,6 +111,7 @@
 | Run Count | [N runs] | [H/M/L] |
 | Evidence Quality | [complete/partial/missing] | [H/M/L] |
 | Reproducibility | [established/not] | [H/M/L] |
+| Traceability | [100%/N% valid] | [H/M/L] |
 
 **Confidence Level**: [HIGH | MEDIUM | LOW]
 
@@ -115,4 +130,4 @@
 | Run ID | RUN-XXX |
 | Experiment ID | LAB-XXX |
 | Date | YYYY-MM-DD HH:MM:SS |
-| Methodology Version | 2.1 |
+| Methodology Version | 2.2 |
