@@ -1,11 +1,29 @@
-# Question: What is Knowledge?
+# Knowledge: What is Knowledge?
 
-**Session**: RS-001
-**Question**: What is Knowledge?
-**Stage**: COMPLETE
+**Definition ID**: KDE-001
+**Source**: RS-001 (Research Session 001)
+**Stage**: VALIDATED
 **State**: PROMOTED
 **Methodology Version**: v1.0
 **Promoted**: 2026-07-19
+
+---
+
+## Definition
+
+> **Engineering knowledge is actionable understanding that enables effective practice within constraints.**
+
+---
+
+## Summary
+
+This definition was validated through KDE's Research Methodology and approved for promotion to `/knowledge/`.
+
+**Key criteria**:
+- **Actionable**: Must enable action; passive knowing is insufficient
+- **Understanding**: More than data; involves comprehension and relationships
+- **Effective practice**: Success in use is the criterion; truth is not required
+- **Within constraints**: Engineering operates under practical constraints; completeness is not required
 
 ## Status
 
@@ -775,18 +793,25 @@ All five validation tests passed. The working definition satisfies KDE standards
 
 ## Status
 
-**PROMOTED** ✅
+**PENDING HUMAN APPROVAL FOR PROMOTION**
 
-## Promotion Details
+## Validation Complete
 
-- **Promoted to**: `/knowledge/001-what-is-knowledge.md`
-- **Promoted on**: 2026-07-19
-- **Validated**: All 5 tests passed
-- **Approved by**: Human reviewer
+All validation tests passed:
+- Classification Test: PASS
+- Distinction Test: PASS
+- Methodology Support Test: PASS
+- Consistency Test: PASS
+- Counterexample Test: PASS
 
-## Research Record
+## Next Step
 
-This research session is complete. The validated definition is now in `/knowledge/`.
+Awaiting human approval to promote this definition to `/knowledge/`.
+
+## Location When Promoted
+
+Upon promotion, this definition will be located at:
+`/knowledge/001-what-is-knowledge.md`
 
 ---
 
