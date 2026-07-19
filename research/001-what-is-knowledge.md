@@ -4,9 +4,18 @@
 What is Knowledge?
 
 ## Status
-- Stage: 🟡 In Progress
-- Dependencies: None (Tier 1: Foundational)
-- Last Updated: 2026-07-19
+
+Question                  ✅
+Literature Review         ✅
+Evidence Collection       ✅
+Analysis                  ✅
+Synthesis                 ✅
+Working Definition        ✅
+Validation                ⏳
+Knowledge Promotion       ⏳
+
+Dependencies: None (Tier 1: Foundational)
+Last Updated: 2026-07-19
 
 ---
 
@@ -487,43 +496,208 @@ Regardless of theoretical orientation, these concepts appear essential:
 
 ---
 
-# Open Questions
+# Synthesis
 
-1. **The Gettier problem remains unsolved** — Is there a satisfactory solution to the problem of justified true beliefs that are not knowledge?
+This section transforms analysis into KDE-specific decisions.
 
-2. **Tacit knowledge** — How can we understand, capture, and transfer knowledge that cannot be fully articulated?
+## What KDE Should Adopt
 
-3. **Knowledge and action** — How exactly does knowledge enable action? Is there a gap between propositional knowledge and know-how?
+1. **Action-oriented knowledge concept**
+   - Knowledge is valuable because of what it enables
+   - Engineering knowledge must support effective practice
+   - Success in use is a legitimate criterion for engineering knowledge
 
-4. **Individual vs. collective** — Is knowledge fundamentally individual, or can groups, organizations, and systems have knowledge?
+2. **Know-how as primary knowledge type**
+   - Engineering is fundamentally a know-how domain
+   - Propositional knowledge (knowing-that) is subordinate to procedural knowledge (knowing-how)
+   - KDE should prioritize knowledge that enables action over knowledge that merely describes
 
-5. **Stability vs. fluidity** — Is knowledge relatively stable (stored, retrieved), or is it more like an ongoing process of knowing?
+3. **Tacit knowledge recognition**
+   - Polanyi's "we know more than we can tell" is especially true in engineering
+   - KDE must accommodate knowledge that resists explicit capture
+   - Systems should enable knowledge access without requiring full articulation
 
-6. **Knowledge and truth** — Must knowledge be true? Are there forms of knowledge that are useful but not "true"?
+4. **Distributed knowledge architecture**
+   - Knowledge exists across individuals, teams, documents, tools, and artifacts
+   - No single repository captures engineering knowledge
+   - KDE should enable knowledge access across distributed sources
 
-7. **Knowledge across domains** — Do different domains (science, engineering, art) have fundamentally different kinds of knowledge, or is there a common core?
+5. **Contextual knowledge sufficiency**
+   - Engineering operates under constraints
+   - Knowledge sufficiency (enough for the task) trumps knowledge completeness
+   - Different contexts may require different knowledge granularity
+
+6. **Iterative knowledge generation**
+   - Engineering knowledge emerges through cycles of design-test-revise
+   - Reflection-in-action (Schön) captures a genuine knowledge process
+   - KDE methodology should support iterative knowledge development
+
+## What KDE Should Reject
+
+1. **Truth as universal requirement**
+   - Engineering knowledge may be useful without being "true"
+   - Approximations and heuristics are legitimate engineering knowledge
+   - KDE should not require correspondence to abstract truth
+
+2. **Monist knowledge ontology**
+   - No single definition serves all engineering knowledge needs
+   - Reject attempts to reduce all knowledge to one type
+   - Support multiple knowledge types: propositional, procedural, contextual
+
+3. **Completeness ideal**
+   - Comprehensive knowledge is impossible and unnecessary
+   - "Good enough for the task" is the appropriate standard
+   - KDE should not pursuit completeness at the expense of utility
+
+4. **Pure objectivism**
+   - Knowledge is always held by someone, in some context
+   - Reject the view of knowledge as existing independently of knowers
+   - Knowledge systems are built by and for agents
+
+5. **Symbolic reductionism**
+   - Not all knowledge can be reduced to symbols
+   - Tacit knowledge cannot be fully explicit
+   - KDE should not assume complete knowledge capture is possible
+
+## What KDE Should Leave Unresolved
+
+1. **Ultimate nature of knowledge**
+   - KDE does not need to resolve whether knowledge requires truth
+   - KDE does not need to resolve debates about epistemic realism
+   - KDE can be instrumentally useful without philosophical foundations
+
+2. **Individual vs. collective knowledge**
+   - Whether organizations "know" or merely individuals know
+   - KDE can function under either assumption
+   - Practical approach: treat both as sources of knowledge
+
+3. **The Gettier problem**
+   - This philosophical debate does not affect engineering practice
+   - Engineering knowledge is judged by utility, not philosophical purity
+   - KDE can remain agnostic
+
+4. **Universal vs. domain-specific knowledge**
+   - Whether there is one concept of knowledge or many domain variants
+   - KDE should be engineering-oriented without claiming universality
+   - Other domains may use different concepts appropriately
+
+## Essential Concepts for Engineering
+
+From the analysis, these concepts are essential for an engineering-oriented knowledge concept:
+
+1. **Enables action** — Knowledge is distinguished by what it allows agents to do
+2. **Structured** — Knowledge has internal organization; facts alone are not knowledge
+3. **Representational** — Knowledge stands for something beyond itself
+4. **Contextual** — Knowledge is always situated; context affects meaning and application
+5. **Distributed** — Knowledge exists across multiple sources and agents
+6. **Transformable** — Raw input becomes knowledge through processing
+
+## Concepts Outside KDE Scope
+
+These concepts may be legitimate in other contexts but are outside KDE's scope:
+
+1. **Philosophical truth** — KDE does not require correspondence to metaphysical truth
+2. **Universal definitions** — KDE seeks engineering utility, not philosophical universality
+3. **Complete capture** — KDE does not aim to capture all knowledge, only useful knowledge
+4. **Epistemic certainty** — KDE operates under uncertainty; certainty is not required
 
 ---
 
-# Candidate Working Definitions (Not Selected)
+# Candidate Working Definition
 
-These are definitions from the literature that could serve as starting points for KDE. No selection has been made.
+## WORKING DEFINITION (Not Validated)
 
-1. **"Knowledge is justified true belief"** (Plato) — The traditional philosophical definition, despite its problems
+Based on the evidence and synthesis, the following is a single candidate working definition for KDE:
 
-2. **"Knowledge is the human appropriation of information"** (DIKW hierarchy) — Information science perspective
+> **Engineering knowledge is actionable understanding that enables effective practice within constraints.**
 
-3. **"Knowledge is the capacity for effective action"** (Pragmatist) — Engineering-adjacent view
+## Rationale
 
-4. **"Knowledge is what enables successful performance"** (Cognitive science) — Behavioral criterion
+This definition emerges from the analysis:
 
-5. **"Knowledge is organized experience"** (Schön) — Practical knowledge perspective
+- **"Actionable"** — Knowledge must enable action; passive knowing is insufficient
+- **"Understanding"** — Knowledge is more than data; it involves comprehension and relationships
+- **"Effective practice"** — Success in use is the criterion; truth is not required
+- **"Within constraints"** — Engineering knowledge operates under practical constraints; completeness is not required
 
-6. **"Knowledge is the sum of what is known"** (Dictionary) — Common usage placeholder
+## What This Definition Excludes
 
-7. **"Knowledge is justified belief that works"** (Pragmatic synthesis) — Combining JTB with pragmatism
+- Purely theoretical knowledge that cannot guide action
+- Data without transformation into understanding
+- Knowledge claims that cannot be applied in practice
+- Complete (as opposed to sufficient) knowledge
 
-8. **"Knowledge is a network of relationships between concepts"** (Semantic web) — Representational view
+## What This Definition Accommodates
+
+- Tacit knowledge (often the most actionable)
+- Heuristics and approximations (common in engineering)
+- Distributed knowledge (accessed through multiple means)
+- Iterative knowledge (generated through practice)
+
+## Not a Final Definition
+
+This is a **WORKING definition** that will be validated through KDE methodology before potential promotion to `/knowledge/`.
+
+---
+
+# Validation Plan
+
+Before KDE accepts this working definition, it will be validated against the following criteria:
+
+## 1. Classification Test
+Can the definition classify engineering knowledge?
+- Given a piece of engineering knowledge, does the definition clearly include or exclude it?
+- Does the definition handle edge cases (borderline knowledge) consistently?
+
+## 2. Distinction Test
+Can the definition distinguish knowledge from related concepts?
+- **Knowledge vs. Data**: Does the definition capture the transformation from data to knowledge?
+- **Knowledge vs. Information**: Is the distinction clear?
+- **Knowledge vs. Belief**: Does the definition capture what makes knowledge different from belief?
+
+## 3. Methodology Support Test
+Does the definition support later KDE methodology?
+- Can knowledge validation be operationalized using this definition?
+- Can knowledge evolution be captured using this definition?
+- Can knowledge representation systems be built using this definition?
+
+## 4. Consistency Test
+Does the definition remain consistent across future research sessions?
+- When Q2 (Evidence) is synthesized, does this definition remain coherent?
+- When later questions are researched, does this definition adapt without contradiction?
+- Does this definition complement (not conflict with) the evidence definition?
+
+## 5. Counterexample Test
+Can the definition survive counterexamples?
+- Are there engineering knowledge cases this definition excludes that should be included?
+- Are there non-knowledge cases this definition includes that should be excluded?
+- Do the edge cases reveal needed refinements?
+
+## Validation Status
+
+Validation has not yet been performed. The working definition remains provisional until validation is complete.
+
+---
+
+# Knowledge Promotion
+
+## Status
+
+**NOT READY FOR PROMOTION**
+
+## Reason
+
+The working definition has not yet been validated. Knowledge promotion remains pending until:
+
+1. Validation plan is executed
+2. Validation criteria are satisfied
+3. Peer review confirms the definition
+4. The definition survives counterexample testing
+
+## Location When Promoted
+
+Upon successful validation, this definition will be promoted to:
+`/knowledge/001-what-is-knowledge.md`
 
 ---
 
