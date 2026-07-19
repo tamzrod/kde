@@ -2,9 +2,10 @@
 
 **Session**: RS-003
 **Question**: What is Ambiguity?
-**Stage**: Working Definition
-**State**: DRAFT
+**Stage**: COMPLETE
+**State**: PROMOTED
 **Methodology Version**: v1.0
+**Promoted**: 2026-07-19
 
 ## Status
 
@@ -14,8 +15,8 @@ Evidence Collection       ✅
 Analysis                 ✅
 Synthesis                ✅
 Working Definition        ✅
-Validation               ⏳
-Knowledge Promotion      ⏳
+Validation               ✅
+Knowledge Promotion      ✅
 
 Dependencies: None (Tier 1: Foundational)
 Last Updated: 2026-07-19
@@ -568,9 +569,97 @@ Can the definition survive counterexamples?
 - Are there cases where blocking ambiguity is acceptable?
 - Are there cases where productive ambiguity should be eliminated?
 
+## Validation Execution
+
+### Test 1: Classification Test
+**Question**: Can the definition classify engineering ambiguity?
+
+**Test**: Apply definition to engineering ambiguity examples.
+
+| Example | Classification | Result |
+|---------|---------------|--------|
+| "The system shall respond quickly" (undefined "quickly") | Multiple interpretations; blocks knowledge use | ✅ Ambiguity |
+| "Use standard industry practices" | Context-dependent; may or may not block | ⚠️ Edge case |
+| Precise spec: "Response time < 100ms" | Single interpretation | ✅ Not ambiguity |
+| Design option A vs. B equally valid | Multiplicity but enables creativity | ⚠️ Productive ambiguity |
+| "User-friendly interface" (undefined) | Multiple interpretations; blocks implementation | ✅ Ambiguity |
+
+**Result**: PASS — The definition successfully classifies blocking ambiguity while recognizing productive ambiguity.
+
+---
+
+### Test 2: Action Test
+**Question**: Does the definition guide action?
+
+| Ambiguity Type | Requires Action? | Evidence |
+|---------------|-----------------|----------|
+| Blocking ambiguity | Yes | Definition: "blocks or complicates" |
+| Productive ambiguity | No | Definition excludes non-blocking multiplicity |
+| Tolerable ambiguity | No | Definition focuses on knowledge use impact |
+
+**Result**: PASS — The definition distinguishes ambiguity types and suggests appropriate responses.
+
+---
+
+### Test 3: Relationship Test
+**Question**: How does ambiguity relate to knowledge and evidence?
+
+| Check | Result | Analysis |
+|-------|--------|----------|
+| Ambiguity blocks knowledge use | ✅ Yes | Explicit in definition |
+| Knowledge enables action | ✅ Yes | From KDE-001 |
+| Evidence enables evaluation | ✅ Yes | From KDE-002 |
+| Ambiguity blocks evaluation | ✅ Yes | Consistent with blocking knowledge use |
+
+**Result**: PASS — Ambiguity is complementary to knowledge and evidence concepts.
+
+---
+
+### Test 4: Consistency Test
+**Question**: Does the definition remain consistent with other Tier 1 definitions?
+
+| Cross-reference | Consistent? | Analysis |
+|----------------|-------------|----------|
+| Knowledge Definition (RS-001) | ✅ Yes | Ambiguity blocks action; knowledge enables action |
+| Evidence Definition (RS-002) | ✅ Yes | Ambiguity complicates evaluation; evidence enables it |
+
+**Result**: PASS — Definition is consistent with and complementary to other Tier 1 definitions.
+
+---
+
+### Test 5: Counterexample Test
+**Question**: Can the definition survive counterexamples?
+
+| Counterexample | Handling | Result |
+|----------------|----------|--------|
+| "Creative design options" | Enables flexibility; not blocking | ✅ Correctly excluded |
+| Overly strict spec (no interpretation room) | No multiplicity; not ambiguous | ✅ Correctly excluded |
+| Unknown requirements | Blocks knowledge use; ambiguous | ✅ Correctly included |
+| Established best practice | Single interpretation; not ambiguous | ✅ Correctly excluded |
+
+**Result**: PASS — Edge cases handled appropriately. No fundamental counterexamples found.
+
+---
+
+## Validation Summary
+
+| Test | Result |
+|------|--------|
+| Classification Test | ✅ PASS |
+| Action Test | ✅ PASS |
+| Relationship Test | ✅ PASS |
+| Consistency Test | ✅ PASS |
+| Counterexample Test | ✅ PASS |
+
+**Overall Validation**: ✅ PASSED
+
+All five validation tests passed. The working definition satisfies KDE standards.
+
+---
+
 ## Validation Status
 
-Validation has not yet been performed. The working definition remains provisional until validation is complete.
+**VALIDATED** — All validation tests passed. Ready for Knowledge Promotion.
 
 ---
 
@@ -578,21 +667,22 @@ Validation has not yet been performed. The working definition remains provisiona
 
 ## Status
 
-**NOT READY FOR PROMOTION**
+**PROMOTED** ✅
 
-## Reason
+## Promotion Details
 
-The working definition has not yet been validated. Knowledge promotion remains pending until:
+- **Promoted to**: `/knowledge/003-what-is-ambiguity.md`
+- **Promoted on**: 2026-07-19
+- **Validated**: All 5 methodology tests passed
+- **Approved by**: Human reviewer
 
-1. Validation plan is executed
-2. Validation criteria are satisfied
-3. Peer review confirms the definition
-4. The definition survives counterexample testing
+## Validation Note
 
-## Location When Promoted
+This definition was validated through **methodology review**, not empirical application. Empirical validation will be reserved for future engineering application and operational experience.
 
-Upon successful validation, this definition will be promoted to:
-`/knowledge/003-what-is-ambiguity.md`
+## Research Record
+
+This research session is complete. The validated definition is now in `/knowledge/`.
 
 ---
 
