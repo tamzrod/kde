@@ -341,46 +341,149 @@ Cognitive science studies the mind and cognition from interdisciplinary perspect
 
 ---
 
-# Areas of Agreement
+# Analysis
 
-1. **Knowledge is not mere belief** — There is widespread agreement that true knowledge requires something beyond mere holding-a-belief. Whether it's truth, justification, or successful performance, knowledge is distinguished from mere opinion.
+## Common Characteristics Across All Definitions
 
-2. **Knowledge involves representation** — Across disciplines, knowledge involves some form of representation: mental models, symbols, patterns, structures. Knowledge "stands for" something beyond itself.
+Every discipline identifies the following characteristics, though they may name them differently:
 
-3. **Knowledge enables action** — Practical and pragmatic disciplines emphasize that knowledge is valuable because of what it enables. Even theoretical disciplines ultimately value knowledge for its practical implications.
+1. **Referentiality** — All definitions describe knowledge as *about* something. Knowledge is not arbitrary; it points beyond itself to something it represents, corresponds to, or enables action upon. This "aboutness" appears in philosophy (truth), science (correspondence to reality), AI (representation), and cognitive science (intentionality).
 
-4. **Knowledge is structured** — Knowledge is not arbitrary or disconnected. It forms networks, hierarchies, and relationships. Understanding requires grasping not just facts but their connections.
+2. **Capacity distinction** — All definitions distinguish knowledge from raw input. Knowledge is not the data received, the stimuli experienced, or the information encountered. It involves transformation, processing, or organization of input into something more useful. This is explicit in DIKW hierarchy and implicit in all other accounts.
 
-5. **Context matters** — Recognition that knowledge is always situated — in a mind, in a culture, in a domain, in an application context. Knowledge is not universal or context-free.
+3. **Functional value** — Despite theoretical emphases, every discipline ultimately connects knowledge to some function: explaining, predicting, acting, performing, solving, deciding. Even pure philosophy values knowledge for its role in living well or understanding existence.
 
----
+4. **Structural organization** — No discipline treats knowledge as isolated facts. All describe knowledge as having internal structure: relationships, dependencies, networks, schemas, hierarchies, or patterns. Facts in isolation are not knowledge.
 
-# Areas of Disagreement
+5. **Agent-dependence** — Whether framed as belief, mental state, organizational asset, or computational state, knowledge is always * someone's* knowledge or * something's* knowledge. There is no "view from nowhere" knowledge.
 
-1. **Is knowledge objective or constructed?**
-   - Philosophy/science: Knowledge corresponds to objective reality
-   - Social epistemology/constructivism: Knowledge is socially constructed
-   - Pragmatism: Knowledge is what works in practice
+## Unique Characteristics by Discipline
 
-2. **Can knowledge be reduced to symbols/data?**
-   - Information science/AI: Knowledge can be represented and processed symbolically
-   - Embodied cognition: Much knowledge is tacit and cannot be fully symbolized
-   - Tacit knowledge advocates: "We know more than we can tell" (Polanyi)
+Some characteristics appear only in specific traditions:
 
-3. **What constitutes justification/validation?**
-   - Science: Empirically testable and reproducible
-   - Philosophy: Various internalist and externalist accounts
-   - Engineering: Works in practice, solves the problem
-   - AI: Accurate predictions on training and test data
+| Characteristic | Disciplines | Implication |
+|----------------|-------------|-------------|
+| Truth requirement | Philosophy, Science | Implies epistemic realism |
+| Practical success | Engineering, Pragmatism | Implies pragmatic criterion |
+| Symbolic encoding | AI, Information Science | Implies computational tractability |
+| Tacitness | KM, Polanyi, Embodied cognition | Implies limits of explicit knowledge |
+| Social construction | Social epistemology, KM | Implies distributed nature |
+| Bodily involvement | Embodied cognition | Implies non-cerebral knowledge |
 
-4. **Is knowledge a thing or a process?**
-   - Information science: Knowledge as entity/object (like data, information)
-   - KM/Epistemology: Knowledge as ongoing process (knowing, learning)
+## Conflicting Assumptions
 
-5. **Individual vs. Social**
-   - Traditional epistemology: Knowledge as property of individuals
-   - Social epistemology: Knowledge as fundamentally social
-   - Distributed cognition: Knowledge distributed across minds, artifacts, environment
+1. **Realism vs. Constructivism**
+   - Philosophy (traditional) and Science assume knowledge corresponds to mind-independent reality
+   - Social epistemology and constructivism assume knowledge is shaped by social/contextual factors
+   - This conflict concerns whether knowledge is *discovered* or *constructed*
+
+2. **Individual vs. Collective**
+   - Traditional epistemology locates knowledge in individual minds
+   - KM and social epistemology allow collectives, organizations, and cultures to "know"
+   - This conflicts on whether knowledge requires a possessor and what kind of possessor
+
+3. **Symbolic vs. Embodied**
+   - AI and Information Science assume knowledge can be symbolically represented
+   - Embodied cognition argues much knowledge is pre-reflective and non-symbolic
+   - This conflicts on whether all knowledge is potentially explicit
+
+4. **Stable vs. Fluid**
+   - Information Science and traditional epistemology treat knowledge as a thing (stored, retrieved)
+   - Process philosophy and some KM treat knowing as an activity, not a state
+   - This conflicts on whether knowledge is a noun or a verb
+
+## Fundamental Concepts Across Disciplines
+
+Regardless of theoretical orientation, these concepts appear essential:
+
+1. **Representation** — Knowledge represents something beyond itself. Whether called truth, correspondence, mapping, or reference, all accounts require some relationship between knowledge and what it is about.
+
+2. **Transformation** — Knowledge is not raw input. Something happens between experiencing data and having knowledge. Whether called processing, interpretation, internalization, or learning, raw input becomes transformed knowledge.
+
+3. **Structure** — Knowledge has internal organization. Facts are not isolated. Relationships, patterns, and connections constitute understanding. This structure is what allows inference, application, and transfer.
+
+4. **Potentiality** — Knowledge is always about potential: potential action, prediction, explanation, or understanding. Knowledge is not merely historical record but enables future behavior.
+
+5. **Context** — Knowledge is always *in* context. Whether called situation, domain, embodiment, or culture, knowledge is always situated. Context-free knowledge, if it exists, would be trivial or useless.
+
+## Why No Universal Definition Has Emerged
+
+1. **Different purposes, different emphases**
+   - Philosophy seeks necessary and sufficient conditions for knowledge claims
+   - Science seeks reliable methods for generating predictive claims
+   - Engineering seeks effective approaches for achieving outcomes
+   - These purposes pull definitions in incompatible directions
+
+2. **The JTB structure created a target, not a solution**
+   - Gettier's critique showed JTB is insufficient, but produced no consensus replacement
+   - Fifty years of post-Gettier epistemology have not resolved the problem
+   - The field may lack sufficient concepts to solve it
+
+3. **"Knowledge" is a natural language word with multiple uses**
+   - We say "I know that P" (propositional)
+   - We say "I know how to X" (procedural)
+   - We say "I know this person" (acquaintance)
+   - These may be family-resemblance concepts, not a single phenomenon
+
+4. **Each discipline captures something real, misses something else**
+   - A definition adequate for science may be inadequate for engineering
+   - A definition adequate for individual cognition may miss social knowledge
+   - A definition adequate for explicit knowledge may miss tacit knowledge
+
+5. **The concept is reflexive**
+   - Any definition of knowledge is itself knowledge
+   - This creates peculiar self-reference problems
+   - We are using knowledge to define knowledge
+
+## Semantic vs. Substantive Disagreements
+
+**Likely Semantic** (differences in wording, not essence):
+- "Representation" vs. "correspondence" vs. "aboutness" — may describe the same relationship
+- "Justification" vs. "validation" vs. "warrant" — may be procedural variants
+- "Knowledge" vs. "understanding" — may be the same phenomenon at different granularity
+
+**Likely Substantive** (genuine theoretical disagreement):
+- Whether truth is required (JTB insists; pragmatism denies)
+- Whether tacit knowledge exists (Polanyi argues yes; symbolic AI implies no)
+- Whether collectives can know (KM and social epistemology say yes; traditional epistemology implies no)
+- Whether knowledge is a state or a process (implies different methodologies)
+
+## Findings Relevant to Engineering
+
+1. **The know-that/know-how distinction is fundamental**
+   - Engineering is primarily know-how domain
+   - Propositional definitions (JTB) are insufficient for engineering knowledge
+   - Any KDE definition must address procedural and practical knowledge
+
+2. **Tacit knowledge cannot be ignored**
+   - Polanyi's "we know more than we can tell" is especially true in engineering
+   - Expertise is largely tacit
+   - Engineering knowledge systems must account for knowledge that resists explicit capture
+
+3. **Practical success is a legitimate validation criterion**
+   - Engineering can legitimately use "works in practice" as evidence
+   - This does not replace theoretical understanding but complements it
+   - KDE can adopt pragmatic validation alongside other methods
+
+4. **Knowledge is distributed**
+   - Engineering knowledge is in individuals, teams, documents, tools, and artifacts
+   - No single location captures engineering knowledge
+   - KDE systems must enable distributed knowledge access
+
+5. **Constraints shape knowledge requirements**
+   - Engineering operates under constraints (budget, time, materials)
+   - Knowledge is not merely true but useful *given constraints*
+   - KDE should consider knowledge sufficiency rather than completeness
+
+6. **Iteration is a knowledge process**
+   - Schön's "reflection-in-action" captures how engineers learn from practice
+   - Engineering knowledge is generated through cycles of design-test-revise
+   - KDE methodology should incorporate iterative knowledge generation
+
+7. **Multiple representations are needed**
+   - Different contexts need different knowledge representations
+   - No single formalism captures all engineering knowledge
+   - KDE should support multiple representation schemes
 
 ---
 
