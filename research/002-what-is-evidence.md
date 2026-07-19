@@ -2,9 +2,10 @@
 
 **Session**: RS-002
 **Question**: What is Evidence?
-**Stage**: Validation
-**State**: APPROVED
+**Stage**: COMPLETE
+**State**: PROMOTED
 **Methodology Version**: v1.0
+**Promoted**: 2026-07-19
 
 ## Status
 
@@ -689,25 +690,22 @@ All five validation tests passed. The working definition satisfies KDE standards
 
 ## Status
 
-**PENDING HUMAN APPROVAL FOR PROMOTION**
+**PROMOTED** ✅
 
-## Validation Complete
+## Promotion Details
 
-All validation tests passed:
-- Classification Test: PASS
-- Relationship Test: PASS
-- Utility Test: PASS
-- Consistency Test: PASS
-- Counterexample Test: PASS
+- **Promoted to**: `/knowledge/002-what-is-evidence.md`
+- **Promoted on**: 2026-07-19
+- **Validated**: All 5 methodology tests passed
+- **Approved by**: Human reviewer
 
-## Next Step
+## Validation Note
 
-Awaiting human approval to promote this definition to `/knowledge/`.
+This definition was validated through **methodology review**, not empirical application. Empirical validation will be reserved for future engineering application and operational experience.
 
-## Location When Promoted
+## Research Record
 
-Upon promotion, this definition will be located at:
-`/knowledge/002-what-is-evidence.md`
+This research session is complete. The validated definition is now in `/knowledge/`.
 
 ---
 
