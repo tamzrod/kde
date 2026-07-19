@@ -16,6 +16,7 @@
 | LAB-003 | Traceability Validation | COMPLETE | Software | KDE-001, KDE-002, KDE-003 | 10 | MIXED | MEDIUM | REPRODUCED |
 | LAB-004 | Creative Domain Validation | COMPLETE | Creative | KDE-001, KDE-002, KDE-003 | 10 | MIXED | MEDIUM | UNCERTAIN |
 | LAB-005 | Living Knowledge Validation | COMPLETE | Creative | KDE-001, KDE-002, KDE-003 | 20 | MIXED | MEDIUM | ESTABLISHED |
+| LAB-006 | Standards Compliance Validation | COMPLETE | Engineering | KDE-001, KDE-002, KDE-003 | 6 | MIXED | HIGH | ESTABLISHED |
 
 ---
 
