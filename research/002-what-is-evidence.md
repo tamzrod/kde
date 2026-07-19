@@ -4,9 +4,18 @@
 What is Evidence?
 
 ## Status
-- Stage: 🟡 In Progress
-- Dependencies: None (Tier 1: Foundational)
-- Last Updated: 2026-07-19
+
+Question                  ✅
+Literature Review         ✅
+Evidence Collection       ✅
+Analysis                 ✅
+Synthesis                ✅
+Working Definition       ✅
+Validation               ⏳
+Knowledge Promotion      ⏳
+
+Dependencies: None (Tier 1: Foundational)
+Last Updated: 2026-07-19
 
 ---
 
@@ -513,25 +522,98 @@ Regardless of theoretical orientation, these concepts appear essential:
 
 ---
 
-# Candidate Working Definitions (Not Selected)
+# Candidate Working Definition
 
-These are definitions from the literature or synthesized from analysis that could serve as starting points for KDE. No selection has been made.
+## WORKING DEFINITION (Not Validated)
 
-1. **"Evidence is that which supports or refutes a claim"** (Generic philosophical) — Minimal sufficient definition
+Based on the evidence and synthesis, the following is a single candidate working definition for KDE:
 
-2. **"Evidence is information, in context, that supports or refutes claims"** (Information science synthesis) — Emphasizes contextual retrieval
+> **Engineering evidence is retrievable support, in context, that enables evaluation of knowledge claims.**
 
-3. **"Evidence is demonstrable support for engineering claims, including test results, expert judgment, and documented experience"** (Engineering synthesis) — Domain-specific
+## Rationale
 
-4. **"Evidence is retrievable information that justifies or challenges beliefs, claims, or actions"** (KM/Philosophy synthesis) — Emphasizes accessibility
+This definition emerges from the synthesis:
 
-5. **"Evidence is support relation between data and claims, varying in quality and context-dependence"** (Epistemological synthesis) — Formal
+- **"Retrievable"** — Evidence must be accessible to be useful; evidence that cannot be found is ineffective
+- **"Support"** — Evidence supports or refutes claims; the support relation is fundamental
+- **"In context"** — Evidence is always situated; context determines what counts as evidence
+- **"Enables evaluation"** — Evidence's purpose is to allow assessment of knowledge claims
+- **"Knowledge claims"** — Evidence serves knowledge; the evidence-knowledge relationship is primary
 
-6. **"Evidence is whatever can be presented, evaluated, and weighed in support of or against a proposition"** (Legal/Pragmatic) — Procedural
+## What This Definition Excludes
 
-7. **"Evidence is transformed input that reduces uncertainty about claims or decisions"** (AI/Information synthesis) — Probabilistic orientation
+- Evidence evaluated in isolation from claims
+- Evidence that cannot be retrieved or accessed
+- Evidence that does not relate to knowledge claims
+- Complete (as opposed to sufficient) evidence
 
-8. **"Evidence is practical support for engineering decisions, sufficient for action in context"** (Engineering pragmatist) — Action-oriented
+## What This Definition Accommodates
+
+- Multiple evidence modalities (test, judgment, experience, documentation)
+- Evidence quality gradation (retrievability and relevance vary)
+- Context-dependence (different contexts have different evidence)
+- Tacit evidence (when accessible through expertise networks)
+
+## Not a Final Definition
+
+This is a **WORKING definition** that will be validated through KDE methodology before potential promotion to `/knowledge/`.
+
+---
+
+# Validation Plan
+
+Before KDE accepts this working definition, it will be validated against the following criteria:
+
+## 1. Classification Test
+Can the definition classify engineering evidence?
+- Given an item, does the definition clearly include or exclude it as evidence?
+- Does the definition handle edge cases (judgment, experience) consistently?
+
+## 2. Relationship Test
+Does the definition capture the evidence-knowledge relationship?
+- Can evidence be evaluated independent of knowledge claims?
+- Does the definition maintain the distinction between evidence and knowledge?
+
+## 3. Utility Test
+Is the definition practically useful?
+- Can engineers use this definition to assess their evidence?
+- Does it guide evidence collection and management practices?
+
+## 4. Consistency Test
+Does the definition remain consistent with the knowledge definition?
+- When Q1's knowledge definition is applied, does this evidence definition remain coherent?
+- Do the definitions complement each other?
+
+## 5. Counterexample Test
+Can the definition survive counterexamples?
+- Are there engineering evidence cases this definition excludes that should be included?
+- Are there non-evidence cases this definition includes that should be excluded?
+
+## Validation Status
+
+Validation has not yet been performed. The working definition remains provisional until validation is complete.
+
+---
+
+# Knowledge Promotion
+
+## Status
+
+**NOT READY FOR PROMOTION**
+
+## Reason
+
+The working definition has not yet been validated. Knowledge promotion remains pending until:
+
+1. Validation plan is executed
+2. Validation criteria are satisfied
+3. Peer review confirms the definition
+4. The definition survives counterexample testing
+
+## Location When Promoted
+
+Upon successful validation, this definition will be promoted to:
+`/knowledge/002-what-is-evidence.md`
 
 ---
 
