@@ -4,7 +4,7 @@
 **Created**: YYYY-MM-DD
 **Status**: PLANNED
 **Domain**: [Software | Electrical | Mechanical | AI | Industrial | Other]
-**Methodology Version**: v1.0
+**Methodology Version**: v2.0
 
 ---
 
@@ -69,20 +69,51 @@
 
 ---
 
-## Run History
+## Reproducibility (MANDATORY)
 
-| Run ID | Date | Status | Result |
-|--------|------|--------|--------|
-| RUN-001 | YYYY-MM-DD | COMPLETE | SUPPORTS |
-| RUN-002 | YYYY-MM-DD | COMPLETE | INCONCLUSIVE |
-| RUN-003 | YYYY-MM-DD | PENDING | - |
+### Environment
+[Operating system, network configuration, services required]
+
+### Software Versions
+[All software dependencies with exact version numbers]
+
+### Hardware
+[CPU, memory, GPU, storage specifications]
+
+### Dependencies
+[All libraries, packages, tools with versions]
+
+### Configuration
+[All configuration values required for reproduction]
+
+### Required Assets
+[Files, datasets, models, or other assets needed]
+
+### Execution Procedure
+[Step-by-step instructions for independent execution]
+[Another engineer should be able to reproduce following these steps]
+
+### Expected Outcome
+[What the reproducing engineer should observe]
+[Observable results that confirm reproduction]
 
 ---
 
-## Current Impact Assessment
+## Run History
 
-**Status**: [PENDING | SUPPORTS | CONTRADICTS | INCONCLUSIVE]
-**Confidence**: [HIGH | MEDIUM | LOW]
+| Run ID | Date | Executor | Status | Result | Reproducibility |
+|--------|------|----------|--------|--------|----------------|
+| RUN-001 | YYYY-MM-DD | [Name] | COMPLETE | SUPPORTS | SUCCESS |
+| RUN-002 | YYYY-MM-DD | [Name] | COMPLETE | INCONCLUSIVE | PARTIAL |
+| RUN-003 | YYYY-MM-DD | [Name] | PENDING | - | - |
+
+---
+
+## Current Knowledge Assessment
+
+**Assessment**: [PENDING | SUPPORTS | CONTRADICTS | INCONCLUSIVE]
+**Confidence**: [HIGH | MEDIUM | LOW | UNDEFINED]
+**Reproducibility**: [REPRODUCED | PARTIAL | NOT_REPRODUCED | PENDING]
 **Evidence Volume**: [Sufficient | Insufficient]
 **Runs Completed**: [N]
 
@@ -100,4 +131,5 @@
 | Created | YYYY-MM-DD |
 | Last Updated | YYYY-MM-DD |
 | Total Runs | 0 |
-| Current Impact | PENDING |
+| Current Assessment | PENDING |
+| Schema Version | 2.0 | |

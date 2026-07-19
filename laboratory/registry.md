@@ -3,14 +3,130 @@
 **Last Updated**: YYYY-MM-DD
 **Total Experiments**: 0
 **Active Experiments**: 0
+**Schema Version**: 2.0
 
 ---
 
-## Registry
+## Registry Table
 
-| ID | Title | Status | Domain | Knowledge Tested | Runs | Impact | Confidence |
-|----|-------|--------|--------|-----------------|------|--------|------------|
-| (No experiments yet) | | | | | | | |
+| ID | Title | Status | Domain | Knowledge Tested | Runs | Assessment | Confidence | Reproducibility |
+|----|-------|--------|--------|-----------------|------|------------|------------|-----------------|
+| (No experiments yet) | | | | | | | | |
+
+---
+
+## SQL Schema Reference
+
+This registry is designed for migration to SQLite or PostgreSQL.
+
+```sql
+-- Experiments Table
+CREATE TABLE experiments (
+    id              TEXT PRIMARY KEY,          -- LAB-XXX
+    title           TEXT NOT NULL,             -- Experiment title
+    status          TEXT NOT NULL,            -- PLANNED|ACTIVE|COMPLETE|SUSPENDED
+    domain          TEXT NOT NULL,            -- Software|Electrical|Mechanical|AI|Industrial|Other
+    knowledge_tested TEXT NOT NULL,            -- Comma-separated KDE-XXX IDs
+    created_date    TEXT NOT NULL,             -- ISO8601 date
+    start_date      TEXT,                     -- ISO8601 date (when first run executed)
+    last_run_date   TEXT,                    -- ISO8601 date (most recent run)
+    run_count       INTEGER DEFAULT 0,         -- Number of runs executed
+    assessment      TEXT,                     -- PENDING|SUPPORTS|CONTRADICTS|INCONCLUSIVE
+    confidence      TEXT,                     -- HIGH|MEDIUM|LOW|UNDEFINED
+    reproducibility TEXT,                      -- REPRODUCED|PARTIAL|NOT_REPRODUCED|PENDING
+    
+    created_at      TEXT DEFAULT CURRENT_TIMESTAMP,
+    updated_at      TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Runs Table
+CREATE TABLE runs (
+    id              TEXT PRIMARY KEY,          -- LAB-XXX/RUN-XXX
+    experiment_id   TEXT NOT NULL,             -- Foreign key to experiments.id
+    run_number      INTEGER NOT NULL,           -- Sequential run number
+    run_date        TEXT NOT NULL,             -- ISO8601 datetime
+    executor        TEXT,                      -- Who executed the run
+    duration        TEXT,                      -- ISO8601 duration
+    status          TEXT NOT NULL,              -- PENDING|RUNNING|COMPLETE|FAILED|ABORTED
+    outcome         TEXT,                      -- SUPPORTS|CONTRADICTS|INCONCLUSIVE
+    hypothesis_confirmed BOOLEAN,               -- YES|NO|PARTIAL
+    
+    created_at      TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Evidence Table
+CREATE TABLE evidence (
+    id              TEXT PRIMARY KEY,          -- LAB-XXX/EV-XXX
+    experiment_id   TEXT NOT NULL,             -- Foreign key to experiments.id
+    run_id          TEXT,                     -- Optional: link to specific run
+    evidence_type   TEXT NOT NULL,            -- log|measurement|screenshot|commit|document|telemetry|photo|video|notes
+    source          TEXT NOT NULL,             -- File path or external reference
+    hash            TEXT NOT NULL,             -- SHA-256 hash
+    timestamp       TEXT,                     -- When evidence was collected
+    description     TEXT,                     -- Human-readable description
+    
+    created_at      TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Knowledge Experiments Junction Table
+CREATE TABLE experiment_knowledge (
+    experiment_id   TEXT NOT NULL,             -- Foreign key to experiments.id
+    knowledge_id    TEXT NOT NULL,             -- KDE-XXX
+    aspect_tested   TEXT,                     -- Specific aspect of knowledge tested
+    
+    PRIMARY KEY (experiment_id, knowledge_id)
+);
+
+-- Indexes for Performance
+CREATE INDEX idx_experiments_status ON experiments(status);
+CREATE INDEX idx_experiments_knowledge ON experiments(knowledge_tested);
+CREATE INDEX idx_runs_experiment ON runs(experiment_id);
+CREATE INDEX idx_runs_date ON runs(run_date);
+CREATE INDEX idx_evidence_experiment ON evidence(experiment_id);
+```
+
+---
+
+## Field Definitions
+
+### Experiment Fields
+
+| Field | Type | Description | Required |
+|-------|------|-------------|----------|
+| ID | TEXT | Unique identifier (LAB-XXX) | Yes |
+| Title | TEXT | Experiment title | Yes |
+| Status | TEXT | PLANNED/ACTIVE/COMPLETE/SUSPENDED | Yes |
+| Domain | TEXT | Engineering domain | Yes |
+| Knowledge Tested | TEXT | KDE IDs being tested | Yes |
+| Start Date | TEXT | First run execution date | No |
+| Last Run Date | TEXT | Most recent run date | No |
+| Run Count | INTEGER | Total runs executed | No |
+| Assessment | TEXT | PENDING/SUPPORTS/CONTRADICTS/INCONCLUSIVE | No |
+| Confidence | TEXT | HIGH/MEDIUM/LOW/UNDEFINED | No |
+| Reproducibility | TEXT | REPRODUCED/PARTIAL/NOT_REPRODUCED/PENDING | No |
+
+### Run Fields
+
+| Field | Type | Description | Required |
+|-------|------|-------------|----------|
+| ID | TEXT | Unique run ID (LAB-XXX/RUN-XXX) | Yes |
+| Experiment ID | TEXT | Parent experiment | Yes |
+| Run Number | INTEGER | Sequential number | Yes |
+| Run Date | TEXT | ISO8601 datetime | Yes |
+| Executor | TEXT | Who ran the experiment | No |
+| Duration | TEXT | Execution duration | No |
+| Status | TEXT | PENDING/RUNNING/COMPLETE/FAILED/ABORTED | Yes |
+| Outcome | TEXT | SUPPORTS/CONTRADICTS/INCONCLUSIVE | No |
+| Hypothesis Confirmed | BOOLEAN | YES/NO/PARTIAL | No |
+
+### Reproducibility Status Values
+
+| Value | Description |
+|-------|-------------|
+| PENDING | Not enough runs to assess |
+| REPRODUCED | Multiple independent runs show consistent results |
+| PARTIAL | Some runs consistent, some not |
+| NOT_REPRODUCED | Results vary significantly across runs |
 
 ---
 
@@ -25,24 +141,25 @@
 
 ---
 
-## Impact Legend
+## Knowledge Assessment Legend
 
-| Impact | Description |
-|--------|-------------|
+| Assessment | Description |
+|------------|-------------|
 | PENDING | Not yet determined |
 | SUPPORTS | Empirical evidence confirms the knowledge |
 | CONTRADICTS | Empirical evidence challenges the knowledge |
-| INCONCLUSIVE | Evidence is insufficient to support or contradict |
+| INCONCLUSIVE | Evidence is insufficient |
 
 ---
 
-## Confidence Legend
+## Confidence Legend (Evidence-Derived)
 
 | Confidence | Description |
 |------------|-------------|
-| HIGH | Strong evidence; multiple verified runs; consistent results |
-| MEDIUM | Moderate evidence; some verified runs; mostly consistent |
-| LOW | Weak evidence; limited runs; inconsistent results |
+| UNDEFINED | No runs completed |
+| LOW | <3 runs OR reproducibility not established |
+| MEDIUM | ≥3 runs, partial reproducibility |
+| HIGH | ≥5 runs, consistent reproducibility |
 
 ---
 
@@ -69,6 +186,6 @@
 
 Archived experiments are moved here after completion:
 
-| ID | Title | Archived | Impact | Summary |
-|----|-------|----------|--------|----------|
+| ID | Title | Archived | Assessment | Summary |
+|----|-------|----------|------------|----------|
 | (No archived experiments) | | | | |

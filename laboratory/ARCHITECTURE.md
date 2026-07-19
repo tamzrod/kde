@@ -1,8 +1,8 @@
 # Laboratory Architecture: Detailed Specification
 
-**Document Version**: 1.0
+**Document Version**: 2.0
 **Parent**: README.md
-**Status**: ARCHITECTURAL DESIGN
+**Status**: ARCHITECTURAL DESIGN (Refined)
 
 ---
 
@@ -11,14 +11,15 @@
 1. [Purpose and Scope](#1-purpose-and-scope)
 2. [Responsibilities Matrix](#2-responsibilities-matrix)
 3. [Lifecycle Specification](#3-lifecycle-specification)
-4. [Artifact Specifications](#4-artifact-specifications)
-5. [Directory Structure](#5-directory-structure)
-6. [Relationships Diagram](#6-relationships-diagram)
-7. [Evidence Integration](#7-evidence-integration)
-8. [Knowledge Impact Specification](#8-knowledge-impact-specification)
-9. [Governance Boundaries](#9-governance-boundaries)
-10. [Risk Register](#10-risk-register)
-11. [Scalability Design](#11-scalability-design)
+4. [Reproducibility Requirements](#4-reproducibility-requirements)
+5. [Artifact Specifications](#5-artifact-specifications)
+6. [Directory Structure](#6-directory-structure)
+7. [Relationships Diagram](#7-relationships-diagram)
+8. [Evidence Integration](#8-evidence-integration)
+9. [Knowledge Assessment and Confidence](#9-knowledge-assessment-and-confidence)
+10. [Governance Boundaries](#10-governance-boundaries)
+11. [Risk Register](#11-risk-register)
+12. [Scalability Design](#12-scalability-design)
 
 ---
 
@@ -149,10 +150,10 @@ The Laboratory is designed to be domain-independent:
                                    │
                                    ▼
     ┌─────────────────────────────────────────────────────────────────┐
-    │                      KNOWLEDGE IMPACT                             │
+    │                   KNOWLEDGE ASSESSMENT                            │
     │                                                                   │
     │ Input: Conclusion, hypothesis                                      │
-    │ Output: Impact classification (SUPPORTS/CONTRADICTS/INCONCLUSIVE)│
+    │ Output: Assessment (SUPPORTS/CONTRADICTS/INCONCLUSIVE)           │
     │ Rule: Use decision matrix                                        │
     └─────────────────────────────────────────────────────────────────┘
 ```
@@ -166,7 +167,102 @@ The Laboratory is designed to be domain-independent:
 | Execution | Observation | Run completed without fatal errors |
 | Observation | Evidence Collection | Observations documented |
 | Evidence Collection | Conclusion | Evidence indexed and verified |
-| Conclusion | Knowledge Impact | Classification determined |
+| Conclusion | Knowledge Assessment | Classification determined |
+
+---
+
+## 4. Reproducibility Requirements
+
+Reproducibility is a **first-class Laboratory requirement**. Every experiment MUST be designed so that another engineer can independently reproduce the results.
+
+### 4.1 Mandatory Reproducibility Section
+
+Every experiment artifact MUST include a `Reproducibility` section with these minimum fields:
+
+```markdown
+## Reproducibility
+
+### Environment
+[Hardware, operating system, network configuration]
+
+### Software Versions
+[All software dependencies with version numbers]
+
+### Hardware
+[Specific hardware requirements or specifications]
+
+### Dependencies
+[List of all dependencies with versions]
+
+### Configuration
+[All configuration values required]
+
+### Required Assets
+[Files, datasets, models, or other assets]
+
+### Execution Procedure
+[Step-by-step instructions for independent execution]
+
+### Expected Outcome
+[What the reproducing engineer should observe]
+```
+
+### 4.2 Reproducibility Fields
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| **Environment** | Yes | Operating system, network, services |
+| **Software Versions** | Yes | All software with exact versions |
+| **Hardware** | Yes | CPU, memory, GPU specifications |
+| **Dependencies** | Yes | Libraries, packages, tools |
+| **Configuration** | Yes | All configuration values |
+| **Required Assets** | Yes | Files, datasets, models needed |
+| **Execution Procedure** | Yes | Step-by-step instructions |
+| **Expected Outcome** | Yes | Observable results |
+
+### 4.3 Reproducibility Status
+
+| Status | Description | Criteria |
+|--------|-------------|----------|
+| **PENDING** | Not enough runs to assess | <2 runs |
+| **REPRODUCED** | Multiple independent runs consistent | ≥2 successful reproductions |
+| **PARTIAL** | Some runs consistent | ≥1 reproduction, <50% failure |
+| **NOT_REPRODUCED** | Results vary significantly | ≥50% failed reproductions |
+
+### 4.4 Reproducibility Requirements
+
+| Requirement | Description |
+|------------|-------------|
+| **Documentation** | All steps must be documented |
+| **Version Pinning** | All dependencies must have exact versions |
+| **Asset Availability** | All assets must be accessible |
+| **Success Criteria** | Clear pass/fail conditions |
+| **Failure Mode** | Known failure conditions documented |
+
+### 4.5 Independent Reproduction
+
+An independent reproduction is:
+
+1. Executed by a **different person** than the original experimenter
+2. Executed in a **different environment** (different machine or reset state)
+3. Follows the documented **Execution Procedure** without deviation
+4. Produces **consistent results** with the original
+
+### 4.6 Reproducibility Checklist
+
+Before marking an experiment as reproducible, verify:
+
+| Check | Required |
+|-------|----------|
+| Environment documented | Yes |
+| Software versions pinned | Yes |
+| Hardware specified | Yes |
+| Dependencies listed | Yes |
+| Configuration complete | Yes |
+| Assets available | Yes |
+| Procedure testable | Yes |
+| Outcome observable | Yes |
+| ≥2 independent reproductions | Yes |
 
 ---
 
@@ -516,12 +612,22 @@ ImpactReport:
 
 ---
 
-## 8. Knowledge Impact Specification
+## 9. Knowledge Assessment and Confidence
 
-### 8.1 Impact Decision Matrix
+### 9.1 Knowledge Assessment
 
-| Run Results | Aggregate Impact |
-|-------------|------------------|
+The Laboratory produces exactly three assessments:
+
+| Assessment | Symbol | Meaning |
+|------------|--------|---------|
+| **SUPPORTS** | ✅ | Empirical evidence confirms the knowledge |
+| **CONTRADICTS** | ❌ | Empirical evidence challenges the knowledge |
+| **INCONCLUSIVE** | ⚠️ | Evidence is insufficient to support or contradict |
+
+### 9.2 Assessment Decision Matrix
+
+| Run Results | Aggregate Assessment |
+|-------------|---------------------|
 | ALL SUPPORTS | SUPPORTS |
 | ANY CONTRADICTS | CONTRADICTS |
 | MAJORITY SUPPORTS, minority INCONCLUSIVE | SUPPORTS |
@@ -529,19 +635,39 @@ ImpactReport:
 | Insufficient runs (<3) | INCONCLUSIVE |
 | ALL INCONCLUSIVE | INCONCLUSIVE |
 
-### 8.2 Confidence Assessment Criteria
+### 9.3 Evidence-Derived Confidence
+
+Confidence is **not subjective**. It is derived from evidence factors:
 
 | Factor | HIGH | MEDIUM | LOW |
 |--------|------|--------|-----|
-| Sample Size | ≥5 runs | 3-4 runs | <3 runs |
-| Evidence Quality | All verified, complete | Majority verified | Partial/missing |
-| Environment Validity | Production-equivalent | Lab with variations | Highly artificial |
-| Reproducibility | 100% consistent | >70% consistent | <70% consistent |
+| **Run Count** | ≥5 runs | 3-4 runs | <3 runs |
+| **Successful Reproductions** | ≥3 | 1-2 | 0 |
+| **Failed Reproductions** | 0 | <25% | ≥25% |
+| **Consistency** | >90% | 70-90% | <70% |
+| **Evidence Quality** | All verified, complete | Majority verified | Partial/missing |
 
-### 8.3 Impact Report Structure
+**Confidence Calculation**:
+
+```
+Confidence = Evidence_Derived(run_count, reproductions, failures, consistency, quality)
+```
+
+Where each factor contributes to the overall confidence level.
+
+### 9.4 Confidence Level Criteria
+
+| Level | Criteria |
+|-------|----------|
+| **HIGH** | ≥5 runs AND ≥3 successful reproductions AND <25% failures AND >90% consistency AND all evidence verified |
+| **MEDIUM** | ≥3 runs AND ≥1 successful reproduction AND <50% failures AND ≥70% consistency |
+| **LOW** | <3 runs OR reproducibility not established OR >50% failures |
+| **UNDEFINED** | No runs completed |
+
+### 9.5 Assessment Report Structure
 
 ```markdown
-# Knowledge Impact Report: LAB-XXX
+# Knowledge Assessment Report: LAB-XXX
 
 **Experiment**: [Title]
 **Knowledge Under Test**: KDE-XXX
@@ -549,27 +675,41 @@ ImpactReport:
 
 ---
 
-## Impact Classification
+## Knowledge Assessment
 
 **Result**: [SUPPORTS | CONTRADICTS | INCONCLUSIVE]
 
-## Confidence Assessment
+---
 
-| Factor | Rating | Rationale |
-|--------|--------|-----------|
-| Sample Size | H/M/L | [n runs] |
-| Evidence Quality | H/M/L | [completeness] |
-| Environment Validity | H/M/L | [representativeness] |
-| Reproducibility | H/M/L | [consistency] |
+## Confidence (Evidence-Derived)
 
-**Overall Confidence**: [HIGH | MEDIUM | LOW]
+| Factor | Evidence | Assessment |
+|--------|----------|------------|
+| Run Count | [N runs] | [H/M/L] |
+| Successful Reproductions | [N] | [H/M/L] |
+| Failed Reproductions | [N/M%] | [H/M/L] |
+| Consistency | [%] | [H/M/L] |
+| Evidence Quality | [complete/partial/missing] | [H/M/L] |
+
+**Confidence Level**: [HIGH | MEDIUM | LOW]
+
+---
+
+## Reproducibility Status
+
+**Status**: [REPRODUCED | PARTIAL | NOT_REPRODUCED | PENDING]
+
+| Run | Date | Reproducer | Result |
+|-----|------|------------|--------|
+| RUN-001 | YYYY-MM-DD | [Name] | [SUCCESS/FAIL/PARTIAL] |
+| RUN-002 | YYYY-MM-DD | [Name] | [SUCCESS/FAIL/PARTIAL] |
 
 ---
 
 ## Evidence Summary
 
-| Run | Impact | Key Evidence |
-|-----|--------|--------------|
+| Run | Assessment | Key Evidence |
+|-----|------------|--------------|
 | RUN-001 | SUPPORTS | EV-001, EV-002 |
 | RUN-002 | SUPPORTS | EV-003, EV-004 |
 | RUN-003 | INCONCLUSIVE | EV-005 |
@@ -587,6 +727,12 @@ ImpactReport:
 **Recommended Action**: [NONE | RESEARCH_SESSION | ADDITIONAL_TESTING]
 
 **Rationale**: [Why this action is appropriate]
+
+---
+
+## Reproducibility Notes
+
+[Any notes about reproducibility challenges or successes]
 ```
 
 ---

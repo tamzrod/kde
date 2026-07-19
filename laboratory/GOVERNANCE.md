@@ -35,7 +35,7 @@ This document defines the governance protocols for the Laboratory subsystem with
 
 The Laboratory Governance Protocol governs:
 
-1. **Knowledge Challenge Decisions** — When to open Research Sessions based on experiment findings
+1. **Knowledge Assessment Decisions** — When to open Research Sessions based on experiment findings
 2. **Research Session Approval** — Which gaps warrant investigation
 3. **Knowledge Revision Recommendations** — When evidence suggests knowledge needs update
 4. **Compliance Verification** — Ensuring Laboratory follows protocols
@@ -84,7 +84,7 @@ The Laboratory **CANNOT**:
 
 ---
 
-## 3. Knowledge Challenge Protocol
+## 3. Knowledge Assessment Protocol
 
 ### 3.1 Protocol Overview
 
@@ -92,7 +92,7 @@ When Laboratory experiments produce evidence that challenges approved knowledge,
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                    KNOWLEDGE CHALLENGE PROTOCOL                              │
+│                    KNOWLEDGE ASSESSMENT PROTOCOL                            │
 └─────────────────────────────────────────────────────────────────────────────┘
 
     ┌─────────────────────────────────────────────────────────────────┐
@@ -135,7 +135,7 @@ When Laboratory experiments produce evidence that challenges approved knowledge,
     │ Continue Monitoring  │         │ PHASE 4: Recommendation        │
     │                     │         │                                 │
     │ Document findings   │         │ Laboratory creates:            │
-    │ Collect more runs  │         │   • Impact report              │
+    │ Collect more runs  │         │   • Assessment report         │
     │ No formal action   │         │   • Recommendation document     │
     └─────────────────────┘         │   • Evidence summary          │
                                       └─────────────────────────────────┘

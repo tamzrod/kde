@@ -5,6 +5,7 @@
 **Date**: YYYY-MM-DD HH:MM:SS
 **Executor**: [Name or system identifier]
 **Duration**: [HH:MM:SS]
+**Reproducibility Run**: [YES | NO]
 
 ---
 
@@ -22,6 +23,7 @@
 | Environment ready | ☐ PASS / ☐ FAIL | |
 | Evidence collection prepared | ☐ PASS / ☐ FAIL | |
 | Executor qualified | ☐ PASS / ☐ FAIL | |
+| Reproducibility verified | ☐ PASS / ☐ FAIL | |
 
 ---
 
@@ -66,6 +68,21 @@
 
 ---
 
+## Reproducibility Assessment
+
+**Independent Reproduction**: [YES | NO | PARTIAL]
+**Reproducer**: [Name if different from executor]
+**Environment Match**: [YES | NO]
+**Result Match**: [YES | NO | PARTIAL]
+
+| Aspect | Expected | Actual | Match |
+|--------|----------|--------|--------|
+| Environment | [From experiment] | [Observed] | ☐ |
+| Procedure | [From experiment] | [Followed] | ☐ |
+| Outcome | [From experiment] | [Observed] | ☐ |
+
+---
+
 ## Evidence Collected
 
 | Evidence ID | Type | Location | Hash | Description |
@@ -83,8 +100,9 @@ See: `./evidence/references.md`
 | Field | Value |
 |-------|-------|
 | Hypothesis Confirmed | [YES | NO | PARTIAL] |
-| Knowledge Impact | [SUPPORTS | CONTRADICTS | INCONCLUSIVE] |
+| Knowledge Assessment | [SUPPORTS | CONTRADICTS | INCONCLUSIVE] |
 | Confidence | [HIGH | MEDIUM | LOW] |
+| Reproducibility | [SUCCESS | FAIL | PARTIAL] |
 
 ---
 
@@ -120,3 +138,5 @@ See: `./evidence/references.md`
 | Duration | [HH:MM:SS] |
 | Executor | [Name] |
 | Outcome | [SUPPORTS | CONTRADICTS | INCONCLUSIVE] |
+| Reproducibility | [SUCCESS | FAIL | PARTIAL] |
+| Schema Version | 2.0 |
