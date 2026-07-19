@@ -1,0 +1,19 @@
+# Inventory Management System Configuration
+name: warehouse-alpha
+type: inventory-management
+version: 1.0.0
+
+settings:
+  low_stock_threshold: 10
+  auto_reorder_enabled: true
+  report_format: json
+
+categories:
+  - widgets
+  - gadgets
+  - components
+  - supplies
+
+metadata:
+  created: 2026-07-19
+  owner: warehouse-team
