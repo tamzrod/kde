@@ -6,125 +6,105 @@
 **Executor**: [Name or system identifier]
 **Duration**: [HH:MM:SS]
 **Reproducibility Run**: [YES | NO]
+**Methodology Version**: 2.1
 
 ---
 
-## Run Status
+## Trigger
 
-**Status**: [PENDING | RUNNING | COMPLETE | FAILED | ABORTED]
+[What actually happened - the real-world event that caused the engineering decision]
 
----
-
-## Pre-Run Checklist
-
-| Check | Status | Notes |
-|-------|--------|-------|
-| Preconditions met | ☐ PASS / ☐ FAIL | |
-| Environment ready | ☐ PASS / ☐ FAIL | |
-| Evidence collection prepared | ☐ PASS / ☐ FAIL | |
-| Executor qualified | ☐ PASS / ☐ FAIL | |
-| Reproducibility verified | ☐ PASS / ☐ FAIL | |
+**Examples**:
+- User requested feature via issue
+- Runtime installed into incorrect directory
+- Docker build failed with error
+- Repository inconsistency detected
+- Documentation contradiction discovered
 
 ---
 
-## Procedure Execution
+## Decision
 
-### Step 1: [Name]
-**Executed**: YYYY-MM-DD HH:MM:SS
-**Action**: [What was done]
-**Result**: [What happened]
-
-### Step 2: [Name]
-**Executed**: YYYY-MM-DD HH:MM:SS
-**Action**: [What was done]
-**Result**: [What happened]
-
-### Step 3: [Name]
-**Executed**: YYYY-MM-DD HH:MM:SS
-**Action**: [What was done]
-**Result**: [What happened]
+[What engineering decision is required?]
 
 ---
 
-## Observations
+## Knowledge Used
 
-[Raw observations - what was seen, not interpreted]
-[Document facts, measurements, events]
-[No interpretation or analysis here]
-
----
-
-## Actual Result
-
-[What actually happened, compared to expected]
+| Knowledge ID | Definition |
+|-------------|------------|
+| KDE-XXX | [Definition text] |
 
 ---
 
-## Deviation from Expected
+## Observation
 
-[If any deviation occurred, describe it and provide explanation]
+[ONLY factual observations - no interpretation, no justification, no conclusions]
 
-**Deviation Magnitude**: [NONE | MINOR | MODERATE | MAJOR]
-
----
-
-## Reproducibility Assessment
-
-**Independent Reproduction**: [YES | NO | PARTIAL]
-**Reproducer**: [Name if different from executor]
-**Environment Match**: [YES | NO]
-**Result Match**: [YES | NO | PARTIAL]
-
-| Aspect | Expected | Actual | Match |
-|--------|----------|--------|--------|
-| Environment | [From experiment] | [Observed] | ☐ |
-| Procedure | [From experiment] | [Followed] | ☐ |
-| Outcome | [From experiment] | [Observed] | ☐ |
+**Good examples**:
+- "README contained three sections."
+- "No Architecture section existed."
+- "Docker exited with code 127."
+- "Runtime installed into /home/openhands/.kdse."
+- "File permissions were 0644."
 
 ---
 
-## Evidence Collected
+## Evidence
 
-| Evidence ID | Type | Location | Hash | Description |
-|-------------|------|----------|------|-------------|
-| EV-001 | log | [path] | sha256:... | [Description] |
-| EV-002 | measurement | [path] | sha256:... | [Description] |
-| EV-003 | screenshot | [path] | sha256:... | [Description] |
+[Reference independently retrievable artifacts]
 
-See: `./evidence/references.md`
+| Evidence ID | Type | Source | Reference | Description |
+|-------------|------|--------|-----------|-------------|
+| EV-001 | log | terminal | commit:abc123 | Terminal output |
+| EV-002 | file | filesystem | /path/to/file | Source file |
+| EV-003 | commit | git | hash | Git commit |
+| EV-004 | config | file | /etc/config | Configuration |
+| EV-005 | output | runtime | process log | Runtime output |
 
----
+**Acceptable evidence**: log files, terminal output, commit hashes, source files, runtime reports, screenshots, configuration files, PDFs, specifications
 
-## Run Outcome
-
-| Field | Value |
-|-------|-------|
-| Hypothesis Confirmed | [YES | NO | PARTIAL] |
-| Knowledge Assessment | [SUPPORTS | CONTRADICTS | INCONCLUSIVE] |
-| Confidence | [HIGH | MEDIUM | LOW] |
-| Reproducibility | [SUCCESS | FAIL | PARTIAL] |
+**Avoid**: "directory structure", "README analysis", "repository review"
 
 ---
 
-## Conclusion
+## Ambiguity
 
-[Analysis of what this run means relative to the hypothesis]
-[Compare actual result to expected result]
-[Interpret the evidence collected]
-
----
-
-## Open Issues
-
-1. [Issue identified during run]
-2. [Issue identified during run]
+| Ambiguity | Classification | Description |
+|-----------|---------------|-------------|
+| [Description] | [Blocking/Productive] | [What caused ambiguity] |
 
 ---
 
-## Next Run Recommendations
+## Decision Outcome
 
-[Recommendations for improving the experiment or conducting additional runs]
-[If not applicable, mark as NONE]
+[Record the engineering decision taken]
+
+---
+
+## Knowledge Assessment
+
+| Knowledge | Assessment | Justification |
+|----------|------------|---------------|
+| KDE-XXX | [SUPPORTS/CONTRADICTS/INCONCLUSIVE] | [Concise reason] |
+
+---
+
+## Confidence
+
+| Factor | Evidence | Assessment |
+|--------|----------|------------|
+| Run Count | [N runs] | [H/M/L] |
+| Evidence Quality | [complete/partial/missing] | [H/M/L] |
+| Reproducibility | [established/not] | [H/M/L] |
+
+**Confidence Level**: [HIGH | MEDIUM | LOW]
+
+---
+
+## Recommendation
+
+[Continue | Repeat | Stop Experiment]
 
 ---
 
@@ -135,8 +115,4 @@ See: `./evidence/references.md`
 | Run ID | RUN-XXX |
 | Experiment ID | LAB-XXX |
 | Date | YYYY-MM-DD HH:MM:SS |
-| Duration | [HH:MM:SS] |
-| Executor | [Name] |
-| Outcome | [SUPPORTS | CONTRADICTS | INCONCLUSIVE] |
-| Reproducibility | [SUCCESS | FAIL | PARTIAL] |
-| Schema Version | 2.0 |
+| Methodology Version | 2.1 |
