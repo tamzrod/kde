@@ -7,13 +7,29 @@
 
 ## Overview
 
-The KDE Engine Framework establishes a formal versioning system for the Knowledge Discovery Engine methodology. This framework enables tracking which methodology version produced each experiment while preserving complete historical provenance.
+The KDE Engine Framework establishes the **sole authoritative source** for laboratory methodology. This framework defines how the Knowledge Discovery Engine methodology evolves over time while preserving complete historical provenance for all experiments.
+
+---
+
+## Engine Authority
+
+**The Engine is the single source of truth for laboratory methodology.**
+
+| Rule | Description |
+|------|-------------|
+| **Rule 1** | The Laboratory SHALL NOT define its own methodology |
+| **Rule 2** | Every laboratory experiment SHALL execute under a KDE Engine |
+| **Rule 3** | The Engine directory SHALL be the single authoritative source for laboratory methodology |
+| **Rule 4** | Laboratory documents may reference an Engine but SHALL NOT redefine Engine behavior |
+| **Rule 5** | Future methodology improvements SHALL be implemented by creating a NEW Engine |
+| **Rule 6** | Historical experiments SHALL permanently reference the Engine under which they were executed |
+| **Rule 7** | Experiments discover knowledge. Engines discover better methodologies. |
 
 ---
 
 ## What is a KDE Engine?
 
-A **KDE Engine** is a documented version of the Knowledge Discovery Engine methodology. It defines:
+A **KDE Engine** is the **sole authoritative source** for laboratory methodology. It defines:
 
 - The processes for knowledge discovery
 - The rules for evidence collection
@@ -25,6 +41,19 @@ Each engine has a unique identity, version, and lifecycle status.
 
 ---
 
+## Engine vs Laboratory
+
+| Aspect | Engine | Laboratory |
+|--------|--------|-------------|
+| **Defines** | Methodology | Experiments |
+| **Authority** | Defines process | Executes process |
+| **Evolves** | Methodology improvements | New experiments |
+| **Responsibility** | How to do experiments | Running experiments |
+
+The Engine defines methodology. The Laboratory executes it.
+
+---
+
 ## Why Version Engines?
 
 ### Purpose
@@ -33,6 +62,7 @@ Each engine has a unique identity, version, and lifecycle status.
 2. **Methodology Evolution**: Enables understanding of how methodology changed over time
 3. **Historical Preservation**: Experiments remain valid in their original methodology context
 4. **Traceability**: Links experiments to their producing methodology
+5. **Separation of Concerns**: Engines evolve methodology; experiments discover knowledge
 
 ### Benefits
 
@@ -40,6 +70,7 @@ Each engine has a unique identity, version, and lifecycle status.
 - No ambiguity about which rules applied to which experiments
 - Foundation for evaluating methodology effectiveness over time
 - Enables comparison across methodology versions
+- Clear responsibility separation: Engines improve methodology; Laboratories run experiments
 
 ---
 
