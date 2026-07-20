@@ -1,12 +1,12 @@
-# Knowledge-Driven Engineering (KDE) Research
+# Knowledge Discovery Engine (KDE) Research
 
 ## Overview
 
-This repository contains research aimed at defining **Knowledge-Driven Engineering**.
+This repository contains research aimed at defining **Knowledge Discovery Engine**.
 
 Our fundamental question is:
 
-> **"What must we understand before we can define Knowledge-Driven Engineering?"**
+> **"What must we understand before we can define Knowledge Discovery Engine?"**
 
 This is a research-first initiative. We do not know what KDE will become. This roadmap helps us find out.
 
