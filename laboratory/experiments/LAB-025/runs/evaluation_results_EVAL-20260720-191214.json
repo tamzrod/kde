@@ -1,0 +1,524 @@
+{
+  "evaluation_id": "EVAL-20260720-191214",
+  "timestamp": "2026-07-20T19:12:14.516637Z",
+  "protocols_evaluated": 0,
+  "protocols_passed": 0,
+  "protocols_failed": 0,
+  "protocols_partial": 0,
+  "protocols_error": 100,
+  "evaluations": [
+    {
+      "run_id": "RUN-001",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-002",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-003",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-004",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-005",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-006",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-007",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-008",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-009",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-010",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-011",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-012",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-013",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-014",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-015",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-016",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-017",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-018",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-019",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-020",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-021",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-022",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-023",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-024",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-025",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-026",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-027",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-028",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-029",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-030",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-031",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-032",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-033",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-034",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-035",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-036",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-037",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-038",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-039",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-040",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-041",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-042",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-043",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-044",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-045",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-046",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-047",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-048",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-049",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-050",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-051",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-052",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-053",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-054",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-055",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-056",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-057",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-058",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-059",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-060",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-061",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-062",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-063",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-064",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-065",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-066",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-067",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-068",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-069",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-070",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-071",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-072",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-073",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-074",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-075",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-076",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-077",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-078",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-079",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-080",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-081",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-082",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-083",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-084",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-085",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-086",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-087",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-088",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-089",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-090",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-091",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-092",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-093",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-094",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-095",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-096",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-097",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-098",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-099",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    },
+    {
+      "run_id": "RUN-100",
+      "status": "error",
+      "error": "name 'f' is not defined"
+    }
+  ],
+  "statistics": {},
+  "vulnerability_summary": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0,
+    "informational": 0
+  },
+  "phase_summary": {},
+  "patterns": {
+    "recurring_weaknesses": [],
+    "recurring_strengths": []
+  }
+}
