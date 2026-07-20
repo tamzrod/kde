@@ -1,8 +1,8 @@
 # Laboratory Experiment Registry
 
-**Last Updated**: 2026-07-19
-**Total Experiments**: 1
-**Active Experiments**: 0
+**Last Updated**: 2026-07-20
+**Total Experiments**: 11
+**Active Experiments**: 1
 **Schema Version**: 2.0
 
 ---
@@ -21,6 +21,7 @@
 | LAB-008 | Universal Knowledge DNA Discovery | COMPLETE | Cross-Domain | KDE-001, KDE-002, KDE-003 | 5 | SUPPORTS | HIGH | ESTABLISHED |
 | LAB-009 | Knowledge DNA Discovery | COMPLETE | Cross-Domain | KDE-001, KDE-002, KDE-003 | 5 | SUPPORTS | HIGH | ESTABLISHED |
 | LAB-010 | Knowledge-to-Simulation Validation | COMPLETE | Engineering | KDE-001, KDE-002, KDE-003 | 1 | SUPPORTS | HIGH | ESTABLISHED |
+| LAB-011 | Center Control Strategy Discovery | ACTIVE | Chess Strategy | KDE-001 | 11 | PARTIALLY SUPPORTS | MEDIUM | ESTABLISHED |
 
 ---
 
@@ -187,7 +188,10 @@ CREATE INDEX idx_evidence_experiment ON evidence(experiment_id);
 
 | Date | ID | Activity | Details |
 |------|-----|----------|---------|
-| (No recent activity) | | | |
+| 2026-07-20 | LAB-011 | CREATED | Center Control Strategy Discovery experiment initiated |
+| 2026-07-20 | LAB-011 | RUN-001 | Completed - 10 positions analyzed |
+| 2026-07-20 | LAB-011 | RUN-002 to RUN-011 | Batch 1 complete - 100 positions, 7 patterns identified |
+| 2026-07-20 | LAB-011 | BATCH 1 | Complete - Recommendation: Begin validation |
 
 ---
 
