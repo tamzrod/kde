@@ -1,0 +1,150 @@
+{
+  "run_id": "RUN-094",
+  "seed": 1700000094,
+  "protocol_name": "BastionProtocol",
+  "specification": {
+    "name": "BastionProtocol",
+    "version": "1.0.0",
+    "architecture": "ring_based",
+    "node_type": "uniform",
+    "quorum_type": "weighted",
+    "leader_election": "timestamp_based",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "write_quorum",
+    "vote_granting": "grant_if_no_voted",
+    "vote_revocations": false,
+    "log_type": "replicated_log",
+    "log_structure": "hash_chain",
+    "commit_method": "pipeline_commit",
+    "recovery_strategy": "state_transfer",
+    "snapshot_policy": "size_based",
+    "membership_model": "static",
+    "add_node_method": "",
+    "remove_node_method": "",
+    "failure_detection": "explicit_probe",
+    "failure_model": "crash_recovery",
+    "timeout_model": "adaptive",
+    "heartbeat_interval": 428,
+    "election_timeout_base": 247,
+    "election_timeout_range": 224,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "snapshot",
+      "membership_change",
+      "term_update"
+    ],
+    "state_machine_type": "deterministic",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:timestamp_based",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:write_quorum",
+    "vote_granting:grant_if_no_voted",
+    "log:replicated_log",
+    "log_structure:hash_chain",
+    "commit:pipeline_commit",
+    "recovery:state_transfer",
+    "snapshot:size_based",
+    "failure_detection:explicit_probe"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "BastionProtocol",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 63,
+        "elections_succeeded": 37,
+        "messages_sent": 166,
+        "commits": 19,
+        "recoveries": 39,
+        "partitions": 55,
+        "leader_changes": 37,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.5873015873015873,
+        "avg_messages_per_commit": 8.736842105263158,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "BastionProtocol",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 59,
+        "elections_succeeded": 49,
+        "messages_sent": 347,
+        "commits": 21,
+        "recoveries": 39,
+        "partitions": 57,
+        "leader_changes": 49,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8305084745762712,
+        "avg_messages_per_commit": 16.523809523809526,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "BastionProtocol",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 59,
+        "elections_succeeded": 51,
+        "messages_sent": 305,
+        "commits": 14,
+        "recoveries": 37,
+        "partitions": 61,
+        "leader_changes": 51,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.864406779661017,
+        "avg_messages_per_commit": 21.785714285714285,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "BastionProtocol",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 68,
+        "elections_succeeded": 65,
+        "messages_sent": 641,
+        "commits": 27,
+        "recoveries": 39,
+        "partitions": 51,
+        "leader_changes": 65,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9558823529411765,
+        "avg_messages_per_commit": 23.74074074074074,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:49.579414Z"
+}

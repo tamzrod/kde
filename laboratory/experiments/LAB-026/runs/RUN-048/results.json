@@ -1,0 +1,149 @@
+{
+  "run_id": "RUN-048",
+  "seed": 1700000048,
+  "protocol_name": "BeaconSync",
+  "specification": {
+    "name": "BeaconSync",
+    "version": "1.0.0",
+    "architecture": "hierarchical",
+    "node_type": "heterogeneous",
+    "quorum_type": "flexible",
+    "leader_election": "voting_based",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "weighted_votes",
+    "vote_granting": "grant_if_log_newer",
+    "vote_revocations": false,
+    "log_type": "value_log",
+    "log_structure": "tree_structure",
+    "commit_method": "index_based",
+    "recovery_strategy": "incremental_snapshot",
+    "snapshot_policy": "log_compaction",
+    "membership_model": "static",
+    "add_node_method": "",
+    "remove_node_method": "",
+    "failure_detection": "adaptive",
+    "failure_model": "crash_recovery",
+    "timeout_model": "proportional",
+    "heartbeat_interval": 258,
+    "election_timeout_base": 315,
+    "election_timeout_range": 299,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "leader_announce",
+      "term_update"
+    ],
+    "state_machine_type": "fsm",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:voting_based",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:weighted_votes",
+    "vote_granting:grant_if_log_newer",
+    "log:value_log",
+    "log_structure:tree_structure",
+    "commit:index_based",
+    "recovery:incremental_snapshot",
+    "snapshot:log_compaction",
+    "failure_detection:adaptive"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "BeaconSync",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 50,
+        "elections_succeeded": 45,
+        "messages_sent": 195,
+        "commits": 19,
+        "recoveries": 45,
+        "partitions": 47,
+        "leader_changes": 45,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9,
+        "avg_messages_per_commit": 10.263157894736842,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "BeaconSync",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 54,
+        "elections_succeeded": 43,
+        "messages_sent": 234,
+        "commits": 18,
+        "recoveries": 41,
+        "partitions": 51,
+        "leader_changes": 43,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7962962962962963,
+        "avg_messages_per_commit": 13.0,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "BeaconSync",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 53,
+        "elections_succeeded": 45,
+        "messages_sent": 350,
+        "commits": 24,
+        "recoveries": 43,
+        "partitions": 62,
+        "leader_changes": 45,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8490566037735849,
+        "avg_messages_per_commit": 14.583333333333334,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "BeaconSync",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 57,
+        "elections_succeeded": 57,
+        "messages_sent": 666,
+        "commits": 26,
+        "recoveries": 41,
+        "partitions": 59,
+        "leader_changes": 57,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 25.615384615384617,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:47.184282Z"
+}

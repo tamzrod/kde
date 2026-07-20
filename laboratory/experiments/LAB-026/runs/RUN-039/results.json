@@ -1,0 +1,151 @@
+{
+  "run_id": "RUN-039",
+  "seed": 1700000039,
+  "protocol_name": "PrismProtocol",
+  "specification": {
+    "name": "PrismProtocol",
+    "version": "1.0.0",
+    "architecture": "hierarchical",
+    "node_type": "heterogeneous",
+    "quorum_type": "majority",
+    "leader_election": "timestamp_based",
+    "term_epochs": false,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "hierarchical_quorum",
+    "vote_granting": "grant_to_highest_term",
+    "vote_revocations": true,
+    "log_type": "replicated_log",
+    "log_structure": "tree_structure",
+    "commit_method": "pipeline_commit",
+    "recovery_strategy": "log_catchup",
+    "snapshot_policy": "leader_change",
+    "membership_model": "static",
+    "add_node_method": "",
+    "remove_node_method": "",
+    "failure_detection": "heartbeat",
+    "failure_model": "omission",
+    "timeout_model": "fixed",
+    "heartbeat_interval": 456,
+    "election_timeout_base": 412,
+    "election_timeout_range": 67,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "membership_change",
+      "leader_announce"
+    ],
+    "state_machine_type": "fsm",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:timestamp_based",
+    "concept:randomized_timeout",
+    "voting:hierarchical_quorum",
+    "vote_granting:grant_to_highest_term",
+    "concept:vote_revocations",
+    "concept:majority_quorum",
+    "log:replicated_log",
+    "log_structure:tree_structure",
+    "commit:pipeline_commit",
+    "recovery:log_catchup",
+    "snapshot:leader_change",
+    "failure_detection:heartbeat",
+    "concept:heartbeat"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "PrismProtocol",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 59,
+        "elections_succeeded": 42,
+        "messages_sent": 163,
+        "commits": 12,
+        "recoveries": 40,
+        "partitions": 58,
+        "leader_changes": 42,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.711864406779661,
+        "avg_messages_per_commit": 13.583333333333334,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "PrismProtocol",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 62,
+        "elections_succeeded": 56,
+        "messages_sent": 271,
+        "commits": 21,
+        "recoveries": 56,
+        "partitions": 52,
+        "leader_changes": 56,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9032258064516129,
+        "avg_messages_per_commit": 12.904761904761905,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "PrismProtocol",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 44,
+        "elections_succeeded": 43,
+        "messages_sent": 317,
+        "commits": 16,
+        "recoveries": 58,
+        "partitions": 63,
+        "leader_changes": 43,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9772727272727273,
+        "avg_messages_per_commit": 19.8125,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "PrismProtocol",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 55,
+        "elections_succeeded": 55,
+        "messages_sent": 585,
+        "commits": 30,
+        "recoveries": 47,
+        "partitions": 45,
+        "leader_changes": 55,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 19.5,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:46.700090Z"
+}

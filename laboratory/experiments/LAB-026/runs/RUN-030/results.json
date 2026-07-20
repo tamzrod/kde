@@ -1,0 +1,149 @@
+{
+  "run_id": "RUN-030",
+  "seed": 1700000030,
+  "protocol_name": "AnchorSync",
+  "specification": {
+    "name": "AnchorSync",
+    "version": "1.0.0",
+    "architecture": "hierarchical",
+    "node_type": "uniform",
+    "quorum_type": "hierarchical",
+    "leader_election": "load_balanced",
+    "term_epochs": true,
+    "randomized_timeout": false,
+    "lease_based": false,
+    "voting_model": "hierarchical_quorum",
+    "vote_granting": "grant_to_candidate",
+    "vote_revocations": true,
+    "log_type": "command_log",
+    "log_structure": "append_only_array",
+    "commit_method": "index_based",
+    "recovery_strategy": "snapshot_transfer",
+    "snapshot_policy": "log_compaction",
+    "membership_model": "single_config",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "heartbeat",
+    "failure_model": "omission",
+    "timeout_model": "exponential",
+    "heartbeat_interval": 180,
+    "election_timeout_base": 418,
+    "election_timeout_range": 57,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat"
+    ],
+    "state_machine_type": "deterministic",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:load_balanced",
+    "concept:term_epochs",
+    "voting:hierarchical_quorum",
+    "vote_granting:grant_to_candidate",
+    "concept:vote_revocations",
+    "log:command_log",
+    "log_structure:append_only_array",
+    "commit:index_based",
+    "recovery:snapshot_transfer",
+    "snapshot:log_compaction",
+    "dynamic_membership:single_config",
+    "failure_detection:heartbeat",
+    "concept:heartbeat"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "AnchorSync",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 51,
+        "elections_succeeded": 39,
+        "messages_sent": 181,
+        "commits": 10,
+        "recoveries": 36,
+        "partitions": 54,
+        "leader_changes": 39,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7647058823529411,
+        "avg_messages_per_commit": 18.1,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AnchorSync",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 60,
+        "elections_succeeded": 55,
+        "messages_sent": 330,
+        "commits": 12,
+        "recoveries": 49,
+        "partitions": 59,
+        "leader_changes": 55,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9166666666666666,
+        "avg_messages_per_commit": 27.5,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AnchorSync",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 51,
+        "elections_succeeded": 45,
+        "messages_sent": 405,
+        "commits": 20,
+        "recoveries": 50,
+        "partitions": 55,
+        "leader_changes": 45,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8823529411764706,
+        "avg_messages_per_commit": 20.25,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AnchorSync",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 51,
+        "elections_succeeded": 50,
+        "messages_sent": 397,
+        "commits": 17,
+        "recoveries": 46,
+        "partitions": 70,
+        "leader_changes": 50,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9803921568627451,
+        "avg_messages_per_commit": 23.352941176470587,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:46.226922Z"
+}

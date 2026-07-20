@@ -1,0 +1,5106 @@
+{
+  "timestamp": "2026-07-20T19:58:09.621683Z",
+  "total_protocols": 100,
+  "results": [
+    {
+      "protocol_name": "AnchorProtocol",
+      "run_id": "RUN-001",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BastionFlow",
+      "run_id": "RUN-002",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "StratumPact",
+      "run_id": "RUN-003",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "StratumAgreement",
+      "run_id": "RUN-004",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BastionConsensus",
+      "run_id": "RUN-005",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AetherAgreement",
+      "run_id": "RUN-006",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "BeaconFlow",
+      "run_id": "RUN-007",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "HelixCore",
+      "run_id": "RUN-008",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NexusFlow",
+      "run_id": "RUN-009",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NovaAgreement",
+      "run_id": "RUN-010",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "HelixSync",
+      "run_id": "RUN-011",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismConsensus",
+      "run_id": "RUN-012",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismCoordination",
+      "run_id": "RUN-013",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NovaCoordination",
+      "run_id": "RUN-014",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "CipherUnion",
+      "run_id": "RUN-015",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "ForgeProtocol",
+      "run_id": "RUN-016",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "ForgeProtocol",
+      "run_id": "RUN-017",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BastionPact",
+      "run_id": "RUN-018",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "SignalUnion",
+      "run_id": "RUN-019",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AetherFlow",
+      "run_id": "RUN-020",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NovaCoordination",
+      "run_id": "RUN-021",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "HelixConsensus",
+      "run_id": "RUN-022",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "AnchorSync",
+      "run_id": "RUN-023",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "StratumUnion",
+      "run_id": "RUN-024",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NovaAgreement",
+      "run_id": "RUN-025",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BastionConsensus",
+      "run_id": "RUN-026",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismConsensus",
+      "run_id": "RUN-027",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "HelixPact",
+      "run_id": "RUN-028",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "StratumConsensus",
+      "run_id": "RUN-029",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AnchorSync",
+      "run_id": "RUN-030",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AetherAgreement",
+      "run_id": "RUN-031",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "HelixCoordination",
+      "run_id": "RUN-032",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BeaconPact",
+      "run_id": "RUN-033",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BastionAgreement",
+      "run_id": "RUN-034",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "SignalFlow",
+      "run_id": "RUN-035",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AnchorAgreement",
+      "run_id": "RUN-036",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "ForgeProtocol",
+      "run_id": "RUN-037",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NovaCoordination",
+      "run_id": "RUN-038",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismProtocol",
+      "run_id": "RUN-039",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismAgreement",
+      "run_id": "RUN-040",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "NexusSync",
+      "run_id": "RUN-041",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "HelixConsensus",
+      "run_id": "RUN-042",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "CipherCoordination",
+      "run_id": "RUN-043",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "ForgeSync",
+      "run_id": "RUN-044",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AetherProtocol",
+      "run_id": "RUN-045",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "SignalUnion",
+      "run_id": "RUN-046",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "CipherPact",
+      "run_id": "RUN-047",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BeaconSync",
+      "run_id": "RUN-048",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "HelixConsensus",
+      "run_id": "RUN-049",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "CipherUnion",
+      "run_id": "RUN-050",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "SignalUnion",
+      "run_id": "RUN-051",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "HelixConsensus",
+      "run_id": "RUN-052",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BastionProtocol",
+      "run_id": "RUN-053",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AnchorPact",
+      "run_id": "RUN-054",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismSync",
+      "run_id": "RUN-055",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "StratumCore",
+      "run_id": "RUN-056",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AnchorCore",
+      "run_id": "RUN-057",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "ForgeConsensus",
+      "run_id": "RUN-058",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "SignalCore",
+      "run_id": "RUN-059",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BeaconUnion",
+      "run_id": "RUN-060",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismCoordination",
+      "run_id": "RUN-061",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AetherProtocol",
+      "run_id": "RUN-062",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "CipherUnion",
+      "run_id": "RUN-063",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "CipherFlow",
+      "run_id": "RUN-064",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BastionSync",
+      "run_id": "RUN-065",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "ForgeCoordination",
+      "run_id": "RUN-066",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "ForgeUnion",
+      "run_id": "RUN-067",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "CipherAgreement",
+      "run_id": "RUN-068",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AetherCoordination",
+      "run_id": "RUN-069",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "BastionCoordination",
+      "run_id": "RUN-070",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "SignalCore",
+      "run_id": "RUN-071",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "StratumPact",
+      "run_id": "RUN-072",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismSync",
+      "run_id": "RUN-073",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismProtocol",
+      "run_id": "RUN-074",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "SignalPact",
+      "run_id": "RUN-075",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "HelixFlow",
+      "run_id": "RUN-076",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NovaFlow",
+      "run_id": "RUN-077",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "ForgeSync",
+      "run_id": "RUN-078",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "ForgeProtocol",
+      "run_id": "RUN-079",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "ForgeCore",
+      "run_id": "RUN-080",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "SignalCoordination",
+      "run_id": "RUN-081",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "ForgeSync",
+      "run_id": "RUN-082",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AnchorFlow",
+      "run_id": "RUN-083",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AetherAgreement",
+      "run_id": "RUN-084",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "StratumFlow",
+      "run_id": "RUN-085",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": false,
+            "description": "Exponential backoff prevents infinite elections",
+            "severity": "Low"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "StratumProtocol",
+      "run_id": "RUN-086",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "StratumCore",
+      "run_id": "RUN-087",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "AnchorCore",
+      "run_id": "RUN-088",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NexusConsensus",
+      "run_id": "RUN-089",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "AetherProtocol",
+      "run_id": "RUN-090",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismFlow",
+      "run_id": "RUN-091",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NovaFlow",
+      "run_id": "RUN-092",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "AnchorUnion",
+      "run_id": "RUN-093",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "BastionProtocol",
+      "run_id": "RUN-094",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "PrismFlow",
+      "run_id": "RUN-095",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": false,
+            "description": "Majority quorum with term epochs prevents split brain",
+            "severity": "Medium"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 0,
+        "overall_score": 100
+      }
+    },
+    {
+      "protocol_name": "ForgeCoordination",
+      "run_id": "RUN-096",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": true,
+            "description": "May be vulnerable to livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NovaCore",
+      "run_id": "RUN-097",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": true,
+            "description": "Static membership may lead to deadlock",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "HelixProtocol",
+      "run_id": "RUN-098",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": false,
+            "description": "Index-based commit prevents divergence",
+            "severity": "Low"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "CipherConsensus",
+      "run_id": "RUN-099",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": true,
+            "description": "May be vulnerable to dual leaders",
+            "severity": "Medium"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": true,
+            "description": "Recovery may fail under certain conditions",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    },
+    {
+      "protocol_name": "NexusSync",
+      "run_id": "RUN-100",
+      "adversarial": {
+        "tests": {
+          "split_brain": {
+            "success": true,
+            "description": "Protocol may be vulnerable to split brain",
+            "severity": "High"
+          },
+          "dual_leaders": {
+            "success": false,
+            "description": "Randomized timeouts prevent dual leaders",
+            "severity": "Low"
+          },
+          "log_divergence": {
+            "success": true,
+            "description": "Log divergence possible",
+            "severity": "Medium"
+          },
+          "infinite_election": {
+            "success": true,
+            "description": "May be vulnerable to infinite election loops",
+            "severity": "Medium"
+          },
+          "deadlock": {
+            "success": false,
+            "description": "Dynamic membership provides escape paths",
+            "severity": "Low"
+          },
+          "livelock": {
+            "success": false,
+            "description": "Randomization prevents livelock",
+            "severity": "Low"
+          },
+          "recovery_failure": {
+            "success": false,
+            "description": "Snapshot transfer enables recovery",
+            "severity": "Medium"
+          },
+          "state_corruption": {
+            "success": false,
+            "description": "Safety guarantees prevent state corruption",
+            "severity": "Critical"
+          }
+        },
+        "critical_failures": 0,
+        "high_failures": 1,
+        "overall_score": 85
+      }
+    }
+  ]
+}

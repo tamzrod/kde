@@ -1,0 +1,152 @@
+{
+  "run_id": "RUN-100",
+  "seed": 1700000100,
+  "protocol_name": "NexusSync",
+  "specification": {
+    "name": "NexusSync",
+    "version": "1.0.0",
+    "architecture": "fully_distributed",
+    "node_type": "uniform",
+    "quorum_type": "hierarchical",
+    "leader_election": "rotation",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "flexible_quorum",
+    "vote_granting": "grant_to_candidate",
+    "vote_revocations": false,
+    "log_type": "state_machine",
+    "log_structure": "ring_buffer",
+    "commit_method": "pipeline_commit",
+    "recovery_strategy": "hybrid_recovery",
+    "snapshot_policy": "log_compaction",
+    "membership_model": "full_dynamic",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "phi_accrual",
+    "failure_model": "omission",
+    "timeout_model": "proportional",
+    "heartbeat_interval": 94,
+    "election_timeout_base": 400,
+    "election_timeout_range": 102,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "snapshot",
+      "membership_change",
+      "leader_announce",
+      "term_update"
+    ],
+    "state_machine_type": "lua_script",
+    "provides_safety": true,
+    "provides_liveness": false
+  },
+  "discovered_features": [
+    "leader_election:rotation",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:flexible_quorum",
+    "vote_granting:grant_to_candidate",
+    "log:state_machine",
+    "log_structure:ring_buffer",
+    "commit:pipeline_commit",
+    "recovery:hybrid_recovery",
+    "snapshot:log_compaction",
+    "dynamic_membership:full_dynamic",
+    "failure_detection:phi_accrual"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "NexusSync",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 63,
+        "elections_succeeded": 52,
+        "messages_sent": 164,
+        "commits": 10,
+        "recoveries": 44,
+        "partitions": 68,
+        "leader_changes": 52,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8253968253968254,
+        "avg_messages_per_commit": 16.4,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusSync",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 53,
+        "elections_succeeded": 49,
+        "messages_sent": 303,
+        "commits": 18,
+        "recoveries": 40,
+        "partitions": 69,
+        "leader_changes": 49,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9245283018867925,
+        "avg_messages_per_commit": 16.833333333333332,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusSync",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 58,
+        "elections_succeeded": 49,
+        "messages_sent": 425,
+        "commits": 20,
+        "recoveries": 48,
+        "partitions": 45,
+        "leader_changes": 49,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8448275862068966,
+        "avg_messages_per_commit": 21.25,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusSync",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 60,
+        "elections_succeeded": 53,
+        "messages_sent": 501,
+        "commits": 19,
+        "recoveries": 43,
+        "partitions": 57,
+        "leader_changes": 53,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8833333333333333,
+        "avg_messages_per_commit": 26.36842105263158,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:49.893470Z"
+}

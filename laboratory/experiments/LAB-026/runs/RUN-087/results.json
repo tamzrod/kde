@@ -1,0 +1,149 @@
+{
+  "run_id": "RUN-087",
+  "seed": 1700000087,
+  "protocol_name": "StratumCore",
+  "specification": {
+    "name": "StratumCore",
+    "version": "1.0.0",
+    "architecture": "hierarchical",
+    "node_type": "uniform",
+    "quorum_type": "weighted",
+    "leader_election": "load_balanced",
+    "term_epochs": false,
+    "randomized_timeout": false,
+    "lease_based": false,
+    "voting_model": "flexible_quorum",
+    "vote_granting": "grant_to_highest_term",
+    "vote_revocations": false,
+    "log_type": "replicated_log",
+    "log_structure": "hash_chain",
+    "commit_method": "batch_commit",
+    "recovery_strategy": "state_transfer",
+    "snapshot_policy": "size_based",
+    "membership_model": "remove_node",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "gossip",
+    "failure_model": "timing",
+    "timeout_model": "proportional",
+    "heartbeat_interval": 485,
+    "election_timeout_base": 409,
+    "election_timeout_range": 295,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "snapshot",
+      "membership_change",
+      "term_update"
+    ],
+    "state_machine_type": "simple_state",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:load_balanced",
+    "voting:flexible_quorum",
+    "vote_granting:grant_to_highest_term",
+    "log:replicated_log",
+    "log_structure:hash_chain",
+    "commit:batch_commit",
+    "recovery:state_transfer",
+    "snapshot:size_based",
+    "dynamic_membership:remove_node",
+    "failure_detection:gossip"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "StratumCore",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 58,
+        "elections_succeeded": 53,
+        "messages_sent": 194,
+        "commits": 29,
+        "recoveries": 43,
+        "partitions": 54,
+        "leader_changes": 53,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9137931034482759,
+        "avg_messages_per_commit": 6.689655172413793,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "StratumCore",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 46,
+        "elections_succeeded": 40,
+        "messages_sent": 214,
+        "commits": 12,
+        "recoveries": 46,
+        "partitions": 46,
+        "leader_changes": 40,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8695652173913043,
+        "avg_messages_per_commit": 17.833333333333332,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "StratumCore",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 47,
+        "elections_succeeded": 47,
+        "messages_sent": 386,
+        "commits": 15,
+        "recoveries": 48,
+        "partitions": 78,
+        "leader_changes": 47,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 25.733333333333334,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "StratumCore",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 44,
+        "elections_succeeded": 44,
+        "messages_sent": 607,
+        "commits": 26,
+        "recoveries": 49,
+        "partitions": 53,
+        "leader_changes": 44,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 23.346153846153847,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:49.213875Z"
+}

@@ -1,0 +1,148 @@
+{
+  "run_id": "RUN-088",
+  "seed": 1700000088,
+  "protocol_name": "AnchorCore",
+  "specification": {
+    "name": "AnchorCore",
+    "version": "1.0.0",
+    "architecture": "decentralized",
+    "node_type": "heterogeneous",
+    "quorum_type": "flexible",
+    "leader_election": "lease_based",
+    "term_epochs": true,
+    "randomized_timeout": false,
+    "lease_based": false,
+    "voting_model": "weighted_votes",
+    "vote_granting": "grant_to_candidate",
+    "vote_revocations": true,
+    "log_type": "state_machine",
+    "log_structure": "tree_structure",
+    "commit_method": "quorum_commit",
+    "recovery_strategy": "hybrid_recovery",
+    "snapshot_policy": "leader_change",
+    "membership_model": "full_dynamic",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "swim_like",
+    "failure_model": "crash_recovery",
+    "timeout_model": "proportional",
+    "heartbeat_interval": 175,
+    "election_timeout_base": 240,
+    "election_timeout_range": 171,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat"
+    ],
+    "state_machine_type": "lua_script",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:lease_based",
+    "concept:term_epochs",
+    "voting:weighted_votes",
+    "vote_granting:grant_to_candidate",
+    "concept:vote_revocations",
+    "log:state_machine",
+    "log_structure:tree_structure",
+    "commit:quorum_commit",
+    "recovery:hybrid_recovery",
+    "snapshot:leader_change",
+    "dynamic_membership:full_dynamic",
+    "failure_detection:swim_like"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "AnchorCore",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 58,
+        "elections_succeeded": 43,
+        "messages_sent": 157,
+        "commits": 14,
+        "recoveries": 48,
+        "partitions": 57,
+        "leader_changes": 43,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7413793103448276,
+        "avg_messages_per_commit": 11.214285714285714,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AnchorCore",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 60,
+        "elections_succeeded": 33,
+        "messages_sent": 192,
+        "commits": 7,
+        "recoveries": 36,
+        "partitions": 57,
+        "leader_changes": 33,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.55,
+        "avg_messages_per_commit": 27.428571428571427,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AnchorCore",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 47,
+        "elections_succeeded": 32,
+        "messages_sent": 243,
+        "commits": 17,
+        "recoveries": 30,
+        "partitions": 54,
+        "leader_changes": 32,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.6808510638297872,
+        "avg_messages_per_commit": 14.294117647058824,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AnchorCore",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 53,
+        "elections_succeeded": 53,
+        "messages_sent": 738,
+        "commits": 31,
+        "recoveries": 44,
+        "partitions": 53,
+        "leader_changes": 53,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 23.806451612903224,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:49.266126Z"
+}

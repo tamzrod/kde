@@ -1,0 +1,151 @@
+{
+  "run_id": "RUN-043",
+  "seed": 1700000043,
+  "protocol_name": "CipherCoordination",
+  "specification": {
+    "name": "CipherCoordination",
+    "version": "1.0.0",
+    "architecture": "centralized_leader",
+    "node_type": "uniform",
+    "quorum_type": "weighted",
+    "leader_election": "load_balanced",
+    "term_epochs": false,
+    "randomized_timeout": true,
+    "lease_based": true,
+    "voting_model": "hierarchical_quorum",
+    "vote_granting": "grant_to_candidate",
+    "vote_revocations": false,
+    "log_type": "hybrid",
+    "log_structure": "linked_list",
+    "commit_method": "pipeline_commit",
+    "recovery_strategy": "incremental_snapshot",
+    "snapshot_policy": "size_based",
+    "membership_model": "joint_consensus",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "heartbeat",
+    "failure_model": "byzantine",
+    "timeout_model": "adaptive",
+    "heartbeat_interval": 122,
+    "election_timeout_base": 437,
+    "election_timeout_range": 128,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "leader_announce",
+      "term_update"
+    ],
+    "state_machine_type": "simple_state",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:load_balanced",
+    "concept:randomized_timeout",
+    "concept:lease_based_leadership",
+    "voting:hierarchical_quorum",
+    "vote_granting:grant_to_candidate",
+    "log:hybrid",
+    "log_structure:linked_list",
+    "commit:pipeline_commit",
+    "recovery:incremental_snapshot",
+    "snapshot:size_based",
+    "dynamic_membership:joint_consensus",
+    "failure_detection:heartbeat",
+    "concept:heartbeat"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "CipherCoordination",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 41,
+        "elections_succeeded": 22,
+        "messages_sent": 114,
+        "commits": 17,
+        "recoveries": 34,
+        "partitions": 56,
+        "leader_changes": 22,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.5365853658536586,
+        "avg_messages_per_commit": 6.705882352941177,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "CipherCoordination",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 42,
+        "elections_succeeded": 32,
+        "messages_sent": 219,
+        "commits": 13,
+        "recoveries": 52,
+        "partitions": 60,
+        "leader_changes": 32,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7619047619047619,
+        "avg_messages_per_commit": 16.846153846153847,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "CipherCoordination",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 52,
+        "elections_succeeded": 49,
+        "messages_sent": 475,
+        "commits": 35,
+        "recoveries": 38,
+        "partitions": 56,
+        "leader_changes": 49,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9423076923076923,
+        "avg_messages_per_commit": 13.571428571428571,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "CipherCoordination",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 57,
+        "elections_succeeded": 57,
+        "messages_sent": 609,
+        "commits": 28,
+        "recoveries": 57,
+        "partitions": 52,
+        "leader_changes": 57,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 21.75,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:46.917530Z"
+}

@@ -1,0 +1,149 @@
+{
+  "run_id": "RUN-009",
+  "seed": 1700000009,
+  "protocol_name": "NexusFlow",
+  "specification": {
+    "name": "NexusFlow",
+    "version": "1.0.0",
+    "architecture": "hierarchical",
+    "node_type": "uniform",
+    "quorum_type": "weighted",
+    "leader_election": "timestamp_based",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "write_quorum",
+    "vote_granting": "grant_to_highest_term",
+    "vote_revocations": false,
+    "log_type": "command_log",
+    "log_structure": "tree_structure",
+    "commit_method": "quorum_commit",
+    "recovery_strategy": "incremental_snapshot",
+    "snapshot_policy": "adaptive",
+    "membership_model": "remove_node",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "phi_accrual",
+    "failure_model": "timing",
+    "timeout_model": "adaptive",
+    "heartbeat_interval": 142,
+    "election_timeout_base": 480,
+    "election_timeout_range": 133,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "term_update"
+    ],
+    "state_machine_type": "lua_script",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:timestamp_based",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:write_quorum",
+    "vote_granting:grant_to_highest_term",
+    "log:command_log",
+    "log_structure:tree_structure",
+    "commit:quorum_commit",
+    "recovery:incremental_snapshot",
+    "snapshot:adaptive",
+    "dynamic_membership:remove_node",
+    "failure_detection:phi_accrual"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "NexusFlow",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 62,
+        "elections_succeeded": 41,
+        "messages_sent": 177,
+        "commits": 23,
+        "recoveries": 40,
+        "partitions": 46,
+        "leader_changes": 41,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.6612903225806451,
+        "avg_messages_per_commit": 7.695652173913044,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusFlow",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 55,
+        "elections_succeeded": 43,
+        "messages_sent": 269,
+        "commits": 19,
+        "recoveries": 40,
+        "partitions": 51,
+        "leader_changes": 43,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7818181818181819,
+        "avg_messages_per_commit": 14.157894736842104,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusFlow",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 57,
+        "elections_succeeded": 57,
+        "messages_sent": 544,
+        "commits": 25,
+        "recoveries": 45,
+        "partitions": 49,
+        "leader_changes": 57,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 21.76,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusFlow",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 60,
+        "elections_succeeded": 56,
+        "messages_sent": 534,
+        "commits": 17,
+        "recoveries": 53,
+        "partitions": 56,
+        "leader_changes": 56,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9333333333333333,
+        "avg_messages_per_commit": 31.41176470588235,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:45.125031Z"
+}

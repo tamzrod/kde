@@ -1,0 +1,148 @@
+{
+  "run_id": "RUN-023",
+  "seed": 1700000023,
+  "protocol_name": "AnchorSync",
+  "specification": {
+    "name": "AnchorSync",
+    "version": "1.0.0",
+    "architecture": "fully_distributed",
+    "node_type": "heterogeneous",
+    "quorum_type": "weighted",
+    "leader_election": "rotation",
+    "term_epochs": true,
+    "randomized_timeout": false,
+    "lease_based": false,
+    "voting_model": "majority_quorum",
+    "vote_granting": "grant_based_on_priority",
+    "vote_revocations": false,
+    "log_type": "hybrid",
+    "log_structure": "tree_structure",
+    "commit_method": "batch_commit",
+    "recovery_strategy": "snapshot_transfer",
+    "snapshot_policy": "adaptive",
+    "membership_model": "static",
+    "add_node_method": "",
+    "remove_node_method": "",
+    "failure_detection": "gossip",
+    "failure_model": "timing",
+    "timeout_model": "exponential",
+    "heartbeat_interval": 128,
+    "election_timeout_base": 292,
+    "election_timeout_range": 91,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "leader_announce",
+      "term_update"
+    ],
+    "state_machine_type": "simple_state",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:rotation",
+    "concept:term_epochs",
+    "voting:majority_quorum",
+    "vote_granting:grant_based_on_priority",
+    "log:hybrid",
+    "log_structure:tree_structure",
+    "commit:batch_commit",
+    "recovery:snapshot_transfer",
+    "snapshot:adaptive",
+    "failure_detection:gossip"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "AnchorSync",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 60,
+        "elections_succeeded": 48,
+        "messages_sent": 188,
+        "commits": 27,
+        "recoveries": 43,
+        "partitions": 49,
+        "leader_changes": 48,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8,
+        "avg_messages_per_commit": 6.962962962962963,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AnchorSync",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 66,
+        "elections_succeeded": 53,
+        "messages_sent": 301,
+        "commits": 20,
+        "recoveries": 50,
+        "partitions": 61,
+        "leader_changes": 53,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.803030303030303,
+        "avg_messages_per_commit": 15.05,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AnchorSync",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 66,
+        "elections_succeeded": 56,
+        "messages_sent": 315,
+        "commits": 20,
+        "recoveries": 50,
+        "partitions": 53,
+        "leader_changes": 56,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8484848484848485,
+        "avg_messages_per_commit": 15.75,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AnchorSync",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 53,
+        "elections_succeeded": 53,
+        "messages_sent": 571,
+        "commits": 21,
+        "recoveries": 46,
+        "partitions": 58,
+        "leader_changes": 53,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 27.19047619047619,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:45.860093Z"
+}

@@ -1,0 +1,153 @@
+{
+  "run_id": "RUN-060",
+  "seed": 1700000060,
+  "protocol_name": "BeaconUnion",
+  "specification": {
+    "name": "BeaconUnion",
+    "version": "1.0.0",
+    "architecture": "decentralized",
+    "node_type": "uniform",
+    "quorum_type": "flexible",
+    "leader_election": "random_winner",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "weighted_votes",
+    "vote_granting": "grant_to_highest_term",
+    "vote_revocations": true,
+    "log_type": "state_machine",
+    "log_structure": "tree_structure",
+    "commit_method": "batch_commit",
+    "recovery_strategy": "state_transfer",
+    "snapshot_policy": "log_compaction",
+    "membership_model": "joint_consensus",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "explicit_probe",
+    "failure_model": "crash_stop",
+    "timeout_model": "randomized",
+    "heartbeat_interval": 298,
+    "election_timeout_base": 255,
+    "election_timeout_range": 252,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "snapshot",
+      "membership_change",
+      "leader_announce"
+    ],
+    "state_machine_type": "lua_script",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:random_winner",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:weighted_votes",
+    "vote_granting:grant_to_highest_term",
+    "concept:vote_revocations",
+    "log:state_machine",
+    "log_structure:tree_structure",
+    "commit:batch_commit",
+    "recovery:state_transfer",
+    "snapshot:log_compaction",
+    "dynamic_membership:joint_consensus",
+    "failure_detection:explicit_probe",
+    "concept:randomized_election_timeout"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "BeaconUnion",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 45,
+        "elections_succeeded": 28,
+        "messages_sent": 124,
+        "commits": 14,
+        "recoveries": 44,
+        "partitions": 48,
+        "leader_changes": 28,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.6222222222222222,
+        "avg_messages_per_commit": 8.857142857142858,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "BeaconUnion",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 53,
+        "elections_succeeded": 39,
+        "messages_sent": 273,
+        "commits": 20,
+        "recoveries": 49,
+        "partitions": 40,
+        "leader_changes": 39,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7358490566037735,
+        "avg_messages_per_commit": 13.65,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "BeaconUnion",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 49,
+        "elections_succeeded": 38,
+        "messages_sent": 334,
+        "commits": 11,
+        "recoveries": 43,
+        "partitions": 57,
+        "leader_changes": 38,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7755102040816326,
+        "avg_messages_per_commit": 30.363636363636363,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "BeaconUnion",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 45,
+        "elections_succeeded": 44,
+        "messages_sent": 509,
+        "commits": 31,
+        "recoveries": 59,
+        "partitions": 56,
+        "leader_changes": 44,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9777777777777777,
+        "avg_messages_per_commit": 16.419354838709676,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:47.807367Z"
+}

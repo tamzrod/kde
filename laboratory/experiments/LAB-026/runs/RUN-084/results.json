@@ -1,0 +1,155 @@
+{
+  "run_id": "RUN-084",
+  "seed": 1700000084,
+  "protocol_name": "AetherAgreement",
+  "specification": {
+    "name": "AetherAgreement",
+    "version": "1.0.0",
+    "architecture": "centralized_leader",
+    "node_type": "heterogeneous",
+    "quorum_type": "majority",
+    "leader_election": "term_based",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": true,
+    "voting_model": "majority_quorum",
+    "vote_granting": "grant_based_on_priority",
+    "vote_revocations": true,
+    "log_type": "value_log",
+    "log_structure": "tree_structure",
+    "commit_method": "index_based",
+    "recovery_strategy": "log_catchup",
+    "snapshot_policy": "size_based",
+    "membership_model": "full_dynamic",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "phi_accrual",
+    "failure_model": "crash_recovery",
+    "timeout_model": "adaptive",
+    "heartbeat_interval": 168,
+    "election_timeout_base": 221,
+    "election_timeout_range": 59,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "snapshot",
+      "membership_change",
+      "leader_announce",
+      "term_update"
+    ],
+    "state_machine_type": "simple_state",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:term_based",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "concept:lease_based_leadership",
+    "voting:majority_quorum",
+    "vote_granting:grant_based_on_priority",
+    "concept:vote_revocations",
+    "concept:majority_quorum",
+    "log:value_log",
+    "log_structure:tree_structure",
+    "commit:index_based",
+    "recovery:log_catchup",
+    "snapshot:size_based",
+    "dynamic_membership:full_dynamic",
+    "failure_detection:phi_accrual"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "AetherAgreement",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 60,
+        "elections_succeeded": 47,
+        "messages_sent": 188,
+        "commits": 18,
+        "recoveries": 41,
+        "partitions": 66,
+        "leader_changes": 47,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7833333333333333,
+        "avg_messages_per_commit": 10.444444444444445,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AetherAgreement",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 56,
+        "elections_succeeded": 49,
+        "messages_sent": 276,
+        "commits": 14,
+        "recoveries": 47,
+        "partitions": 60,
+        "leader_changes": 49,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.875,
+        "avg_messages_per_commit": 19.714285714285715,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AetherAgreement",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 68,
+        "elections_succeeded": 67,
+        "messages_sent": 579,
+        "commits": 29,
+        "recoveries": 46,
+        "partitions": 47,
+        "leader_changes": 67,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9852941176470589,
+        "avg_messages_per_commit": 19.96551724137931,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "AetherAgreement",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 66,
+        "elections_succeeded": 62,
+        "messages_sent": 526,
+        "commits": 16,
+        "recoveries": 42,
+        "partitions": 54,
+        "leader_changes": 62,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9393939393939394,
+        "avg_messages_per_commit": 32.875,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:49.058744Z"
+}

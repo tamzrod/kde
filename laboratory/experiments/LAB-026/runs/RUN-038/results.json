@@ -1,0 +1,152 @@
+{
+  "run_id": "RUN-038",
+  "seed": 1700000038,
+  "protocol_name": "NovaCoordination",
+  "specification": {
+    "name": "NovaCoordination",
+    "version": "1.0.0",
+    "architecture": "centralized_leader",
+    "node_type": "uniform",
+    "quorum_type": "hierarchical",
+    "leader_election": "timestamp_based",
+    "term_epochs": true,
+    "randomized_timeout": false,
+    "lease_based": true,
+    "voting_model": "weighted_votes",
+    "vote_granting": "grant_if_no_voted",
+    "vote_revocations": false,
+    "log_type": "hybrid",
+    "log_structure": "linked_list",
+    "commit_method": "majority_commit",
+    "recovery_strategy": "log_catchup",
+    "snapshot_policy": "adaptive",
+    "membership_model": "joint_consensus",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "gossip",
+    "failure_model": "crash_recovery",
+    "timeout_model": "fixed",
+    "heartbeat_interval": 385,
+    "election_timeout_base": 240,
+    "election_timeout_range": 246,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "snapshot",
+      "membership_change",
+      "leader_announce",
+      "term_update"
+    ],
+    "state_machine_type": "lua_script",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:timestamp_based",
+    "concept:term_epochs",
+    "concept:lease_based_leadership",
+    "voting:weighted_votes",
+    "vote_granting:grant_if_no_voted",
+    "log:hybrid",
+    "log_structure:linked_list",
+    "commit:majority_commit",
+    "recovery:log_catchup",
+    "snapshot:adaptive",
+    "dynamic_membership:joint_consensus",
+    "failure_detection:gossip"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "NovaCoordination",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 62,
+        "elections_succeeded": 43,
+        "messages_sent": 180,
+        "commits": 21,
+        "recoveries": 43,
+        "partitions": 57,
+        "leader_changes": 43,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.6935483870967742,
+        "avg_messages_per_commit": 8.571428571428571,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NovaCoordination",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 52,
+        "elections_succeeded": 51,
+        "messages_sent": 294,
+        "commits": 16,
+        "recoveries": 48,
+        "partitions": 62,
+        "leader_changes": 51,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9807692307692307,
+        "avg_messages_per_commit": 18.375,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NovaCoordination",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 57,
+        "elections_succeeded": 47,
+        "messages_sent": 330,
+        "commits": 21,
+        "recoveries": 41,
+        "partitions": 66,
+        "leader_changes": 47,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8245614035087719,
+        "avg_messages_per_commit": 15.714285714285714,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NovaCoordination",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 69,
+        "elections_succeeded": 67,
+        "messages_sent": 766,
+        "commits": 23,
+        "recoveries": 45,
+        "partitions": 61,
+        "leader_changes": 67,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9710144927536232,
+        "avg_messages_per_commit": 33.30434782608695,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:46.647814Z"
+}

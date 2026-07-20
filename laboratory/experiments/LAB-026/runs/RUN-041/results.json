@@ -1,0 +1,152 @@
+{
+  "run_id": "RUN-041",
+  "seed": 1700000041,
+  "protocol_name": "NexusSync",
+  "specification": {
+    "name": "NexusSync",
+    "version": "1.0.0",
+    "architecture": "decentralized",
+    "node_type": "heterogeneous",
+    "quorum_type": "flexible",
+    "leader_election": "id_based",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "majority_quorum",
+    "vote_granting": "grant_if_no_voted",
+    "vote_revocations": true,
+    "log_type": "hybrid",
+    "log_structure": "linked_list",
+    "commit_method": "batch_commit",
+    "recovery_strategy": "snapshot_transfer",
+    "snapshot_policy": "leader_change",
+    "membership_model": "add_node",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "phi_accrual",
+    "failure_model": "crash_stop",
+    "timeout_model": "randomized",
+    "heartbeat_interval": 213,
+    "election_timeout_base": 189,
+    "election_timeout_range": 278,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "membership_change",
+      "leader_announce"
+    ],
+    "state_machine_type": "fsm",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:id_based",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:majority_quorum",
+    "vote_granting:grant_if_no_voted",
+    "concept:vote_revocations",
+    "log:hybrid",
+    "log_structure:linked_list",
+    "commit:batch_commit",
+    "recovery:snapshot_transfer",
+    "snapshot:leader_change",
+    "dynamic_membership:add_node",
+    "failure_detection:phi_accrual",
+    "concept:randomized_election_timeout"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "NexusSync",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 55,
+        "elections_succeeded": 44,
+        "messages_sent": 183,
+        "commits": 25,
+        "recoveries": 46,
+        "partitions": 51,
+        "leader_changes": 44,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8,
+        "avg_messages_per_commit": 7.32,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusSync",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 57,
+        "elections_succeeded": 39,
+        "messages_sent": 190,
+        "commits": 13,
+        "recoveries": 41,
+        "partitions": 63,
+        "leader_changes": 39,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.6842105263157895,
+        "avg_messages_per_commit": 14.615384615384615,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusSync",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 53,
+        "elections_succeeded": 53,
+        "messages_sent": 462,
+        "commits": 26,
+        "recoveries": 45,
+        "partitions": 61,
+        "leader_changes": 53,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 17.76923076923077,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusSync",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 59,
+        "elections_succeeded": 54,
+        "messages_sent": 525,
+        "commits": 15,
+        "recoveries": 47,
+        "partitions": 64,
+        "leader_changes": 54,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9152542372881356,
+        "avg_messages_per_commit": 35.0,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:46.813597Z"
+}

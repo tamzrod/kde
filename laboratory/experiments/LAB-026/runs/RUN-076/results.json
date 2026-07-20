@@ -1,0 +1,151 @@
+{
+  "run_id": "RUN-076",
+  "seed": 1700000076,
+  "protocol_name": "HelixFlow",
+  "specification": {
+    "name": "HelixFlow",
+    "version": "1.0.0",
+    "architecture": "hierarchical",
+    "node_type": "uniform",
+    "quorum_type": "flexible",
+    "leader_election": "timestamp_based",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "weighted_votes",
+    "vote_granting": "grant_based_on_priority",
+    "vote_revocations": false,
+    "log_type": "value_log",
+    "log_structure": "ring_buffer",
+    "commit_method": "pipeline_commit",
+    "recovery_strategy": "state_transfer",
+    "snapshot_policy": "log_compaction",
+    "membership_model": "single_config",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "heartbeat",
+    "failure_model": "omission",
+    "timeout_model": "proportional",
+    "heartbeat_interval": 153,
+    "election_timeout_base": 421,
+    "election_timeout_range": 146,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "leader_announce",
+      "term_update"
+    ],
+    "state_machine_type": "deterministic",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:timestamp_based",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:weighted_votes",
+    "vote_granting:grant_based_on_priority",
+    "log:value_log",
+    "log_structure:ring_buffer",
+    "commit:pipeline_commit",
+    "recovery:state_transfer",
+    "snapshot:log_compaction",
+    "dynamic_membership:single_config",
+    "failure_detection:heartbeat",
+    "concept:heartbeat"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "HelixFlow",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 62,
+        "elections_succeeded": 52,
+        "messages_sent": 201,
+        "commits": 23,
+        "recoveries": 47,
+        "partitions": 41,
+        "leader_changes": 52,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8387096774193549,
+        "avg_messages_per_commit": 8.73913043478261,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "HelixFlow",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 69,
+        "elections_succeeded": 61,
+        "messages_sent": 323,
+        "commits": 31,
+        "recoveries": 45,
+        "partitions": 48,
+        "leader_changes": 61,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8840579710144928,
+        "avg_messages_per_commit": 10.419354838709678,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "HelixFlow",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 57,
+        "elections_succeeded": 57,
+        "messages_sent": 511,
+        "commits": 22,
+        "recoveries": 48,
+        "partitions": 52,
+        "leader_changes": 57,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 23.227272727272727,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "HelixFlow",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 66,
+        "elections_succeeded": 66,
+        "messages_sent": 792,
+        "commits": 27,
+        "recoveries": 44,
+        "partitions": 59,
+        "leader_changes": 66,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 29.333333333333332,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:48.642499Z"
+}

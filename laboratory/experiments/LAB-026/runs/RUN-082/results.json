@@ -1,0 +1,150 @@
+{
+  "run_id": "RUN-082",
+  "seed": 1700000082,
+  "protocol_name": "ForgeSync",
+  "specification": {
+    "name": "ForgeSync",
+    "version": "1.0.0",
+    "architecture": "ring_based",
+    "node_type": "heterogeneous",
+    "quorum_type": "hierarchical",
+    "leader_election": "load_balanced",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "flexible_quorum",
+    "vote_granting": "grant_to_candidate",
+    "vote_revocations": false,
+    "log_type": "replicated_log",
+    "log_structure": "linked_list",
+    "commit_method": "majority_commit",
+    "recovery_strategy": "incremental_snapshot",
+    "snapshot_policy": "log_compaction",
+    "membership_model": "joint_consensus",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "explicit_probe",
+    "failure_model": "byzantine",
+    "timeout_model": "exponential",
+    "heartbeat_interval": 354,
+    "election_timeout_base": 449,
+    "election_timeout_range": 149,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "snapshot",
+      "membership_change"
+    ],
+    "state_machine_type": "fsm",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:load_balanced",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:flexible_quorum",
+    "vote_granting:grant_to_candidate",
+    "log:replicated_log",
+    "log_structure:linked_list",
+    "commit:majority_commit",
+    "recovery:incremental_snapshot",
+    "snapshot:log_compaction",
+    "dynamic_membership:joint_consensus",
+    "failure_detection:explicit_probe"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "ForgeSync",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 54,
+        "elections_succeeded": 41,
+        "messages_sent": 179,
+        "commits": 10,
+        "recoveries": 38,
+        "partitions": 56,
+        "leader_changes": 41,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7592592592592593,
+        "avg_messages_per_commit": 17.9,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeSync",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 68,
+        "elections_succeeded": 52,
+        "messages_sent": 247,
+        "commits": 11,
+        "recoveries": 43,
+        "partitions": 60,
+        "leader_changes": 52,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7647058823529411,
+        "avg_messages_per_commit": 22.454545454545453,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeSync",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 58,
+        "elections_succeeded": 58,
+        "messages_sent": 591,
+        "commits": 17,
+        "recoveries": 37,
+        "partitions": 53,
+        "leader_changes": 58,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 34.76470588235294,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeSync",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 46,
+        "elections_succeeded": 36,
+        "messages_sent": 345,
+        "commits": 27,
+        "recoveries": 50,
+        "partitions": 54,
+        "leader_changes": 36,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.782608695652174,
+        "avg_messages_per_commit": 12.777777777777779,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:48.955170Z"
+}

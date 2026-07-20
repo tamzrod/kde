@@ -1,0 +1,151 @@
+{
+  "run_id": "RUN-047",
+  "seed": 1700000047,
+  "protocol_name": "CipherPact",
+  "specification": {
+    "name": "CipherPact",
+    "version": "1.0.0",
+    "architecture": "decentralized",
+    "node_type": "uniform",
+    "quorum_type": "majority",
+    "leader_election": "lease_based",
+    "term_epochs": false,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "read_quorum",
+    "vote_granting": "grant_if_log_newer",
+    "vote_revocations": false,
+    "log_type": "value_log",
+    "log_structure": "linked_list",
+    "commit_method": "pipeline_commit",
+    "recovery_strategy": "incremental_snapshot",
+    "snapshot_policy": "size_based",
+    "membership_model": "static",
+    "add_node_method": "",
+    "remove_node_method": "",
+    "failure_detection": "swim_like",
+    "failure_model": "crash_stop",
+    "timeout_model": "fixed",
+    "heartbeat_interval": 458,
+    "election_timeout_base": 283,
+    "election_timeout_range": 76,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "snapshot",
+      "membership_change",
+      "leader_announce",
+      "term_update"
+    ],
+    "state_machine_type": "deterministic",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:lease_based",
+    "concept:randomized_timeout",
+    "voting:read_quorum",
+    "vote_granting:grant_if_log_newer",
+    "concept:majority_quorum",
+    "log:value_log",
+    "log_structure:linked_list",
+    "commit:pipeline_commit",
+    "recovery:incremental_snapshot",
+    "snapshot:size_based",
+    "failure_detection:swim_like"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "CipherPact",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 55,
+        "elections_succeeded": 50,
+        "messages_sent": 220,
+        "commits": 24,
+        "recoveries": 37,
+        "partitions": 59,
+        "leader_changes": 50,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9090909090909091,
+        "avg_messages_per_commit": 9.166666666666666,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "CipherPact",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 49,
+        "elections_succeeded": 41,
+        "messages_sent": 224,
+        "commits": 15,
+        "recoveries": 58,
+        "partitions": 52,
+        "leader_changes": 41,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8367346938775511,
+        "avg_messages_per_commit": 14.933333333333334,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "CipherPact",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 56,
+        "elections_succeeded": 55,
+        "messages_sent": 401,
+        "commits": 16,
+        "recoveries": 44,
+        "partitions": 63,
+        "leader_changes": 55,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9821428571428571,
+        "avg_messages_per_commit": 25.0625,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "CipherPact",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 53,
+        "elections_succeeded": 44,
+        "messages_sent": 316,
+        "commits": 18,
+        "recoveries": 53,
+        "partitions": 59,
+        "leader_changes": 44,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8301886792452831,
+        "avg_messages_per_commit": 17.555555555555557,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:47.132614Z"
+}

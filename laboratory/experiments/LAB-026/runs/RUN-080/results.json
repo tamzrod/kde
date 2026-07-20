@@ -1,0 +1,150 @@
+{
+  "run_id": "RUN-080",
+  "seed": 1700000080,
+  "protocol_name": "ForgeCore",
+  "specification": {
+    "name": "ForgeCore",
+    "version": "1.0.0",
+    "architecture": "centralized_leader",
+    "node_type": "heterogeneous",
+    "quorum_type": "hierarchical",
+    "leader_election": "id_based",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "majority_quorum",
+    "vote_granting": "grant_to_candidate",
+    "vote_revocations": false,
+    "log_type": "state_machine",
+    "log_structure": "linked_list",
+    "commit_method": "index_based",
+    "recovery_strategy": "snapshot_transfer",
+    "snapshot_policy": "leader_change",
+    "membership_model": "add_node",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "adaptive",
+    "failure_model": "byzantine",
+    "timeout_model": "exponential",
+    "heartbeat_interval": 195,
+    "election_timeout_base": 199,
+    "election_timeout_range": 144,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "membership_change",
+      "term_update"
+    ],
+    "state_machine_type": "lua_script",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:id_based",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:majority_quorum",
+    "vote_granting:grant_to_candidate",
+    "log:state_machine",
+    "log_structure:linked_list",
+    "commit:index_based",
+    "recovery:snapshot_transfer",
+    "snapshot:leader_change",
+    "dynamic_membership:add_node",
+    "failure_detection:adaptive"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "ForgeCore",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 60,
+        "elections_succeeded": 41,
+        "messages_sent": 172,
+        "commits": 16,
+        "recoveries": 42,
+        "partitions": 71,
+        "leader_changes": 41,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.6833333333333333,
+        "avg_messages_per_commit": 10.75,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeCore",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 71,
+        "elections_succeeded": 52,
+        "messages_sent": 278,
+        "commits": 12,
+        "recoveries": 44,
+        "partitions": 55,
+        "leader_changes": 52,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7323943661971831,
+        "avg_messages_per_commit": 23.166666666666668,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeCore",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 53,
+        "elections_succeeded": 51,
+        "messages_sent": 384,
+        "commits": 24,
+        "recoveries": 44,
+        "partitions": 57,
+        "leader_changes": 51,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9622641509433962,
+        "avg_messages_per_commit": 16.0,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeCore",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 59,
+        "elections_succeeded": 57,
+        "messages_sent": 537,
+        "commits": 23,
+        "recoveries": 50,
+        "partitions": 60,
+        "leader_changes": 57,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9661016949152542,
+        "avg_messages_per_commit": 23.347826086956523,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:48.852301Z"
+}

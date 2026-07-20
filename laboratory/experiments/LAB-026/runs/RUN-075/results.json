@@ -1,0 +1,150 @@
+{
+  "run_id": "RUN-075",
+  "seed": 1700000075,
+  "protocol_name": "SignalPact",
+  "specification": {
+    "name": "SignalPact",
+    "version": "1.0.0",
+    "architecture": "ring_based",
+    "node_type": "uniform",
+    "quorum_type": "hierarchical",
+    "leader_election": "load_balanced",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "flexible_quorum",
+    "vote_granting": "grant_to_highest_term",
+    "vote_revocations": false,
+    "log_type": "replicated_log",
+    "log_structure": "ring_buffer",
+    "commit_method": "index_based",
+    "recovery_strategy": "snapshot_transfer",
+    "snapshot_policy": "periodic",
+    "membership_model": "add_node",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "adaptive",
+    "failure_model": "crash_stop",
+    "timeout_model": "proportional",
+    "heartbeat_interval": 56,
+    "election_timeout_base": 294,
+    "election_timeout_range": 87,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "membership_change",
+      "leader_announce"
+    ],
+    "state_machine_type": "lua_script",
+    "provides_safety": true,
+    "provides_liveness": false
+  },
+  "discovered_features": [
+    "leader_election:load_balanced",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:flexible_quorum",
+    "vote_granting:grant_to_highest_term",
+    "log:replicated_log",
+    "log_structure:ring_buffer",
+    "commit:index_based",
+    "recovery:snapshot_transfer",
+    "snapshot:periodic",
+    "dynamic_membership:add_node",
+    "failure_detection:adaptive"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "SignalPact",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 57,
+        "elections_succeeded": 37,
+        "messages_sent": 153,
+        "commits": 16,
+        "recoveries": 34,
+        "partitions": 58,
+        "leader_changes": 37,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.6491228070175439,
+        "avg_messages_per_commit": 9.5625,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "SignalPact",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 41,
+        "elections_succeeded": 31,
+        "messages_sent": 157,
+        "commits": 10,
+        "recoveries": 48,
+        "partitions": 62,
+        "leader_changes": 31,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7560975609756098,
+        "avg_messages_per_commit": 15.7,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "SignalPact",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 51,
+        "elections_succeeded": 48,
+        "messages_sent": 368,
+        "commits": 20,
+        "recoveries": 46,
+        "partitions": 61,
+        "leader_changes": 48,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9411764705882353,
+        "avg_messages_per_commit": 18.4,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "SignalPact",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 63,
+        "elections_succeeded": 59,
+        "messages_sent": 455,
+        "commits": 17,
+        "recoveries": 45,
+        "partitions": 62,
+        "leader_changes": 59,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9365079365079365,
+        "avg_messages_per_commit": 26.764705882352942,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:48.591362Z"
+}

@@ -1,0 +1,151 @@
+{
+  "run_id": "RUN-072",
+  "seed": 1700000072,
+  "protocol_name": "StratumPact",
+  "specification": {
+    "name": "StratumPact",
+    "version": "1.0.0",
+    "architecture": "ring_based",
+    "node_type": "heterogeneous",
+    "quorum_type": "flexible",
+    "leader_election": "lease_based",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": true,
+    "voting_model": "flexible_quorum",
+    "vote_granting": "grant_to_highest_term",
+    "vote_revocations": false,
+    "log_type": "value_log",
+    "log_structure": "ring_buffer",
+    "commit_method": "quorum_commit",
+    "recovery_strategy": "snapshot_transfer",
+    "snapshot_policy": "adaptive",
+    "membership_model": "remove_node",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "phi_accrual",
+    "failure_model": "byzantine",
+    "timeout_model": "proportional",
+    "heartbeat_interval": 98,
+    "election_timeout_base": 337,
+    "election_timeout_range": 184,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "leader_announce",
+      "term_update"
+    ],
+    "state_machine_type": "simple_state",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:lease_based",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "concept:lease_based_leadership",
+    "voting:flexible_quorum",
+    "vote_granting:grant_to_highest_term",
+    "log:value_log",
+    "log_structure:ring_buffer",
+    "commit:quorum_commit",
+    "recovery:snapshot_transfer",
+    "snapshot:adaptive",
+    "dynamic_membership:remove_node",
+    "failure_detection:phi_accrual"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "StratumPact",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 56,
+        "elections_succeeded": 30,
+        "messages_sent": 152,
+        "commits": 10,
+        "recoveries": 34,
+        "partitions": 49,
+        "leader_changes": 30,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.5357142857142857,
+        "avg_messages_per_commit": 15.2,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "StratumPact",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 62,
+        "elections_succeeded": 60,
+        "messages_sent": 353,
+        "commits": 19,
+        "recoveries": 38,
+        "partitions": 49,
+        "leader_changes": 60,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.967741935483871,
+        "avg_messages_per_commit": 18.57894736842105,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "StratumPact",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 59,
+        "elections_succeeded": 44,
+        "messages_sent": 324,
+        "commits": 12,
+        "recoveries": 41,
+        "partitions": 61,
+        "leader_changes": 44,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7457627118644068,
+        "avg_messages_per_commit": 27.0,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "StratumPact",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 51,
+        "elections_succeeded": 50,
+        "messages_sent": 474,
+        "commits": 21,
+        "recoveries": 57,
+        "partitions": 44,
+        "leader_changes": 50,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9803921568627451,
+        "avg_messages_per_commit": 22.571428571428573,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:48.431585Z"
+}

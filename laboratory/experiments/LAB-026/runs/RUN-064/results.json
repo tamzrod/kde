@@ -1,0 +1,148 @@
+{
+  "run_id": "RUN-064",
+  "seed": 1700000064,
+  "protocol_name": "CipherFlow",
+  "specification": {
+    "name": "CipherFlow",
+    "version": "1.0.0",
+    "architecture": "hierarchical",
+    "node_type": "uniform",
+    "quorum_type": "weighted",
+    "leader_election": "id_based",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "write_quorum",
+    "vote_granting": "grant_if_log_newer",
+    "vote_revocations": false,
+    "log_type": "hybrid",
+    "log_structure": "hash_chain",
+    "commit_method": "quorum_commit",
+    "recovery_strategy": "state_transfer",
+    "snapshot_policy": "size_based",
+    "membership_model": "add_node",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "adaptive",
+    "failure_model": "crash_recovery",
+    "timeout_model": "exponential",
+    "heartbeat_interval": 100,
+    "election_timeout_base": 209,
+    "election_timeout_range": 196,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat"
+    ],
+    "state_machine_type": "simple_state",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:id_based",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:write_quorum",
+    "vote_granting:grant_if_log_newer",
+    "log:hybrid",
+    "log_structure:hash_chain",
+    "commit:quorum_commit",
+    "recovery:state_transfer",
+    "snapshot:size_based",
+    "dynamic_membership:add_node",
+    "failure_detection:adaptive"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "CipherFlow",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 64,
+        "elections_succeeded": 53,
+        "messages_sent": 211,
+        "commits": 24,
+        "recoveries": 42,
+        "partitions": 59,
+        "leader_changes": 53,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.828125,
+        "avg_messages_per_commit": 8.791666666666666,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "CipherFlow",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 50,
+        "elections_succeeded": 50,
+        "messages_sent": 298,
+        "commits": 29,
+        "recoveries": 41,
+        "partitions": 51,
+        "leader_changes": 50,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 10.275862068965518,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "CipherFlow",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 49,
+        "elections_succeeded": 34,
+        "messages_sent": 304,
+        "commits": 14,
+        "recoveries": 44,
+        "partitions": 49,
+        "leader_changes": 34,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.6938775510204082,
+        "avg_messages_per_commit": 21.714285714285715,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "CipherFlow",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 50,
+        "elections_succeeded": 50,
+        "messages_sent": 523,
+        "commits": 16,
+        "recoveries": 47,
+        "partitions": 58,
+        "leader_changes": 50,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 32.6875,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:48.013598Z"
+}

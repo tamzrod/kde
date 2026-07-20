@@ -1,0 +1,150 @@
+{
+  "run_id": "RUN-066",
+  "seed": 1700000066,
+  "protocol_name": "ForgeCoordination",
+  "specification": {
+    "name": "ForgeCoordination",
+    "version": "1.0.0",
+    "architecture": "decentralized",
+    "node_type": "heterogeneous",
+    "quorum_type": "hierarchical",
+    "leader_election": "term_based",
+    "term_epochs": false,
+    "randomized_timeout": false,
+    "lease_based": true,
+    "voting_model": "hierarchical_quorum",
+    "vote_granting": "grant_based_on_priority",
+    "vote_revocations": false,
+    "log_type": "hybrid",
+    "log_structure": "ring_buffer",
+    "commit_method": "majority_commit",
+    "recovery_strategy": "log_catchup",
+    "snapshot_policy": "log_compaction",
+    "membership_model": "remove_node",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "swim_like",
+    "failure_model": "crash_stop",
+    "timeout_model": "fixed",
+    "heartbeat_interval": 64,
+    "election_timeout_base": 405,
+    "election_timeout_range": 145,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "snapshot",
+      "membership_change",
+      "term_update"
+    ],
+    "state_machine_type": "fsm",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:term_based",
+    "concept:lease_based_leadership",
+    "voting:hierarchical_quorum",
+    "vote_granting:grant_based_on_priority",
+    "log:hybrid",
+    "log_structure:ring_buffer",
+    "commit:majority_commit",
+    "recovery:log_catchup",
+    "snapshot:log_compaction",
+    "dynamic_membership:remove_node",
+    "failure_detection:swim_like"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "ForgeCoordination",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 45,
+        "elections_succeeded": 36,
+        "messages_sent": 151,
+        "commits": 23,
+        "recoveries": 50,
+        "partitions": 57,
+        "leader_changes": 36,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8,
+        "avg_messages_per_commit": 6.565217391304348,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeCoordination",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 60,
+        "elections_succeeded": 54,
+        "messages_sent": 329,
+        "commits": 27,
+        "recoveries": 34,
+        "partitions": 61,
+        "leader_changes": 54,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9,
+        "avg_messages_per_commit": 12.185185185185185,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeCoordination",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 50,
+        "elections_succeeded": 49,
+        "messages_sent": 462,
+        "commits": 18,
+        "recoveries": 48,
+        "partitions": 56,
+        "leader_changes": 49,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.98,
+        "avg_messages_per_commit": 25.666666666666668,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeCoordination",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 52,
+        "elections_succeeded": 50,
+        "messages_sent": 495,
+        "commits": 20,
+        "recoveries": 55,
+        "partitions": 51,
+        "leader_changes": 50,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9615384615384616,
+        "avg_messages_per_commit": 24.75,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:48.117818Z"
+}

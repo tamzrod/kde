@@ -1,0 +1,150 @@
+{
+  "run_id": "RUN-044",
+  "seed": 1700000044,
+  "protocol_name": "ForgeSync",
+  "specification": {
+    "name": "ForgeSync",
+    "version": "1.0.0",
+    "architecture": "centralized_leader",
+    "node_type": "heterogeneous",
+    "quorum_type": "flexible",
+    "leader_election": "rotation",
+    "term_epochs": true,
+    "randomized_timeout": false,
+    "lease_based": false,
+    "voting_model": "flexible_quorum",
+    "vote_granting": "grant_based_on_priority",
+    "vote_revocations": false,
+    "log_type": "hybrid",
+    "log_structure": "hash_chain",
+    "commit_method": "quorum_commit",
+    "recovery_strategy": "snapshot_transfer",
+    "snapshot_policy": "leader_change",
+    "membership_model": "full_dynamic",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "heartbeat",
+    "failure_model": "crash_stop",
+    "timeout_model": "proportional",
+    "heartbeat_interval": 377,
+    "election_timeout_base": 473,
+    "election_timeout_range": 131,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "snapshot",
+      "membership_change"
+    ],
+    "state_machine_type": "lua_script",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:rotation",
+    "concept:term_epochs",
+    "voting:flexible_quorum",
+    "vote_granting:grant_based_on_priority",
+    "log:hybrid",
+    "log_structure:hash_chain",
+    "commit:quorum_commit",
+    "recovery:snapshot_transfer",
+    "snapshot:leader_change",
+    "dynamic_membership:full_dynamic",
+    "failure_detection:heartbeat",
+    "concept:heartbeat"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "ForgeSync",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 48,
+        "elections_succeeded": 35,
+        "messages_sent": 144,
+        "commits": 15,
+        "recoveries": 43,
+        "partitions": 69,
+        "leader_changes": 35,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7291666666666666,
+        "avg_messages_per_commit": 9.6,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeSync",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 49,
+        "elections_succeeded": 44,
+        "messages_sent": 254,
+        "commits": 12,
+        "recoveries": 48,
+        "partitions": 52,
+        "leader_changes": 44,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8979591836734694,
+        "avg_messages_per_commit": 21.166666666666668,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeSync",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 50,
+        "elections_succeeded": 50,
+        "messages_sent": 500,
+        "commits": 15,
+        "recoveries": 48,
+        "partitions": 63,
+        "leader_changes": 50,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 1.0,
+        "avg_messages_per_commit": 33.333333333333336,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "ForgeSync",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 60,
+        "elections_succeeded": 51,
+        "messages_sent": 552,
+        "commits": 33,
+        "recoveries": 39,
+        "partitions": 50,
+        "leader_changes": 51,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.85,
+        "avg_messages_per_commit": 16.727272727272727,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:46.972283Z"
+}

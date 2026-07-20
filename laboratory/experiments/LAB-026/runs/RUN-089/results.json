@@ -1,0 +1,153 @@
+{
+  "run_id": "RUN-089",
+  "seed": 1700000089,
+  "protocol_name": "NexusConsensus",
+  "specification": {
+    "name": "NexusConsensus",
+    "version": "1.0.0",
+    "architecture": "ring_based",
+    "node_type": "heterogeneous",
+    "quorum_type": "majority",
+    "leader_election": "lease_based",
+    "term_epochs": true,
+    "randomized_timeout": true,
+    "lease_based": false,
+    "voting_model": "write_quorum",
+    "vote_granting": "grant_to_highest_term",
+    "vote_revocations": false,
+    "log_type": "hybrid",
+    "log_structure": "hash_chain",
+    "commit_method": "index_based",
+    "recovery_strategy": "log_catchup",
+    "snapshot_policy": "leader_change",
+    "membership_model": "single_config",
+    "add_node_method": "consensus_required",
+    "remove_node_method": "consensus_required",
+    "failure_detection": "heartbeat",
+    "failure_model": "crash_recovery",
+    "timeout_model": "adaptive",
+    "heartbeat_interval": 191,
+    "election_timeout_base": 328,
+    "election_timeout_range": 113,
+    "message_types": [
+      "vote_request",
+      "vote_response",
+      "append_entries",
+      "append_response",
+      "heartbeat",
+      "membership_change",
+      "leader_announce",
+      "term_update"
+    ],
+    "state_machine_type": "lua_script",
+    "provides_safety": true,
+    "provides_liveness": true
+  },
+  "discovered_features": [
+    "leader_election:lease_based",
+    "concept:term_epochs",
+    "concept:randomized_timeout",
+    "voting:write_quorum",
+    "vote_granting:grant_to_highest_term",
+    "concept:majority_quorum",
+    "log:hybrid",
+    "log_structure:hash_chain",
+    "commit:index_based",
+    "recovery:log_catchup",
+    "snapshot:leader_change",
+    "dynamic_membership:single_config",
+    "failure_detection:heartbeat",
+    "concept:heartbeat"
+  ],
+  "simulations": [
+    {
+      "protocol_name": "NexusConsensus",
+      "num_nodes": 3,
+      "measurements": {
+        "election_attempts": 67,
+        "elections_succeeded": 53,
+        "messages_sent": 220,
+        "commits": 22,
+        "recoveries": 41,
+        "partitions": 57,
+        "leader_changes": 53,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.7910447761194029,
+        "avg_messages_per_commit": 10.0,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusConsensus",
+      "num_nodes": 5,
+      "measurements": {
+        "election_attempts": 53,
+        "elections_succeeded": 48,
+        "messages_sent": 318,
+        "commits": 28,
+        "recoveries": 45,
+        "partitions": 54,
+        "leader_changes": 48,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9056603773584906,
+        "avg_messages_per_commit": 11.357142857142858,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusConsensus",
+      "num_nodes": 7,
+      "measurements": {
+        "election_attempts": 52,
+        "elections_succeeded": 45,
+        "messages_sent": 382,
+        "commits": 20,
+        "recoveries": 51,
+        "partitions": 51,
+        "leader_changes": 45,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.8653846153846154,
+        "avg_messages_per_commit": 19.1,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    },
+    {
+      "protocol_name": "NexusConsensus",
+      "num_nodes": 9,
+      "measurements": {
+        "election_attempts": 59,
+        "elections_succeeded": 56,
+        "messages_sent": 529,
+        "commits": 27,
+        "recoveries": 42,
+        "partitions": 64,
+        "leader_changes": 56,
+        "safety_violations": 0,
+        "liveness_violations": 0
+      },
+      "metrics": {
+        "election_success_rate": 0.9491525423728814,
+        "avg_messages_per_commit": 19.59259259259259,
+        "leader_stability": 0.0
+      },
+      "safety_check": true,
+      "liveness_check": true
+    }
+  ],
+  "timestamp": "2026-07-20T19:56:49.317271Z"
+}
