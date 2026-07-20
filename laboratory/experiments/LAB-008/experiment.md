@@ -57,6 +57,8 @@ Can a common knowledge representation be discovered that faithfully represents i
 |-------|-------|
 | Experiment ID | LAB-008 |
 | Created | 2026-07-19 |
+| Engine ID | KDE-ENGINE-001 |
 | Engine Version | 0.1.0 |
+| Engine Codename | Alpha |
 | Engine Name | Initial Knowledge Discovery Engine |
 | Methodology Version | 2.2 |
