@@ -143,12 +143,20 @@ Engines use semantic versioning (MAJOR.MINOR.PATCH):
 ```
 engine/
 ├── README.md           # This file
+├── interface.md       # Engine interface specification
 ├── current.md         # Points to active engine
-├── KDE-ENGINE-001/    # First engine
-│   ├── specification.md   # Engine identity and scope
-│   ├── methodology.md    # Detailed methodology
-│   ├── changes.md        # Version history
-│   └── provenance.md     # Experiments produced
+├── alpha/             # KDE-ENGINE-001 (Historical)
+│   ├── specification.md
+│   ├── methodology.md
+│   ├── changes.md
+│   └── provenance.md
+├── beta/              # KDE-ENGINE-002 (Active)
+│   ├── specification.md
+│   ├── methodology.md
+│   ├── pipeline.md
+│   ├── knowledge-model.md
+│   ├── changes.md
+│   └── provenance.md
 └── [future engines]/
 ```
 

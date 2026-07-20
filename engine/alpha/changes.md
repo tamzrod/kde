@@ -101,4 +101,19 @@ Previous versions are archived here when superseded.
 
 ---
 
-**Document Status**: APPROVED
+## Status Update (2026-07-20)
+
+KDE-ENGINE-001 (Alpha) has been superseded by KDE-ENGINE-002 (Beta).
+
+| Field | Value |
+|-------|-------|
+| **Status Change** | Active → Historical |
+| **Effective Date** | 2026-07-20 |
+| **Superseded By** | KDE-ENGINE-002 (Beta) |
+| **Reason** | Beta implements enhanced methodology with context and boundary detection |
+
+Existing experiments under Alpha remain valid and unchanged.
+
+---
+
+**Document Status**: APPROVED (Historical)

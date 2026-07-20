@@ -3,7 +3,7 @@
 **Engine ID**: KDE-ENGINE-001
 **Version**: 0.1.0
 **Codename**: Alpha
-**Status**: Active
+**Status**: Historical
 **Effective Date**: 2026-07-20
 
 ---
@@ -15,9 +15,11 @@
 | **Engine ID** | KDE-ENGINE-001 |
 | **Version** | 0.1.0 |
 | **Codename** | Alpha |
-| **Status** | Active |
+| **Status** | Historical |
 | **Effective Date** | 2026-07-20 |
+| **Superseded Date** | 2026-07-20 |
 | **Parent** | None (first engine) |
+| **Successor** | KDE-ENGINE-002 (Beta) |
 
 ---
 
@@ -181,5 +183,5 @@ See [changes.md](./changes.md) for detailed version history.
 
 ---
 
-**Document Status**: APPROVED
-**Review Date**: Upon engine transition proposal
+**Document Status**: APPROVED (Historical)
+**Review Date**: Not applicable (historical engine)

@@ -247,9 +247,88 @@ When experiments challenge knowledge, the Laboratory follows Engine-defined prot
 
 ---
 
+## Engine Selection
+
+The Laboratory is **engine-agnostic**. It can execute experiments under any KDE Engine that implements the standard interface.
+
+### Available Engines
+
+| Engine ID | Version | Codename | Status | Purpose |
+|-----------|---------|----------|--------|---------|
+| **KDE-ENGINE-002** | 0.1.0 | Beta | Active | Contextual knowledge discovery |
+| KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | Pattern discovery (legacy) |
+
+### Engine Selection for Experiments
+
+When creating a new experiment, select the appropriate engine:
+
+**Use Beta (KDE-ENGINE-002)** when:
+- Context detection is required
+- Boundary definition is important
+- Statistical validation is mandatory
+- Complete knowledge objects needed
+
+**Use Alpha (KDE-ENGINE-001)** when:
+- Legacy compatibility required
+- Simple pattern discovery sufficient
+- Historical comparison needed
+
+### Engine Configuration
+
+Experiments specify their engine in the metadata:
+
+```yaml
+Engine:
+  ID: KDE-ENGINE-002
+  Version: 0.1.0
+  Codename: Beta
+```
+
+---
+
+## Laboratory Engine Interface
+
+The Laboratory loads engines through a standard interface:
+
+```yaml
+interface:
+  Initialize():
+    - Load engine configuration
+    - Initialize modules
+    - Verify prerequisites
+  
+  Analyze(evidence):
+    - Execute engine pipeline
+    - Return knowledge objects
+  
+  Validate(knowledge):
+    - Verify completeness
+    - Check statistics
+    - Confirm context and boundaries
+  
+  GenerateKnowledge():
+    - Create knowledge from pipeline
+  
+  GenerateReport():
+    - Format for consumption
+  
+  Capabilities():
+    - Return supported features
+  
+  Version():
+    - Return engine version
+  
+  Metadata():
+    - Return engine identity
+```
+
+See: [`/engine/interface.md`](../engine/interface.md)
+
+---
+
 ## Status
 
-**OPERATIONAL (Engine-Aligned)** - Laboratory executes under Engine authority.
+**OPERATIONAL (Multi-Engine)** - Laboratory executes under Engine authority with multi-engine support.
 
 ### Changes from v2.0
 
@@ -259,4 +338,6 @@ When experiments challenge knowledge, the Laboratory follows Engine-defined prot
 4. ✅ Updated subsystem responsibilities to include Engine
 5. ✅ Updated ownership boundaries to include Engine ↔ Laboratory boundary
 6. ✅ Laboratory lifecycle summary references Engine methodology
-7. ✅ All experiments now reference KDE-ENGINE-001
+7. ✅ All experiments now reference an Engine (Alpha or Beta)
+8. ✅ Laboratory supports multiple engines via standard interface
+9. ✅ Added engine selection documentation

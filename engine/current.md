@@ -4,35 +4,80 @@
 
 ---
 
+## Engine Selection
+
+The Laboratory supports multiple engines. Select the appropriate engine for each experiment:
+
+| Engine ID | Version | Codename | Status | Use Case |
+|-----------|---------|----------|--------|----------|
+| **KDE-ENGINE-002** | 0.1.0 | Beta | **Active** | Contextual knowledge discovery |
+| KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | Pattern discovery (legacy) |
+
+---
+
 ## Active Engine
 
-The current active KDE Engine is:
+The **default active** KDE Engine is:
 
 | Field | Value |
 |-------|-------|
-| **Engine ID** | KDE-ENGINE-001 |
+| **Engine ID** | KDE-ENGINE-002 |
 | **Version** | 0.1.0 |
-| **Codename** | Alpha |
+| **Codename** | Beta |
+| **Name** | Contextual Knowledge Discovery Engine |
 | **Status** | Active |
 
 ---
 
 ## Engine Details
 
-For detailed information about this engine, see:
+### Beta (KDE-ENGINE-002) — Active
 
-- [KDE-ENGINE-001/specification.md](./KDE-ENGINE-001/specification.md) — Engine identity and scope
-- [KDE-ENGINE-001/methodology.md](./KDE-ENGINE-001/methodology.md) — Detailed methodology
-- [KDE-ENGINE-001/changes.md](./KDE-ENGINE-001/changes.md) — Version history
-- [KDE-ENGINE-001/provenance.md](./KDE-ENGINE-001/provenance.md) — Experiments produced
+For detailed information about Beta, see:
+
+- [beta/specification.md](./beta/specification.md) — Engine identity and scope
+- [beta/methodology.md](./beta/methodology.md) — Detailed methodology
+- [beta/pipeline.md](./beta/pipeline.md) — Processing pipeline
+- [beta/knowledge-model.md](./beta/knowledge-model.md) — Knowledge object specification
+- [beta/changes.md](./beta/changes.md) — Version history
+- [beta/provenance.md](./beta/provenance.md) — Engine lineage
+
+### Alpha (KDE-ENGINE-001) — Historical
+
+For detailed information about Alpha, see:
+
+- [alpha/specification.md](./alpha/specification.md) — Engine identity and scope
+- [alpha/methodology.md](./alpha/methodology.md) — Detailed methodology
+- [alpha/changes.md](./alpha/changes.md) — Version history
+- [alpha/provenance.md](./alpha/provenance.md) — Engine lineage
 
 ---
 
 ## Engine Lineage
 
-| Engine ID | Version | Codename | Status | Effective |
-|-----------|---------|----------|--------|-----------|
-| KDE-ENGINE-001 | 0.1.0 | Alpha | Active | 2026-07-20 |
+| Engine ID | Version | Codename | Status | Effective | Purpose |
+|-----------|---------|----------|--------|-----------|---------|
+| KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | 2026-07-19 | Pattern discovery |
+| KDE-ENGINE-002 | 0.1.0 | Beta | Active | 2026-07-20 | Contextual knowledge |
+
+---
+
+## Engine Selection
+
+### When to Use Beta (KDE-ENGINE-002)
+
+Use Beta for new experiments when:
+- Context detection is required
+- Boundary definition is important
+- Statistical validation is mandatory
+- Complete knowledge objects needed
+
+### When to Use Alpha (KDE-ENGINE-001)
+
+Use Alpha for experiments when:
+- Legacy compatibility required
+- Simple pattern discovery sufficient
+- Historical comparison needed
 
 ---
 
@@ -40,10 +85,11 @@ For detailed information about this engine, see:
 
 When a new engine becomes active:
 
-1. Update this file to point to the new engine
+1. Update this file to mark new engine as Active
 2. Update the new engine's specification with status: Active
 3. Update the old engine's specification with status: Historical
 4. Document the transition in both engines' changes.md
+5. Update the Engine Lineage table above
 
 ---
 
@@ -51,7 +97,15 @@ When a new engine becomes active:
 
 | Date | Transition | Rationale |
 |------|------------|-----------|
-| 2026-07-20 | Initial Engine | KDE-ENGINE-001 established as first official engine |
+| 2026-07-19 | Initial Engine | KDE-ENGINE-001 (Alpha) established |
+| 2026-07-20 | Engine Evolution | KDE-ENGINE-002 (Beta) released, Alpha → Historical |
+
+---
+
+## Related Documents
+
+- [interface.md](./interface.md) — Engine interface specification
+- [README.md](./README.md) — Engine framework overview
 
 ---
 
