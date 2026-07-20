@@ -157,6 +157,14 @@ engine/
 │   ├── knowledge-model.md
 │   ├── changes.md
 │   └── provenance.md
+├── gamma/             # KDE-ENGINE-003 (Experimental)
+│   ├── README.md
+│   ├── specification.md
+│   ├── methodology.md
+│   ├── pipeline.md
+│   ├── knowledge-model.md
+│   ├── changes.md
+│   └── provenance.md
 └── [future engines]/
 ```
 

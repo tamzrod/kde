@@ -59,6 +59,7 @@ For detailed information about Alpha, see:
 |-----------|---------|----------|--------|-----------|---------|
 | KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | 2026-07-19 | Pattern discovery |
 | KDE-ENGINE-002 | 0.1.0 | Beta | Active | 2026-07-20 | Contextual knowledge |
+| KDE-ENGINE-003 | 0.1.0 | Gamma | Experimental | 2026-07-20 | Causal discovery |
 
 ---
 
@@ -93,12 +94,29 @@ When a new engine becomes active:
 
 ---
 
+## Engine Details (Gamma)
+
+### Gamma (KDE-ENGINE-003) — Experimental
+
+For detailed information about Gamma, see:
+
+- [gamma/README.md](./gamma/README.md) — Quick reference
+- [gamma/specification.md](./gamma/specification.md) — Engine identity and scope
+- [gamma/methodology.md](./gamma/methodology.md) — Detailed methodology
+- [gamma/pipeline.md](./gamma/pipeline.md) — Processing pipeline
+- [gamma/knowledge-model.md](./gamma/knowledge-model.md) — Knowledge object specification
+- [gamma/changes.md](./gamma/changes.md) — Version history
+- [gamma/provenance.md](./gamma/provenance.md) — Engine lineage
+
+---
+
 ## Migration History
 
 | Date | Transition | Rationale |
 |------|------------|-----------|
 | 2026-07-19 | Initial Engine | KDE-ENGINE-001 (Alpha) established |
 | 2026-07-20 | Engine Evolution | KDE-ENGINE-002 (Beta) released, Alpha → Historical |
+| 2026-07-20 | Engine Expansion | KDE-ENGINE-003 (Gamma) experimental release |
 
 ---
 
