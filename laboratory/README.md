@@ -376,22 +376,23 @@ See: [`/engines/interface.md`](../engines/interface.md)
 
 ## Status
 
-**OPERATIONAL (Architecture C)** - Laboratory operates under Architecture C, the official KDE Laboratory Architecture.
+**OPERATIONAL (Architecture C v1.0.0)** - Laboratory operates under Architecture C v1.0.0, the official KDE Laboratory Architecture.
 
-### Architecture C Adoption
+### Architecture C Version
 
-| Version | Date | Changes | Evidence Level |
-|---------|------|---------|----------------|
-| 4.0 | 2026-07-20 | Architecture C adopted as official | Level 3 |
+| Version | Date | Status | Evidence Level |
+|---------|------|--------|----------------|
+| 1.0.0 | 2026-07-20 | FROZEN (Production) | Level 3 |
 
-### Changes from v3.0
+### Architecture C Documents
 
-1. ✅ Added Architecture C reference and principles
-2. ✅ Updated directory structure to reflect Architecture C
-3. ✅ Laboratory operates under Architecture C ownership model
-4. ✅ Bidirectional links between Investigations and Experiments
-5. ✅ Evidence stored with Experiments for reproducibility
-6. ✅ Knowledge promotion to `/knowledge/` enforced
+| Document | Purpose |
+|----------|---------|
+| [`ARCHITECTURE-C.md`](ARCHITECTURE-C.md) | Architecture specification |
+| [`VERSION.md`](VERSION.md) | Version management |
+| [`CHANGELOG.md`](CHANGELOG.md) | Change history |
+| [`REFERENCE-IMPLEMENTATION.md`](REFERENCE-IMPLEMENTATION.md) | Canonical implementation |
+| [`governance/promotion-rules.md`](governance/promotion-rules.md) | Promotion criteria |
 
 ### Architecture C Validation
 
@@ -403,5 +404,7 @@ Architecture C was validated through rigorous scientific process:
 | LAB-021 | Predictive Validation | 85.7% prediction accuracy |
 | LAB-022 | Multi-Run Validation | Mean 9.36/10, 100% agreement |
 | LAB-023 | Cross-Engine Reproducibility | Level 3 Reproducible |
+
+**Evidence Level**: Level 3 — Reproducible Knowledge
 
 See [`ARCHITECTURE-C.md`](ARCHITECTURE-C.md) for full validation evidence.
