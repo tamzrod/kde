@@ -1,8 +1,26 @@
 # KDE Laboratory
 
-**Document Version**: 3.0
-**Date**: 2026-07-20
-**Status**: OPERATIONAL (Engine-Aligned)
+**Document Version**: 4.0
+**Date**: 2026-07-20T13:00:00Z
+**Status**: OPERATIONAL (Architecture C)
+**Architecture**: Architecture C (Hybrid Investigation-Experiment Model)
+
+---
+
+## Architecture
+
+The Laboratory operates under **Architecture C**: the official KDE Laboratory Architecture.
+
+For detailed specification, see: [`ARCHITECTURE-C.md`](ARCHITECTURE-C.md)
+
+### Architecture C Principles
+
+| Principle | Description |
+|-----------|-------------|
+| **Ownership Separation** | Investigations own WHY, Experiments own HOW |
+| **Bidirectional Links** | Complete traceability between artifacts |
+| **Evidence with Experiment** | Evidence stored with experiments for reproducibility |
+| **Knowledge Never in Laboratory** | Validated knowledge promoted to `/knowledge/` |
 
 ---
 
@@ -219,40 +237,61 @@ When experiments challenge knowledge, the Laboratory follows Engine-defined prot
 
 ---
 
-## Directory Structure
+## Directory Structure (Architecture C)
 
 ```
 /laboratory/
 ├── README.md              # This document
-├── ARCHITECTURE.md        # Detailed specification
+├── ARCHITECTURE-C.md      # Architecture C specification
+├── ARCHITECTURE.md        # Historical architecture documentation
 ├── GOVERNANCE.md          # Governance protocols
 ├── registry.md            # Experiment registry
-├── scientific-loop.md     # Learning loop documentation
 │
 ├── questions/             # Question tracker
-│   └── README.md
+│   ├── README.md
+│   └── index.md           # Master question list
 │
-├── investigations/         # Investigation-centric organization
+├── investigations/         # Scientific ownership (WHY)
 │   ├── INV-001/
-│   │   ├── question.md     # Research question
-│   │   ├── hypothesis.md   # Hypothesis (if defined)
-│   │   ├── experiments/    # LAB-XXX experiments for this question
-│   │   └── evidence/       # Evidence collected
+│   │   ├── investigation.md   # Research question
+│   │   ├── hypothesis.md      # Hypothesis
+│   │   ├── analysis.md        # Analysis
+│   │   ├── conclusion.md       # Conclusion
+│   │   ├── lessons-learned.md  # Lessons
+│   │   ├── index.md           # Experiment index
+│   │   └── links/             # Links to experiments
+│   │       └── LAB-001.md
 │   ├── INV-002/
 │   │   └── ...
 │   └── INV-NNN/
 │
-├── experiments/           # All experiments (flat registry)
+├── experiments/           # Execution ownership (HOW)
 │   ├── LAB-001/
+│   │   ├── experiment.md  # Experiment plan
+│   │   ├── TRACKER.md      # Experiment tracking
+│   │   ├── runs/          # Execution runs
+│   │   ├── evidence/      # Experiment evidence
+│   │   ├── statistics/    # Statistical analysis
+│   │   ├── synthesis/     # Cross-run synthesis
+│   │   └── metadata/      # Investigation links
 │   ├── LAB-002/
 │   └── LAB-NNN/
 │
-├── evidence/              # Shared evidence
-├── templates/
+├── evidence/              # Evidence registry (links)
+│   └── LAB-XXX/
+│       └── index.md
+│
+├── templates/             # Document templates
+│   ├── investigation-template.md
 │   ├── experiment-template.md
 │   ├── run-template.md
 │   └── evidence-reference-template.md
+│
+└── governance/             # Governance documents
+    └── promotion-rules.md
 ```
+
+For full Architecture C specification, see [`ARCHITECTURE-C.md`](ARCHITECTURE-C.md).
 
 ---
 
@@ -337,16 +376,35 @@ See: [`/engines/interface.md`](../engines/interface.md)
 
 ## Status
 
-**OPERATIONAL (Multi-Engine)** - Laboratory executes under Engine authority with multi-engine support.
+**OPERATIONAL (Architecture C v1.0.0)** - Laboratory operates under Architecture C v1.0.0, the official KDE Laboratory Architecture.
 
-### Changes from v2.0
+### Architecture C Version
 
-1. ✅ Added Engine Authority section with 7 rules
-2. ✅ Laboratory references Engine as sole methodology authority
-3. ✅ Removed methodology definitions (now in Engine)
-4. ✅ Updated subsystem responsibilities to include Engine
-5. ✅ Updated ownership boundaries to include Engine ↔ Laboratory boundary
-6. ✅ Laboratory lifecycle summary references Engine methodology
-7. ✅ All experiments now reference an Engine (Alpha or Beta)
-8. ✅ Laboratory supports multiple engines via standard interface
-9. ✅ Added engine selection documentation
+| Version | Date | Status | Evidence Level |
+|---------|------|--------|----------------|
+| 1.0.0 | 2026-07-20 | FROZEN (Production) | Level 3 |
+
+### Architecture C Documents
+
+| Document | Purpose |
+|----------|---------|
+| [`ARCHITECTURE-C.md`](ARCHITECTURE-C.md) | Architecture specification |
+| [`VERSION.md`](VERSION.md) | Version management |
+| [`CHANGELOG.md`](CHANGELOG.md) | Change history |
+| [`REFERENCE-IMPLEMENTATION.md`](REFERENCE-IMPLEMENTATION.md) | Canonical implementation |
+| [`governance/promotion-rules.md`](governance/promotion-rules.md) | Promotion criteria |
+
+### Architecture C Validation
+
+Architecture C was validated through rigorous scientific process:
+
+| Experiment | Purpose | Result |
+|------------|---------|--------|
+| LAB-020 | Architecture Synthesis | Architecture C synthesized |
+| LAB-021 | Predictive Validation | 85.7% prediction accuracy |
+| LAB-022 | Multi-Run Validation | Mean 9.36/10, 100% agreement |
+| LAB-023 | Cross-Engine Reproducibility | Level 3 Reproducible |
+
+**Evidence Level**: Level 3 — Reproducible Knowledge
+
+See [`ARCHITECTURE-C.md`](ARCHITECTURE-C.md) for full validation evidence.

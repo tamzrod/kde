@@ -1,10 +1,17 @@
 # Experiment Template: [Title]
 
+**Template Version**: 1.1.0
+**Date**: 2026-07-20
+**Architecture**: Architecture C
+
 **Experiment ID**: LAB-XXX
-**Created**: YYYY-MM-DD
+**Created**: YYYY-MM-DDTHH:MM:SSZ
 **Status**: PLANNED
 **Domain**: [Software | Electrical | Mechanical | AI | Industrial | Other]
 **Methodology Version**: v2.0
+**Engine**: [Engine ID]
+**Seed**: [Seed ID]
+**Investigation**: [INV-XXX]
 
 ---
 
@@ -128,8 +135,17 @@
 | Field | Value |
 |-------|-------|
 | Experiment ID | LAB-XXX |
-| Created | YYYY-MM-DD |
-| Last Updated | YYYY-MM-DD |
+| Investigation | [INV-XXX] |
+| Created | YYYY-MM-DDTHH:MM:SSZ |
+| Last Updated | YYYY-MM-DDTHH:MM:SSZ |
 | Total Runs | 0 |
 | Current Assessment | PENDING |
-| Schema Version | 2.0 | |
+| Schema Version | 2.0 |
+
+---
+
+## Architecture C: Investigation Link
+
+This experiment is linked to investigation: **[INV-XXX](../investigations/INV-XXX/)**
+
+For full Architecture C specification, see [`../ARCHITECTURE-C.md`](../ARCHITECTURE-C.md)
