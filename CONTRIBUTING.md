@@ -2,19 +2,21 @@
 
 ## Research Workflow
 
+All research is conducted within the Laboratory following this workflow:
+
 ```
 QUESTION → INVESTIGATION → EVIDENCE → WORKING DEFINITION → VALIDATION → KNOWLEDGE
 ```
 
 ### 1. Pick a Question
 
-Choose a question from the [Question Tracker](./research/questions/README.md) that is:
+Choose a question from the [Laboratory Question Tracker](./laboratory/questions/README.md) that is:
 - Not blocked by dependencies
 - Not already being researched
 
 ### 2. Investigate
 
-- Open the corresponding file in `/research/questions/`
+- Open the corresponding file in `/laboratory/questions/investigations/`
 - Gather existing knowledge on the topic
 - Examine evidence from multiple sources
 - Look for counter-examples
@@ -22,7 +24,7 @@ Choose a question from the [Question Tracker](./research/questions/README.md) th
 ### 3. Document Evidence
 
 - Add Evidence to the question file with source citations
-- Place raw evidence in `/research/evidence/` if needed
+- Place raw evidence in `/laboratory/evidence/` if needed
 - Name files descriptively: `[source]-[topic]-[date].md`
 
 ### 4. Draft Working Definition
@@ -39,7 +41,7 @@ Choose a question from the [Question Tracker](./research/questions/README.md) th
 
 ### 6. Promote to Knowledge
 
-When validated, move the concept to `/knowledge/`
+When validated, the concept is promoted to `/knowledge/`
 
 ## Quality Standards
 
@@ -51,15 +53,13 @@ When validated, move the concept to `/knowledge/`
 
 ## Workflow Diagram
 
+The Laboratory owns the complete scientific workflow:
+
 ```
-RESEARCH → LABORATORY → DEPLOYMENT
-   │           │            │
-   │      Experiment    Stable
-   │           │            │
-   └────► Validate ◄───────┘
-              │
-              ▼
-         Knowledge
+QUESTION → INVESTIGATION → EVIDENCE → EXPERIMENT → CONCLUSION → KNOWLEDGE
+                    │                                      │
+                    ▼                                      ▼
+               LABORATORY                           VALIDATION
 ```
 
 ## What We Don't Do

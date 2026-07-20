@@ -174,7 +174,7 @@ engine/
 
 - [governance/ENGINE-VERSIONING.md](../governance/ENGINE-VERSIONING.md) — Engine versioning specification
 - [governance/PRINCIPLES.md](../governance/PRINCIPLES.md) — Core KDE principles
-- [governance/RESEARCH-METHODOLOGY.md](../governance/RESEARCH-METHODOLOGY.md) — Research methodology
+- [laboratory/RESEARCH-METHODOLOGY.md](../laboratory/RESEARCH-METHODOLOGY.md) — Research methodology
 - [laboratory/README.md](../laboratory/README.md) — Laboratory process
 
 ---

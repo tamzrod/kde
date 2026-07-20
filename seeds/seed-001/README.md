@@ -141,8 +141,8 @@ Seed-001 was created on 2026-07-20 by migrating foundational artifacts from:
 
 ## Related Documents
 
-- [.kde/seeds/README.md](../README.md) — Seeds overview
-- [.kde/engines/](../engines/) — Engine implementations
+- [../README.md](../README.md) — Seeds overview
+- [../engines/](../engines/) — Engine implementations
 - [seed.yaml](./seed.yaml) — Machine-readable manifest
 
 ---

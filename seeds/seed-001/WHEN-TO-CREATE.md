@@ -101,7 +101,7 @@ Determine if change is:
 If Seed-level change:
 
 ```
-1. Create .kde/seeds/seed-XXX/
+1. Create seeds/seed-XXX/
 2. Copy Seed-001 contents
 3. Apply reasoning changes
 4. Update seed.yaml

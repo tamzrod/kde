@@ -10,25 +10,42 @@ Our fundamental question is:
 
 This is a research-first initiative. We do not know what KDE will become. This roadmap helps us find out.
 
+## Canonical Architecture
+
+KDE follows a five-directory canonical structure representing the scientific foundation:
+
+```
+kde/
+├── seeds/           # Immutable reasoning DNA
+├── engines/        # Methodology implementations
+├── laboratory/     # Scientific workflow (questions, experiments, evidence)
+├── knowledge/      # Validated knowledge
+└── governance/      # Repository governance
+```
+
 ## Repository Structure
 
 ```
 /kde/
-├── /research/           # Research artifacts
-│   ├── questions/     # Individual question investigations
-│   ├── evidence/       # Collected evidence
-│   └── FOUNDATIONAL-PRINCIPLES.md
-├── /knowledge/         # Validated concepts
-├── /governance/        # Methodology and rules
-├── /laboratory/        # Experimental implementations
-│   └── mcp/
-├── /deployment/        # Production implementations
-└── /meetings/          # Meeting notes
+├── /seeds/           # Immutable reasoning artifacts
+│   ├── seed-001/    # Genesis seed (frozen)
+│   └── seed-002/    # Evolution seed (frozen)
+├── /engines/         # Methodology implementations
+│   ├── alpha/       # KDE-ENGINE-001 (historical)
+│   ├── beta/        # KDE-ENGINE-002 (active)
+│   └── gamma/       # KDE-ENGINE-003 (experimental)
+├── /knowledge/       # Validated concepts
+├── /governance/      # Repository rules and standards
+└── /laboratory/     # Scientific workflow
+    ├── questions/   # Research questions tracker
+    ├── investigations/  # Investigation-centric organization (INV-001 to INV-010)
+    ├── experiments/  # Laboratory experiments (LAB-001 to LAB-019)
+    └── evidence/    # Collected evidence
 ```
 
 ## Research Questions
 
-Research is organized into four tiers:
+Research is organized into four tiers and conducted within the Laboratory:
 
 | Tier | Questions | Status |
 |------|-----------|--------|
@@ -37,11 +54,29 @@ Research is organized into four tiers:
 | **Tier 3: Engineering** | What is Engineering? What is an Engineering Subject? What is a Methodology? | Pending |
 | **Tier 4: Process** | How does knowledge become validated? How should knowledge evolve? | Pending |
 
-## Foundational Principle
+## Scientific Lifecycle
 
-> **"Experiment before deployment."**
->
-> Methodology should first be explored in the Laboratory. Only validated concepts should be promoted into deployment targets such as MCP, CLI, API, or other interfaces.
+KDE follows a complete scientific lifecycle:
+
+```
+Seed (Immutable Reasoning DNA)
+    ↓
+Engine (Methodology Implementation)
+    ↓
+Investigation (Question → Hypothesis → Experiment Plan)
+    ↓
+Experiments (LAB-XXX under Engine)
+    ↓
+Evidence (Empirical Data)
+    ↓
+Analysis (Pattern Recognition)
+    ↓
+Conclusion (Validated Knowledge)
+    ↓
+Knowledge (Promoted Definitions)
+    ↓
+Lessons Learned (Seed Evolution)
+```
 
 ## How to Contribute
 

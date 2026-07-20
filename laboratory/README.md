@@ -73,7 +73,7 @@ The Laboratory operates under:
 | **Codename** | Alpha |
 | **Status** | Active |
 
-For detailed methodology, see: [`/engine/KDE-ENGINE-001/methodology.md`](../engine/KDE-ENGINE-001/methodology.md)
+For detailed methodology, see: [`/engines/KDE-ENGINE-001/methodology.md`](../engines/KDE-ENGINE-001/methodology.md)
 
 ---
 
@@ -145,7 +145,7 @@ The Laboratory is part of KDE's continuous improvement cycle:
 
 | Subsystem | Responsibility | Authority |
 |-----------|---------------|-----------|
-| **Research** | Discovers knowledge | Creates definitions |
+| **Investigation** | Discovers knowledge through questions | Creates definitions |
 | **Knowledge** | Stores approved knowledge | Serves as source of truth |
 | **Laboratory** | Validates through experiments (under Engine) | Reports findings |
 | **Evidence** | Accumulates verification data | Informs decisions |
@@ -156,18 +156,18 @@ The Laboratory is part of KDE's continuous improvement cycle:
 
 | Boundary | Description |
 |----------|-------------|
-| Research ↔ Laboratory | Research creates; Laboratory tests |
+| Investigation ↔ Laboratory | Investigation proposes; Laboratory tests |
 | Laboratory ↔ Engine | Laboratory executes; Engine defines |
 | Laboratory ↔ Knowledge | Laboratory never edits knowledge |
 | Laboratory ↔ Governance | Laboratory recommends; Governance approves |
-| Governance ↔ Research | Governance directs; Research investigates |
+| Governance ↔ Investigation | Governance directs; Investigation investigates |
 | Engine ↔ Governance | Engine proposes; Governance approves |
 
 ---
 
 ## Experiment Lifecycle
 
-The Laboratory experiment lifecycle is defined by the Engine. See [`/engine/KDE-ENGINE-001/methodology.md`](../engine/KDE-ENGINE-001/methodology.md) for detailed methodology.
+The Laboratory experiment lifecycle is defined by the Engine. See [`/engines/KDE-ENGINE-001/methodology.md`](../engines/KDE-ENGINE-001/methodology.md) for detailed methodology.
 
 ### Lifecycle Summary
 
@@ -229,20 +229,29 @@ When experiments challenge knowledge, the Laboratory follows Engine-defined prot
 ├── registry.md            # Experiment registry
 ├── scientific-loop.md     # Learning loop documentation
 │
-├── experiments/           # All experiments
+├── questions/             # Question tracker
+│   └── README.md
+│
+├── investigations/         # Investigation-centric organization
+│   ├── INV-001/
+│   │   ├── question.md     # Research question
+│   │   ├── hypothesis.md   # Hypothesis (if defined)
+│   │   ├── experiments/    # LAB-XXX experiments for this question
+│   │   └── evidence/       # Evidence collected
+│   ├── INV-002/
+│   │   └── ...
+│   └── INV-NNN/
+│
+├── experiments/           # All experiments (flat registry)
 │   ├── LAB-001/
-│   │   ├── experiment.md  # Experiment definition
-│   │   ├── runs/
-│   │   │   ├── RUN-001.md
-│   │   │   └── RUN-N.md
-│   │   └── evidence/
-│   │       └── references.md
+│   ├── LAB-002/
 │   └── LAB-NNN/
 │
-└── templates/
-    ├── experiment-template.md
-    ├── run-template.md
-    └── evidence-reference-template.md
+├── evidence/              # Shared evidence
+├── templates/
+│   ├── experiment-template.md
+│   ├── run-template.md
+│   └── evidence-reference-template.md
 ```
 
 ---
@@ -322,7 +331,7 @@ interface:
     - Return engine identity
 ```
 
-See: [`/engine/interface.md`](../engine/interface.md)
+See: [`/engines/interface.md`](../engines/interface.md)
 
 ---
 

@@ -161,29 +161,27 @@ Research proposes knowledge
 
 ## Directory Structure
 
+The canonical KDE architecture follows a five-directory structure:
+
 ```
-.kde/
-├── seeds/                    # Immutable reasoning
+kde/
+├── seeds/                    # Immutable reasoning DNA
 │   ├── seed-001/           # Genesis (FROZEN)
 │   └── seed-002/           # Evolution (FROZEN)
 │
-├── engines/                  # Evolvable methodology
+├── engines/                  # Evolvable methodology implementations
 │   ├── alpha/              # KDE-ENGINE-001
 │   ├── beta/               # KDE-ENGINE-002
 │   └── gamma/              # KDE-ENGINE-003
 │
-├── laboratory/              # Active execution
-│   ├── experiments/         # LAB-XXX
-│   └── templates/          # Standard templates
+├── laboratory/              # Scientific workflow
+│   ├── questions/          # Research questions
+│   ├── experiments/        # LAB-XXX
+│   └── evidence/           # Collected evidence
 │
-├── knowledge/               # Validated knowledge
-│   └── KNOW-XXX/           # Knowledge objects
+├── knowledge/               # Validated knowledge definitions
 │
-├── governance/              # Oversight
-│   └── policies/           # Governance rules
-│
-└── research/               # Discovery
-    └── proposals/          # Research proposals
+└── governance/              # Repository rules and standards
 ```
 
 ---

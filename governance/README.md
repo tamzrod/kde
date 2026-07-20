@@ -6,35 +6,40 @@ This directory contains KDE governance documents that rule how the project opera
 
 Governance is the system of rules, standards, and processes that govern the KDE project. It is NOT limited to methodology. Methodology is only one artifact that governance covers.
 
+## Canonical Architecture
+
+KDE follows a five-directory canonical structure:
+
+```
+kde/
+├── seeds/           # Immutable reasoning DNA
+├── engines/        # Methodology implementations
+├── laboratory/     # Scientific workflow
+├── knowledge/      # Validated knowledge
+└── governance/      # Repository governance
+```
+
 ## What Governance Covers
 
 | Domain | Description |
 |--------|-------------|
-| **Research** | How research questions are investigated |
-| **Knowledge** | How knowledge is validated and promoted |
-| **Methodology** | How the methodology itself evolves |
-| **Standards** | Quality standards for all project artifacts |
+| **Evolution Rules** | How the architecture evolves |
+| **Architectural Standards** | Quality standards for project structure |
+| **Promotion Rules** | How artifacts move between states |
+| **Versioning Policies** | How project artifacts are versioned |
 | **Policies** | Project policies and guidelines |
-| **Approval Processes** | How artifacts move through states |
-| **Versioning** | How project artifacts are versioned |
-| **Future Artifacts** | Any new governance artifacts as the project grows |
 
 ## Governance Documents
 
 | Document | Purpose |
 |---------|---------|
-| [RESEARCH-METHODOLOGY.md](./RESEARCH-METHODOLOGY.md) | How research is conducted |
+| [ENGINE-VERSIONING.md](./ENGINE-VERSIONING.md) | Engine versioning policies |
 | [STATE-MACHINE.md](./STATE-MACHINE.md) | Document lifecycle states |
-| [PRINCIPLES.md](./PRINCIPLES.md) | Core principles for AI behavior |
 | [VERSION.md](./VERSION.md) | Version history |
 
 ## Key Principles
 
-1. **No Auto-Continuation** — AI must never begin the next research session without explicit human authorization.
-2. **No Self-Approval** — AI must never approve its own work. Only humans can set APPROVED state.
-3. **No Self-Promotion** — AI must never promote knowledge. Only humans can set PROMOTED state.
-4. **Distinguish Evidence, Inference, Hypothesis** — AI must clearly mark these.
-5. **Evidence-Based Changes** — Governance changes must be justified by evidence, not opinion.
+The core principles are defined in `/seeds/seed-001/principles/5-principles.md`. These immutable principles govern AI behavior within KDE. Governance documents reference these principles but do not redefine them.
 
 ## Governance Workflow
 

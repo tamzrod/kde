@@ -26,10 +26,9 @@ Boundaries define explicit ownership. Each KDE component has one clear owner and
 |-----------|-------|---------|------------------|
 | **Seed** | KDE (immutable) | Reasoning DNA, Principles, Models | Methodology, Engine-specific rules |
 | **Engine** | KDE (evolvable) | Methodology, Pipeline, Rules | Reasoning DNA (consumed from Seed) |
-| **Laboratory** | KDE (active) | Experiment execution, Observation | Reasoning, Knowledge definition |
+| **Laboratory** | KDE (active) | Questions, Experiments, Evidence, Execution | Reasoning, Knowledge definition |
 | **Knowledge** | KDE (passive) | Validated definitions | Reasoning, Methodology |
-| **Governance** | KDE (oversight) | Decisions, Approvals | Execution, Implementation |
-| **Research** | KDE (discovery) | Investigations, Proposals | Validation, Approval |
+| **Governance** | KDE (oversight) | Decisions, Approvals, Standards | Execution, Implementation |
 
 ---
 
@@ -70,10 +69,11 @@ Engine does NOT contain:
 
 ```
 Laboratory/
+├── questions/           # ✅ Research questions
 ├── experiments/         # ✅ Experiment execution
-├── runs/                # ✅ Run management
 ├── evidence/            # ✅ Evidence collection
-└── templates/          # ✅ Standard templates
+├── templates/          # ✅ Standard templates
+└── runs/                # ✅ Run management
 
 Laboratory does NOT contain:
 ├── reasoning principles      # ❌ Belongs to Seed
@@ -106,7 +106,7 @@ Governance/
 
 Governance does NOT contain:
 ├── experiment execution    # ❌ Belongs to Laboratory
-├── knowledge creation        # ❌ Belongs to Research
+├── knowledge creation      # ❌ Belongs to Laboratory
 ```
 
 ---
@@ -118,11 +118,10 @@ Components communicate through defined interfaces:
 | From | To | Interface |
 |------|-----|-----------|
 | Seed | Engine | Compatibility declaration |
-| Engine | Laboratory | Experiment execution |
+| Engine | Laboratory | Experiment methodology |
 | Laboratory | Knowledge | Validation results |
 | Knowledge | Governance | Knowledge status |
-| Governance | Research | Gap identification |
-| Research | Knowledge | Proposed definitions |
+| Governance | Laboratory | Gap identification |
 
 ---
 
