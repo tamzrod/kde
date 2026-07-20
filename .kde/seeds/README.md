@@ -71,28 +71,50 @@ A **Seed** is the immutable foundation of KDE reasoning. It represents:
 
 ## Available Seeds
 
-| Seed ID | Version | Codename | Status |
-|---------|---------|----------|--------|
-| SEED-001 | 1.0.0 | Genesis | FROZEN |
+| Seed ID | Version | Codename | Status | Parent |
+|---------|---------|----------|--------|--------|
+| SEED-001 | 1.0.0 | Genesis | FROZEN | — |
+| SEED-002 | 1.0.0 | Evolution | FROZEN | SEED-001 |
 
 ---
 
-## Future Evolution
-
-If KDE reasoning fundamentally changes:
+## Seed Lineage
 
 ```
-SEED-001 (Genesis) ──FROZEN──► [Immutable forever]
-
-SEED-002 ──NEW SEED CREATED──► [Next generation]
+SEED-001 (Genesis)
+    │
+    │ Lessons learned:
+    │ • Engine contained reasoning DNA
+    │ • Boundaries became blurred
+    │ • No migration-first approach
+    │ • Reasoning was not versioned
+    │ • Single responsibility degraded
+    │ • Evolution overwrote architecture
+    │ • Coupling by growth
+    │ • Experiment consistency varied
+    │ • No clear boundary definition
+    │ • Confidence model incomplete
+    │
+    ▼
+SEED-002 (Evolution)
+    │
+    │ 10 Lessons Learned
+    │ 8 Design Objectives
+    │ 0 Speculative Changes
 ```
+
+---
+
+## Seed Creation Rule
+
+> If no lessons were learned, no new Seed should exist.
 
 ### Rules
 
-1. **Seed-001 is frozen** — Never modify
-2. **Create new Seed** — When reasoning changes fundamentally
+1. **Seeds are frozen** — Never modify after creation
+2. **Create new Seed** — Only when lessons learned from previous
 3. **Never overwrite** — Future Seeds inherit, never modify
-4. **Engine compatibility** — Engines declare compatible Seeds
+4. **Engine compatibility** — engines declare compatible Seeds
 
 ---
 
