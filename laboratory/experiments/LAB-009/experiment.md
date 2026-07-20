@@ -80,3 +80,15 @@ When knowledge has been extracted from heterogeneous artifacts, what minimal inf
 - Common elements discovered: type, required, default, min/max
 - Average information loss: 9%
 - Knowledge DNA validated
+
+---
+
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Experiment ID | LAB-009 |
+| Created | 2026-07-19 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
+| Methodology Version | 2.2 |

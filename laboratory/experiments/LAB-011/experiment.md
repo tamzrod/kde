@@ -165,6 +165,8 @@ A validated pattern becomes Knowledge if:
 | Experiment ID | LAB-011 |
 | Created | 2026-07-20 |
 | Last Updated | 2026-07-20 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
 | Methodology Version | 2.2 |
 | Domain | Chess Strategy |
 | Strategic Topic | Center Control |

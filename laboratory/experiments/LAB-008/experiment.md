@@ -48,3 +48,15 @@ Can a common knowledge representation be discovered that faithfully represents i
 - Common attributes discovered: type, created, author, fields
 - Average information loss: 20%
 - Information DNA candidate validated
+
+---
+
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Experiment ID | LAB-008 |
+| Created | 2026-07-19 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
+| Methodology Version | 2.2 |

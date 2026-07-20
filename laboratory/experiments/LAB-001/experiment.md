@@ -90,3 +90,15 @@ Empirical evidence about where Tier 1 framework succeeds or fails in practice.
 **Knowledge Assessment**: MIXED (see impact.md)
 **Confidence**: MEDIUM
 **Reproducibility**: PARTIAL
+
+---
+
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Experiment ID | LAB-001 |
+| Created | 2026-07-19 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
+| Methodology Version | v2.0 |

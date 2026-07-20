@@ -62,3 +62,15 @@ Every line of code traceable to:
 - 100% traceability
 - 0 orphan code
 - 0 standard violations
+
+---
+
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Experiment ID | LAB-007 |
+| Created | 2026-07-19 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
+| Methodology Version | 2.2 |

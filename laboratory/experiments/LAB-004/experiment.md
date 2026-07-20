@@ -55,3 +55,15 @@ The Laboratory methodology can be applied to creative domain work, but may encou
 **Special Note**: Cross-domain validation experiment
 **Assessment**: MIXED (see impact.md)
 **Traceability Coverage**: 100%
+
+---
+
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Experiment ID | LAB-004 |
+| Created | 2026-07-19 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
+| Methodology Version | 2.2 |

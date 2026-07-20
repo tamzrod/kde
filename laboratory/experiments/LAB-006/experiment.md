@@ -65,3 +65,15 @@ The experiment succeeds if the Laboratory correctly:
 - 10 implementation freedoms identified
 - 8 ambiguities tracked
 - 6 assumptions tracked
+
+---
+
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Experiment ID | LAB-006 |
+| Created | 2026-07-19 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
+| Methodology Version | 2.2 |

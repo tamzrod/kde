@@ -64,6 +64,18 @@ Starting knowledge from LAB-004:
 
 ---
 
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Experiment ID | LAB-005 |
+| Created | 2026-07-19 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
+| Methodology Version | 2.2 |
+
+---
+
 ## Knowledge Tracking
 
 | Chapter | Knowledge Added | Ambiguities Resolved | Ambiguities Introduced | Contradictions |

@@ -82,3 +82,15 @@ Every equation, parameter, state, or control rule must be classified as:
 - Simulation generated: Executable Python code
 - Full traceability: Every equation traced to source
 - 4 assumptions documented with risk levels
+
+---
+
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Experiment ID | LAB-010 |
+| Created | 2026-07-19 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
+| Methodology Version | 2.2 |

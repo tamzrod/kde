@@ -56,3 +56,15 @@ Traceability validation improves evidence auditability and reduces unsupported c
 **Improvement Applied**: Traceability Validation
 **Traceability Coverage**: 100%
 **Assessment**: MIXED (see impact.md)
+
+---
+
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Experiment ID | LAB-003 |
+| Created | 2026-07-19 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
+| Methodology Version | 2.2 |

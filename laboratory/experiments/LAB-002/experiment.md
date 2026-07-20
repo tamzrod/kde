@@ -55,3 +55,15 @@ The improved methodology produces higher quality observations and evidence than 
 **Methodology Version**: 2.1
 **Improvements Applied**: Trigger, Observation, Evidence
 **Assessment**: MIXED (see impact.md)
+
+---
+
+## Metadata
+
+| Field | Value |
+|-------|-------|
+| Experiment ID | LAB-002 |
+| Created | 2026-07-19 |
+| Engine Version | 0.1.0 |
+| Engine Name | Initial Knowledge Discovery Engine |
+| Methodology Version | 2.1 |
