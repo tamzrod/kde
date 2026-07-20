@@ -10,6 +10,12 @@ Our fundamental question is:
 
 This is a research-first initiative. We do not know what KDE will become. This roadmap helps us find out.
 
+## Getting Started
+
+**For new sessions, start here:** [`laboratory/BOOTSTRAP.md`](./laboratory/BOOTSTRAP.md)
+
+The BOOTSTRAP.md is the canonical entry point for all KDE sessions. It provides the Runtime initialization procedure and ensures consistent session startup across all experiments and investigations.
+
 ## Canonical Architecture
 
 KDE follows a five-directory canonical structure representing the scientific foundation:
@@ -33,13 +39,16 @@ kde/
 ├── /engines/         # Methodology implementations
 │   ├── alpha/       # KDE-ENGINE-001 (historical)
 │   ├── beta/        # KDE-ENGINE-002 (active)
-│   └── gamma/       # KDE-ENGINE-003 (experimental)
+│   ├── gamma/       # KDE-ENGINE-003 (experimental)
+│   └── delta/       # KDE-ENGINE-004 (candidate)
 ├── /knowledge/       # Validated concepts
 ├── /governance/      # Repository rules and standards
 └── /laboratory/     # Scientific workflow
+    ├── BOOTSTRAP.md       # Session entry point (NEW)
+    ├── LABORATORY-RULES.md # Runtime initialization (NEW)
     ├── questions/   # Research questions tracker
-    ├── investigations/  # Investigation-centric organization (INV-001 to INV-010)
-    ├── experiments/  # Laboratory experiments (LAB-001 to LAB-019)
+    ├── investigations/  # Investigation-centric organization
+    ├── experiments/  # Laboratory experiments
     └── evidence/    # Collected evidence
 ```
 

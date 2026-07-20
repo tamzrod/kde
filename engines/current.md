@@ -8,10 +8,59 @@
 
 The Laboratory supports multiple engines. Select the appropriate engine for each experiment:
 
-| Engine ID | Version | Codename | Status | Use Case |
-|-----------|---------|----------|--------|----------|
-| **KDE-ENGINE-002** | 0.1.0 | Beta | **Active** | Contextual knowledge discovery |
-| KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | Pattern discovery (legacy) |
+| Engine ID | Version | Codename | Status | Default | Use Case |
+|-----------|---------|----------|--------|---------|----------|
+| **KDE-ENGINE-002** | 0.1.0 | Beta | Active | **YES** | Contextual knowledge discovery |
+| KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | NO | Pattern discovery (legacy) |
+| KDE-ENGINE-003 | 0.1.0 | Gamma | Experimental | NO | Causal discovery |
+| KDE-ENGINE-004 | 0.1.0 | Delta | Candidate (Validated) | NO | Bootstrap + Context discovery |
+
+---
+
+## Understanding Status vs. Default
+
+**IMPORTANT**: Engine "Status" and "Default" are independent concepts.
+
+### Status (Scientific Lifecycle)
+
+Status describes the scientific validation level of an Engine:
+
+| Status | Description |
+|--------|-------------|
+| **Experimental** | New engine, methodology under development |
+| **Candidate** | Under validation |
+| **Candidate (Validated)** | Validation complete |
+| **Active** | Scientifically validated and available |
+| **Historical** | Former engine, preserved for reference |
+
+### Default (Runtime Configuration)
+
+Default describes the Runtime's operational default:
+
+| Default | Description |
+|---------|-------------|
+| **YES** | Engine is loaded at Runtime startup |
+| **NO** | Engine requires explicit selection |
+
+### Key Distinction
+
+| Scenario | Status | Default | Explanation |
+|----------|--------|---------|-------------|
+| Beta | Active | YES | Scientifically active AND Runtime default |
+| Delta | Candidate (Validated) | NO | Scientifically validated but NOT default |
+| Future Engine | Active | NO | Could be scientifically superior but human hasn't selected as default |
+
+**Principle**: Scientific validation does NOT automatically change Runtime defaults. Only human authority can change defaults.
+
+---
+
+## Default Engine Authority
+
+**Runtime defaults are under exclusive human authority.**
+
+See [/governance/runtime/defaults.yaml](/workspace/project/kde/governance/runtime/defaults.yaml) for the authoritative Runtime configuration.
+
+See [/governance/runtime/RUNTIME-STARTUP.md](/workspace/project/kde/governance/runtime/RUNTIME-STARTUP.md) for the startup sequence.
 
 ---
 
@@ -51,15 +100,30 @@ For detailed information about Alpha, see:
 - [alpha/changes.md](./alpha/changes.md) — Version history
 - [alpha/provenance.md](./alpha/provenance.md) — Engine lineage
 
+### Delta (KDE-ENGINE-004) — Candidate
+
+For detailed information about Delta, see:
+
+- [delta/README.md](./delta/README.md) — Quick reference
+- [delta/specification.md](./delta/specification.md) — Engine identity and scope
+- [delta/methodology.md](./delta/methodology.md) — Detailed methodology
+- [delta/pipeline.md](./delta/pipeline.md) — Processing pipeline
+- [delta/knowledge-model.md](./delta/knowledge-model.md) — Knowledge object specification
+- [delta/changes.md](./delta/changes.md) — Version history
+- [delta/provenance.md](./delta/provenance.md) — Engine lineage
+
+**Note**: Delta is a Candidate Engine (Validated). VAL-001 validation complete. Additional validation recommended before promotion.
+
 ---
 
 ## Engine Lineage
 
-| Engine ID | Version | Codename | Status | Effective | Purpose |
-|-----------|---------|----------|--------|-----------|---------|
-| KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | 2026-07-19 | Pattern discovery |
-| KDE-ENGINE-002 | 0.1.0 | Beta | Active | 2026-07-20 | Contextual knowledge |
-| KDE-ENGINE-003 | 0.1.0 | Gamma | Experimental | 2026-07-20 | Causal discovery |
+| Engine ID | Version | Codename | Status | Default | Effective | Purpose |
+|-----------|---------|----------|--------|---------|-----------|---------|
+| KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | NO | 2026-07-19 | Pattern discovery |
+| KDE-ENGINE-002 | 0.1.0 | Beta | Active | **YES** | 2026-07-20 | Contextual knowledge |
+| KDE-ENGINE-003 | 0.1.0 | Gamma | Experimental | NO | 2026-07-20 | Causal discovery |
+| KDE-ENGINE-004 | 0.1.0 | Delta | Candidate (Validated) | NO | 2026-07-20 | Bootstrap + Context |
 
 ---
 
@@ -92,6 +156,19 @@ When a new engine becomes active:
 4. Document the transition in both engines' changes.md
 5. Update the Engine Lineage table above
 
+**Note**: Engine status transitions do NOT automatically change Runtime defaults. See Session Override for how to use non-default engines.
+
+### Session Override
+
+Experiments and Investigations may use non-default engines by specifying a session override:
+
+```yaml
+session_override:
+  engine: KDE-ENGINE-004  # Use Delta instead of default (Beta)
+```
+
+See [/governance/runtime/SESSION-OVERRIDE.md](/workspace/project/kde/governance/runtime/SESSION-OVERRIDE.md) for details.
+
 ---
 
 ## Engine Details (Gamma)
@@ -117,10 +194,19 @@ For detailed information about Gamma, see:
 | 2026-07-19 | Initial Engine | KDE-ENGINE-001 (Alpha) established |
 | 2026-07-20 | Engine Evolution | KDE-ENGINE-002 (Beta) released, Alpha → Historical |
 | 2026-07-20 | Engine Expansion | KDE-ENGINE-003 (Gamma) experimental release |
+| 2026-07-20 | Bootstrap Engine | KDE-ENGINE-004 (Delta) created, Candidate |
 
 ---
 
 ## Related Documents
+
+### Runtime Configuration
+
+- [/governance/runtime/defaults.yaml](/workspace/project/kde/governance/runtime/defaults.yaml) — Runtime default configuration
+- [/governance/runtime/RUNTIME-STARTUP.md](/workspace/project/kde/governance/runtime/RUNTIME-STARTUP.md) — Runtime startup sequence
+- [/governance/runtime/SESSION-OVERRIDE.md](/workspace/project/kde/governance/runtime/SESSION-OVERRIDE.md) — Session override behavior
+
+### Engine Framework
 
 - [interface.md](./interface.md) — Engine interface specification
 - [README.md](./README.md) — Engine framework overview
@@ -128,3 +214,5 @@ For detailed information about Gamma, see:
 ---
 
 **Do not edit this file to add new engines. Follow the engine transition process defined in the Engine Framework.**
+
+**Do not change Runtime defaults here. Edit [/governance/runtime/defaults.yaml](/workspace/project/kde/governance/runtime/defaults.yaml) to change defaults.**

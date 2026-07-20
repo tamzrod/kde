@@ -1,9 +1,17 @@
 # KDE Laboratory
 
-**Document Version**: 4.0
-**Date**: 2026-07-20T13:00:00Z
+**Document Version**: 5.0
+**Date**: 2026-07-20T21:00:00Z
 **Status**: OPERATIONAL (Architecture C)
 **Architecture**: Architecture C (Hybrid Investigation-Experiment Model)
+
+---
+
+## Quick Start
+
+**For new sessions, start here:** [`BOOTSTRAP.md`](./BOOTSTRAP.md)
+
+The BOOTSTRAP.md is the canonical entry point for all KDE sessions. It provides the Runtime initialization procedure and ensures consistent session startup.
 
 ---
 
@@ -86,12 +94,14 @@ The Laboratory operates under:
 
 | Field | Value |
 |-------|-------|
-| **Engine ID** | KDE-ENGINE-001 |
+| **Engine ID** | KDE-ENGINE-002 |
 | **Version** | 0.1.0 |
-| **Codename** | Alpha |
+| **Codename** | Beta |
 | **Status** | Active |
 
-For detailed methodology, see: [`/engines/KDE-ENGINE-001/methodology.md`](../engines/KDE-ENGINE-001/methodology.md)
+For detailed methodology, see: [`/engines/beta/methodology.md`](../engines/beta/methodology.md)
+
+> **Note:** For Runtime initialization, see [`BOOTSTRAP.md`](./BOOTSTRAP.md)
 
 ---
 
