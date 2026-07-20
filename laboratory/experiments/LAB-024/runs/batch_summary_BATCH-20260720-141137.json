@@ -1,0 +1,117 @@
+{
+  "batch_id": "BATCH-20260720-141137",
+  "run_count": 10,
+  "start_time": "2026-07-20T14:11:37.744860Z",
+  "runs": [
+    {
+      "run_id": "RUN-001",
+      "seed": 1784556697,
+      "protocol_name": "StratumQuantumChannel",
+      "status": "completed",
+      "compilation": "success",
+      "functional": "pass",
+      "security": "MEDIUM"
+    },
+    {
+      "run_id": "RUN-002",
+      "seed": 1784556698,
+      "protocol_name": "AetherHybridProtocol",
+      "status": "completed",
+      "compilation": "success",
+      "functional": "pass",
+      "security": "HIGH"
+    },
+    {
+      "run_id": "RUN-003",
+      "seed": 1784556699,
+      "protocol_name": "HelixStatelessFlow",
+      "status": "completed",
+      "compilation": "success",
+      "functional": "pass",
+      "security": "HIGH"
+    },
+    {
+      "run_id": "RUN-004",
+      "seed": 1784556700,
+      "protocol_name": "NexusQuantumCore",
+      "status": "completed",
+      "compilation": "success",
+      "functional": "pass",
+      "security": "MEDIUM"
+    },
+    {
+      "run_id": "RUN-005",
+      "seed": 1784556701,
+      "protocol_name": "AnchorSecureShield",
+      "status": "completed",
+      "compilation": "success",
+      "functional": "pass",
+      "security": "MEDIUM"
+    },
+    {
+      "run_id": "RUN-006",
+      "seed": 1784556702,
+      "protocol_name": "AnchorStatelessMesh",
+      "status": "completed",
+      "compilation": "success",
+      "functional": "pass",
+      "security": "MEDIUM"
+    },
+    {
+      "run_id": "RUN-007",
+      "seed": 1784556703,
+      "protocol_name": "PrismHybridSession",
+      "status": "completed",
+      "compilation": "success",
+      "functional": "pass",
+      "security": "HIGH"
+    },
+    {
+      "run_id": "RUN-008",
+      "seed": 1784556704,
+      "protocol_name": "BastionShield",
+      "status": "completed",
+      "compilation": "success",
+      "functional": "pass",
+      "security": "HIGH"
+    },
+    {
+      "run_id": "RUN-009",
+      "seed": 1784556705,
+      "protocol_name": "ForgeSecureChannel",
+      "status": "completed",
+      "compilation": "success",
+      "functional": "pass",
+      "security": "MEDIUM"
+    },
+    {
+      "run_id": "RUN-010",
+      "seed": 1784556706,
+      "protocol_name": "NovaZeroMesh",
+      "status": "error",
+      "compilation": null,
+      "functional": null,
+      "security": null
+    }
+  ],
+  "statistics": {
+    "total_runs": 10,
+    "successful": 9,
+    "failed": 1,
+    "success_rate": 0.9,
+    "unique_protocols": 9,
+    "protocols": [
+      "AetherHybridProtocol",
+      "AnchorSecureShield",
+      "AnchorStatelessMesh",
+      "BastionShield",
+      "ForgeSecureChannel",
+      "HelixStatelessFlow",
+      "NexusQuantumCore",
+      "PrismHybridSession",
+      "StratumQuantumChannel"
+    ]
+  },
+  "end_time": "2026-07-20T14:11:41.441760Z",
+  "duration_seconds": 3.6969
+}

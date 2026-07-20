@@ -1,0 +1,150 @@
+[2026-07-20T14:07:44.912003] [INFO] Starting protocol synthesis run RUN-001
+[2026-07-20T14:07:44.912077] [INFO] Generating protocol specification...
+[2026-07-20T14:07:44.913126] [ERROR] Run error: list.append() takes exactly one argument (2 given)
+Traceback (most recent call last):
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 706, in execute
+    spec = self._generate_protocol()
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 72, in _generate_protocol
+    full_spec = generator.generate_full_specification()
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_generator.py", line 589, in generate_full_specification
+    "state_machine": self._generate_state_machine(spec),
+                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_generator.py", line 346, in _generate_state_machine
+    states["transitions"].append(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        {"from": "INIT", "to": "EARLY_DATA", "event": "send_0rtt"},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        {"from": "EARLY_DATA", "to": "HANDSHAKING", "event": "0rtt_complete"},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: list.append() takes exactly one argument (2 given)
+
+[2026-07-20T14:07:44.913392] [INFO] Run RUN-001 completed with status: error
+[2026-07-20T14:07:57.828050] [INFO] Starting protocol synthesis run RUN-001
+[2026-07-20T14:07:57.828117] [INFO] Generating protocol specification...
+[2026-07-20T14:07:57.828258] [INFO] Generated protocol: StratumQuantumFlow
+[2026-07-20T14:07:57.828953] [ERROR] Run error: 'from'
+Traceback (most recent call last):
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 710, in execute
+    self._write_specification(spec)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 219, in _write_specification
+    md += f"{trans['from']} --({trans['event']})--> {trans['to']}\n"
+             ~~~~~^^^^^^^^
+KeyError: 'from'
+
+[2026-07-20T14:07:57.829579] [INFO] Run RUN-001 completed with status: error
+[2026-07-20T14:08:08.723034] [INFO] Starting protocol synthesis run RUN-001
+[2026-07-20T14:08:08.723112] [INFO] Generating protocol specification...
+[2026-07-20T14:08:08.723303] [INFO] Generated protocol: StratumQuantumFlow
+[2026-07-20T14:08:08.724008] [ERROR] Run error: 'from'
+Traceback (most recent call last):
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 713, in execute
+    self._write_specification(spec)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 219, in _write_specification
+    from_state = trans['from']
+                 ~~~~~^^^^^^^^
+KeyError: 'from'
+
+[2026-07-20T14:08:08.724706] [INFO] Run RUN-001 completed with status: error
+[2026-07-20T14:08:44.514132] [INFO] Starting protocol synthesis run RUN-001
+[2026-07-20T14:08:44.514221] [INFO] Generating protocol specification...
+[2026-07-20T14:08:44.514462] [INFO] Generated protocol: StratumQuantumFlow
+[2026-07-20T14:08:44.514721] [INFO] Specification written to laboratory/experiments/LAB-024/runs/RUN-001/artifacts/specification.md
+[2026-07-20T14:08:44.514777] [INFO] Generating protocol implementation...
+[2026-07-20T14:08:44.515836] [ERROR] Run error: 'dict' object has no attribute 'name'
+Traceback (most recent call last):
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 716, in execute
+    self._implement_protocol(spec)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 327, in _implement_protocol
+    code = implement_protocol(spec['protocol'])
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_implementor.py", line 516, in implement_protocol
+    return implementor.generate_implementation()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_implementor.py", line 501, in generate_implementation
+    code = self._get_crypto_imports()
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_implementor.py", line 46, in _get_crypto_imports
+    '''.format(protocol_name=self.spec.name, version=self.spec.version)
+                             ^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'name'
+
+[2026-07-20T14:08:44.516593] [INFO] Run RUN-001 completed with status: error
+[2026-07-20T14:08:58.020074] [INFO] Starting protocol synthesis run RUN-001
+[2026-07-20T14:08:58.020146] [INFO] Generating protocol specification...
+[2026-07-20T14:08:58.020334] [INFO] Generated protocol: StratumQuantumFlow
+[2026-07-20T14:08:58.020598] [INFO] Specification written to laboratory/experiments/LAB-024/runs/RUN-001/artifacts/specification.md
+[2026-07-20T14:08:58.020653] [INFO] Generating protocol implementation...
+[2026-07-20T14:08:58.021674] [ERROR] Run error: 'dict' object has no attribute 'name'
+Traceback (most recent call last):
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 717, in execute
+    self._implement_protocol(spec)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 328, in _implement_protocol
+    code = implement_protocol(spec['protocol'])
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_implementor.py", line 520, in implement_protocol
+    return implementor.generate_implementation()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_implementor.py", line 505, in generate_implementation
+    code = self._get_crypto_imports()
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_implementor.py", line 50, in _get_crypto_imports
+    '''.format(protocol_name=self.spec.name, version=self.spec.version)
+                             ^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'name'
+
+[2026-07-20T14:08:58.022360] [INFO] Run RUN-001 completed with status: error
+[2026-07-20T14:09:10.463889] [INFO] Starting protocol synthesis run RUN-001
+[2026-07-20T14:09:10.463963] [INFO] Generating protocol specification...
+[2026-07-20T14:09:10.464142] [INFO] Generated protocol: StratumQuantumFlow
+[2026-07-20T14:09:10.464421] [INFO] Specification written to laboratory/experiments/LAB-024/runs/RUN-001/artifacts/specification.md
+[2026-07-20T14:09:10.464484] [INFO] Generating protocol implementation...
+[2026-07-20T14:09:10.465476] [ERROR] Run error: 'dict' object has no attribute 'name'
+Traceback (most recent call last):
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 717, in execute
+    self._implement_protocol(spec)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_runner.py", line 328, in _implement_protocol
+    code = implement_protocol(spec['protocol'])
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_implementor.py", line 525, in implement_protocol
+    return implementor.generate_implementation()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_implementor.py", line 505, in generate_implementation
+    code = self._get_crypto_imports()
+  File "/workspace/project/kde/engines/protocol-synth/src/protocol_implementor.py", line 50, in _get_crypto_imports
+    '''.format(protocol_name=self.spec.name, version=self.spec.version)
+                             ^^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'name'
+
+[2026-07-20T14:09:10.466113] [INFO] Run RUN-001 completed with status: error
+[2026-07-20T14:11:24.989100] [INFO] Starting protocol synthesis run RUN-001
+[2026-07-20T14:11:24.989175] [INFO] Generating protocol specification...
+[2026-07-20T14:11:24.989362] [INFO] Generated protocol: StratumQuantumFlow
+[2026-07-20T14:11:24.989623] [INFO] Specification written to laboratory/experiments/LAB-024/runs/RUN-001/artifacts/specification.md
+[2026-07-20T14:11:24.989685] [INFO] Generating protocol implementation...
+[2026-07-20T14:11:24.989851] [INFO] Implementation written to laboratory/experiments/LAB-024/runs/RUN-001/workspace/source/protocol.py
+[2026-07-20T14:11:24.989925] [INFO] Installing dependencies...
+[2026-07-20T14:11:26.275689] [SUCCESS] Dependencies installed successfully
+[2026-07-20T14:11:26.275854] [INFO] Verifying implementation syntax...
+[2026-07-20T14:11:26.314203] [SUCCESS] Syntax verification passed
+[2026-07-20T14:11:26.314353] [INFO] Running functional test...
+[2026-07-20T14:11:26.328023] [SUCCESS] Functional tests: 0 passed
+[2026-07-20T14:11:26.328155] [INFO] Running security analysis...
+[2026-07-20T14:11:26.328258] [SUCCESS] Security analysis: HIGH resistance (86%)
+[2026-07-20T14:11:26.329088] [INFO] Run RUN-001 completed with status: completed
+[2026-07-20T14:11:37.745036] [INFO] Starting protocol synthesis run RUN-001
+[2026-07-20T14:11:37.745105] [INFO] Generating protocol specification...
+[2026-07-20T14:11:37.745267] [INFO] Generated protocol: StratumQuantumChannel
+[2026-07-20T14:11:37.745557] [INFO] Specification written to laboratory/experiments/LAB-024/runs/RUN-001/artifacts/specification.md
+[2026-07-20T14:11:37.745604] [INFO] Generating protocol implementation...
+[2026-07-20T14:11:37.745759] [INFO] Implementation written to laboratory/experiments/LAB-024/runs/RUN-001/workspace/source/protocol.py
+[2026-07-20T14:11:37.745827] [INFO] Installing dependencies...
+[2026-07-20T14:11:38.102734] [SUCCESS] Dependencies installed successfully
+[2026-07-20T14:11:38.102871] [INFO] Verifying implementation syntax...
+[2026-07-20T14:11:38.139235] [SUCCESS] Syntax verification passed
+[2026-07-20T14:11:38.139374] [INFO] Running functional test...
+[2026-07-20T14:11:38.152849] [SUCCESS] Functional tests: 0 passed
+[2026-07-20T14:11:38.152965] [INFO] Running security analysis...
+[2026-07-20T14:11:38.153025] [WARNING] Security analysis: MEDIUM resistance (57%)
+[2026-07-20T14:11:38.153795] [INFO] Run RUN-001 completed with status: completed

@@ -1,0 +1,41 @@
+# Generated runtime files from protocol synthesis runs
+runs/**/runtime/
+runs/**/.venv/
+runs/**/venv/
+runs/**/bin/
+runs/**/pkg/
+runs/**/build/
+runs/**/dist/
+runs/**/__pycache__/
+runs/**/*.pyc
+runs/**/*.exe
+runs/**/*.dll
+runs/**/*.so
+runs/**/*.o
+runs/**/*.a
+runs/**/*.log
+runs/**/*.tmp
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
