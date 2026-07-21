@@ -39,3 +39,7 @@ ENV/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Runtime logs
+runtime/logs/
+runtime/logs/*.jsonl

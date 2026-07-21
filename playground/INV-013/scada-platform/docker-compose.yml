@@ -1,0 +1,296 @@
+version: '3.8'
+
+services:
+  # Reverse Proxy & Load Balancer
+  nginx:
+    image: nginx:alpine
+    container_name: scada-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - frontend
+      - api-gateway
+    networks:
+      - scada-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "nginx", "-t"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend Application
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: scada-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=/api
+      - VITE_WS_URL=ws://localhost/ws
+    depends_on:
+      - api-gateway
+    networks:
+      - scada-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:5173"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: ./backend/services/api-gateway
+      dockerfile: Dockerfile
+    container_name: scada-api-gateway
+    environment:
+      - PORT=8080
+      - HISTORIAN_SERVICE_URL=http://historian:8081
+      - EVENT_SERVICE_URL=http://event:8082
+      - ALARM_SERVICE_URL=http://alarm:8083
+      - DEVICE_SERVICE_URL=http://device:8084
+      - COMMAND_SERVICE_URL=http://command:8085
+      - SIMULATION_SERVICE_URL=http://simulation:8086
+      - AUTH_SERVICE_URL=http://auth:8087
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=scada
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-scada_dev_password}
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - scada-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Historian Service
+  historian:
+    build:
+      context: ./backend/services/historian
+      dockerfile: Dockerfile
+    container_name: scada-historian
+    environment:
+      - PORT=8081
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=${INFLUXDB_TOKEN:-scada-influx-token}
+      - INFLUXDB_ORG=scada
+      - INFLUXDB_BUCKET=telemetry
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+  # Event Service
+  event:
+    build:
+      context: ./backend/services/event
+      dockerfile: Dockerfile
+    container_name: scada-event
+    environment:
+      - PORT=8082
+      - LOKI_URL=http://loki:3100
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+  # Alarm Service
+  alarm:
+    build:
+      context: ./backend/services/alarm
+      dockerfile: Dockerfile
+    container_name: scada-alarm
+    environment:
+      - PORT=8083
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=scada
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-scada_dev_password}
+      - LOKI_URL=http://loki:3100
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+  # Device Registry Service
+  device:
+    build:
+      context: ./backend/services/device
+      dockerfile: Dockerfile
+    container_name: scada-device
+    environment:
+      - PORT=8084
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=scada
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-scada_dev_password}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+  # Command Service
+  command:
+    build:
+      context: ./backend/services/command
+      dockerfile: Dockerfile
+    container_name: scada-command
+    environment:
+      - PORT=8085
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=scada
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-scada_dev_password}
+      - SIMULATION_SERVICE_URL=http://simulation:8086
+    depends_on:
+      postgres:
+        condition: service_healthy
+      simulation:
+        condition: service_started
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+  # Simulation Service
+  simulation:
+    build:
+      context: ./backend/services/simulation
+      dockerfile: Dockerfile
+    container_name: scada-simulation
+    environment:
+      - PORT=8086
+      - INFLUXDB_URL=http://influxdb:8086
+      - INFLUXDB_TOKEN=${INFLUXDB_TOKEN:-scada-influx-token}
+      - INFLUXDB_ORG=scada
+      - LOKI_URL=http://loki:3100
+      - TICK_INTERVAL=1000
+    depends_on:
+      influxdb:
+        condition: service_healthy
+      loki:
+        condition: service_started
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+  # Auth Service
+  auth:
+    build:
+      context: ./backend/services/auth
+      dockerfile: Dockerfile
+    container_name: scada-auth
+    environment:
+      - PORT=8087
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=scada
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-scada_dev_password}
+      - JWT_SECRET=${JWT_SECRET:-scada_dev_jwt_secret_change_in_production}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+  # PostgreSQL - Configuration Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: scada-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-scada_dev_password}
+      - POSTGRES_DB=scada
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./docker/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - scada-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d scada"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # InfluxDB - Time-Series Database
+  influxdb:
+    image: influxdb:2.7
+    container_name: scada-influxdb
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD:-influxdb_password}
+      - DOCKER_INFLUXDB_INIT_ORG=scada
+      - DOCKER_INFLUXDB_INIT_BUCKET=telemetry
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_TOKEN:-scada-influx-token}
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    ports:
+      - "8086:8086"
+    networks:
+      - scada-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "influx", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Loki - Log Aggregation
+  loki:
+    image: grafana/loki:2.9.5
+    container_name: scada-loki
+    user: root
+    command: -config.file=/etc/loki/local-config.yaml
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki-data:/var/loki
+      - ./docker/loki/loki-config.yaml:/etc/loki/local-config.yaml:ro
+      - ./docker/loki/rules:/var/loki/rules
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+  # Promtail - Log Collection
+  promtail:
+    image: grafana/promtail:latest
+    container_name: scada-promtail
+    volumes:
+      - ./docker/promtail/promtail-config.yaml:/etc/promtail/config.yaml:ro
+      - /var/log:/var/log:ro
+    depends_on:
+      - loki
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+networks:
+  scada-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  influxdb-data:
+  loki-data:

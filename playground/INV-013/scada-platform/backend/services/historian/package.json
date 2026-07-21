@@ -1,0 +1,12 @@
+{
+  "name": "scada-historian",
+  "version": "1.0.0",
+  "description": "SCADA Platform Historian Service",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
