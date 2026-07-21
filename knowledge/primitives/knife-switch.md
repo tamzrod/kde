@@ -4,15 +4,15 @@
 **Title**: Knife Switch Geometry — Shared Component Specification
 **Class**: SHARED_COMPONENT
 **Domain**: primitive-geometry
-**Version**: 1.1.0
+**Version**: 1.2.0
 **Status**: APPROVED
 **Confidence**: HIGH
 **Evidence Level**: 5
 **Owner**: KDE-EXPERT-SLD-001
 **Created**: 2026-07-21T14:30:00Z
-**Updated**: 2026-07-21T15:30:00Z
+**Updated**: 2026-07-21T16:00:00Z
 **Reviewed**: 2026-07-21
-**Source Investigation**: EXP-011, EXP-011-Rev1
+**Source Investigation**: EXP-011, EXP-011-Rev1, EXP-011-Rev2
 **Evidence**: Engineering first principles for knife-operated switches
 
 ---
@@ -39,9 +39,9 @@ This artifact ONLY defines:
 
 ### 0.1 Engineering Principle
 
-A Knife Switch is **NOT** a rotating conductor. It is a **bridge between two fixed electrical contacts**.
+A Knife Switch is a **hinged bridge**. The knife is **permanently attached** to the Source Contact via a hinge that serves as both the mechanical pivot AND the permanent electrical connection.
 
-**Key Insight**: The electrical contacts remain fixed. Only the knife moves.
+**Key Insight**: The knife NEVER detaches from the Source Contact. The hinge is the electrical AND mechanical connection point.
 
 ### 0.2 Internal Components
 
@@ -49,10 +49,10 @@ Every Knife Switch consists of four internal components:
 
 | Component | Type | Function |
 |-----------|------|----------|
-| **Source Contact** | Fixed | Permanently connected to incoming conductor |
+| **Source Contact** | Fixed | Permanently connected to incoming conductor; knife is hinged here |
 | **Load Contact** | Fixed | Permanently connected to outgoing conductor |
-| **Moving Knife** | Moving | Rotates to bridge or isolate contacts |
-| **Mechanical Pivot** | Mechanical | Defines axis of rotation |
+| **Moving Knife** | Moving | Rotates about hinge (attached to Source Contact) |
+| **Hinge** | Combined | Mechanical pivot AND permanent electrical connection to Source Contact |
 
 ### 0.3 Internal Topology Diagram
 
@@ -67,30 +67,30 @@ Every Knife Switch consists of four internal components:
 │                           ▼                                     │
 │                    ┌────────────────┐                          │
 │                    │   SOURCE       │  ← Permanently connected │
-│                    │   CONTACT      │    to incoming conductor  │
+│                    │   CONTACT     │    to incoming conductor  │
+│                    └───────┬────────┘                          │
+│                            │                                    │
+│                    ┌───────┴────────┐                          │
+│                    │     HINGE      │  ← Mechanical pivot     │
+│                    │  (also electrical│    AND electrical       │
+│                    │   connection)   │    connection           │
 │                    └───────┬────────┘                          │
 │                            │                                    │
 │                            ▼                                    │
 │                    ┌────────────────┐                          │
-│                    │   MOVING       │  ← Rotates about pivot   │
-│                    │   KNIFE        │    to bridge or isolate  │
+│                    │   MOVING       │  ← Rotates about hinge   │
+│                    │   KNIFE        │    attached to Source    │
 │                    └───────┬────────┘                          │
 │                            │                                    │
 │                            ▼                                    │
 │                    ┌────────────────┐                          │
 │                    │   LOAD         │  ← Permanently connected │
-│                    │   CONTACT      │    to outgoing conductor  │
+│                    │   CONTACT     │    to outgoing conductor  │
 │                    └───────┬────────┘                          │
 │                            │                                    │
 │                            ▼                                    │
 │   OUTGOING                                                  │
 │   CONDUCTOR ──────────────┘                                     │
-│                                                                 │
-│   ┌─────────────────────────────────────────────────────────┐  │
-│   │ MECHANICAL PIVOT: Defines rotation axis                 │  │
-│   │           ↑                                             │  │
-│   │           │ NOT the electrical connection point          │  │
-│   └─────────────────────────────────────────────────────────┘  │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -99,15 +99,29 @@ Every Knife Switch consists of four internal components:
 
 #### Source Contact
 
-The **Source Contact** is permanently connected to the incoming conductor. It **never moves** and remains electrically connected regardless of switch state.
+The **Source Contact** is permanently connected to the incoming conductor. The **knife is hinged here**. The hinge is both the mechanical pivot point and the permanent electrical connection.
 
 ```
-Source Contact = Connection Point for incoming electrical path
+Source Contact + Hinge = Incoming conductor connection point
+                        + Knife attachment point
+                        + Mechanical pivot
 ```
+
+#### Hinge (Critical)
+
+The **Hinge** serves two functions:
+1. **Mechanical**: Defines the axis of rotation for the knife
+2. **Electrical**: Permanent connection between knife and Source Contact
+
+```
+Hinge = Mechanical Pivot + Electrical Connection Point
+```
+
+**The knife NEVER detaches from the hinge/Source Contact.**
 
 #### Load Contact
 
-The **Load Contact** is permanently connected to the outgoing conductor. It **never moves** and remains electrically connected to the outgoing conductor.
+The **Load Contact** is permanently connected to the outgoing conductor. It **never moves**. The knife tip touches or separates from this contact.
 
 ```
 Load Contact = Connection Point for outgoing electrical path
@@ -115,18 +129,12 @@ Load Contact = Connection Point for outgoing electrical path
 
 #### Moving Knife
 
-The **Moving Knife** is the **only moving electrical conductor**. It rotates about the Mechanical Pivot and establishes or interrupts continuity between the Source Contact and Load Contact.
+The **Moving Knife** is the **only moving electrical conductor**. It is **permanently attached** to the Source Contact via the hinge. It rotates about the hinge and touches or separates from the Load Contact.
 
 ```
 Moving Knife = Only moving electrical component
-```
-
-#### Mechanical Pivot
-
-The **Mechanical Pivot** supports the knife and defines the axis of rotation. It is a **mechanical feature only** and is **NOT the electrical connection point**.
-
-```
-Mechanical Pivot ≠ Electrical Connection Point
+             = Permanently attached to Source Contact via hinge
+             = NEVER floats independently
 ```
 
 ### 0.5 State Behaviors
@@ -134,32 +142,31 @@ Mechanical Pivot ≠ Electrical Connection Point
 #### CLOSED State
 
 ```
-Source Contact ──┐
-                 │
-                 ├── MOVING KNIFE ──→ Electrical continuity EXISTS
-                 │
-Load Contact ────┘
+INCOMING ──┬── HINGE ──┬── MOVING KNIFE ──┬── LOAD CONTACT ──┬── OUTGOING
+CONDUCTOR  │           │                  │                  │      CONDUCTOR
+           │           │                  │                  │
+           │           │    (knife touches both contacts)     │
+           │           │◄──────── continuity ────────►        │
 ```
 
-The Moving Knife bridges Source Contact to Load Contact.
+The Moving Knife touches both Source Contact (at hinge) and Load Contact.
 
 #### OPEN State
 
 ```
-Source Contact ──┐
-                 │
-                 ├── MOVING KNIFE ──→ No electrical continuity
-                 │
-Load Contact ────┘
-     ↑
-     └── Air gap between knife and Load Contact
+INCOMING ──┬── HINGE ──┬── MOVING KNIFE ──┐    LOAD CONTACT ──┬── OUTGOING
+CONDUCTOR  │           │                  │    (not touched)  │      CONDUCTOR
+           │           │                  │                   │
+           │           │◄── no continuity  │                   │
+           │           │    (air gap only  │                   │
+           │           │    at Load side)  │                   │
 ```
 
-The Moving Knife rotates **away** from the Load Contact. Both fixed contacts remain connected to their respective conductors, but **no continuity exists between them**.
+**Critical**: The knife ALWAYS remains in contact with the Source Contact (via hinge). The air gap exists ONLY between the knife tip and the Load Contact.
 
 #### UNKNOWN State
 
-The Moving Knife is not rendered. Both fixed contacts remain visible.
+The Moving Knife is not rendered. Both contacts remain visible and connected to their conductors.
 
 ### 0.6 Key Rules
 
@@ -167,21 +174,35 @@ The Moving Knife is not rendered. Both fixed contacts remain visible.
 |------|-------------|
 | INT-001 | Source Contact is permanently connected to incoming conductor |
 | INT-002 | Load Contact is permanently connected to outgoing conductor |
-| INT-003 | Only the Moving Knife moves |
-| INT-004 | Mechanical Pivot is NOT the electrical connection point |
-| INT-005 | When OPEN, both fixed contacts remain connected to their conductors |
-| INT-006 | Air gap exists between knife and Load Contact when OPEN |
+| INT-003 | Knife is HINGED to Source Contact (never detaches) |
+| INT-004 | Hinge serves as mechanical pivot AND electrical connection |
+| INT-005 | Knife NEVER floats independently |
+| INT-006 | Air gap exists ONLY at Load Contact side when OPEN |
+| INT-007 | NO air gap at Source Contact (knife always attached) |
+| INT-008 | Knife tip is the only point that changes contact |
+
+### 0.7 Rejection Criteria
+
+Any rendering that violates these rules shall be **rejected**:
+
+| Rejection Rule | Description |
+|----------------|-------------|
+| REJ-001 | Knife is detached from the Source Contact |
+| REJ-002 | Air gap exists at the Source Contact side |
+| REJ-003 | Knife floats independently (not attached to hinge) |
+| REJ-004 | Double chevrons are omitted from connection interface |
 
 ---
 
 ## Summary
 
-The Knife Switch consists of two fixed contacts (Source and Load) and one rotating blade (Moving Knife). When CLOSED, the blade bridges both contacts, creating electrical continuity. When OPEN, the blade rotates away, creating visible isolation. The blade is intentionally 1 pixel longer than the gap to ensure visual continuity when closed.
+The Knife Switch consists of two fixed contacts (Source and Load) and one rotating blade (Moving Knife). The knife is **permanently hinged** to the Source Contact. When CLOSED, the blade bridges both contacts, creating electrical continuity. When OPEN, the blade rotates away, creating visible isolation at the Load Contact only.
 
 **Key Principles**: 
-1. The knife blade length = conductor gap + 1px. This guarantees visual contact while preventing rendering artifacts.
-2. Source Contact and Load Contact are **permanent** connections to their respective conductors.
-3. Only the **Moving Knife** rotates.
+1. The knife is **permanently hinged** to the Source Contact (hinge = mechanical pivot + electrical connection)
+2. The knife **NEVER detaches** from the Source Contact
+3. Air gap exists ONLY between knife tip and Load Contact (never at Source Contact side)
+4. The knife blade length = conductor gap + 1px (for visual continuity)
 
 ---
 
@@ -196,13 +217,19 @@ The Knife Switch consists of two fixed contacts (Source and Load) and one rotati
     ┌─────────────────────────────────┐
     │       SOURCE CONTACT            │  ← y = TOP_CONTACT_Y
     │  (Connected to incoming conductor)│
-    └─────────────────────────────────┘
-              ↓
-    ┌─────────────────────────────────┐
-    │           MOVING KNIFE          │  ← Rotates about PIVOT
-    │         (L = gap + 1px)         │
-    └─────────────────────────────────┘
-              ↓
+    └───────────────┬─────────────────┘
+                    │
+              ┌─────┴─────┐
+              │   HINGE   │  ← Mechanical pivot + Electrical connection
+              │  (knife   │    Knife NEVER detaches from here
+              │  attached)│
+              └─────┬─────┘
+                    │
+    ┌───────────────┴─────────────────┐
+    │           MOVING KNIFE          │  ← Rotates about HINGE
+    │         (L = gap + 1px)         │    Always attached to Source
+    └───────────────┬─────────────────┘
+                    │
     ┌─────────────────────────────────┐
     │         LOAD CONTACT            │  ← y = BOTTOM_CONTACT_Y
     │  (Connected to outgoing conductor)│
@@ -213,15 +240,15 @@ The Knife Switch consists of two fixed contacts (Source and Load) and one rotati
 
 | Component | Type | Description |
 |-----------|------|-------------|
-| Source Contact | Geometry | Top stationary contact, permanently connected to incoming |
+| Source Contact | Geometry | Top stationary contact, permanently connected to incoming, knife hinged here |
+| Hinge | Combined | Knife attachment point, mechanical pivot, AND electrical connection |
 | Load Contact | Geometry | Bottom stationary contact, permanently connected to outgoing |
-| Moving Knife | Geometry | Rotating conductor blade |
-| Pivot Point | Geometry | Center rotation point |
+| Moving Knife | Geometry | Rotating conductor blade, always attached to hinge/Source |
 | Conductor Gap | Geometry | Distance between contacts |
 
 ---
 
-## 2. Contacts
+## 2. Contacts and Hinge
 
 ### 2.1 Contact Geometry
 
@@ -230,13 +257,14 @@ The Knife Switch consists of two fixed contacts (Source and Load) and one rotati
 | **Contact Width** | 30px | Horizontal span |
 | **Contact Thickness** | 3px | Stroke width |
 | **Contact Color** | Inherited from Bus | Conductor color |
-| **Source Contact Y** | TOP_CONTACT_Y | Upper contact position |
+| **Source Contact Y** | TOP_CONTACT_Y | Upper contact position (knife hinged here) |
 | **Load Contact Y** | BOTTOM_CONTACT_Y | Lower contact position |
+| **Hinge Position** | TOP_CONTACT_Y | Knife attachment point |
 
 ### 2.2 Contact SVG Representation
 
 ```svg
-<!-- Source Contact (connected to incoming conductor) -->
+<!-- Source Contact (connected to incoming conductor, knife hinged here) -->
 <line 
   x1="(center_x - 15)" 
   y1="TOP_CONTACT_Y" 
@@ -245,6 +273,15 @@ The Knife Switch consists of two fixed contacts (Source and Load) and one rotati
   stroke="[bus_color]" 
   stroke-width="3" 
   stroke-linecap="round"/>
+
+<!-- Hinge indicator (at Source Contact) -->
+<circle
+  cx="center_x"
+  cy="TOP_CONTACT_Y"
+  r="4"
+  stroke="[bus_color]"
+  stroke-width="2"
+  fill="none"/>
 
 <!-- Load Contact (connected to outgoing conductor) -->
 <line 
@@ -268,6 +305,8 @@ The Knife Switch consists of two fixed contacts (Source and Load) and one rotati
 | CONT-005 | Source Contact is permanently connected to incoming conductor |
 | CONT-006 | Load Contact is permanently connected to outgoing conductor |
 | CONT-007 | Contacts NEVER move regardless of switch state |
+| CONT-008 | Knife is hinged to Source Contact (never detaches) |
+| CONT-009 | Hinge serves as both mechanical pivot and electrical connection |
 
 ---
 
@@ -330,26 +369,28 @@ When SVG renders two overlapping lines, sub-pixel rendering can create visible g
 | Knife = Gap | Possible visible seam at contact points |
 | Knife = Gap + 1px | Knife overlaps contacts, no visible seam |
 
-### 4.3 Mechanical Pivot
+### 4.3 Hinge (Pivot Point)
 
-The Moving Knife rotates about the **Mechanical Pivot** (center point):
+The Moving Knife is **permanently hinged** to the Source Contact at the **Hinge** point:
 
 ```
-PIVOT_Y = TOP_CONTACT_Y + (GAP / 2) + 1
+HINGE_Y = TOP_CONTACT_Y
 ```
 
 | Parameter | Value |
 |-----------|-------|
-| **Pivot X** | center_x |
-| **Pivot Y** | TOP_CONTACT_Y + 26 (for 52px gap) |
+| **Hinge X** | center_x |
+| **Hinge Y** | TOP_CONTACT_Y (same as Source Contact) |
 | **Rotation Range** | 0° to 40° |
 
-**Important**: The Mechanical Pivot is the axis of rotation, NOT the electrical connection point.
+**Critical**: The Hinge is BOTH the mechanical pivot AND the electrical connection. The knife NEVER detaches from the hinge.
 
 ### 4.4 Knife SVG Representation
 
 ```svg
 <!-- Moving Knife (closed position, inline) -->
+<!-- Knife top is ALWAYS at Hinge (Source Contact position) -->
+<!-- Knife bottom extends to Load Contact position + 1px overlap -->
 <line 
   x1="center_x" 
   y1="TOP_CONTACT_Y" 
@@ -371,11 +412,10 @@ PIVOT_Y = TOP_CONTACT_Y + (GAP / 2) + 1
 ```
 CLOSED (angle = 0°):
 
-SOURCE_CONTACT ────────────── ═══════════════
-                              ║
-                              ║  ← Knife bridges both contacts
-                              ║
-LOAD_CONTACT ──────────────── ═══════════════
+SOURCE_CONTACT ────┬─── HINGE ───╪═══ MOVING KNIFE ════════╪═══ LOAD_CONTACT
+   (incoming)      │             │                       │         (outgoing)
+                   │             │◄── continuity ───────►│
+                   │             │   (knife bridges both)  │
 ```
 
 | Property | Value |
@@ -383,15 +423,16 @@ LOAD_CONTACT ──────────────── ══════
 | **Angle** | 0° (perfectly vertical) |
 | **Knife Color** | Red (#FF4444) |
 | **Knife Visibility** | Visible |
-| **Knife Y1** | SOURCE_CONTACT_Y (TOP_CONTACT_Y) |
-| **Knife Y2** | LOAD_CONTACT_Y + 1 (BOTTOM_CONTACT_Y + 1) |
+| **Knife Top (Y1)** | HINGE_Y = SOURCE_CONTACT_Y (hinged, never moves) |
+| **Knife Bottom (Y2)** | LOAD_CONTACT_Y + 1 (overlaps contact) |
 | **Contact with Contacts** | Both contacts bridged |
 
 **Rules**:
 - KNIFE-001: Knife must be exactly vertical (0°)
 - KNIFE-002: Knife must span the entire gap plus 1px overlap
 - KNIFE-003: No visible gap at contact points
-- KNIFE-004: Knife bridges Source Contact to Load Contact
+- KNIFE-004: Knife bridges Source Contact (via hinge) to Load Contact
+- KNIFE-005: Knife top is ALWAYS at hinge (Source Contact position)
 
 ### 5.2 OPEN State
 
@@ -400,54 +441,56 @@ LOAD_CONTACT ──────────────── ══════
 ```
 OPEN (angle = 40°):
 
-SOURCE_CONTACT ──────────────
-                              ╲
-                               ╲  ← Knife rotated away
-                                ╲
-LOAD_CONTACT ───────────────────╲
-                                ↑
-                            AIR GAP
+SOURCE_CONTACT ────┬─── HINGE ───╪═══ MOVING KNIFE ───┐    LOAD_CONTACT
+   (incoming)      │             │                   │    (outgoing)
+                   │             │◄── NO continuity  │    (not touched)
+                   │             │   (air gap only   │
+                   │             │    at Load side)  │
 ```
+
+**Critical**: The knife tip moves away from the Load Contact, but the knife top NEVER moves from the hinge.
 
 | Property | Value |
 |----------|-------|
 | **Angle** | 40° (rotation from vertical) |
 | **Knife Color** | Green (#44FF44) |
 | **Knife Visibility** | Visible |
-| **Source Contact Connection** | Still connected to incoming conductor |
-| **Load Contact Connection** | Still connected to outgoing conductor |
-| **Continuity** | BROKEN (air gap) |
-| **Air Gap** | Visible between knife and Load Contact |
+| **Knife Top (Y1)** | HINGE_Y = SOURCE_CONTACT_Y (ALWAYS at hinge) |
+| **Knife Bottom (Y2)** | Rotates away from Load Contact |
+| **Continuity** | BROKEN (air gap at Load Contact only) |
+| **Air Gap** | Only between knife tip and Load Contact |
 
-**Key Insight**: When OPEN, the Source Contact remains connected to the incoming conductor, and the Load Contact remains connected to the outgoing conductor. Only the Moving Knife moves.
+**Key Insight**: The knife ALWAYS remains attached to the hinge/Source Contact. The air gap exists ONLY at the Load Contact side.
 
 **Knife Endpoints (OPEN)**:
 
 ```javascript
-// Calculate rotated knife endpoints
-const centerY = TOP_CONTACT_Y + (GAP / 2) + 1;
+// Knife is HINGED at Source Contact (top never moves from hinge)
+const hingeY = TOP_CONTACT_Y;  // Knife TOP is ALWAYS here
+
+// Knife rotates about hinge
 const halfLength = (GAP + 1) / 2;
 const angleRad = 40 * Math.PI / 180;
 
 const dx = Math.sin(angleRad) * halfLength;
 const dy = Math.cos(angleRad) * halfLength;
 
-// Top end (moves left for 40° clockwise rotation)
-const topX = center_x - dx;
-const topY = centerY - dy;
+// Top end: ALWAYS at hinge (Source Contact position)
+const topX = center_x;
+const topY = hingeY;
 
-// Bottom end (moves right)
+// Bottom end: rotates away from Load Contact
 const bottomX = center_x + dx;
-const bottomY = centerY + dy;
+const bottomY = hingeY + dy;
 ```
 
 **Rules**:
-- KNIFE-005: Knife must NOT touch Load Contact when OPEN
-- KNIFE-006: Knife must NOT intersect or overlap Load Contact
-- KNIFE-007: Air gap must be clearly visible
-- KNIFE-008: Rotation direction follows standard convention (clockwise = open)
-- KNIFE-009: Source Contact remains connected to incoming conductor
-- KNIFE-010: Load Contact remains connected to outgoing conductor
+- KNIFE-006: Knife TOP is ALWAYS at hinge (Source Contact position)
+- KNIFE-007: Knife must NOT touch Load Contact when OPEN
+- KNIFE-008: Knife must NOT intersect or overlap Load Contact
+- KNIFE-009: Air gap must be clearly visible
+- KNIFE-010: NO air gap at hinge/Source Contact side (knife always attached)
+- KNIFE-011: Knife NEVER floats independently
 
 ### 5.3 UNKNOWN State
 
@@ -456,11 +499,10 @@ const bottomY = centerY + dy;
 ```
 UNKNOWN:
 
-SOURCE_CONTACT ──────────────
-
-LOAD_CONTACT ───────────────
-
-         ↑ NO KNIFE ↑
+SOURCE_CONTACT ────┬─── HINGE ────────────────    LOAD_CONTACT
+   (incoming)      │         NO KNIFE          │    (outgoing)
+                   │                            │
+                   │   (knife not rendered)    │
 ```
 
 | Property | Value |
@@ -472,9 +514,9 @@ LOAD_CONTACT ───────────────
 | **Circuit State** | Unknown |
 
 **Rules**:
-- KNIFE-011: Knife element must not be rendered
-- KNIFE-012: Both contacts remain visible
-- KNIFE-013: Cannot infer circuit state from geometry alone
+- KNIFE-012: Knife element must not be rendered
+- KNIFE-013: Both contacts remain visible
+- KNIFE-014: Cannot infer circuit state from geometry alone
 
 ---
 
@@ -488,11 +530,12 @@ These properties NEVER change:
 |----------|-------|-----------|
 | Source Contact Position | Fixed Y coordinate | Permanently connected to incoming |
 | Load Contact Position | Fixed Y coordinate | Permanently connected to outgoing |
+| Hinge Position | Same as Source Contact | Knife attachment point (never moves) |
 | Contact Width | 30px | Physical contact size |
 | Contact Thickness | 3px | Visual weight |
 | Conductor Gap | 52px | Electrical isolation distance |
 | Knife Length | GAP + 1px | Must cover gap plus overlap |
-| Pivot Location | Center of gap | Mechanical pivot point |
+| Knife Top Position | Always at hinge | Knife NEVER detaches |
 
 ### 6.2 Mutable Properties
 
@@ -503,6 +546,7 @@ These properties change with state:
 | Knife Angle | 0° (CLOSED), 40° (OPEN) | Rotation position |
 | Knife Visibility | true/false | Render or hide knife |
 | Knife Color | Red/Green | Indicates state |
+| Knife Bottom Position | At Load Contact (CLOSED) or away (OPEN) | Only bottom moves |
 | Selected | true/false | User selection state |
 
 ---
@@ -517,10 +561,18 @@ These properties change with state:
     │    ┌─────────────────────────┐
     │    │   SOURCE CONTACT         │  ← y = 94 (TOP_CONTACT_Y)
     │    │  (to incoming)          │
-    │    └─────────────────────────┘
-    │              │
-    │              │     ← Moving Knife rotates here
-    │              │
+    │    └───────────┬─────────────┘
+    │                │
+    │           ┌────┴────┐
+    │           │  HINGE  │  ← y = 94 (knife hinged here)
+    │           │ (pivot) │
+    │           └────┬────┘
+    │                │
+    │    ┌───────────┴─────────────┐
+    │    │    MOVING KNIFE         │  ← Rotates about hinge
+    │    │   (always attached)     │    Top at hinge, bottom moves
+    │    └───────────┬─────────────┘
+    │                │
     │    ┌─────────────────────────┐
     │    │    LOAD CONTACT         │  ← y = 146 (BOTTOM_CONTACT_Y)
     │    │   (to outgoing)        │
@@ -537,29 +589,35 @@ These properties change with state:
 | Contact Thickness | 3px | stroke-width |
 | Source Contact Y | 94px | TOP_CONTACT_Y |
 | Load Contact Y | 146px | BOTTOM_CONTACT_Y |
+| Hinge Y | 94px | Same as Source Contact |
 | Conductor Gap | 52px | 146 - 94 |
 | Knife Length | 53px | 52 + 1 |
 | Knife Width | 5px | stroke-width |
-| Pivot Y | 96px | 94 + 1 |
+| Knife Top (Y1) | 94px | ALWAYS at hinge |
+| Knife Bottom (Y2) | 147px (CLOSED) | LOAD_CONTACT_Y + 1 |
 
 ### 7.3 SVG Element Summary
 
 ```svg
 <svg viewBox="0 0 200 200">
-  <!-- Source Contact (to incoming conductor) -->
+  <!-- Source Contact (to incoming conductor, knife hinged here) -->
   <line x1="85" y1="94" x2="115" y2="94" 
         stroke="[bus_color]" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Hinge indicator (at Source Contact) -->
+  <circle cx="100" cy="94" r="4" 
+          stroke="[bus_color]" stroke-width="2" fill="none"/>
   
   <!-- Load Contact (to outgoing conductor) -->
   <line x1="85" y1="146" x2="115" y2="146" 
         stroke="[bus_color]" stroke-width="3" stroke-linecap="round"/>
   
-  <!-- Moving Knife (CLOSED: inline) -->
+  <!-- Moving Knife (CLOSED: inline, TOP at hinge) -->
   <line id="knife" x1="100" y1="94" x2="100" y2="147" 
         stroke="[state_color]" stroke-width="5" stroke-linecap="round"/>
   
-  <!-- Or (OPEN: 40° rotation about center) -->
-  <!-- Calculated: center = (100, 121), halfLength = 26.5 -->
+  <!-- Or (OPEN: 40° rotation about hinge at y=94) -->
+  <!-- knife.y1 = 94 (hinge), knife rotates to y2 -->
 </svg>
 ```
 
@@ -576,6 +634,7 @@ These properties change with state:
 | KNIFE-003 | Render UNKNOWN state | Knife hidden, both contacts visible |
 | KNIFE-004 | Measure gap | Knife does not touch Load Contact when OPEN |
 | KNIFE-005 | Check overlap | Knife overlaps contacts by 1px when CLOSED |
+| KNIFE-006 | Knife top position | ALWAYS at hinge/Source Contact position |
 
 ### 8.2 Geometric Validation
 
@@ -584,7 +643,7 @@ These properties change with state:
 | GEOM-001 | Contact width = 30px | x1 = center_x - 15, x2 = center_x + 15 |
 | GEOM-002 | Gap = 52px | y2 - y1 = 52 |
 | GEOM-003 | Knife length = gap + 1px | y2 - y1 = 53 |
-| GEOM-004 | Pivot at center | pivot_y = TOP_CONTACT_Y + 26 |
+| GEOM-004 | Knife top = hinge position | knife.y1 = TOP_CONTACT_Y |
 
 ### 8.3 Internal Topology Validation
 
@@ -593,31 +652,51 @@ These properties change with state:
 | TOPO-001 | Source Contact permanently connected | Yes - never disconnects from incoming |
 | TOPO-002 | Load Contact permanently connected | Yes - never disconnects from outgoing |
 | TOPO-003 | Only Moving Knife moves | Yes - contacts never move |
-| TOPO-004 | Mechanical Pivot ≠ electrical connection | Pivot is axis of rotation only |
+| TOPO-004 | Hinge = mechanical pivot + electrical | Hinge serves both functions |
+| TOPO-005 | Knife hinged to Source Contact | Knife top NEVER moves from hinge |
+| TOPO-006 | Air gap location | ONLY at Load Contact side when OPEN |
+
+### 8.4 Rejection Criteria
+
+Any rendering that violates these rules shall be **rejected**:
+
+| Rejection Rule | Description |
+|----------------|-------------|
+| REJ-001 | Knife is detached from the Source Contact |
+| REJ-002 | Air gap exists at the Source Contact side |
+| REJ-003 | Knife floats independently (not attached to hinge) |
+| REJ-004 | Double chevrons are omitted from connection interface |
+| REJ-005 | Knife top position not at hinge position |
 
 ---
 
 ## 9. Knowledge Assessment
 
-### Internal Topology Questions (EXP-011-Rev1)
+### Internal Topology Questions (EXP-011-Rev2)
 
 **Q: Which component is permanently connected to the incoming conductor?**
-> A: **Source Contact** is permanently connected to the incoming conductor. It never moves.
+> A: **Source Contact** is permanently connected to the incoming conductor. The knife is hinged to the Source Contact at the hinge point.
 
 **Q: Does the knife connect directly to the main conductor?**
-> A: **No.** The knife does NOT connect directly to the main conductor. The Source Contact is the permanent electrical connection point to the incoming conductor. The knife only bridges the Source Contact and Load Contact.
+> A: **No.** The knife does NOT connect directly to the main conductor. The **Source Contact** is the permanent electrical connection point to the incoming conductor. The knife is **hinged** to the Source Contact and only bridges the gap to the Load Contact.
 
 **Q: Which component rotates?**
-> A: **Moving Knife** is the only component that rotates. Source Contact and Load Contact remain fixed.
+> A: **Moving Knife** is the only component that rotates. The knife is **permanently hinged** to the Source Contact - it rotates about the hinge but **never detaches**.
 
-**Q: What is the function of the Mechanical Pivot?**
-> A: The Mechanical Pivot defines the axis of rotation for the Moving Knife. It is a **mechanical feature only** and is **NOT** the electrical connection point.
+**Q: What is the function of the Hinge?**
+> A: The **Hinge** serves two combined functions:
+> 1. **Mechanical**: Defines the axis of rotation for the knife
+> 2. **Electrical**: Permanent electrical connection between knife and Source Contact
+> 
+> The Hinge is at the Source Contact position. The knife NEVER detaches from it.
 
 **Q: What remains electrically connected when the switch is OPEN?**
-> A: When OPEN, **both fixed contacts remain connected** to their respective conductors:
+> A: When OPEN, **the knife ALWAYS remains attached to the Source Contact** via the hinge:
 > - Source Contact remains connected to the incoming conductor
 > - Load Contact remains connected to the outgoing conductor
-> - Only the Moving Knife moves away, creating an air gap
+> - **The knife remains attached to the hinge/Source Contact** (this never breaks)
+> - Only the knife tip moves away from the Load Contact
+> - **Air gap exists ONLY at the Load Contact side**
 
 **Q: Why does the Main Conductor remain continuous in an Earth Switch?**
 > A: In an Earth Switch:
@@ -625,6 +704,14 @@ These properties change with state:
 > - The **Load Contact** is connected to the Ground Conductor (not the main path)
 > - The Main Conductor is **never interrupted** by the knife switch
 > - The knife switch branches to ground, but the main path continues
+> - The knife is **hinged** to the Source Contact (main conductor connection)
+
+**Q: Why must the knife be hinged, not floating?**
+> A: The knife must be hinged to the Source Contact because:
+> 1. The hinge provides the electrical connection point
+> 2. Without the hinge, the knife would float independently
+> 3. The knife tip is the only part that should change position
+> 4. A floating knife would create an open circuit even when "closed"
 
 ### Conceptual Questions
 
@@ -638,10 +725,14 @@ These properties change with state:
 > A: Three properties change:
 > 1. **Angle**: From 0° (CLOSED) to 40° (OPEN)
 > 2. **Color**: From Red (#FF4444) for CLOSED to Green (#44FF44) for OPEN
-> 3. **Position**: Knife endpoints move laterally from rotation about Mechanical Pivot
+> 3. **Knife Tip Position**: Moves toward or away from Load Contact
+
+**What does NOT change:**
+> - **Knife Top Position**: ALWAYS at hinge/Source Contact position
+> - **Hinge Attachment**: Knife NEVER detaches from hinge
 
 **Q: Why must the knife not touch the Load Contact when OPEN?**
-> A: The knife must NOT touch the Load Contact when OPEN to visually communicate electrical isolation. Any contact would imply a conductive path exists. The air gap is essential for safety identification on the diagram.
+> A: The knife must NOT touch the Load Contact when OPEN to visually communicate electrical isolation. The air gap is essential for safety identification on the diagram.
 
 **Q: Why is the knife hidden in UNKNOWN?**
 > A: The UNKNOWN state indicates the device status cannot be determined. Hiding the knife (while keeping both contacts visible) communicates that the circuit state is indeterminate without making assumptions.
@@ -657,10 +748,11 @@ These properties change with state:
 **Q: What is the correct renderer instantiation pattern?**
 > A: The renderer must instantiate the knife switch using:
 > 1. Source Contact → connected to incoming conductor
-> 2. Moving Knife → bridges Source Contact to Load Contact
-> 3. Load Contact → connected to outgoing conductor
+> 2. Hinge → at Source Contact position
+> 3. Moving Knife → hinged at top, extends toward Load Contact
+> 4. Load Contact → connected to outgoing conductor
 > 
-> The knife does NOT connect directly to the main conductor. The Source Contact is the permanent electrical connection.
+> The knife top is ALWAYS at the hinge/Source Contact position. The knife NEVER floats independently.
 
 ---
 
@@ -680,6 +772,7 @@ These properties change with state:
 |---------|------|---------|--------|
 | 1.0.0 | 2026-07-21 | Initial creation for EXP-011 | KDE-EXPERT-SLD-001 |
 | 1.1.0 | 2026-07-21 | Added internal topology (EXP-011-Rev1): Source Contact, Load Contact, Moving Knife, Mechanical Pivot definitions | KDE-EXPERT-SLD-001 |
+| 1.2.0 | 2026-07-21 | Fixed hinge concept (EXP-011-Rev2): Knife is hinged to Source Contact, hinge = mechanical pivot + electrical connection | KDE-EXPERT-SLD-001 |
 
 ---
 
@@ -689,6 +782,7 @@ These properties change with state:
 |--------|-----------|------|
 | Investigation | EXP-011 | 2026-07-21 |
 | Investigation | EXP-011-Rev1 | 2026-07-21 |
+| Investigation | EXP-011-Rev2 | 2026-07-21 |
 | First Principles | Knife switch mechanics | 2026-07-21 |
 
 ---
