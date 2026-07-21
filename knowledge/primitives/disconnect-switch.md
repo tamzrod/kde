@@ -146,7 +146,9 @@ Busbar ════════════════════════�
 | `position` | Coordinate | X,Y location on diagram |
 | `orientation` | Enum | VERTICAL (only valid orientation) |
 | `blade_type` | Enum | CENTER_BREAK, SIDE_BREAK, VERTICAL |
-| `knife_length` | Float | Physical blade dimensions |
+| `knife_length` | Float | Physical blade length (spans both contacts) |
+| `top_contact_position` | Coordinate | Top fixed contact Y position |
+| `bottom_contact_position` | Coordinate | Bottom fixed contact Y position |
 | `knife_color_closed` | Color | Color when closed (typically red) |
 | `knife_color_open` | Color | Color when open (typically green) |
 
@@ -158,13 +160,15 @@ Busbar ════════════════════════�
 | `knife_angle` | Float | 0° (closed), 35-45° (open) | 0° |
 | `selected` | Boolean | true, false | false |
 
+**Key Geometry Rule**: The knife blade is a single straight line that spans from top contact to bottom contact. When CLOSED (0°), it is vertical and touches both contacts simultaneously. When OPEN (35-45°), it rotates about its center point, breaking contact with both fixed contacts.
+
 ---
 
 ## 3. Geometry Specification
 
 ### 3.1 Component Geometry
 
-The Disconnect Switch consists of three geometric components:
+The Disconnect Switch consists of four geometric components:
 
 ```
            TOP CONDUCTOR (inherited color)
@@ -174,14 +178,14 @@ The Disconnect Switch consists of three geometric components:
             │  Fixed Contact│
             └───────┬───────┘
                     │
-                  ╱   ╲  ← Knife Blade (rotates)
-                 ╱     ╲
-                ╱       ╲
-               ▼         ▼
-         ┌─────────┐ ┌─────────┐
-         │ Fixed   │ │ Fixed   │  ← Contacts (angled open)
-         │ Contact │ │ Contact │
-         └─────────┘ └─────────┘
+                    │
+              KNIFE BLADE  ← Rotates from center
+           (touches both contacts when closed)
+                    │
+                    │
+            ┌───────┴───────┐
+            │  Fixed Contact│
+            └───────────────┘
                     │
                     ▼
            BOTTOM CONDUCTOR (inherited color)
@@ -193,9 +197,11 @@ The Disconnect Switch consists of three geometric components:
 |----------|-------------|-----------|
 | **Top Conductor** | Incoming electrical connection | Yes |
 | **Bottom Conductor** | Outgoing electrical connection | Yes |
-| **Fixed Contact** | Stationary contact points | Yes |
-| **Knife Blade** | Rotating conductor that makes/breaks | Yes (position changes) |
-| **Pivot Point** | Blade rotation center | Yes |
+| **Fixed Contact (Top)** | Stationary contact point | Yes |
+| **Fixed Contact (Bottom)** | Stationary contact point | Yes |
+| **Knife Blade** | Single straight conductor that bridges both contacts | Yes (position changes) |
+
+**Key Geometry Rule**: When CLOSED, the knife blade is a single straight line that touches both the top and bottom fixed contacts, creating continuous electrical conduction from top conductor through blade to bottom conductor. When OPEN, the knife rotates about its center, breaking contact with both fixed contacts simultaneously. |
 
 ### 3.2 Anchor Positions
 
@@ -231,12 +237,18 @@ BOTTOM ANCHOR (X, Y_bottom)
 
 | Parameter | Value | Notes |
 |-----------|-------|-------|
-| **Blade Width** | 4-6px at 100% zoom | Thin conductor |
-| **Blade Length** | 70-80% of switch height | Reaches both contacts |
+| **Blade Width** | 4-6px at 100% zoom | Thin conductor stroke |
+| **Blade Length** | Spans top to bottom contact | Fixed length, not mutable |
 | **Blade Color (Closed)** | Red (#FF4444) | Matches NA convention |
 | **Blade Color (Open)** | Green (#44FF44) | Indicates open state |
-| **Rotation Angle (Closed)** | 0° | Inline with conductor |
-| **Rotation Angle (Open)** | 35-45° | Creates visible gap |
+| **Rotation Angle (Closed)** | 0° | Inline vertical, touching both contacts |
+| **Rotation Angle (Open)** | 35-45° | Center rotation, breaks both contacts |
+| **Pivot** | Center of blade | Conceptual rotation point (not rendered) |
+
+**Blade Behavior by State**:
+- **CLOSED**: Blade is a straight vertical line connecting top contact to bottom contact. Current flows through.
+- **OPEN**: Blade rotates 40° about its center. Top end moves left, bottom end moves right. No contact with either fixed contact.
+- **UNKNOWN**: Blade not rendered. Only conductors and fixed contacts visible.
 
 ### 3.4 Rendering Dimensions
 
@@ -453,26 +465,30 @@ Conducts    Isolated    Grounded
 <!-- Open Disconnect Switch -->
 <g id="DS-open">
   <!-- Conductor (inherits color) -->
-  <line x1="0" y1="-40" x2="0" y2="40" stroke="inherit" stroke-width="4"/>
+  <line x1="100" y1="0" x2="100" y2="90" stroke="black" stroke-width="4"/>
   
   <!-- Fixed Contacts -->
-  <rect x="-6" y="-20" width="12" height="4" fill="black"/>
-  <rect x="-6" y="16" width="12" height="4" fill="black"/>
+  <line x1="85" y1="90" x2="115" y2="90" stroke="black" stroke-width="3"/>
+  <line x1="85" y1="210" x2="115" y2="210" stroke="black" stroke-width="3"/>
   
-  <!-- Knife Blade (angled ~40°) -->
-  <line x1="0" y1="0" x2="-22" y2="-18" 
+  <!-- Knife Blade (angled 40° about center) -->
+  <!-- Rotates from center (100, 150), length=56 -->
+  <!-- Top end: (100-36, 150-43) = (64, 107) -->
+  <!-- Bottom end: (100+36, 150+43) = (136, 193) -->
+  <line x1="64" y1="107" x2="136" y2="193" 
         stroke="#44FF44" stroke-width="5" stroke-linecap="round"/>
   
-  <!-- Pivot Point -->
-  <circle cx="0" cy="0" r="3" fill="black"/>
+  <!-- Bottom Conductor -->
+  <line x1="100" y1="210" x2="100" y2="280" stroke="black" stroke-width="4"/>
 </g>
 ```
 
 **Visual Characteristics**:
-- Knife clearly angled away from vertical
+- Knife clearly angled away from vertical (40°)
 - Green color indicates open state
-- Visible gap between blade and lower contact
-- Conductor passes through but is not continuous
+- Blade endpoints at y≈107 and y≈193 (center-rotation)
+- Clear gap between blade ends and contacts at y=90-94 and y=206-210
+- No contact with either fixed contact
 
 ### 7.2 Closed State Rendering
 
@@ -480,26 +496,28 @@ Conducts    Isolated    Grounded
 <!-- Closed Disconnect Switch -->
 <g id="DS-closed">
   <!-- Conductor (inherits color) -->
-  <line x1="0" y1="-40" x2="0" y2="40" stroke="inherit" stroke-width="4"/>
+  <line x1="100" y1="0" x2="100" y2="90" stroke="black" stroke-width="4"/>
   
   <!-- Fixed Contacts -->
-  <rect x="-6" y="-20" width="12" height="4" fill="black"/>
-  <rect x="-6" y="16" width="12" height="4" fill="black"/>
+  <line x1="85" y1="90" x2="115" y2="90" stroke="black" stroke-width="3"/>
+  <line x1="85" y1="210" x2="115" y2="210" stroke="black" stroke-width="3"/>
   
-  <!-- Knife Blade (inline) -->
-  <line x1="0" y1="-18" x2="0" y2="18" 
+  <!-- Knife Blade (inline - straight line between contacts) -->
+  <!-- Ends just inside contacts to avoid visual overlap -->
+  <line x1="100" y1="94" x2="100" y2="206" 
         stroke="#FF4444" stroke-width="5" stroke-linecap="round"/>
   
-  <!-- Pivot Point -->
-  <circle cx="0" cy="0" r="3" fill="black"/>
+  <!-- Bottom Conductor -->
+  <line x1="100" y1="210" x2="100" y2="280" stroke="black" stroke-width="4"/>
 </g>
 ```
 
 **Visual Characteristics**:
 - Knife aligned with conductor (0° angle)
 - Red color indicates closed state
-- Continuous path through contacts
-- Blade touches both fixed contacts
+- Blade spans from y=94 to y=206 (just inside contacts)
+- No overlap with conductor or contacts
+- Continuous electrical path through contact points
 
 ### 7.3 Unknown State Rendering
 
