@@ -1,0 +1,124 @@
+# Marinduque SCADA Platform
+# Docker Compose Configuration
+#
+# Based on KDE-ARCH-009 Pattern 1: Polyglot Persistence
+# Uses InfluxDB, Loki, and PostgreSQL for data storage
+#
+# @evidence KDE-ARCH-009 Pattern 1
+
+version: '3.8'
+
+services:
+  # Frontend Service
+  frontend:
+    build:
+      context: ./src/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src/frontend:/usr/share/nginx/html
+    depends_on:
+      - backend
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+  # Backend API Service
+  backend:
+    build:
+      context: ./src/backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+    volumes:
+      - ./src:/app/src
+    depends_on:
+      - postgres
+      - influxdb
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+  # PostgreSQL - Configuration and Relational Data
+  # Pattern 1: Polyglot Persistence
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_USER=scada
+      - POSTGRES_PASSWORD=scada_password
+      - POSTGRES_DB=scada
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - scada-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scada"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # InfluxDB - Telemetry Data
+  # Pattern 1: Polyglot Persistence
+  # Pattern 12: Tiered Data Retention
+  influxdb:
+    image: influxdb:2.7
+    environment:
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=admin
+      - DOCKER_INFLUXDB_INIT_PASSWORD=adminpassword
+      - DOCKER_INFLUXDB_INIT_ORG=marinduque
+      - DOCKER_INFLUXDB_INIT_BUCKET=scada
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=mytoken
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+    ports:
+      - "8086:8086"
+    networks:
+      - scada-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "influx", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Grafana - Dashboards and Visualization
+  grafana:
+    image: grafana/grafana:latest
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    ports:
+      - "3000:3000"
+    depends_on:
+      - influxdb
+    networks:
+      - scada-network
+    restart: unless-stopped
+
+# Named volumes for persistent data
+volumes:
+  postgres_data:
+    driver: local
+  influxdb_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+# Network configuration
+networks:
+  scada-network:
+    driver: bridge
+    name: marinduque_scada_network

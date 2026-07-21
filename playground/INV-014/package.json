@@ -1,0 +1,48 @@
+{
+  "name": "marinduque-scada",
+  "version": "1.0.0",
+  "description": "SCADA Web Application for Marinduque Electrical System",
+  "based_on": [
+    "KDE-ARCH-009: SCADA Platform Architecture Patterns",
+    "KDE-ARCH-010: SCADA Design Tradeoffs"
+  ],
+  "evidence_sources": [
+    "domain/visualization/dashboard-principles.md",
+    "domain/utility-sld/principles.md",
+    "domain/gis/fundamentals.md"
+  ],
+  "external_research": [
+    "Balanacan Diesel Power Plant ~4.5 MW",
+    "Bantad Diesel Power Plant ~2.0 MW",
+    "4 distribution feeders, 13.8 kV"
+  ],
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd src/backend && node server.js",
+    "client": "cd src/frontend && npx serve -l 3000",
+    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
+    "server:dev": "cd src/backend && node server.js",
+    "client:dev": "cd src/frontend && npx vite",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "cors": "^2.8.5",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "serve": "^14.2.1"
+  },
+  "keywords": [
+    "scada",
+    "utility",
+    "real-time",
+    "dashboard",
+    "visualization"
+  ],
+  "author": "INV-014 Investigation",
+  "license": "MIT"
+}

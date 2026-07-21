@@ -1,0 +1,1052 @@
+/**
+ * Marinduque SCADA Dashboard Styles
+ * 
+ * Based on KDE Repository Knowledge:
+ * - domain/visualization/dashboard-principles.md
+ * - domain/utility-sld/principles.md
+ * - domain/visualization/colors.md
+ * 
+ * Design System:
+ * - Color as information (utility-sld/principles.md Principle 5)
+ * - Visual consistency (dashboard-principles.md)
+ * - Night mode support (utility-sld/principles.md Principle 10)
+ * - High contrast for control room environments
+ * 
+ * @evidence dashboard-principles.md, utility-sld/principles.md, colors.md
+ */
+
+/* ==================== CSS VARIABLES ==================== */
+:root {
+    /* Day Mode Colors (Default) */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f1f5f9;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --border-color: #e2e8f0;
+    
+    /* Status Colors */
+    --status-normal: #4A90A4;
+    --status-energized: #16a34a;
+    --status-deenergized: #6b7280;
+    --status-closed: #dc2626;
+    --status-open: #16a34a;
+    --status-tripped: #ea580c;
+    --status-unknown: #f59e0b;
+    --status-offline: #9ca3af;
+    
+    /* Alarm Severity */
+    --alarm-critical: #dc2626;
+    --alarm-warning: #ea580c;
+    --alarm-info: #f59e0b;
+    
+    /* Accent Colors */
+    --accent-primary: #2563eb;
+    --accent-success: #16a34a;
+    --accent-danger: #dc2626;
+    
+    /* Card Colors */
+    --card-bg: #ffffff;
+    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Borders */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+}
+
+/* Night Mode Colors */
+[data-theme="dark"] {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    --border-color: #334155;
+    
+    --status-normal: #14b8a6;
+    --card-bg: #1e293b;
+    --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    
+    --alarm-critical: #ef4444;
+    --alarm-warning: #f97316;
+    --alarm-info: #fbbf24;
+}
+
+/* ==================== RESET & BASE ==================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ==================== LAYOUT ==================== */
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    height: 60px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.logo-icon {
+    font-size: 24px;
+}
+
+.logo-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.station-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.station-label {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.station-name {
+    font-weight: 500;
+}
+
+.header-center {
+    display: flex;
+    align-items: center;
+}
+
+.datetime {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font-mono);
+}
+
+.datetime .date {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.datetime .time {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.user-name {
+    font-weight: 500;
+}
+
+.user-role {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.theme-toggle {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.2s;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.nav-btn:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.nav-btn.active {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+.nav-icon {
+    font-size: 16px;
+}
+
+.alarm-badge {
+    background-color: var(--alarm-critical);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    text-align: center;
+}
+
+.nav-btn.active .alarm-badge {
+    background-color: white;
+    color: var(--alarm-critical);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    padding: var(--spacing-lg);
+    overflow-y: auto;
+}
+
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+}
+
+/* ==================== DASHBOARD GRID ==================== */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: var(--spacing-md);
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--card-shadow);
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.card-header h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-body {
+    padding: var(--spacing-md);
+}
+
+/* Card Sizes */
+.card-summary {
+    grid-column: span 6;
+}
+
+.card-generation {
+    grid-column: span 6;
+}
+
+.card-feeders {
+    grid-column: span 6;
+}
+
+.card-alarms {
+    grid-column: span 6;
+}
+
+.card-health {
+    grid-column: span 12;
+}
+
+/* ==================== KPI & METRICS ==================== */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.kpi {
+    text-align: center;
+}
+
+.kpi-label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.kpi-value {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.kpi-bar {
+    height: 8px;
+    background-color: var(--bg-tertiary);
+    border-radius: 4px;
+    margin-top: var(--spacing-sm);
+    overflow: hidden;
+}
+
+.kpi-bar-fill {
+    height: 100%;
+    background-color: var(--status-normal);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.kpi-bar-fill.load {
+    background-color: var(--accent-primary);
+}
+
+/* Plant List */
+.plant-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.plant-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.plant-icon {
+    font-size: 24px;
+}
+
+.plant-info {
+    flex: 1;
+}
+
+.plant-name {
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+}
+
+.plant-power {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.plant-bar {
+    flex: 1;
+    height: 8px;
+    background-color: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.plant-bar-fill {
+    height: 100%;
+    background-color: var(--status-normal);
+    transition: width 0.3s ease;
+}
+
+.plant-value {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    min-width: 80px;
+    text-align: right;
+}
+
+/* Feeder List */
+.feeder-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.feeder-item {
+    display: grid;
+    grid-template-columns: 120px 1fr 80px;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.feeder-name {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.feeder-bar {
+    height: 12px;
+    background-color: var(--bg-tertiary);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.feeder-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    transition: width 0.3s ease;
+}
+
+.feeder-value {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    text-align: right;
+}
+
+/* Alarm Severity Grid */
+.alarm-severity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.alarm-severity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.severity-icon {
+    font-size: 24px;
+    margin-bottom: var(--spacing-xs);
+}
+
+.severity-count {
+    font-family: var(--font-mono);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.severity-label {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* Alarm Recent */
+.alarm-recent h4 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-sm);
+}
+
+.alarm-list {
+    list-style: none;
+}
+
+.alarm-list-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) 0;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.alarm-list-item:last-child {
+    border-bottom: none;
+}
+
+.alarm-time {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.alarm-device {
+    font-weight: 500;
+}
+
+.alarm-message {
+    color: var(--text-secondary);
+}
+
+.alarm-count {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+/* System Health */
+.health-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+}
+
+.health-metric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.metric-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.metric-value {
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.metric-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: var(--spacing-xs);
+}
+
+.metric-indicator.good {
+    background-color: var(--accent-success);
+}
+
+.metric-indicator.warning {
+    background-color: var(--alarm-warning);
+}
+
+.metric-indicator.bad {
+    background-color: var(--alarm-critical);
+}
+
+/* ==================== SLD VIEW ==================== */
+.sld-container {
+    height: calc(100vh - 180px);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.sld-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sld-info {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.sld-title {
+    font-weight: 600;
+}
+
+.sld-voltage {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background-color: var(--status-normal);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+}
+
+.sld-controls {
+    display: flex;
+    gap: var(--spacing-xs);
+}
+
+.sld-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.sld-btn:hover {
+    background-color: var(--bg-secondary);
+}
+
+.sld-viewport {
+    flex: 1;
+    overflow: auto;
+    padding: var(--spacing-md);
+    background-color: var(--bg-tertiary);
+}
+
+#sld-svg {
+    width: 100%;
+    height: 100%;
+    min-width: 800px;
+    min-height: 500px;
+}
+
+.sld-legend {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-sm);
+    border-top: 1px solid var(--border-color);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.legend-item.closed { color: var(--status-closed); }
+.legend-item.open { color: var(--status-open); }
+.legend-item.tripped { color: var(--status-tripped); }
+.legend-item.unknown { color: var(--status-unknown); }
+
+/* ==================== ALARMS VIEW ==================== */
+.alarms-container {
+    height: calc(100vh - 180px);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.alarms-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.filter-group {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.filter-select {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-secondary);
+}
+
+.alarms-table-container {
+    flex: 1;
+    overflow: auto;
+}
+
+.alarms-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.alarms-table th {
+    text-align: left;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--bg-tertiary);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+}
+
+.alarms-table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 14px;
+}
+
+.alarms-table tr:hover {
+    background-color: var(--bg-tertiary);
+}
+
+.alarm-severity-cell {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+/* ==================== GIS VIEW ==================== */
+.gis-container {
+    height: calc(100vh - 180px);
+    display: flex;
+    gap: var(--spacing-md);
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.gis-sidebar {
+    width: 280px;
+    padding: var(--spacing-md);
+    border-right: 1px solid var(--border-color);
+    overflow-y: auto;
+}
+
+.gis-sidebar h3 {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.layer-list {
+    margin-bottom: var(--spacing-lg);
+}
+
+.layer-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) 0;
+    cursor: pointer;
+}
+
+.layer-item input {
+    cursor: pointer;
+}
+
+.asset-details {
+    padding: var(--spacing-md);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.no-selection {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.gis-map {
+    flex: 1;
+    min-height: 400px;
+}
+
+/* ==================== REPORTS VIEW ==================== */
+.reports-container {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+}
+
+.reports-container h2 {
+    margin-bottom: var(--spacing-lg);
+}
+
+.report-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+}
+
+.report-card {
+    padding: var(--spacing-lg);
+    background-color: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.report-card h3 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.report-card p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    font-size: 14px;
+}
+
+/* ==================== STATUS BAR ==================== */
+.status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    font-size: 12px;
+}
+
+.status-left,
+.status-center,
+.status-right {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.connection-status.connected .status-dot {
+    background-color: var(--accent-success);
+}
+
+.connection-status.disconnected .status-dot {
+    background-color: var(--alarm-critical);
+}
+
+.status-label {
+    color: var(--text-muted);
+}
+
+.status-value {
+    font-family: var(--font-mono);
+}
+
+/* ==================== SVG SLD STYLES ==================== */
+.sld-busbar {
+    fill: none;
+    stroke: var(--status-normal);
+    stroke-width: 4;
+}
+
+.sld-generator {
+    fill: var(--bg-secondary);
+    stroke: var(--status-normal);
+    stroke-width: 2;
+}
+
+.sld-breaker {
+    fill: var(--bg-secondary);
+    stroke: var(--status-normal);
+    stroke-width: 2;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sld-breaker:hover {
+    stroke-width: 3;
+}
+
+.sld-breaker.closed {
+    fill: var(--status-closed);
+}
+
+.sld-breaker.open {
+    fill: none;
+    stroke: var(--status-open);
+}
+
+.sld-feeder {
+    fill: none;
+    stroke: var(--status-normal);
+    stroke-width: 3;
+}
+
+.sld-label {
+    font-family: var(--font-primary);
+    font-size: 12px;
+    fill: var(--text-primary);
+}
+
+.sld-value {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    fill: var(--text-secondary);
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 1200px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .card-summary,
+    .card-generation,
+    .card-feeders,
+    .card-alarms {
+        grid-column: span 1;
+    }
+    
+    .card-health {
+        grid-column: span 1;
+    }
+    
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .alarm-severity-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .health-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav {
+        overflow-x: auto;
+    }
+    
+    .header {
+        flex-wrap: wrap;
+        height: auto;
+        gap: var(--spacing-sm);
+    }
+    
+    .header-center {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .health-metrics {
+        grid-template-columns: 1fr;
+    }
+    
+    .report-cards {
+        grid-template-columns: 1fr;
+    }
+}

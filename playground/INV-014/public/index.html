@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marinduque SCADA - Electrical System Dashboard</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS for GIS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
+    <!-- Application Styles -->
+    <link rel="stylesheet" href="/css/styles.css">
+    
+    <!--
+        SCADA Dashboard for Marinduque Electrical System
+        
+        Based on KDE Repository Knowledge:
+        - domain/visualization/dashboard-principles.md
+        - domain/utility-sld/principles.md
+        - KDE-ARCH-009 (SCADA Platform Architecture Patterns)
+        
+        Design Principles:
+        - Situational Awareness First (utility-sld/principles.md)
+        - 5-Second Rule for operator detection
+        - F-Pattern Layout (dashboard-principles.md)
+        - Night Mode Support (utility-sld/principles.md Principle 10)
+        
+        @evidence dashboard-principles.md, utility-sld/principles.md, KDE-ARCH-009
+    -->
+</head>
+<body>
+    <!-- Main Application Container -->
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <span class="logo-icon">⚡</span>
+                    <span class="logo-text">Marinduque SCADA</span>
+                </div>
+                <div class="station-info">
+                    <span class="station-label">System:</span>
+                    <span class="station-name">Marinduque Electrical Grid</span>
+                </div>
+            </div>
+            <div class="header-center">
+                <div class="datetime" id="datetime">
+                    <span class="date">2026-07-21</span>
+                    <span class="time">00:00:00</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span class="user-name">Operator</span>
+                    <span class="user-role">Engineer</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Night Mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
+            </div>
+        </header>
+        
+        <!-- Navigation -->
+        <nav class="nav">
+            <button class="nav-btn active" data-view="overview">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Overview</span>
+            </button>
+            <button class="nav-btn" data-view="sld">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">SLD View</span>
+            </button>
+            <button class="nav-btn" data-view="alarms">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-text">Alarms</span>
+                <span class="alarm-badge" id="alarmBadge">0</span>
+            </button>
+            <button class="nav-btn" data-view="gis">
+                <span class="nav-icon">🗺️</span>
+                <span class="nav-text">GIS Map</span>
+            </button>
+            <button class="nav-btn" data-view="reports">
+                <span class="nav-icon">📈</span>
+                <span class="nav-text">Reports</span>
+            </button>
+        </nav>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Dashboard -->
+            <div class="view active" id="view-overview">
+                <div class="dashboard-grid">
+                    <!-- System Summary -->
+                    <div class="card card-summary">
+                        <div class="card-header">
+                            <h3>System Generation</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="kpi-grid">
+                                <div class="kpi">
+                                    <span class="kpi-label">Total Generation</span>
+                                    <span class="kpi-value" id="kpi-total-gen">-- MW</span>
+                                    <div class="kpi-bar">
+                                        <div class="kpi-bar-fill" id="kpi-gen-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="kpi">
+                                    <span class="kpi-label">Total Load</span>
+                                    <span class="kpi-value" id="kpi-total-load">-- MW</span>
+                                    <div class="kpi-bar">
+                                        <div class="kpi-bar-fill load" id="kpi-load-bar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                                <div class="kpi">
+                                    <span class="kpi-label">Reserve Margin</span>
+                                    <span class="kpi-value" id="kpi-reserve">-- MW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Generation by Plant -->
+                    <div class="card card-generation">
+                        <div class="card-header">
+                            <h3>Generation by Plant</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="plant-list" id="plant-list">
+                                <!-- Generated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feeder Loading -->
+                    <div class="card card-feeders">
+                        <div class="card-header">
+                            <h3>Feeder Loading</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="feeder-list" id="feeder-list">
+                                <!-- Generated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Alarm Summary -->
+                    <div class="card card-alarms">
+                        <div class="card-header">
+                            <h3>Alarm Summary</h3>
+                            <span class="alarm-count" id="alarm-summary-count">0 Active</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="alarm-severity-grid">
+                                <div class="alarm-severity critical">
+                                    <span class="severity-icon">🔴</span>
+                                    <span class="severity-count" id="alarm-critical">0</span>
+                                    <span class="severity-label">Critical</span>
+                                </div>
+                                <div class="alarm-severity warning">
+                                    <span class="severity-icon">🟠</span>
+                                    <span class="severity-count" id="alarm-warning">0</span>
+                                    <span class="severity-label">Warning</span>
+                                </div>
+                                <div class="alarm-severity info">
+                                    <span class="severity-icon">🟡</span>
+                                    <span class="severity-count" id="alarm-info">0</span>
+                                    <span class="severity-label">Info</span>
+                                </div>
+                            </div>
+                            <div class="alarm-recent" id="alarm-recent">
+                                <h4>Recent Alarms</h4>
+                                <ul class="alarm-list" id="alarm-list">
+                                    <!-- Generated dynamically -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- System Health -->
+                    <div class="card card-health">
+                        <div class="card-header">
+                            <h3>System Health</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="health-metrics">
+                                <div class="health-metric">
+                                    <span class="metric-label">Availability</span>
+                                    <span class="metric-value">99.9%</span>
+                                    <div class="metric-indicator good"></div>
+                                </div>
+                                <div class="health-metric">
+                                    <span class="metric-label">Data Latency</span>
+                                    <span class="metric-value" id="health-latency">-- ms</span>
+                                    <div class="metric-indicator good"></div>
+                                </div>
+                                <div class="health-metric">
+                                    <span class="metric-label">Alarm Response</span>
+                                    <span class="metric-value">&lt;2s</span>
+                                    <div class="metric-indicator good"></div>
+                                </div>
+                                <div class="health-metric">
+                                    <span class="metric-label">Command Success</span>
+                                    <span class="metric-value" id="health-command-success">--%</span>
+                                    <div class="metric-indicator good"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SLD View -->
+            <div class="view" id="view-sld">
+                <div class="sld-container">
+                    <div class="sld-toolbar">
+                        <div class="sld-info">
+                            <span class="sld-title">Single Line Diagram: Balanacan Substation</span>
+                            <span class="sld-voltage">13.8 kV</span>
+                        </div>
+                        <div class="sld-controls">
+                            <button class="sld-btn" id="zoom-in" title="Zoom In">+</button>
+                            <button class="sld-btn" id="zoom-out" title="Zoom Out">-</button>
+                            <button class="sld-btn" id="zoom-fit" title="Fit to View">⊡</button>
+                        </div>
+                    </div>
+                    <div class="sld-viewport" id="sld-viewport">
+                        <svg id="sld-svg" viewBox="0 0 1000 600">
+                            <!-- SLD generated by JavaScript -->
+                        </svg>
+                    </div>
+                    <div class="sld-legend">
+                        <span class="legend-item closed">● Closed</span>
+                        <span class="legend-item open">○ Open</span>
+                        <span class="legend-item tripped">◐ Tripped</span>
+                        <span class="legend-item unknown">⊗ Unknown</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Alarms View -->
+            <div class="view" id="view-alarms">
+                <div class="alarms-container">
+                    <div class="alarms-toolbar">
+                        <div class="filter-group">
+                            <select id="alarm-filter-state" class="filter-select">
+                                <option value="active">Active</option>
+                                <option value="all">All States</option>
+                                <option value="acknowledged">Acknowledged</option>
+                                <option value="cleared">Cleared</option>
+                            </select>
+                            <select id="alarm-filter-severity" class="filter-select">
+                                <option value="all">All Severities</option>
+                                <option value="critical">Critical</option>
+                                <option value="warning">Warning</option>
+                                <option value="info">Info</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" id="ack-all-btn">Acknowledge All</button>
+                    </div>
+                    <div class="alarms-table-container">
+                        <table class="alarms-table">
+                            <thead>
+                                <tr>
+                                    <th>Severity</th>
+                                    <th>Time</th>
+                                    <th>Device</th>
+                                    <th>Message</th>
+                                    <th>State</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="alarms-table-body">
+                                <!-- Generated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GIS Map View -->
+            <div class="view" id="view-gis">
+                <div class="gis-container">
+                    <div class="gis-sidebar">
+                        <h3>Asset Layers</h3>
+                        <div class="layer-list">
+                            <label class="layer-item">
+                                <input type="checkbox" checked data-layer="substations">
+                                <span>Substations</span>
+                            </label>
+                            <label class="layer-item">
+                                <input type="checkbox" checked data-layer="powerlines">
+                                <span>Power Lines</span>
+                            </label>
+                            <label class="layer-item">
+                                <input type="checkbox" checked data-layer="municipalities">
+                                <span>Municipalities</span>
+                            </label>
+                            <label class="layer-item">
+                                <input type="checkbox" data-layer="transformers">
+                                <span>Transformers</span>
+                            </label>
+                            <label class="layer-item">
+                                <input type="checkbox" data-layer="loads">
+                                <span>Load Values</span>
+                            </label>
+                        </div>
+                        <h3>Selected Asset</h3>
+                        <div class="asset-details" id="asset-details">
+                            <p class="no-selection">Click an asset on the map to view details</p>
+                        </div>
+                    </div>
+                    <div class="gis-map" id="gis-map"></div>
+                </div>
+            </div>
+            
+            <!-- Reports View -->
+            <div class="view" id="view-reports">
+                <div class="reports-container">
+                    <h2>Reports</h2>
+                    <div class="report-cards">
+                        <div class="report-card">
+                            <h3>Daily Generation Report</h3>
+                            <p>24-hour generation summary with hourly breakdown</p>
+                            <button class="btn btn-secondary">Generate</button>
+                        </div>
+                        <div class="report-card">
+                            <h3>Alarm History Report</h3>
+                            <p>Alarm events with response times</p>
+                            <button class="btn btn-secondary">Generate</button>
+                        </div>
+                        <div class="report-card">
+                            <h3>Feeder Load Report</h3>
+                            <p>Load analysis by feeder with peak tracking</p>
+                            <button class="btn btn-secondary">Generate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Status Bar -->
+        <footer class="status-bar">
+            <div class="status-left">
+                <span class="connection-status connected" id="connection-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Connected</span>
+                </span>
+            </div>
+            <div class="status-center">
+                <span class="status-item">
+                    <span class="status-label">Last Update:</span>
+                    <span class="status-value" id="last-update">--:--:--</span>
+                </span>
+            </div>
+            <div class="status-right">
+                <span class="status-item">
+                    <span class="status-label">Version:</span>
+                    <span class="status-value">1.0.0</span>
+                </span>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Application JS -->
+    <script src="/js/app.js"></script>
+</body>
+</html>
