@@ -207,6 +207,88 @@ TOP ANCHOR (X, Y_top)
 - **OPEN**: Blade rotates 40° about its center. No connection to ground. Green color.
 - **UNKNOWN**: Blade not rendered. Only conductor and ground symbol visible.
 
+### 3.4 Physical Arrangement
+
+The Earth Switch has a specific physical arrangement that distinguishes it from the Disconnect Switch.
+
+#### Key Principle
+
+The Earth Switch **SHALL NOT interrupt the main conductor**.
+
+The main conductor remains **continuous**.
+
+The Earth Switch is connected to the main conductor through a **short branch**.
+
+#### Arrangement Diagram
+
+```
+                    MAIN CONDUCTOR (continuous)
+                         │
+                         │
+                         ▼
+              ┌────────────────────────┐
+              │   BRANCH CONNECTION   │  ← Originates from main conductor
+              │         ╱            │
+              │        ╱             │  ← Short angled branch
+              │       ◯               │  ← Knife Switch (on branch)
+              │       │               │
+              │       │               │  ← Ground Conductor (after knife)
+              │       ⊥               │  ← Ground Symbol (always visible)
+              └────────────────────────┘
+```
+
+#### Component Hierarchy
+
+| Component | Description | Position |
+|-----------|-------------|----------|
+| **Main Conductor** | Continuous electrical path | Always above, never interrupted |
+| **Branch Connection** | Originates from main conductor | T-junction point |
+| **Branch Conductor** | Short, angled toward ground | Carries knife switch |
+| **Knife Switch** | Installed on branch | Controls ground connection |
+| **Ground Conductor** | After knife switch | Leads to ground symbol |
+| **Ground Symbol** | Fixed earth reference | Always visible |
+
+#### Branch Connection Rules
+
+| Rule | Description |
+|------|-------------|
+| BRANCH-001 | The branch originates from the main conductor |
+| BRANCH-002 | The branch is SHORT (minimizes material) |
+| BRANCH-003 | The branch is angled toward the grounding conductor |
+| BRANCH-004 | The knife switch is installed ON this branch |
+| BRANCH-005 | The main conductor remains continuous when ES is open |
+
+#### Ground Connection Rules
+
+| Rule | Description |
+|------|-------------|
+| GROUND-001 | Ground conductor begins AFTER the knife switch |
+| GROUND-002 | Ground conductor terminates at the Ground Symbol |
+| GROUND-003 | Ground Symbol is ALWAYS visible regardless of state |
+| GROUND-004 | Ground Symbol never moves |
+
+### 3.5 Immutable vs. Mutable Geometry
+
+**IMMutable Geometry** (never changes):
+
+| Component | Property | Reason |
+|-----------|----------|--------|
+| Main Conductor | Position | Structural element |
+| Branch Connection | Point of origin | Fixed to main conductor |
+| Branch Conductor | Length, angle | Physical structure |
+| Ground Conductor | Position | Physical structure |
+| Ground Symbol | Position, shape | Fixed earth reference |
+| Knife Pivot | Location | Mechanical constraint |
+
+**Mutable Properties** (change with state):
+
+| Property | CLOSED | OPEN | UNKNOWN |
+|----------|--------|------|---------|
+| Knife Angle | 0° | 40° | N/A |
+| Knife Color | Red | Green | N/A |
+| Knife Visible | Yes | Yes | No |
+| Ground Connected | Yes | No | Unknown |
+
 ---
 
 ## 4. Electrical Representation
@@ -535,6 +617,21 @@ The expert who has absorbed this knowledge can correctly answer:
 
 ### Geometry Questions
 
+**Q: Does the Earth Switch interrupt the main conductor?**
+> A: NO. The Earth Switch SHALL NOT interrupt the main conductor. The main conductor remains continuous. The ES connects via a short branch.
+
+**Q: Where does the branch originate?**
+> A: The branch originates from the main conductor at a T-junction point. It is short and angled toward the grounding conductor.
+
+**Q: What is connected after the knife switch?**
+> A: The ground conductor begins AFTER the knife switch and terminates at the Ground Symbol.
+
+**Q: Which geometry remains fixed?**
+> A: Main conductor, branch connection point, branch length, branch angle, ground conductor, ground symbol, and knife pivot location are all immutable.
+
+**Q: Which geometry changes with state?**
+> A: Only the knife rotation angle, knife color, and knife visibility change with state.
+
 **Q: What components are immutable?**
 > A: Top conductor, fixed contact position, knife blade dimensions, ground symbol (always present), ground conductor.
 
@@ -583,6 +680,7 @@ The expert who has absorbed this knowledge can correctly answer:
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 1.0.0 | 2026-07-21 | Initial draft for EXP-008 | KDE-EXPERT-SLD-001 |
+| 1.1.0 | 2026-07-21 | Added Physical Arrangement (EXP-012): Branch connection rules, immutable vs mutable geometry, key principle that ES does NOT interrupt main conductor | KDE-EXPERT-SLD-001 |
 
 ---
 

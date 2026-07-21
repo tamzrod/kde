@@ -44,6 +44,7 @@ The expert has been taught the following engineering primitives:
 | Earthing Switch (ES) | KDE-PRIM-ES-001 | TAUGHT | EXP-008 |
 | Bus Voltage Profile | KDE-VOLTAGE-NGCP-001 | TAUGHT | EXP-010 |
 | Knife Switch Geometry | KDE-GEOM-KNIFE-001 | TAUGHT | EXP-011 |
+| ES Physical Arrangement | KDE-PRIM-ES-001 | TAUGHT | EXP-012 |
 
 ---
 
@@ -127,6 +128,7 @@ The expert has been taught the following engineering primitives:
 | EXP-008 | Earthing Switch Primitive | 2026-07-21 | COMPLETE |
 | EXP-010 | NGCP Bus Voltage Profile | 2026-07-21 | COMPLETE |
 | EXP-011 | Knife Switch Geometry | 2026-07-21 | COMPLETE |
+| EXP-012 | ES Physical Arrangement | 2026-07-21 | COMPLETE |
 
 ---
 
@@ -170,6 +172,12 @@ The expert can correctly answer:
 ✓ What changes between OPEN and CLOSED?  
 ✓ Why must knife not touch contacts when OPEN?  
 ✓ Why is knife hidden in UNKNOWN?  
+
+**ES Physical Arrangement (EXP-012):**
+✓ Does ES interrupt the main conductor?  
+✓ Where does the branch originate?  
+✓ What is connected after the knife switch?  
+✓ Which geometry remains fixed?  
 
 ---
 
