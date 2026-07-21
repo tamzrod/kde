@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earthing Switch - Playground</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #ffffff;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 { margin-bottom: 0.5rem; color: #222; }
+    p { color: #666; margin-bottom: 2rem; }
+    .container {
+      background: #f8f9fa;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    svg { display: block; margin: 0 auto; }
+    .controls {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.15s;
+      min-width: 100px;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .btn:active { transform: translateY(0); }
+    .btn-open { background: #44FF44; color: #000; }
+    .btn-closed { background: #333; color: #fff; }
+    .btn-unknown { background: #888; color: #fff; }
+    .btn-active { box-shadow: 0 0 0 3px #e94560; }
+    .debug-panel {
+      margin-top: 2rem;
+      background: #222;
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      font-family: 'Monaco', 'Menlo', monospace;
+      font-size: 0.9rem;
+      min-width: 280px;
+    }
+    .debug-panel h3 { margin-bottom: 0.75rem; color: #aaa; font-size: 0.8rem; text-transform: uppercase; }
+    .debug-row { display: flex; justify-content: space-between; padding: 0.25rem 0; }
+    .debug-label { color: #888; }
+    .debug-value { color: #44FF88; }
+    .conductor { stroke: #000000; stroke-width: 4; stroke-linecap: round; }
+    .contact { stroke: #333; stroke-width: 3; stroke-linecap: round; }
+    .knife { stroke-linecap: round; transition: all 0.3s ease; }
+    .ground-line { stroke: #000; stroke-width: 4; }
+    .ground-hz { stroke: #000; stroke-width: 3; }
+    .label { font-family: Arial, sans-serif; font-size: 14px; fill: #666; }
+  </style>
+</head>
+<body>
+  <h1>Earthing Switch</h1>
+  <p>Interactive SVG Validation</p>
+  
+  <div class="container">
+    <svg width="200" height="350" viewBox="0 0 200 350">
+      <!-- Top Conductor -->
+      <line class="conductor" x1="100" y1="0" x2="100" y2="90"/>
+      
+      <!-- Fixed Contact at Top -->
+      <line class="contact" x1="85" y1="90" x2="115" y2="90"/>
+      
+      <!-- Knife Blade (will be shown/hidden based on state) -->
+      <g id="knife-group">
+        <line id="knife" class="knife" x1="100" y1="94" x2="100" y2="206" stroke="#333" stroke-width="5"/>
+      </g>
+      
+      <!-- Ground Conductor (from knife to ground) -->
+      <line class="conductor" x1="100" y1="210" x2="100" y2="230"/>
+      
+      <!-- Ground Symbol -->
+      <g id="ground-symbol">
+        <line class="ground-line" x1="100" y1="230" x2="100" y2="245"/>
+        <line class="ground-hz" x1="88" y1="245" x2="112" y2="245"/>
+        <line class="ground-hz" x1="92" y1="252" x2="108" y2="252"/>
+        <line class="ground-hz" x1="96" y1="259" x2="104" y2="259"/>
+      </g>
+      
+      <!-- Labels -->
+      <text class="label" x="100" y="340" text-anchor="middle">ES</text>
+    </svg>
+    
+    <div class="controls">
+      <button class="btn btn-open" onclick="setState('OPEN')">OPEN</button>
+      <button class="btn btn-closed" onclick="setState('CLOSED')">CLOSED</button>
+      <button class="btn btn-unknown" onclick="setState('UNKNOWN')">UNKNOWN</button>
+    </div>
+    
+    <div class="debug-panel">
+      <h3>Debug Panel</h3>
+      <div class="debug-row">
+        <span class="debug-label">Current State:</span>
+        <span class="debug-value" id="debug-state">OPEN</span>
+      </div>
+      <div class="debug-row">
+        <span class="debug-label">Knife Angle:</span>
+        <span class="debug-value" id="debug-angle">40°</span>
+      </div>
+      <div class="debug-row">
+        <span class="debug-label">Knife Visible:</span>
+        <span class="debug-value" id="debug-visible">true</span>
+      </div>
+      <div class="debug-row">
+        <span class="debug-label">Knife Color:</span>
+        <span class="debug-value" id="debug-color">#44FF44</span>
+      </div>
+      <div class="debug-row">
+        <span class="debug-label">Grounded:</span>
+        <span class="debug-value" id="debug-grounded">false</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const states = {
+      OPEN: {
+        angle: 40,
+        visible: true,
+        color: '#44FF44',
+        grounded: false,
+        label: 'OPEN'
+      },
+      CLOSED: {
+        angle: 0,
+        visible: true,
+        color: '#000000',
+        grounded: true,
+        label: 'CLOSED'
+      },
+      UNKNOWN: {
+        angle: 0,
+        visible: false,
+        color: 'transparent',
+        grounded: false,
+        label: 'UNKNOWN'
+      }
+    };
+    
+    const knife = document.getElementById('knife');
+    const knifeGroup = document.getElementById('knife-group');
+    const topContactY = 94;
+    const bottomY = 206;
+    const length = 56;
+    
+    function updateKnife(state) {
+      const config = states[state];
+      
+      // Update knife visibility
+      knifeGroup.style.display = config.visible ? 'block' : 'none';
+      
+      if (config.visible) {
+        const centerY = (topContactY + bottomY) / 2;
+        
+        if (config.angle === 0) {
+          // CLOSED: knife is straight vertical line
+          knife.setAttribute('x1', 100);
+          knife.setAttribute('y1', topContactY);
+          knife.setAttribute('x2', 100);
+          knife.setAttribute('y2', bottomY);
+        } else {
+          // OPEN: knife rotates about center
+          const angleRad = config.angle * Math.PI / 180;
+          const dx = Math.sin(angleRad) * length;
+          const dy = Math.cos(angleRad) * length;
+          knife.setAttribute('x1', 100 - dx);
+          knife.setAttribute('y1', centerY - dy);
+          knife.setAttribute('x2', 100 + dx);
+          knife.setAttribute('y2', centerY + dy);
+        }
+        knife.setAttribute('stroke', config.color);
+      }
+      
+      // Update debug panel
+      document.getElementById('debug-state').textContent = config.label;
+      document.getElementById('debug-angle').textContent = config.visible ? config.angle + '°' : 'N/A';
+      document.getElementById('debug-visible').textContent = config.visible;
+      document.getElementById('debug-color').textContent = config.color;
+      document.getElementById('debug-grounded').textContent = config.grounded ? 'YES' : 'NO';
+      
+      // Update button active states
+      document.querySelectorAll('.btn').forEach(btn => {
+        btn.classList.remove('btn-active');
+        if (btn.textContent === config.label) {
+          btn.classList.add('btn-active');
+        }
+      });
+    }
+    
+    function setState(state) {
+      updateKnife(state);
+    }
+    
+    // Initialize with OPEN state
+    updateKnife('OPEN');
+    document.querySelector('.btn-open').classList.add('btn-active');
+  </script>
+</body>
+</html>
