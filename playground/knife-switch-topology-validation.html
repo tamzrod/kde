@@ -22,6 +22,22 @@
       color: #888;
       margin-bottom: 30px;
     }
+    .key-insight {
+      background: #2d1f1f;
+      border: 1px solid #ef4444;
+      border-radius: 8px;
+      padding: 15px;
+      max-width: 900px;
+      margin: 0 auto 30px;
+    }
+    .key-insight h3 {
+      color: #ef4444;
+      margin: 0 0 10px 0;
+    }
+    .key-insight p {
+      margin: 5px 0;
+      color: #ccc;
+    }
     .validation-container {
       display: flex;
       flex-direction: column;
@@ -110,7 +126,18 @@
 </head>
 <body>
   <h1>Knife Switch Topology Validation</h1>
-  <p class="subtitle">EXP-011-Rev1 | LAB-007 | Validating internal topology: Source Contact, Load Contact, Moving Knife, Mechanical Pivot</p>
+  <p class="subtitle">EXP-011-Rev2 | LAB-007 | Validating HINGED knife switch topology</p>
+  
+  <div class="key-insight">
+    <h3>⚠️ CRITICAL: Hinge Concept (EXP-011-Rev2)</h3>
+    <p><strong>The knife is HINGED to the Source Contact.</strong> The hinge serves as:</p>
+    <p>1. <strong>Mechanical Pivot</strong> - Axis of rotation</p>
+    <p>2. <strong>Electrical Connection</strong> - Knife is permanently connected to Source Contact</p>
+    <p><strong>Key Rules:</strong></p>
+    <p>• Knife TOP is ALWAYS at the hinge position (NEVER moves from there)</p>
+    <p>• Knife NEVER detaches from the hinge/Source Contact</p>
+    <p>• Air gap exists ONLY between knife tip and Load Contact (never at Source side)</p>
+  </div>
   
   <div class="validation-container">
     
@@ -121,8 +148,7 @@
         <span class="state-badge state-open">OPEN</span>
       </div>
       <div class="svg-container">
-        <svg viewBox="0 0 400 350" width="100%" height="350">
-          <!-- Background grid for reference -->
+        <svg viewBox="0 0 450 380" width="100%" height="380">
           <defs>
             <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
               <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#222" stroke-width="0.5"/>
@@ -131,51 +157,54 @@
           <rect width="100%" height="100%" fill="url(#grid)"/>
           
           <!-- BUS (69kV) -->
-          <rect x="20" y="20" width="360" height="20" fill="#00ffff" rx="3"/>
-          <text x="200" y="55" text-anchor="middle" fill="#00ffff" font-size="12">69 kV Bus</text>
+          <rect x="20" y="20" width="410" height="20" fill="#00ffff" rx="3"/>
+          <text x="225" y="55" text-anchor="middle" fill="#00ffff" font-size="12">69 kV Bus</text>
           
-          <!-- ANNOTATIONS -->
-          <text x="10" y="100" fill="#888" font-size="10" transform="rotate(-90, 10, 100)">INCOMING</text>
-          
-          <!-- INCOMING CONDUCTOR (to Source Contact) -->
-          <line x1="200" y1="40" x2="200" y2="100" stroke="#00ffff" stroke-width="3"/>
+          <!-- INCOMING CONDUCTOR -->
+          <line x1="225" y1="40" x2="225" y2="100" stroke="#00ffff" stroke-width="3"/>
+          <text x="10" y="70" fill="#888" font-size="10" transform="rotate(-90, 10, 70)">INCOMING</text>
           
           <!-- ===== KNIFE SWITCH TOPOLOGY ===== -->
-          <!-- Source Contact (fixed, permanently connected to incoming) -->
-          <line x1="160" y1="100" x2="240" y2="100" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
-          <rect x="235" y="95" width="20" height="10" fill="#00ffff" rx="2"/>
-          <text x="200" y="115" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">SOURCE CONTACT</text>
-          <text x="200" y="128" text-anchor="middle" fill="#666" font-size="9">(incoming conductor connects here)</text>
           
-          <!-- Mechanical Pivot (NOT electrical connection) -->
-          <circle cx="200" cy="175" r="6" fill="none" stroke="#ffa500" stroke-width="2"/>
-          <text x="255" y="175" fill="#ffa500" font-size="10">MECHANICAL PIVOT</text>
-          <text x="255" y="188" fill="#666" font-size="9">(axis of rotation only)</text>
+          <!-- Source Contact -->
+          <line x1="175" y1="100" x2="275" y2="100" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+          <rect x="270" y="95" width="20" height="10" fill="#00ffff" rx="2"/>
+          <text x="225" y="85" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">SOURCE CONTACT</text>
           
-          <!-- Moving Knife (OPEN: rotated 40°) -->
-          <line x1="145" y1="130" x2="200" y2="220" stroke="#22c55e" stroke-width="5" stroke-linecap="round"/>
-          <text x="130" y="175" fill="#22c55e" font-size="11" font-weight="bold">MOVING KNIFE</text>
-          <text x="130" y="188" fill="#666" font-size="9">(rotates away from Load)</text>
+          <!-- HINGE (at Source Contact - knife is hinged here) -->
+          <circle cx="225" cy="100" r="8" fill="#ffa500" opacity="0.3"/>
+          <circle cx="225" cy="100" r="6" fill="none" stroke="#ffa500" stroke-width="3"/>
+          <text x="305" y="95" fill="#ffa500" font-size="11" font-weight="bold">HINGE</text>
+          <text x="305" y="108" fill="#ffa500" font-size="9">(mechanical pivot + electrical connection)</text>
           
-          <!-- Air Gap Annotation -->
-          <path d="M 210 120 L 250 135" stroke="#ef4444" stroke-width="1" stroke-dasharray="3"/>
-          <text x="255" y="140" fill="#ef4444" font-size="9">AIR GAP</text>
+          <!-- Moving Knife (OPEN: rotated 40° about hinge) -->
+          <!-- Knife top is ALWAYS at hinge (225, 100) -->
+          <!-- Knife rotates about hinge, tip moves away from Load Contact -->
+          <line x1="225" y1="100" x2="280" y2="200" stroke="#22c55e" stroke-width="5" stroke-linecap="round"/>
+          <text x="155" y="140" fill="#22c55e" font-size="11" font-weight="bold">MOVING KNIFE</text>
+          <text x="155" y="155" fill="#666" font-size="9">(hinged at top)</text>
           
-          <!-- Load Contact (fixed, permanently connected to outgoing) -->
-          <line x1="160" y1="250" x2="240" y2="250" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
-          <rect x="235" y="245" width="20" height="10" fill="#00ffff" rx="2"/>
-          <text x="200" y="270" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">LOAD CONTACT</text>
-          <text x="200" y="283" text-anchor="middle" fill="#666" font-size="9">(outgoing conductor connects here)</text>
+          <!-- Air Gap - ONLY at Load Contact side -->
+          <path d="M 285 205 L 320 220" stroke="#ef4444" stroke-width="1" stroke-dasharray="4"/>
+          <text x="325" y="225" fill="#ef4444" font-size="10" font-weight="bold">AIR GAP</text>
+          <text x="325" y="240" fill="#666" font-size="9">(only at Load Contact side)</text>
           
-          <!-- OUTGOING CONDUCTOR (from Load Contact) -->
-          <line x1="200" y1="250" x2="200" y2="310" stroke="#00ffff" stroke-width="3"/>
+          <!-- Load Contact -->
+          <line x1="175" y1="250" x2="275" y2="250" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+          <rect x="270" y="245" width="20" height="10" fill="#00ffff" rx="2"/>
+          <text x="225" y="275" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">LOAD CONTACT</text>
+          <text x="225" y="290" text-anchor="middle" fill="#666" font-size="9">(outgoing conductor connects here)</text>
           
-          <!-- ANNOTATIONS -->
-          <text x="10" y="280" fill="#888" font-size="10" transform="rotate(-90, 10, 280)">OUTGOING</text>
+          <!-- OUTGOING CONDUCTOR -->
+          <line x1="225" y1="250" x2="225" y2="320" stroke="#00ffff" stroke-width="3"/>
+          <text x="10" y="290" fill="#888" font-size="10" transform="rotate(-90, 10, 290)">OUTGOING</text>
           
           <!-- State Label -->
-          <rect x="280" y="160" width="100" height="30" fill="#22c55e" rx="4"/>
-          <text x="330" y="180" text-anchor="middle" fill="#000" font-size="12" font-weight="bold">OPEN</text>
+          <rect x="330" y="130" width="100" height="30" fill="#22c55e" rx="4"/>
+          <text x="380" y="150" text-anchor="middle" fill="#000" font-size="12" font-weight="bold">OPEN</text>
+          
+          <!-- Continuity break indicator -->
+          <text x="225" y="200" text-anchor="middle" fill="#ef4444" font-size="9">NO CONTINUITY</text>
         </svg>
       </div>
       
@@ -189,12 +218,12 @@
           <span>Moving Knife (OPEN state)</span>
         </div>
         <div class="legend-item">
-          <div class="legend-color" style="background:#ffa500"></div>
-          <span>Mechanical Pivot (rotation axis)</span>
+          <div class="legend-color" style="background:#ffa500; height: 12px; border-radius: 50%;"></div>
+          <span>Hinge (pivot + electrical)</span>
         </div>
         <div class="legend-item">
           <div class="legend-color" style="background:#ef4444; height: 1px; border-style: dashed;"></div>
-          <span>Air Gap (isolation)</span>
+          <span>Air Gap (at Load side only)</span>
         </div>
       </div>
       
@@ -203,14 +232,13 @@
         <ul class="check-list">
           <li class="check-pass">Incoming conductor terminates at Source Contact</li>
           <li class="check-pass">Outgoing conductor originates from Load Contact</li>
-          <li class="check-pass">Source Contact remains visible (permanent connection)</li>
-          <li class="check-pass">Load Contact remains visible (permanent connection)</li>
-          <li class="check-pass">Mechanical Pivot is NOT used as electrical terminal</li>
-          <li class="check-pass">Knife rotates only (40° from vertical)</li>
+          <li class="check-pass">Knife is HINGED to Source Contact (never detaches)</li>
+          <li class="check-pass">Knife TOP is ALWAYS at hinge position</li>
+          <li class="check-pass">Hinge serves as mechanical pivot AND electrical connection</li>
+          <li class="check-pass">Air gap exists ONLY at Load Contact side</li>
+          <li class="check-pass">NO air gap at Source Contact side</li>
           <li class="check-pass">No floating conductors</li>
-          <li class="check-pass">No broken topology</li>
-          <li class="check-pass">No direct knife-to-incoming-conductor connection</li>
-          <li class="check-pass">Air gap visible between knife and Load Contact</li>
+          <li class="check-pass">Knife rotates about hinge</li>
         </ul>
       </div>
     </div>
@@ -222,49 +250,45 @@
         <span class="state-badge state-closed">CLOSED</span>
       </div>
       <div class="svg-container">
-        <svg viewBox="0 0 400 350" width="100%" height="350">
+        <svg viewBox="0 0 450 380" width="100%" height="380">
           <rect width="100%" height="100%" fill="url(#grid)"/>
           
           <!-- BUS (69kV) -->
-          <rect x="20" y="20" width="360" height="20" fill="#00ffff" rx="3"/>
-          <text x="200" y="55" text-anchor="middle" fill="#00ffff" font-size="12">69 kV Bus</text>
-          
-          <!-- ANNOTATIONS -->
-          <text x="10" y="100" fill="#888" font-size="10" transform="rotate(-90, 10, 100)">INCOMING</text>
+          <rect x="20" y="20" width="410" height="20" fill="#00ffff" rx="3"/>
+          <text x="225" y="55" text-anchor="middle" fill="#00ffff" font-size="12">69 kV Bus</text>
           
           <!-- INCOMING CONDUCTOR -->
-          <line x1="200" y1="40" x2="200" y2="100" stroke="#00ffff" stroke-width="3"/>
+          <line x1="225" y1="40" x2="225" y2="100" stroke="#00ffff" stroke-width="3"/>
           
           <!-- Source Contact -->
-          <line x1="160" y1="100" x2="240" y2="100" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
-          <rect x="235" y="95" width="20" height="10" fill="#00ffff" rx="2"/>
-          <text x="200" y="115" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">SOURCE CONTACT</text>
+          <line x1="175" y1="100" x2="275" y2="100" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+          <text x="225" y="85" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">SOURCE CONTACT</text>
           
-          <!-- Mechanical Pivot -->
-          <circle cx="200" cy="175" r="6" fill="none" stroke="#ffa500" stroke-width="2"/>
-          <text x="255" y="175" fill="#ffa500" font-size="10">MECHANICAL PIVOT</text>
+          <!-- Hinge -->
+          <circle cx="225" cy="100" r="8" fill="#ffa500" opacity="0.3"/>
+          <circle cx="225" cy="100" r="6" fill="none" stroke="#ffa500" stroke-width="3"/>
+          <text x="305" y="95" fill="#ffa500" font-size="11" font-weight="bold">HINGE</text>
           
           <!-- Moving Knife (CLOSED: inline, bridging contacts) -->
-          <line x1="200" y1="100" x2="200" y2="252" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
-          <text x="245" y="175" fill="#ef4444" font-size="11" font-weight="bold">MOVING KNIFE</text>
-          <text x="245" y="188" fill="#666" font-size="9">(bridges both contacts)</text>
+          <!-- Knife top is at hinge (225, 100), knife extends to Load Contact -->
+          <line x1="225" y1="100" x2="225" y2="252" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+          <text x="285" y="175" fill="#ef4444" font-size="11" font-weight="bold">MOVING KNIFE</text>
+          <text x="285" y="190" fill="#666" font-size="9">(bridges both contacts)</text>
           
           <!-- Load Contact -->
-          <line x1="160" y1="250" x2="240" y2="250" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
-          <rect x="235" y="245" width="20" height="10" fill="#00ffff" rx="2"/>
-          <text x="200" y="270" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">LOAD CONTACT</text>
+          <line x1="175" y1="250" x2="275" y2="250" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+          <text x="225" y="275" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">LOAD CONTACT</text>
           
           <!-- OUTGOING CONDUCTOR -->
-          <line x1="200" y1="250" x2="200" y2="310" stroke="#00ffff" stroke-width="3"/>
-          
-          <text x="10" y="280" fill="#888" font-size="10" transform="rotate(-90, 10, 280)">OUTGOING</text>
+          <line x1="225" y1="250" x2="225" y2="320" stroke="#00ffff" stroke-width="3"/>
           
           <!-- Continuity indicator -->
-          <path d="M 200 90 L 200 260" stroke="#ef4444" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+          <path d="M 225 90 L 225 260" stroke="#ef4444" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+          <text x="225" y="195" text-anchor="middle" fill="#ef4444" font-size="9">CONTINUITY</text>
           
           <!-- State Label -->
-          <rect x="280" y="160" width="100" height="30" fill="#ef4444" rx="4"/>
-          <text x="330" y="180" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">CLOSED</text>
+          <rect x="330" y="150" width="100" height="30" fill="#ef4444" rx="4"/>
+          <text x="380" y="170" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">CLOSED</text>
         </svg>
       </div>
       
@@ -278,8 +302,8 @@
           <span>Moving Knife (CLOSED state)</span>
         </div>
         <div class="legend-item">
-          <div class="legend-color" style="background:#ffa500"></div>
-          <span>Mechanical Pivot (rotation axis)</span>
+          <div class="legend-color" style="background:#ffa500; height: 12px; border-radius: 50%;"></div>
+          <span>Hinge (pivot + electrical)</span>
         </div>
       </div>
       
@@ -288,14 +312,11 @@
         <ul class="check-list">
           <li class="check-pass">Incoming conductor terminates at Source Contact</li>
           <li class="check-pass">Outgoing conductor originates from Load Contact</li>
-          <li class="check-pass">Source Contact remains visible (permanent connection)</li>
-          <li class="check-pass">Load Contact remains visible (permanent connection)</li>
-          <li class="check-pass">Mechanical Pivot is NOT used as electrical terminal</li>
-          <li class="check-pass">Knife bridges Source Contact to Load Contact (0°)</li>
+          <li class="check-pass">Knife is HINGED to Source Contact</li>
+          <li class="check-pass">Knife TOP is at hinge position (225, 100)</li>
+          <li class="check-pass">Knife bridges Source Contact to Load Contact</li>
           <li class="check-pass">Electrical continuity established</li>
           <li class="check-pass">No floating conductors</li>
-          <li class="check-pass">No broken topology</li>
-          <li class="check-pass">No direct knife-to-incoming-conductor connection</li>
         </ul>
       </div>
     </div>
@@ -307,46 +328,39 @@
         <span class="state-badge state-unknown">UNKNOWN</span>
       </div>
       <div class="svg-container">
-        <svg viewBox="0 0 400 350" width="100%" height="350">
+        <svg viewBox="0 0 450 380" width="100%" height="380">
           <rect width="100%" height="100%" fill="url(#grid)"/>
           
           <!-- BUS (69kV) -->
-          <rect x="20" y="20" width="360" height="20" fill="#00ffff" rx="3"/>
-          <text x="200" y="55" text-anchor="middle" fill="#00ffff" font-size="12">69 kV Bus</text>
-          
-          <!-- ANNOTATIONS -->
-          <text x="10" y="100" fill="#888" font-size="10" transform="rotate(-90, 10, 100)">INCOMING</text>
+          <rect x="20" y="20" width="410" height="20" fill="#00ffff" rx="3"/>
+          <text x="225" y="55" text-anchor="middle" fill="#00ffff" font-size="12">69 kV Bus</text>
           
           <!-- INCOMING CONDUCTOR -->
-          <line x1="200" y1="40" x2="200" y2="100" stroke="#00ffff" stroke-width="3"/>
+          <line x1="225" y1="40" x2="225" y2="100" stroke="#00ffff" stroke-width="3"/>
           
           <!-- Source Contact -->
-          <line x1="160" y1="100" x2="240" y2="100" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
-          <rect x="235" y="95" width="20" height="10" fill="#00ffff" rx="2"/>
-          <text x="200" y="115" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">SOURCE CONTACT</text>
-          <text x="200" y="128" text-anchor="middle" fill="#666" font-size="9">(incoming conductor connects here)</text>
+          <line x1="175" y1="100" x2="275" y2="100" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+          <text x="225" y="85" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">SOURCE CONTACT</text>
           
-          <!-- Mechanical Pivot -->
-          <circle cx="200" cy="175" r="6" fill="none" stroke="#ffa500" stroke-width="2"/>
-          <text x="255" y="175" fill="#ffa500" font-size="10">MECHANICAL PIVOT</text>
+          <!-- Hinge (visible even when knife not rendered) -->
+          <circle cx="225" cy="100" r="8" fill="#ffa500" opacity="0.2"/>
+          <circle cx="225" cy="100" r="6" fill="none" stroke="#ffa500" stroke-width="3"/>
+          <text x="305" y="95" fill="#ffa500" font-size="11" font-weight="bold">HINGE</text>
+          <text x="305" y="108" fill="#666" font-size="9">(knife would hinge here)</text>
           
           <!-- NO KNIFE RENDERED (UNKNOWN state) -->
-          <text x="200" y="180" text-anchor="middle" fill="#888" font-size="10" font-style="italic">NO KNIFE</text>
+          <text x="225" y="175" text-anchor="middle" fill="#888" font-size="12" font-style="italic">NO KNIFE RENDERED</text>
           
           <!-- Load Contact -->
-          <line x1="160" y1="250" x2="240" y2="250" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
-          <rect x="235" y="245" width="20" height="10" fill="#00ffff" rx="2"/>
-          <text x="200" y="270" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">LOAD CONTACT</text>
-          <text x="200" y="283" text-anchor="middle" fill="#666" font-size="9">(outgoing conductor connects here)</text>
+          <line x1="175" y1="250" x2="275" y2="250" stroke="#00ffff" stroke-width="3" stroke-linecap="round"/>
+          <text x="225" y="275" text-anchor="middle" fill="#00ffff" font-size="11" font-weight="bold">LOAD CONTACT</text>
           
           <!-- OUTGOING CONDUCTOR -->
-          <line x1="200" y1="250" x2="200" y2="310" stroke="#00ffff" stroke-width="3"/>
-          
-          <text x="10" y="280" fill="#888" font-size="10" transform="rotate(-90, 10, 280)">OUTGOING</text>
+          <line x1="225" y1="250" x2="225" y2="320" stroke="#00ffff" stroke-width="3"/>
           
           <!-- State Label -->
-          <rect x="280" y="160" width="100" height="30" fill="#888" rx="4"/>
-          <text x="330" y="180" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">UNKNOWN</text>
+          <rect x="330" y="150" width="100" height="30" fill="#888" rx="4"/>
+          <text x="380" y="170" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">UNKNOWN</text>
         </svg>
       </div>
       
@@ -356,8 +370,8 @@
           <span>Conductor / Contacts (fixed, visible)</span>
         </div>
         <div class="legend-item">
-          <div class="legend-color" style="background:#ffa500"></div>
-          <span>Mechanical Pivot (rotation axis)</span>
+          <div class="legend-color" style="background:#ffa500; height: 12px; border-radius: 50%;"></div>
+          <span>Hinge (visible, knife would hinge here)</span>
         </div>
         <div class="legend-item">
           <div class="legend-color" style="background:#888"></div>
@@ -370,13 +384,10 @@
         <ul class="check-list">
           <li class="check-pass">Incoming conductor terminates at Source Contact</li>
           <li class="check-pass">Outgoing conductor originates from Load Contact</li>
-          <li class="check-pass">Source Contact visible (permanent connection)</li>
-          <li class="check-pass">Load Contact visible (permanent connection)</li>
-          <li class="check-pass">Mechanical Pivot is NOT used as electrical terminal</li>
+          <li class="check-pass">Hinge visible (would be knife attachment point)</li>
           <li class="check-pass">Knife NOT rendered (UNKNOWN state)</li>
-          <li class="check-pass">No floating conductors</li>
-          <li class="check-pass">Topology preserved (contacts still in place)</li>
-          <li class="check-pass">No direct knife-to-incoming-conductor connection</li>
+          <li class="check-pass">Both contacts visible</li>
+          <li class="check-pass">Topology preserved</li>
         </ul>
       </div>
     </div>
@@ -385,13 +396,13 @@
   
   <!-- Summary -->
   <div style="max-width: 900px; margin: 40px auto; padding: 20px; background: #16213e; border-radius: 8px;">
-    <h3 style="color: #00d4ff; margin-top: 0;">Validation Summary</h3>
-    <p>This validation demonstrates that the Knife Switch internal topology (EXP-011-Rev1) is correctly applied:</p>
+    <h3 style="color: #00d4ff; margin-top: 0;">Validation Summary - EXP-011-Rev2</h3>
+    <p>This validation demonstrates the CORRECT Knife Switch internal topology with HINGE concept:</p>
     
     <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
       <thead>
         <tr style="background: #1e293b;">
-          <th style="padding: 10px; text-align: left; border-bottom: 1px solid #333;">Rule</th>
+          <th style="padding: 10px; text-align: left; border-bottom: 1px solid #333;">Rule (EXP-011-Rev2)</th>
           <th style="padding: 10px; text-align: center; border-bottom: 1px solid #333;">F1 (OPEN)</th>
           <th style="padding: 10px; text-align: center; border-bottom: 1px solid #333;">F2 (CLOSED)</th>
           <th style="padding: 10px; text-align: center; border-bottom: 1px solid #333;">F3 (UNKNOWN)</th>
@@ -399,34 +410,46 @@
       </thead>
       <tbody>
         <tr>
-          <td style="padding: 8px; border-bottom: 1px solid #333;">Source Contact permanently connected to incoming</td>
+          <td style="padding: 8px; border-bottom: 1px solid #333;">Source Contact → incoming conductor</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
         </tr>
         <tr>
-          <td style="padding: 8px; border-bottom: 1px solid #333;">Load Contact permanently connected to outgoing</td>
+          <td style="padding: 8px; border-bottom: 1px solid #333;">Load Contact → outgoing conductor</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
         </tr>
         <tr>
-          <td style="padding: 8px; border-bottom: 1px solid #333;">Only Moving Knife moves</td>
+          <td style="padding: 8px; border-bottom: 1px solid #333;">Knife is HINGED to Source Contact</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">N/A</td>
         </tr>
         <tr>
-          <td style="padding: 8px; border-bottom: 1px solid #333;">Mechanical Pivot NOT electrical terminal</td>
+          <td style="padding: 8px; border-bottom: 1px solid #333;">Knife TOP at hinge position (never moves)</td>
+          <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
+          <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
+          <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">N/A</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #333;">Hinge = mechanical pivot + electrical</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
         </tr>
         <tr>
-          <td style="padding: 8px; border-bottom: 1px solid #333;">Knife does NOT connect directly to conductor</td>
+          <td style="padding: 8px; border-bottom: 1px solid #333;">Air gap ONLY at Load Contact side</td>
+          <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
+          <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">N/A</td>
+          <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">N/A</td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #333;">Knife NEVER detaches from hinge</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
           <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
-          <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">✓</td>
+          <td style="padding: 8px; text-align: center; border-bottom: 1px solid #333;">N/A</td>
         </tr>
         <tr>
           <td style="padding: 8px;">No floating/broken topology</td>
@@ -438,12 +461,12 @@
     </table>
     
     <p style="margin-top: 20px; color: #22c55e;"><strong>Result: ALL VALIDATION CRITERIA PASSED</strong></p>
-    <p style="color: #888; font-size: 0.9rem;">The Knife Switch internal topology is correctly rendered across all three feeder states.</p>
+    <p style="color: #888; font-size: 0.9rem;">The Knife Switch internal topology with HINGE concept is correctly rendered.</p>
   </div>
   
   <footer style="text-align: center; color: #666; margin-top: 40px; padding: 20px;">
-    <p>EXP-011-Rev1 | LAB-007 | Knife Switch Topology Validation</p>
-    <p>Knowledge: KDE-GEOM-KNIFE-001 v1.1.0</p>
+    <p>EXP-011-Rev2 | LAB-007 | Knife Switch Hinge Topology Validation</p>
+    <p>Knowledge: KDE-GEOM-KNIFE-001 v1.2.0</p>
   </footer>
 </body>
 </html>
