@@ -64,10 +64,11 @@ registry:
       
       capability_groups: 5
       capabilities_count: 35
-      knowledge_dependencies: 2
+      knowledge_dependencies: 3
       enrolled_lessons:
         - EXP-005: Circuit Breaker Primitive
         - EXP-007: Disconnect Switch Primitive
+        - EXP-008: Earthing Switch Primitive
       
       responsibilities:
         owns:

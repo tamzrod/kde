@@ -55,6 +55,13 @@ The expert has been taught the following engineering primitives:
 - **Key Rule**: Knife rotates about center, conductor color inherited from bus
 - **Geometry**: Knife spans between contacts (y=94 to y=206), no overlap
 
+### Earthing Switch (ES)
+- **File**: `knowledge/primitives/earthing-switch.md`
+- **Inline Grounding Device**: Vertical orientation
+- **States**: CLOSED (black knife, 0°), OPEN (green knife, 40°), UNKNOWN (no knife)
+- **Key Rule**: Lower end connects to ground symbol (not conductor)
+- **Geometry**: Knife from contact (y=94) to ground conductor (y=206)
+
 ---
 
 ## Capabilities
@@ -89,6 +96,7 @@ The expert has been taught the following engineering primitives:
 |-----------|-------|------|--------|
 | EXP-005 | Circuit Breaker Primitive | 2026-07-21 | COMPLETE |
 | EXP-007 | Disconnect Switch Primitive | 2026-07-21 | COMPLETE |
+| EXP-008 | Earthing Switch Primitive | 2026-07-21 | COMPLETE |
 
 ---
 
@@ -110,6 +118,13 @@ The expert can correctly answer:
 ✓ Which geometry remains immutable?  
 ✓ Who owns conductor color?  
 ✓ How is UNKNOWN rendered?  
+
+✓ What is an Earthing Switch?  
+✓ Why does the lower end connect to ground?  
+✓ What color is the knife when CLOSED (grounded)?  
+✓ How does ES differ from DS?  
+✓ Why is ground symbol always visible?  
+✓ When is it safe to close an ES?  
 
 ---
 
