@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-Incomer Substation - 69kV Bus</title>
+  <style>
+    body {
+      background: #1a1a2e;
+      color: #eee;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #00d4ff;
+      margin-bottom: 5px;
+    }
+    .subtitle {
+      text-align: center;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    .bus-label {
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .bus-69kv {
+      color: #00ffff;
+    }
+    .svg-container {
+      background: #0a0a1a;
+      border-radius: 8px;
+      overflow: hidden;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+    .feeder-control {
+      background: #16213e;
+      border: 2px solid #333;
+      border-radius: 8px;
+      padding: 15px 25px;
+      text-align: center;
+    }
+    .feeder-control h3 {
+      margin: 0 0 10px 0;
+      color: #00d4ff;
+    }
+    .btn-group {
+      display: flex;
+      gap: 8px;
+    }
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.2s;
+    }
+    .btn-closed {
+      background: #3f3f3f;
+      color: #fff;
+    }
+    .btn-closed:hover {
+      background: #ef4444;
+    }
+    .btn-closed.active {
+      background: #ef4444;
+      box-shadow: 0 0 10px #ef4444;
+    }
+    .btn-open {
+      background: #3f3f3f;
+      color: #fff;
+    }
+    .btn-open:hover {
+      background: #22c55e;
+    }
+    .btn-open.active {
+      background: #22c55e;
+      box-shadow: 0 0 10px #22c55e;
+    }
+    .btn-unknown {
+      background: #3f3f3f;
+      color: #fff;
+    }
+    .btn-unknown:hover {
+      background: #888;
+    }
+    .btn-unknown.active {
+      background: #888;
+      box-shadow: 0 0 10px #888;
+    }
+    .legend {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #16213e;
+      border-radius: 8px;
+    }
+    .legend h3 {
+      margin: 0 0 15px 0;
+      color: #00d4ff;
+    }
+    .legend-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .legend-color {
+      width: 30px;
+      height: 6px;
+      border-radius: 3px;
+    }
+    .state-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 5px;
+    }
+    .state-closed { background: #ef4444; }
+    .state-open { background: #22c55e; }
+    .state-unknown { background: #888; }
+  </style>
+</head>
+<body>
+  <h1>3-Incomer Substation</h1>
+  <p class="subtitle">KDE-EXPERT-SLD-001 | Single Line Diagram Renderer</p>
+  
+  <div class="bus-label">
+    <span class="bus-69kv">●</span> 69 kV Bus
+  </div>
+  
+  <div class="svg-container">
+    <svg id="sld-renderer" viewBox="0 0 1200 600" width="100%" height="600">
+      <!-- Background grid -->
+      <defs>
+        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#222" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+      
+      <!-- Content rendered by JavaScript -->
+      <g id="substation-content"></g>
+    </svg>
+  </div>
+  
+  <div class="controls" id="controls"></div>
+  
+  <div class="legend">
+    <h3>Legend</h3>
+    <div class="legend-grid">
+      <div class="legend-item">
+        <div class="legend-color" style="background: #00ffff;"></div>
+        <span>69 kV Conductor (Bus)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #ef4444;"></div>
+        <span>Circuit Breaker (CLOSED)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #22c55e;"></div>
+        <span>Disconnect Switch (OPEN)</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #666;"></div>
+        <span>Unknown State</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background: #ffa500;"></div>
+        <span>Hinge (Knife Pivot)</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ============================================================
+    // KDE-EXPERT-SLD-001: SLD Engineering Expert Renderer
+    // Based on learned knowledge: EXP-005, EXP-007, EXP-008, EXP-011-Rev2
+    // ============================================================
+    
+    // Configuration
+    const CONFIG = {
+      BUS_Y: 80,
+      BUS_HEIGHT: 20,
+      BUS_WIDTH: 1000,
+      BUS_START_X: 100,
+      FEEDER_SPACING: 300,
+      DEVICE_SCALE: 100,
+      CONDUCTOR_WIDTH: 3,
+      CONDUCTOR_COLOR: '#00ffff'
+    };
+    
+    // State Colors (from learned knowledge)
+    const STATE_COLORS = {
+      CLOSED: { knife: '#ef4444', cb: '#ef4444', fill: 'rgba(239,68,68,0.3)' },
+      OPEN: { knife: '#22c55e', cb: '#22c55e', fill: 'rgba(34,197,94,0.3)' },
+      UNKNOWN: { knife: 'none', cb: 'none', fill: 'none' }
+    };
+    
+    // Feeder States
+    const feederStates = {
+      1: 'CLOSED',
+      2: 'CLOSED',
+      3: 'CLOSED'
+    };
+    
+    // ============================================================
+    // Primitive Renderers (Based on learned knowledge)
+    // ============================================================
+    
+    function appendLine(g, x1, y1, x2, y2, color, width = CONFIG.CONDUCTOR_WIDTH) {
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', x1);
+      line.setAttribute('y1', y1);
+      line.setAttribute('x2', x2);
+      line.setAttribute('y2', y2);
+      line.setAttribute('stroke', color);
+      line.setAttribute('stroke-width', width);
+      line.setAttribute('stroke-linecap', 'round');
+      g.appendChild(line);
+    }
+    
+    // ------------------------------------------------------------
+    // BUS RENDERER (EXP-010: Bus Voltage Profile)
+    // 69kV = Cyan (#00ffff)
+    // ------------------------------------------------------------
+    function renderBus(group, x, y, width, height) {
+      const bus = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      bus.setAttribute('x', x);
+      bus.setAttribute('y', y);
+      bus.setAttribute('width', width);
+      bus.setAttribute('height', height);
+      bus.setAttribute('fill', '#00ffff');
+      bus.setAttribute('rx', 3);
+      group.appendChild(bus);
+      
+      // Label
+      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      label.setAttribute('x', x + width / 2);
+      label.setAttribute('y', y - 10);
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('fill', '#00ffff');
+      label.setAttribute('font-size', '14');
+      label.setAttribute('font-weight', 'bold');
+      label.textContent = '69 kV Bus';
+      group.appendChild(label);
+    }
+    
+    // ------------------------------------------------------------
+    // DISCONNECT SWITCH (DS) RENDERER
+    // EXP-007, EXP-011-Rev2: Knife Switch Internal Topology
+    // 
+    // Key rules:
+    // - Source Contact: permanently connected to incoming conductor
+    // - Load Contact: permanently connected to outgoing conductor
+    // - Hinge: mechanical pivot + electrical connection (at Source Contact)
+    // - Moving Knife: rotates about hinge, NEVER detaches
+    // - Knife TOP is ALWAYS at hinge position
+    // - Air gap ONLY at Load Contact side when OPEN
+    // ------------------------------------------------------------
+    function renderDS(group, x, y, state) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      const scale = CONFIG.DEVICE_SCALE;
+      const colors = STATE_COLORS[state];
+      
+      // === SOURCE CONTACT ===
+      // Connected to incoming conductor (above)
+      // Knife is hinged HERE
+      appendLine(g, x - 15, y, x + 15, y, CONFIG.CONDUCTOR_COLOR);
+      
+      // === HINGE INDICATOR ===
+      // At Source Contact position - represents hinge point
+      const hinge = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      hinge.setAttribute('cx', x);
+      hinge.setAttribute('cy', y);
+      hinge.setAttribute('r', 5);
+      hinge.setAttribute('fill', 'none');
+      hinge.setAttribute('stroke', '#ffa500');
+      hinge.setAttribute('stroke-width', 2);
+      g.appendChild(hinge);
+      
+      // === MOVING KNIFE (EXP-011-Rev2) ===
+      // Hinged at top (Source Contact position)
+      // Rotates to bridge or isolate Load Contact
+      const knife = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      
+      if (state === 'UNKNOWN') {
+        // Knife not rendered
+        knife.style.display = 'none';
+      } else if (state === 'CLOSED') {
+        // CLOSED: Knife inline, bridging contacts
+        // Knife top at hinge (Source Contact), bottom at Load Contact
+        knife.setAttribute('x1', x);
+        knife.setAttribute('y1', y);
+        knife.setAttribute('x2', x);
+        knife.setAttribute('y2', y + scale + 1);
+        knife.setAttribute('stroke', colors.knife);
+      } else if (state === 'OPEN') {
+        // OPEN: Knife rotated 40° about hinge
+        // Knife TOP stays at hinge, bottom rotates away from Load Contact
+        const rad = 40 * Math.PI / 180;
+        const halfLen = (scale + 1) / 2 + 5;
+        const centerY = y + scale / 2;
+        
+        // Knife top ALWAYS at hinge
+        const topX = x;
+        const topY = y;
+        
+        // Knife bottom rotates away from Load Contact
+        const bottomX = x + Math.sin(rad) * halfLen;
+        const bottomY = y + Math.cos(rad) * halfLen;
+        
+        knife.setAttribute('x1', topX);
+        knife.setAttribute('y1', topY);
+        knife.setAttribute('x2', bottomX);
+        knife.setAttribute('y2', bottomY);
+        knife.setAttribute('stroke', colors.knife);
+      }
+      
+      knife.setAttribute('stroke-width', 5);
+      knife.setAttribute('stroke-linecap', 'round');
+      g.appendChild(knife);
+      
+      // === LOAD CONTACT ===
+      // Connected to outgoing conductor (below)
+      appendLine(g, x - 15, y + scale, x + 15, y + scale, CONFIG.CONDUCTOR_COLOR);
+      
+      group.appendChild(g);
+      return { height: scale, group: g };
+    }
+    
+    // ------------------------------------------------------------
+    // CIRCUIT BREAKER (CB) RENDERER
+    // EXP-005: Circuit Breaker Primitive
+    // Series Object with 2 connection points
+    // ------------------------------------------------------------
+    function renderCB(group, x, y, state) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      const scale = CONFIG.DEVICE_SCALE;
+      const colors = STATE_COLORS[state];
+      
+      // Top connection
+      appendLine(g, x - 20, y, x + 20, y, CONFIG.CONDUCTOR_COLOR);
+      
+      // CB Body
+      const bodyWidth = 50;
+      const body = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      body.setAttribute('x', x - bodyWidth / 2);
+      body.setAttribute('y', y + 5);
+      body.setAttribute('width', bodyWidth);
+      body.setAttribute('height', scale - 10);
+      body.setAttribute('rx', 4);
+      body.setAttribute('stroke', CONFIG.CONDUCTOR_COLOR);
+      body.setAttribute('stroke-width', 2);
+      
+      if (state !== 'UNKNOWN') {
+        body.setAttribute('fill', colors.fill);
+        body.setAttribute('stroke', colors.cb);
+      }
+      g.appendChild(body);
+      
+      // Bottom connection
+      appendLine(g, x - 20, y + scale, x + 20, y + scale, CONFIG.CONDUCTOR_COLOR);
+      
+      group.appendChild(g);
+      return { height: scale, group: g };
+    }
+    
+    // ------------------------------------------------------------
+    // EARTHING SWITCH (ES) RENDERER
+    // EXP-008, EXP-012: Parallel Object
+    // Branches from main conductor, does NOT interrupt it
+    // ------------------------------------------------------------
+    function renderES(group, x, y, state) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      const colors = STATE_COLORS[state];
+      
+      // ES branches horizontally from main conductor
+      // Main conductor continues vertically below
+      
+      // Horizontal branch to ES
+      appendLine(g, x, y, x + 80, y, CONFIG.CONDUCTOR_COLOR);
+      
+      // Vertical conductor to ground
+      appendLine(g, x + 80, y, x + 80, y + 60, CONFIG.CONDUCTOR_COLOR);
+      
+      // Ground symbol
+      const groundY = y + 60;
+      for (let i = 0; i < 3; i++) {
+        const width = 30 - i * 10;
+        appendLine(g, x + 80 - width/2, groundY + i * 6, x + 80 + width/2, groundY + i * 6, CONFIG.CONDUCTOR_COLOR);
+      }
+      
+      // Knife (same as DS topology)
+      if (state !== 'UNKNOWN') {
+        const knife = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        knife.setAttribute('x1', x + 80);
+        knife.setAttribute('y1', y);
+        knife.setAttribute('x2', x + 80);
+        knife.setAttribute('y2', groundY);
+        knife.setAttribute('stroke', colors.knife);
+        knife.setAttribute('stroke-width', 5);
+        knife.setAttribute('stroke-linecap', 'round');
+        g.appendChild(knife);
+      }
+      
+      group.appendChild(g);
+    }
+    
+    // ============================================================
+    // FEEDER RENDERER
+    // Series path: Bus → DS_Top → CB → DS_Bottom → Outgoing
+    // Parallel branch: ES (from between DS_Top and CB)
+    // ============================================================
+    function renderFeeder(group, feederX, state) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      
+      let y = CONFIG.BUS_Y + CONFIG.BUS_HEIGHT;
+      
+      // Incoming conductor from Bus
+      appendLine(g, feederX, CONFIG.BUS_Y + CONFIG.BUS_HEIGHT, feederX, y, CONFIG.CONDUCTOR_COLOR);
+      
+      // === DS_TOP ===
+      const dsTop = renderDS(g, feederX, y, state);
+      y += dsTop.height;
+      
+      // === Connection to CB with ES branch ===
+      // Main conductor continues to CB
+      // ES branches off at this point
+      const branchY = y + 40;
+      appendLine(g, feederX, y, feederX, branchY, CONFIG.CONDUCTOR_COLOR);
+      
+      // ES (parallel branch - does NOT interrupt main)
+      renderES(g, feederX, branchY, state);
+      
+      // Main continues to CB
+      appendLine(g, feederX, branchY, feederX, branchY + 20, CONFIG.CONDUCTOR_COLOR);
+      
+      y = branchY + 20;
+      
+      // === CB ===
+      const cb = renderCB(g, feederX, y, state);
+      y += cb.height;
+      
+      // === DS_BOTTOM ===
+      appendLine(g, feederX, y, feederX, y + 20, CONFIG.CONDUCTOR_COLOR);
+      y += 20;
+      
+      const dsBot = renderDS(g, feederX, y, state);
+      y += dsBot.height;
+      
+      // Outgoing conductor
+      appendLine(g, feederX, y, feederX, y + 50, CONFIG.CONDUCTOR_COLOR);
+      
+      // Label
+      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      label.setAttribute('x', feederX);
+      label.setAttribute('y', y + 70);
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('fill', '#888');
+      label.setAttribute('font-size', '12');
+      label.textContent = `Incomer ${feederX === 250 ? '1' : feederX === 550 ? '2' : '3'}`;
+      g.appendChild(label);
+      
+      group.appendChild(g);
+    }
+    
+    // ============================================================
+    // MAIN RENDERER
+    // ============================================================
+    function render() {
+      const content = document.getElementById('substation-content');
+      content.innerHTML = '';
+      
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      
+      // Render Bus
+      renderBus(g, CONFIG.BUS_START_X, CONFIG.BUS_Y, CONFIG.BUS_WIDTH, CONFIG.BUS_HEIGHT);
+      
+      // Render 3 Feeders
+      const feederPositions = [250, 550, 850];
+      feederPositions.forEach((x, idx) => {
+        renderFeeder(g, x, feederStates[idx + 1]);
+      });
+      
+      content.appendChild(g);
+      
+      // Update controls
+      updateControls();
+    }
+    
+    // ============================================================
+    // CONTROLS
+    // ============================================================
+    function createControls() {
+      const controls = document.getElementById('controls');
+      controls.innerHTML = '';
+      
+      [1, 2, 3].forEach(idx => {
+        const div = document.createElement('div');
+        div.className = 'feeder-control';
+        div.innerHTML = `
+          <h3>Incomer ${idx}</h3>
+          <div class="btn-group">
+            <button class="btn-closed" onclick="setState(${idx}, 'CLOSED')">CLOSED</button>
+            <button class="btn-open" onclick="setState(${idx}, 'OPEN')">OPEN</button>
+            <button class="btn-unknown" onclick="setState(${idx}, 'UNKNOWN')">UNKNOWN</button>
+          </div>
+        `;
+        controls.appendChild(div);
+      });
+      
+      updateControls();
+    }
+    
+    function setState(idx, state) {
+      feederStates[idx] = state;
+      render();
+    }
+    
+    function updateControls() {
+      [1, 2, 3].forEach(idx => {
+        const state = feederStates[idx];
+        document.querySelectorAll(`.feeder-control:nth-child(${idx}) .btn-group button`).forEach(btn => {
+          btn.classList.remove('active');
+        });
+        document.querySelector(`.feeder-control:nth-child(${idx}) .btn-${state.toLowerCase()}`).classList.add('active');
+      });
+    }
+    
+    // Initialize
+    render();
+    createControls();
+  </script>
+</body>
+</html>
