@@ -55,9 +55,9 @@ knowledge/
 | Class | Count |
 |-------|-------|
 | Foundational | 3 |
-| Architecture | 10 |
+| Architecture | 16 |
 | Domain | 45 |
-| **Total** | **58** |
+| **Total** | **64** |
 
 ---
 
@@ -111,6 +111,29 @@ source-investigation: INV-XXX
 evidence:
   - EV-XXX
 ```
+
+---
+
+## Architecture Documents
+
+### KDE-ARCH Series (10 documents)
+
+System architecture specifications (KDE-ARCH-001 through KDE-ARCH-010).
+
+### KDE-DESKTOP Series (6 documents)
+
+Desktop Runtime Architecture specifications extracted from INV-032:
+
+| ID | Title | Status | Confidence |
+|----|-------|--------|------------|
+| KDE-DESKTOP-001 | Desktop Runtime Multi-Process Architecture | CANDIDATE | MEDIUM-HIGH |
+| KDE-DESKTOP-002 | Desktop Runtime IPC Design Patterns | CANDIDATE | MEDIUM-HIGH |
+| KDE-DESKTOP-003 | Desktop Runtime Selection Criteria | CANDIDATE | MEDIUM |
+| KDE-DESKTOP-004 | Embedded Database Patterns | CANDIDATE | HIGH |
+| KDE-DESKTOP-005 | Desktop Application Security Model | CANDIDATE | HIGH |
+| KDE-DESKTOP-006 | Industrial Deployment Patterns | CANDIDATE | MEDIUM |
+
+**Source**: [INV-032 Knowledge Extraction](../laboratory/investigations/INV-032/knowledge-extraction/)
 
 ---
 
