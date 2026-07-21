@@ -528,48 +528,44 @@
       
       const x = feeder.x;  // Main conductor X position
       const state = feeder.state;
-      const scale = 120;
-      const stubLength = 15;
-      const chevronSize = 12; // Approximate chevron extent
+      const scale = 120;  // Device body height
+      const deviceTotal = scale + 30;  // Device + chevron stubs
       
       let y = feeder.y;
       
       // === BUS TO DS_TOP ===
-      // Main conductor from bus to DS_top
       appendLine(g, x, DRAFT.BUS_Y, x, y, DRAFT.COLOR);
       
-      // DS-Top (Series) - INTERRUPTS the path
+      // DS-Top (Series)
       const dsTopG = renderDS(x, y, state);
       g.appendChild(dsTopG);
-      y += scale;
+      y += deviceTotal;
       
       // === DS_TOP TO CB (MAIN CONDUCTOR CONTINUES) ===
-      // Main conductor goes straight through
       // ES BRANCHES OFF from this section
-      const branchY = y + 80;  // Branch point on main conductor
+      const branchY = y + 60;
       appendLine(g, x, y, x, branchY, DRAFT.COLOR);
       
-      // ES (Parallel branch) - branches HORIZONTALLY from main conductor
-      // Main conductor CONTINUES vertically below
+      // ES (Parallel branch)
       const esG = renderES(x, branchY, state);
       g.appendChild(esG);
       
-      // Main conductor continues below branch point
-      const cbY = y + scale;  // CB position
+      // Main conductor continues to CB
+      const cbY = y + 120;
       appendLine(g, x, branchY, x, cbY, DRAFT.COLOR);
       
-      // === CB (SERIES) - INTERRUPTS ===
+      // === CB (Series) ===
       const cbG = renderCB(x, cbY, state);
       g.appendChild(cbG);
+      y = cbY + deviceTotal;
       
       // === CB TO DS_BOTTOM ===
-      y = cbY + scale;
-      appendLine(g, x, cbY + scale, x, y, DRAFT.COLOR);
+      appendLine(g, x, cbY + deviceTotal, x, y, DRAFT.COLOR);
       
-      // DS-Bottom (Series) - INTERRUPTS
+      // DS-Bottom (Series)
       const dsBotG = renderDS(x, y, state);
       g.appendChild(dsBotG);
-      y += scale;
+      y += deviceTotal;
       
       // === DS_BOTTOM TO OUTGOING ===
       appendLine(g, x, y, x, y + 40, DRAFT.COLOR);
@@ -655,28 +651,60 @@
       
       const config = getStateConfig(state);
       
-      // Top contact (at y)
-      appendLine(g, x - 20, y, x + 20, y, DRAFT.COLOR);
+      // === TOP CONNECTION INTERFACE ===
+      // Conductor stub
+      appendLine(g, x, y - 15, x, y, DRAFT.COLOR);
+      // Double chevron (>>)
+      const chevronSize = 5;
+      for (let i = 0; i < 2; i++) {
+        const offset = (i - 0.5) * 4;
+        const chev = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        chev.setAttribute('d', `M ${x - chevronSize},${y + offset} L ${x},${y + offset + chevronSize} L ${x + chevronSize},${y + offset}`);
+        chev.setAttribute('stroke', DRAFT.COLOR);
+        chev.setAttribute('stroke-width', 2);
+        chev.setAttribute('fill', 'none');
+        g.appendChild(chev);
+      }
       
-      // Bottom contact (at y + scale)
-      appendLine(g, x - 20, y + scale, x + 20, y + scale, DRAFT.COLOR);
+      // === BOTTOM CONNECTION INTERFACE ===
+      // Conductor stub
+      appendLine(g, x, y + scale, x, y + scale + 15, DRAFT.COLOR);
+      // Double chevron (>>)
+      for (let i = 0; i < 2; i++) {
+        const offset = (i - 0.5) * 4;
+        const chev = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        chev.setAttribute('d', `M ${x - chevronSize},${y + scale + offset + chevronSize} L ${x},${y + scale + offset} L ${x + chevronSize},${y + scale + offset + chevronSize}`);
+        chev.setAttribute('stroke', DRAFT.COLOR);
+        chev.setAttribute('stroke-width', 2);
+        chev.setAttribute('fill', 'none');
+        g.appendChild(chev);
+      }
       
-      // Knife blade
+      // === DEVICE BODY ===
+      // Top contact bar (inside device)
+      appendLine(g, x - 15, y + 10, x + 15, y + 10, DRAFT.COLOR);
+      // Bottom contact bar (inside device)
+      appendLine(g, x - 15, y + scale - 10, x + 15, y + scale - 10, DRAFT.COLOR);
+      
+      // Knife blade (inside device body, between contacts)
       const knife = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       knife.setAttribute('id', `ds-${x}-knife`);
       
       if (config.visible) {
+        const topContact = y + 10;
+        const bottomContact = y + scale - 10;
+        
         if (config.angle === 0) {
-          // CLOSED: blade inline with conductor (vertical)
+          // CLOSED: blade inline (vertical through contacts)
           knife.setAttribute('x1', x);
-          knife.setAttribute('y1', y);
+          knife.setAttribute('y1', topContact);
           knife.setAttribute('x2', x);
-          knife.setAttribute('y2', y + scale + 2);
+          knife.setAttribute('y2', bottomContact);
         } else {
           // OPEN: blade rotated away
           const rad = config.angle * Math.PI / 180;
-          const pivotY = y + scale / 2;
-          const halfLen = scale / 2 + 2;
+          const pivotY = (topContact + bottomContact) / 2;
+          const halfLen = (bottomContact - topContact) / 2 + 2;
           knife.setAttribute('x1', x - Math.sin(rad) * halfLen);
           knife.setAttribute('y1', pivotY - Math.cos(rad) * halfLen);
           knife.setAttribute('x2', x + Math.sin(rad) * halfLen);
@@ -699,17 +727,40 @@
       
       const config = getStateConfig(state);
       
-      // Top contact (at y)
-      appendLine(g, x - 20, y, x + 20, y, DRAFT.COLOR);
+      // === TOP CONNECTION INTERFACE ===
+      // Conductor stub
+      appendLine(g, x, y - 15, x, y, DRAFT.COLOR);
+      // Double chevron (>>)
+      const chevronSize = 5;
+      for (let i = 0; i < 2; i++) {
+        const offset = (i - 0.5) * 4;
+        const chev = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        chev.setAttribute('d', `M ${x - chevronSize},${y + offset} L ${x},${y + offset + chevronSize} L ${x + chevronSize},${y + offset}`);
+        chev.setAttribute('stroke', DRAFT.COLOR);
+        chev.setAttribute('stroke-width', 2);
+        chev.setAttribute('fill', 'none');
+        g.appendChild(chev);
+      }
       
-      // Bottom contact (at y + scale)
-      appendLine(g, x - 20, y + scale, x + 20, y + scale, DRAFT.COLOR);
+      // === BOTTOM CONNECTION INTERFACE ===
+      // Conductor stub
+      appendLine(g, x, y + scale, x, y + scale + 15, DRAFT.COLOR);
+      // Double chevron (>>)
+      for (let i = 0; i < 2; i++) {
+        const offset = (i - 0.5) * 4;
+        const chev = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        chev.setAttribute('d', `M ${x - chevronSize},${y + scale + offset + chevronSize} L ${x},${y + scale + offset} L ${x + chevronSize},${y + scale + offset + chevronSize}`);
+        chev.setAttribute('stroke', DRAFT.COLOR);
+        chev.setAttribute('stroke-width', 2);
+        chev.setAttribute('fill', 'none');
+        g.appendChild(chev);
+      }
       
-      // CB body rectangle
+      // === DEVICE BODY ===
       const bodyWidth = 50;
       const bodyX = x - bodyWidth / 2;
-      const bodyY = y + 5;
-      const bodyHeight = scale - 10;
+      const bodyY = y + 10;
+      const bodyHeight = scale - 20;
       
       const body = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
       body.setAttribute('x', bodyX);
