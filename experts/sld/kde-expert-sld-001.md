@@ -75,23 +75,40 @@ The expert has been taught the following engineering primitives:
 
 ### Circuit Breaker (CB)
 - **File**: `knowledge/primitives/circuit-breaker.md`
-- **Inline Primitive**: Two anchors on same horizontal axis
-- **States**: CLOSED (red), OPEN (green), TRIPPED (flashing), UNKNOWN
+- **Series Object**: Two connection points (top, bottom), interrupts main path
+- **Connection Interface**: Conductor stub → Double chevron → Body → Double chevron → Conductor stub
+- **States**: CLOSED (red rectangle), OPEN (green rectangle), UNKNOWN (no fill)
 - **Key Rule**: Conductor inherits bus color when breaker closed
 
 ### Disconnect Switch (DS)
 - **File**: `knowledge/primitives/disconnect-switch.md`
-- **Inline Isolation Device**: Vertical orientation
+- **Series Object**: Two connection points (top, bottom), interrupts main path
+- **Connection Interface**: Conductor stub → Double chevron → Body → Double chevron → Conductor stub
 - **States**: CLOSED (red knife, 0°), OPEN (green knife, 40°), UNKNOWN (no knife)
 - **Key Rule**: Knife rotates about center, conductor color inherited from bus
-- **Geometry**: Knife spans between contacts (y=94 to y=206), no overlap
+- **Geometry**: Knife spans between contacts inside device body
 
 ### Earthing Switch (ES)
 - **File**: `knowledge/primitives/earthing-switch.md`
-- **Inline Grounding Device**: Vertical orientation
+- **Parallel Grounding Device**: Branches from main conductor, does NOT interrupt it
+- **Connection Points**: ONE (main connection to branch point)
 - **States**: CLOSED (red knife, 0°), OPEN (green knife, 40°), UNKNOWN (no knife)
-- **Key Rule**: Lower end connects to ground symbol (not conductor)
-- **Geometry**: Knife from contact (y=94) to ground conductor (y=206)
+- **Key Rule**: Branches from main conductor; main conductor CONTINUES through
+- **Topology**: Main path (Bus→DS→CB→DS→Out) is separate from ES branch
+
+### Correct Feeder Topology
+```
+Main Conductor Path:
+  Bus → DS_top → CB → DS_bottom → Outgoing
+            ↑
+            └── ES branch (parallel, does NOT interrupt main)
+```
+
+### Series Object Connection Interface
+- **Components**: Conductor stub → Double chevron (>>) → Device body → Double chevron → Conductor stub
+- **Purpose**: Clearly distinguishes electrical connection point from device body
+- **Chevrons**: Centered on conductor axis, always cyan color
+- **Body**: Contains knife (DS) or rectangle (CB) showing state
 
 ---
 
@@ -133,6 +150,7 @@ The expert has been taught the following engineering primitives:
 | EXP-012 | ES Physical Arrangement | 2026-07-21 | COMPLETE |
 | EXP-013 | Engineering Geometry Model | 2026-07-21 | COMPLETE |
 | EXP-014 | Electrical Network Model | 2026-07-21 | COMPLETE |
+| EXP-LAB-6 | Lab Experiment: Network Topology & Connection Interface | 2026-07-21 | COMPLETE |
 
 ---
 
@@ -199,6 +217,16 @@ The expert can correctly answer:
 ✓ How many connection points does a Parallel Object expose?  
 ✓ Who generates conductors?  
 ✓ Does an Earth Switch interrupt the main conductor?  
+
+**Lab-Experiment Lessons (Iteration 6):**
+✓ What is the correct feeder topology?  
+✓ Where does ES connect in the network?  
+✓ Why must ES NOT be placed in series with CB/DS?  
+✓ What does the main conductor do at an ES branch point?  
+✓ What is a Series Object connection interface?  
+✓ What are the components of a connection interface?  
+✓ Why are chevrons used in the connection interface?  
+✓ How is Series Object state visualization preserved with chevrons?  
 
 ---
 

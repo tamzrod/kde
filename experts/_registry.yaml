@@ -64,7 +64,7 @@ registry:
       
       capability_groups: 5
       capabilities_count: 35
-      knowledge_dependencies: 8
+      knowledge_dependencies: 9
       enrolled_lessons:
         - EXP-005: Circuit Breaker Primitive
         - EXP-007: Disconnect Switch Primitive
@@ -74,6 +74,7 @@ registry:
         - EXP-012: ES Physical Arrangement
         - EXP-013: Engineering Geometry Model
         - EXP-014: Electrical Network Model
+        - EXP-LAB-6: Lab Experiment: Network Topology & Connection Interface
       
       responsibilities:
         owns:
