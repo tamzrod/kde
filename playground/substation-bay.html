@@ -654,46 +654,29 @@
       const scale = 120;
       
       const config = getStateConfig(state);
-      const bodyHeight = scale - 30; // Body height excluding connection stubs
-      const bodyWidth = 50;
       
-      // === TOP CONNECTION INTERFACE ===
-      const topInterface = renderSeriesInterface(g, x, y, bodyHeight, bodyWidth, 'top');
+      // Top contact (at y)
+      appendLine(g, x - 20, y, x + 20, y, DRAFT.COLOR);
       
-      // === BOTTOM CONNECTION INTERFACE ===
-      const bottomY = y + scale;
-      const bottomInterface = renderSeriesInterface(g, x, bottomY, bodyHeight, bodyWidth, 'bottom');
+      // Bottom contact (at y + scale)
+      appendLine(g, x - 20, y + scale, x + 20, y + scale, DRAFT.COLOR);
       
-      // === DS BODY ===
-      // Body spans between the two chevrons
-      const bodyY = topInterface.bodyY + 15; // Start after top chevron
-      const bodyEndY = bottomInterface.bodyY - 15; // End before bottom chevron
-      
-      // Top contact bar
-      appendLine(g, x - 15, bodyY, x + 15, bodyY, DRAFT.COLOR);
-      
-      // Bottom contact bar
-      appendLine(g, x - 15, bodyEndY, x + 15, bodyEndY, DRAFT.COLOR);
-      
-      // Knife blade (between contacts)
+      // Knife blade
       const knife = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       knife.setAttribute('id', `ds-${x}-knife`);
       
       if (config.visible) {
-        const contactGap = bodyEndY - bodyY;
-        const bladeLength = contactGap + 4;
-        
         if (config.angle === 0) {
-          // Closed: inline vertical
+          // CLOSED: blade inline with conductor (vertical)
           knife.setAttribute('x1', x);
-          knife.setAttribute('y1', bodyY);
+          knife.setAttribute('y1', y);
           knife.setAttribute('x2', x);
-          knife.setAttribute('y2', bodyEndY + 2);
+          knife.setAttribute('y2', y + scale + 2);
         } else {
-          // Open: rotated
+          // OPEN: blade rotated away
           const rad = config.angle * Math.PI / 180;
-          const pivotY = bodyY + contactGap / 2;
-          const halfLen = bladeLength / 2;
+          const pivotY = y + scale / 2;
+          const halfLen = scale / 2 + 2;
           knife.setAttribute('x1', x - Math.sin(rad) * halfLen);
           knife.setAttribute('y1', pivotY - Math.cos(rad) * halfLen);
           knife.setAttribute('x2', x + Math.sin(rad) * halfLen);
@@ -715,26 +698,24 @@
       const scale = 120;
       
       const config = getStateConfig(state);
-      const bodyHeight = scale - 30; // Body height excluding connection stubs
+      
+      // Top contact (at y)
+      appendLine(g, x - 20, y, x + 20, y, DRAFT.COLOR);
+      
+      // Bottom contact (at y + scale)
+      appendLine(g, x - 20, y + scale, x + 20, y + scale, DRAFT.COLOR);
+      
+      // CB body rectangle
       const bodyWidth = 50;
-      
-      // === TOP CONNECTION INTERFACE ===
-      const topInterface = renderSeriesInterface(g, x, y, bodyHeight, bodyWidth, 'top');
-      
-      // === BOTTOM CONNECTION INTERFACE ===
-      const bottomY = y + scale;
-      const bottomInterface = renderSeriesInterface(g, x, bottomY, bodyHeight, bodyWidth, 'bottom');
-      
-      // === CB BODY ===
-      // Body spans between the two chevrons
-      const bodyY = topInterface.bodyY + 10;
-      const bodyEndY = bottomInterface.bodyY - 10;
+      const bodyX = x - bodyWidth / 2;
+      const bodyY = y + 5;
+      const bodyHeight = scale - 10;
       
       const body = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      body.setAttribute('x', x - bodyWidth / 2);
+      body.setAttribute('x', bodyX);
       body.setAttribute('y', bodyY);
       body.setAttribute('width', bodyWidth);
-      body.setAttribute('height', bodyEndY - bodyY);
+      body.setAttribute('height', bodyHeight);
       body.setAttribute('rx', 4);
       body.setAttribute('stroke', DRAFT.COLOR);
       body.setAttribute('stroke-width', 2);
