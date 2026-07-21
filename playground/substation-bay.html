@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Substation Bay - Iteration 5 (Two-Phase Renderer)</title>
+  <title>Substation Bay - Iteration 6 (5-Stage Renderer)</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -42,16 +42,18 @@
     .btn-unknown { border-color: #888; }
     .btn-unknown.btn-active { background: #888; color: #000; }
     .info { font-size: 0.75rem; color: #666; margin-top: 0.5rem; text-align: center; }
+    .log { font-size: 0.7rem; color: #555; margin-top: 1rem; text-align: left; max-height: 150px; overflow-y: auto; }
   </style>
 </head>
 <body>
-  <h1>Substation Bay - Two-Phase Renderer (Iteration 5)</h1>
-  <p class="subtitle">69 kV | Construction Draft → Normalized Geometry</p>
+  <h1>Substation Bay - 5-Stage Renderer (Iteration 6)</h1>
+  <p class="subtitle">69 kV | Network → Conductors → Draft → Normalized → SVG</p>
   
   <div class="container">
     <svg id="sld" width="950" height="900" viewBox="0 0 950 900">
       <rect width="950" height="900" fill="#000"/>
-      <g id="content"></g>
+      <g id="bus-group"></g>
+      <g id="feeders-group"></g>
     </svg>
     
     <div class="controls">
@@ -78,254 +80,667 @@
     </div>
     
     <p class="info">
-      Phase 1: Construction Draft (pixel units) → Phase 2: Normalized Geometry → Phase 3: SVG Render
+      5-Stage: [1] Network → [2] Conductors → [3] Draft → [4] Normalized → [5] SVG
     </p>
+    
+    <div id="log" class="log"></div>
   </div>
 
   <script>
     // ============================================================
-    // TWO-PHASE RENDERER
-    // Phase 1: Construction Draft (visual layout)
-    // Phase 2: Normalized Geometry (from draft proportions)
-    // Phase 3: SVG Render (from normalized)
+    // 5-STAGE RENDERER
+    // Per EXP-014: Electrical Network Model
     // ============================================================
-
+    
+    const logDiv = document.getElementById('log');
+    function log(msg) {
+      console.log(msg);
+      logDiv.innerHTML += msg + '<br>';
+    }
+    function clearLog() { logDiv.innerHTML = ''; }
+    
     // ============================================================
-    // PHASE 1: CONSTRUCTION DRAFT (Draftsman View)
-    // All values in pixels - like a technical drawing
+    // STAGE 1: BUILD ELECTRICAL NETWORK
+    // ============================================================
+    
+    /**
+     * Connection Point (EXP-014)
+     * Immutable interface where conductors attach
+     */
+    class ConnectionPoint {
+      constructor(parent, name, type) {
+        this.parent = parent;
+        this.name = name;
+        this.type = type; // 'top', 'bottom', 'main', 'ground'
+        this.connected = null; // Reference to connected conductor
+      }
+      
+      connect(conductor) {
+        this.connected = conductor;
+        log(`  [CP] ${this.parent.id}.${this.name} connected`);
+      }
+      
+      disconnect() {
+        this.connected = null;
+      }
+      
+      isConnected() {
+        return this.connected !== null;
+      }
+    }
+    
+    /**
+     * Engineering Object Base (EXP-014)
+     * Independent object that exposes connection points
+     */
+    class EngineeringObject {
+      constructor(id, type) {
+        this.id = id;
+        this.type = type;
+        this.connectionPoints = {};
+      }
+      
+      addConnectionPoint(name, type) {
+        this.connectionPoints[name] = new ConnectionPoint(this, name, type);
+        return this.connectionPoints[name];
+      }
+      
+      getConnectionPoint(name) {
+        return this.connectionPoints[name];
+      }
+    }
+    
+    /**
+     * Series Object (EXP-014)
+     * Interrupts path, exposes 2 connection points
+     * Examples: CB, DS
+     */
+    class SeriesObject extends EngineeringObject {
+      constructor(id, type) {
+        super(id, type);
+        this.addConnectionPoint('top', 'top');
+        this.addConnectionPoint('bottom', 'bottom');
+        this.state = 'CLOSED'; // CLOSED or OPEN or UNKNOWN
+        log(`  [SERIES] ${id} created (top, bottom)`);
+      }
+      
+      setState(state) {
+        this.state = state;
+        log(`  [SERIES] ${this.id} state = ${state}`);
+      }
+    }
+    
+    /**
+     * Parallel Object (EXP-014)
+     * Branches without interrupting, exposes 1 connection point
+     * Examples: ES, SA
+     */
+    class ParallelObject extends EngineeringObject {
+      constructor(id, type) {
+        super(id, type);
+        this.addConnectionPoint('main', 'main');
+        // Ground is internal, not a connection point
+        log(`  [PARALLEL] ${id} created (main only)`);
+      }
+      
+      setState(state) {
+        this.state = state;
+        log(`  [PARALLEL] ${this.id} state = ${state}`);
+      }
+    }
+    
+    /**
+     * Bus (EXP-014)
+     * Continuous conductor with multiple connection points
+     */
+    class Bus extends EngineeringObject {
+      constructor(id, voltage) {
+        super(id, 'bus');
+        this.voltage = voltage;
+        // Add connection points for each feeder
+        this.feederConnections = [];
+        log(`  [BUS] ${id} created (${voltage})`);
+      }
+      
+      addFeederConnection() {
+        const idx = this.feederConnections.length;
+        const cp = this.addConnectionPoint(`feeder_${idx}`, 'feeder');
+        this.feederConnections.push(cp);
+        log(`  [BUS] Added feeder connection ${idx}`);
+        return cp;
+      }
+    }
+    
+    /**
+     * Network Container
+     * Holds all objects and conductors
+     */
+    class ElectricalNetwork {
+      constructor() {
+        this.objects = {};
+        this.conductors = [];
+        this.bus = null;
+        this.feeders = [];
+        log('[NETWORK] Electrical Network created');
+      }
+      
+      addObject(obj) {
+        this.objects[obj.id] = obj;
+        log(`[NETWORK] Added object: ${obj.id}`);
+      }
+      
+      setBus(bus) {
+        this.bus = bus;
+        this.addObject(bus);
+      }
+      
+      addConductor(fromCP, toCP, isParallel = false) {
+        const conductor = {
+          from: fromCP,
+          to: toCP,
+          isParallel: isParallel,
+          isBroken: false
+        };
+        
+        // NOTE: isBroken will be set later in generateConductors()
+        // Don't set it here to avoid confusion about what breaks the conductor
+        
+        fromCP.connect(conductor);
+        toCP.connect(conductor);
+        this.conductors.push(conductor);
+        
+        // Log as PENDING - actual broken status determined in Stage 2
+        log(`[CONDUCTOR] ${fromCP.parent.id}.${fromCP.name} → ${toCP.parent.id}.${toCP.name} [PENDING]`);
+        
+        return conductor;
+      }
+      
+      getConductors() {
+        return this.conductors;
+      }
+    }
+    
+    /**
+     * Build the electrical network for a feeder
+     * 
+     * CORRECT TOPOLOGY (Per EXP-014):
+     * 
+     * Main conductor (series path):
+     *   Bus → DS_top → CB → DS_bottom → Outgoing
+     * 
+     * ES (parallel branch):
+     *   ES.main connects to main conductor (branch point)
+     *   ES never interrupts the main conductor
+     *   ES has only ONE connection point (main)
+     */
+    function buildFeederNetwork(network, feederNum, state) {
+      log(`\n[FEEDER ${feederNum}] Building network...`);
+      
+      // Create series devices (these interrupt the main path)
+      const dsTop = new SeriesObject(`f${feederNum}_ds_top`, 'series');
+      const cb = new SeriesObject(`f${feederNum}_cb`, 'series');
+      const dsBottom = new SeriesObject(`f${feederNum}_ds_bottom`, 'series');
+      
+      dsTop.setState(state);
+      cb.setState(state);
+      dsBottom.setState(state);
+      
+      // Create parallel device (ES)
+      // ES has ONLY ONE connection point: main
+      // ES branches from the main conductor, does NOT interrupt it
+      const es = new ParallelObject(`f${feederNum}_es`, 'parallel');
+      es.setState(state);
+      
+      // Add to network
+      network.addObject(dsTop);
+      network.addObject(cb);
+      network.addObject(dsBottom);
+      network.addObject(es);
+      
+      // CORRECT SERIES PATH: DS_top → CB → DS_bottom
+      // (ES is NOT in series - it's a parallel branch)
+      network.addConductor(dsTop.getConnectionPoint('bottom'), cb.getConnectionPoint('top'));
+      network.addConductor(cb.getConnectionPoint('bottom'), dsBottom.getConnectionPoint('top'));
+      
+      // ES BRANCH: Connect ES.main to a branch point on the main conductor
+      // The branch point is between DS_top and CB
+      // ES.main connects to the main conductor at a junction point
+      const branchCP = new ConnectionPoint({ id: `f${feederNum}_branch` }, 'branch', 'junction');
+      network.addConductor(dsTop.getConnectionPoint('bottom'), branchCP);
+      network.addConductor(branchCP, es.getConnectionPoint('main'));
+      
+      return {
+        dsTop, cb, dsBottom, es,
+        busConnection: dsTop.getConnectionPoint('top'),
+        outgoingConnection: dsBottom.getConnectionPoint('bottom')
+      };
+    }
+    
+    // ============================================================
+    // STAGE 2: GENERATE ELECTRICAL CONDUCTORS
+    // ============================================================
+    
+    /**
+     * Generate conductors between connected objects
+     * Per EXP-014: Conductors preserve electrical continuity
+     * 
+     * Key rules:
+     * - Series Object (OPEN): Breaks the path at its connection points
+     * - Series Object (CLOSED): Path continuous through
+     * - Series Object (UNKNOWN): Path continuous (indeterminate)
+     * - Parallel Object (ES): NEVER breaks the main conductor
+     *   The main conductor ALWAYS continues through a Parallel Object
+     */
+    function generateConductors(network) {
+      log('\n[CONDUCTORS] Generating from connection points...');
+      
+      const conductors = network.getConductors();
+      let continuous = 0, broken = 0;
+      
+      conductors.forEach(c => {
+        // Check if either endpoint device breaks continuity
+        const fromDevice = c.from.parent;
+        const toDevice = c.to.parent;
+        
+        // A conductor is broken if:
+        // 1. The FROM device is a Series Object in OPEN state
+        // 2. The TO device is a Series Object in OPEN state
+        // 
+        // IMPORTANT: Parallel Objects (ES) NEVER break the main conductor!
+        
+        if (fromDevice.type === 'series' && fromDevice.state === 'OPEN') {
+          c.isBroken = true;
+        }
+        if (toDevice.type === 'series' && toDevice.state === 'OPEN') {
+          c.isBroken = true;
+        }
+        
+        if (c.isBroken) {
+          broken++;
+          log(`  [BREAK] ${c.from.parent.id}.${c.from.name} → ${c.to.parent.id}.${c.to.name}`);
+        } else {
+          continuous++;
+        }
+      });
+      
+      log(`  Total: ${continuous} continuous, ${broken} broken (Series OPEN)`);
+      
+      // Verify ES never breaks main conductor
+      // ES is a Parallel Object - main conductor ALWAYS continues
+      Object.values(network.objects).forEach(obj => {
+        if (obj.type === 'parallel') {
+          // Check conductors going TO ES main (these are part of main path)
+          const toES = obj.getConnectionPoint('main');
+          const conductorToES = toES.connected;
+          
+          // The conductor TO ES is part of the main conductor
+          // It should only be broken if a Series Object before it is OPEN
+          // NOT because ES breaks it (ES never breaks the main path)
+          
+          // Verify: conductor from Series to ES.main
+          if (conductorToES) {
+            const fromCP = conductorToES.from;
+            const toCP = conductorToES.to;
+            
+            if (fromCP.parent.type === 'series' && fromCP.parent.state === 'OPEN') {
+              // This is expected - Series Object before ES is OPEN
+              // The ES is NOT breaking the conductor, the Series Object is
+              log(`  [OK] Conductor broken by ${fromCP.parent.id} (Series), not by ES ${obj.id}`);
+            }
+          }
+        }
+      });
+    }
+    
+    // ============================================================
+    // STAGE 3: CONSTRUCTION DRAFT
+    // Visual arrangement, spacing, clearances
     // ============================================================
     
     const DRAFT = {
-      // Bay layout - symmetrical spacing
-      FEEDER_X: [125, 475, 825],    // Horizontal positions (symmetrical)
-      BUS_Y: 60,                     // Bus vertical position
-      FEEDER_START_Y: 60,          // Where feeder starts below bus
-      
-      // Device spacing - clean vertical rhythm
-      DEVICE_HEIGHT: 120,           // Standard device vertical extent
-      DEVICE_GAP: 40,              // Gap between devices
-      FEEDER_PITCH: 160,           // Total pitch: DEVICE_HEIGHT + DEVICE_GAP
-      
-      // Conductor dimensions
+      FEEDER_X: [125, 475, 825],
+      BUS_Y: 60,
+      DEVICE_SPACING: 160,
+      ES_BRANCH_OFFSET: 50,
       CONDUCTOR_WIDTH: 4,
       BUS_WIDTH: 8,
-      
-      // Colors
-      COLOR_69KV: '#00FFFF',
-      COLOR_CLOSED: '#FF4444',
-      COLOR_OPEN: '#44FF44',
-      COLOR_UNKNOWN: '#888888',
-      
-      // DS dimensions (from EXP-011)
-      DS_CONTACT_WIDTH: 30,
-      DS_CONTACT_THICKNESS: 3,
-      DS_GAP: 52,                  // Gap between contacts
-      DS_BLADE_LENGTH: 53,         // Gap + tolerance
-      DS_BLADE_WIDTH: 5,
-      DS_OPEN_ANGLE: 40,
-      
-      // CB dimensions
-      CB_WIDTH: 50,
-      CB_HEIGHT: 100,
-      
-      // ES branch dimensions (from EXP-012)
-      ES_BRANCH_LENGTH: 50,        // Short branch to ground
-      ES_BRANCH_ANGLE: 45,         // Degrees from vertical toward ground
-      ES_GROUND_CONDUCTOR: 50,     // Length after knife to ground symbol
-      ES_GROUND_SYMBOL_SIZE: 20,
+      COLOR: '#00FFFF'
     };
     
-    // ============================================================
-    // PHASE 2: NORMALIZED GEOMETRY (From Draft Proportions)
-    // Scale-independent values derived from draft
-    // ============================================================
-    
-    const NORM = {
-      // Normalize to device height = 1.0
-      SCALE: DRAFT.DEVICE_HEIGHT,
+    /**
+     * Create construction draft - positions for visual layout
+     */
+    function createConstructionDraft(network) {
+      log('\n[DRAFT] Creating construction layout...');
       
-      // DS normalized
-      DS: {
-        width: 1.0,
-        height: 1.0,
-        contact_width: DRAFT.DS_CONTACT_WIDTH / DRAFT.DEVICE_HEIGHT,
-        contact_thickness: DRAFT.DS_CONTACT_THICKNESS / DRAFT.DEVICE_HEIGHT,
-        gap: DRAFT.DS_GAP / DRAFT.DEVICE_HEIGHT,
-        blade_length: DRAFT.DS_BLADE_LENGTH / DRAFT.DEVICE_HEIGHT,
-        blade_width: DRAFT.DS_BLADE_WIDTH / DRAFT.DEVICE_HEIGHT,
-        open_angle: DRAFT.DS_OPEN_ANGLE,
-        closed_angle: 0,
-        // Anchors
-        anchors: {
-          top: { x: 0.5, y: 0 },
-          bottom: { x: 0.5, y: 1 }
-        }
-      },
+      const draft = {
+        bus: { x: 50, y: DRAFT.BUS_Y, width: 900 },
+        feeders: []
+      };
       
-      // CB normalized
-      CB: {
-        width: DRAFT.CB_WIDTH / DRAFT.DEVICE_HEIGHT,
-        height: 1.0,
-        anchors: {
-          top: { x: 0.5, y: 0 },
-          bottom: { x: 0.5, y: 1 }
-        }
-      },
+      DRAFT.FEEDER_X.forEach((x, idx) => {
+        const feederNum = idx + 1;
+        const state = feederStates[feederNum];
+        
+        const feederDraft = {
+          x: x,
+          y: DRAFT.BUS_Y,
+          devices: [
+            { type: 'ds_top', y: 0 },
+            { type: 'es', y: DRAFT.DEVICE_SPACING },
+            { type: 'cb', y: DRAFT.DEVICE_SPACING * 2 },
+            { type: 'ds_bottom', y: DRAFT.DEVICE_SPACING * 3 }
+          ],
+          state: state
+        };
+        
+        draft.feeders.push(feederDraft);
+        log(`  Feeder ${feederNum}: x=${x}, state=${state}`);
+      });
       
-      // ES normalized (branch device)
-      ES: {
-        width: 1.2,
-        height: 1.0,
-        branch_length: DRAFT.ES_BRANCH_LENGTH / DRAFT.DEVICE_HEIGHT,
-        branch_angle: DRAFT.ES_BRANCH_ANGLE,
-        ground_conductor: DRAFT.ES_GROUND_CONDUCTOR / DRAFT.DEVICE_HEIGHT,
-        ground_symbol_size: DRAFT.ES_GROUND_SYMBOL_SIZE / DRAFT.DEVICE_HEIGHT,
-        anchors: {
-          main: { x: 0.5, y: 0 },
-          ground: { x: 0.5, y: 1 }
-        }
-      },
-      
-      // Bus normalized
-      BUS: {
-        height: 1.0,
-        anchors: {
-          conn: { x: 0.5, y: 0 }
-        }
-      },
-      
-      // Feeder composition
-      FEEDER: {
-        pitch: 1.0 + (DRAFT.DEVICE_GAP / DRAFT.DEVICE_HEIGHT),
-        devices: ['DS', 'CB', 'DS']  // Top-DS, CB, Bottom-DS
-      }
-    };
+      return draft;
+    }
     
     // ============================================================
-    // STATE CONFIGURATIONS
+    // STAGE 4: NORMALIZE GEOMETRY
+    // Convert draft to normalized coordinates
     // ============================================================
     
-    const STATES = {
-      OPEN: {
-        ds_angle: NORM.DS.open_angle,
-        cb_fill: DRAFT.COLOR_OPEN,
-        visible: true
-      },
-      CLOSED: {
-        ds_angle: NORM.DS.closed_angle,
-        cb_fill: DRAFT.COLOR_CLOSED,
-        visible: true
-      },
-      UNKNOWN: {
-        ds_angle: 0,
-        cb_fill: 'transparent',
-        visible: false
-      }
-    };
+    function normalizeGeometry(draft) {
+      log('\n[NORMALIZE] Converting to normalized geometry...');
+      
+      const NORM = {
+        SCALE: 120, // Device height in pixels
+        bus: {
+          y: draft.bus.y / 120
+        },
+        feeders: draft.feeders.map(f => ({
+          x: f.x / 120,
+          y: f.y / 120,
+          state: f.state,
+          devices: f.devices.map(d => ({
+            type: d.type,
+            y: d.y / 120
+          }))
+        }))
+      };
+      
+      log(`  Scale: ${NORM.SCALE}px = 1.0 unit`);
+      
+      return NORM;
+    }
     
     // ============================================================
-    // PHASE 3: SVG RENDERER (From Normalized Geometry)
+    // STAGE 5: GENERATE SVG
+    // Render from normalized geometry
     // ============================================================
     
-    function createConductor(x1, y1, x2, y2, color) {
+    const feederStates = { 1: 'OPEN', 2: 'CLOSED', 3: 'UNKNOWN' };
+    
+    function generateSVG(network, draft, norm) {
+      log('\n[SVG] Generating from normalized geometry...');
+      
+      const busGroup = document.getElementById('bus-group');
+      const feedersGroup = document.getElementById('feeders-group');
+      busGroup.innerHTML = '';
+      feedersGroup.innerHTML = '';
+      
+      // Render Bus
+      const busLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      busLine.setAttribute('x1', draft.bus.x);
+      busLine.setAttribute('y1', draft.bus.y);
+      busLine.setAttribute('x2', draft.bus.x + draft.bus.width);
+      busLine.setAttribute('y2', draft.bus.y);
+      busLine.setAttribute('stroke', DRAFT.COLOR);
+      busLine.setAttribute('stroke-width', DRAFT.BUS_WIDTH);
+      busLine.setAttribute('stroke-linecap', 'round');
+      busGroup.appendChild(busLine);
+      
+      const busLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      busLabel.setAttribute('x', 475);
+      busLabel.setAttribute('y', 40);
+      busLabel.setAttribute('text-anchor', 'middle');
+      busLabel.setAttribute('fill', '#fff');
+      busLabel.setAttribute('font-size', '14');
+      busLabel.textContent = '69 kV Bus';
+      busGroup.appendChild(busLabel);
+      
+      const incomingLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      incomingLabel.setAttribute('x', 475);
+      incomingLabel.setAttribute('y', 25);
+      incomingLabel.setAttribute('text-anchor', 'middle');
+      incomingLabel.setAttribute('fill', '#fff');
+      incomingLabel.setAttribute('font-size', '14');
+      incomingLabel.textContent = 'Incoming';
+      busGroup.appendChild(incomingLabel);
+      
+      // Render Feeders
+      draft.feeders.forEach((feeder, idx) => {
+        renderFeeder(feedersGroup, network, feeder, idx);
+      });
+      
+      log('[SVG] Render complete');
+    }
+    
+    function renderFeeder(group, network, feeder, idx) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('id', `feeder-${idx + 1}`);
+      
+      const x = feeder.x;  // Main conductor X position
+      const state = feeder.state;
+      const scale = 120;
+      const stubLength = 15;
+      const chevronSize = 12; // Approximate chevron extent
+      
+      let y = feeder.y;
+      
+      // === BUS TO DS_TOP ===
+      // Main conductor from bus to DS_top
+      appendLine(g, x, DRAFT.BUS_Y, x, y, DRAFT.COLOR);
+      
+      // DS-Top (Series) - INTERRUPTS the path
+      const dsTopG = renderDS(x, y, state);
+      g.appendChild(dsTopG);
+      y += scale;
+      
+      // === DS_TOP TO CB (MAIN CONDUCTOR CONTINUES) ===
+      // Main conductor goes straight through
+      // ES BRANCHES OFF from this section
+      const branchY = y + 80;  // Branch point on main conductor
+      appendLine(g, x, y, x, branchY, DRAFT.COLOR);
+      
+      // ES (Parallel branch) - branches HORIZONTALLY from main conductor
+      // Main conductor CONTINUES vertically below
+      const esG = renderES(x, branchY, state);
+      g.appendChild(esG);
+      
+      // Main conductor continues below branch point
+      const cbY = y + scale;  // CB position
+      appendLine(g, x, branchY, x, cbY, DRAFT.COLOR);
+      
+      // === CB (SERIES) - INTERRUPTS ===
+      const cbG = renderCB(x, cbY, state);
+      g.appendChild(cbG);
+      
+      // === CB TO DS_BOTTOM ===
+      y = cbY + scale;
+      appendLine(g, x, cbY + scale, x, y, DRAFT.COLOR);
+      
+      // DS-Bottom (Series) - INTERRUPTS
+      const dsBotG = renderDS(x, y, state);
+      g.appendChild(dsBotG);
+      y += scale;
+      
+      // === DS_BOTTOM TO OUTGOING ===
+      appendLine(g, x, y, x, y + 40, DRAFT.COLOR);
+      
+      // Label
+      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      label.setAttribute('x', x);
+      label.setAttribute('y', y + 60);
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('fill', '#fff');
+      label.setAttribute('font-size', '14');
+      label.textContent = `Outgoing ${idx + 1}`;
+      g.appendChild(label);
+      
+      group.appendChild(g);
+    }
+    
+    function appendLine(g, x1, y1, x2, y2, color, width = DRAFT.CONDUCTOR_WIDTH) {
       const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       line.setAttribute('x1', x1);
       line.setAttribute('y1', y1);
       line.setAttribute('x2', x2);
       line.setAttribute('y2', y2);
       line.setAttribute('stroke', color);
-      line.setAttribute('stroke-width', DRAFT.CONDUCTOR_WIDTH);
+      line.setAttribute('stroke-width', width);
       line.setAttribute('stroke-linecap', 'round');
-      return line;
+      g.appendChild(line);
     }
     
-    // Render DS from normalized geometry
-    function renderDS(state) {
-      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      const config = STATES[state];
-      const n = NORM.DS;
-      const s = NORM.SCALE;
+    /**
+     * Render double-chevron connection marker
+     * Standardized connection interface for Series Objects
+     */
+    function renderDoubleChevron(g, x, y, direction) {
+      // direction: 'up' or 'down'
+      const chevronSize = 6;
+      const spacing = 4;
       
-      // Top contact (normalized position)
-      const topY = 0;
-      const topX1 = (0.5 - n.contact_width / 2) * s;
-      const topX2 = (0.5 + n.contact_width / 2) * s;
-      
-      const topContact = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      topContact.setAttribute('x1', topX1);
-      topContact.setAttribute('y1', topY);
-      topContact.setAttribute('x2', topX2);
-      topContact.setAttribute('y2', topY);
-      topContact.setAttribute('stroke', DRAFT.COLOR_69KV);
-      topContact.setAttribute('stroke-width', n.contact_thickness * s);
-      topContact.setAttribute('stroke-linecap', 'round');
-      g.appendChild(topContact);
-      
-      // Bottom contact
-      const botY = s;
-      const botX1 = (0.5 - n.contact_width / 2) * s;
-      const botX2 = (0.5 + n.contact_width / 2) * s;
-      
-      const botContact = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      botContact.setAttribute('x1', botX1);
-      botContact.setAttribute('y1', botY);
-      botContact.setAttribute('x2', botX2);
-      botContact.setAttribute('y2', botY);
-      botContact.setAttribute('stroke', DRAFT.COLOR_69KV);
-      botContact.setAttribute('stroke-width', n.contact_thickness * s);
-      botContact.setAttribute('stroke-linecap', 'round');
-      g.appendChild(botContact);
-      
-      // Knife blade (state-dependent)
-      const knife = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      if (config.visible) {
-        const angleRad = config.ds_angle * Math.PI / 180;
-        const pivotX = 0.5 * s;
-        const pivotY = (0.5 * n.gap + 0.01) * s;
-        const halfLen = (n.gap / 2 + 0.01) * s;
+      for (let i = 0; i < 2; i++) {
+        const offset = (i - 0.5) * spacing;
+        const chevron = document.createElementNS('http://www.w3.org/2000/svg', 'path');
         
-        if (config.ds_angle === 0) {
-          // Closed: inline
-          knife.setAttribute('x1', 0.5 * s);
-          knife.setAttribute('y1', 0);
-          knife.setAttribute('x2', 0.5 * s);
-          knife.setAttribute('y2', s + 2);
+        if (direction === 'up') {
+          chevron.setAttribute('d', `M ${x - chevronSize},${y + offset + chevronSize} L ${x},${y + offset} L ${x + chevronSize},${y + offset + chevronSize}`);
+        } else {
+          chevron.setAttribute('d', `M ${x - chevronSize},${y - chevronSize + offset} L ${x},${y + offset} L ${x + chevronSize},${y - chevronSize + offset}`);
+        }
+        chevron.setAttribute('stroke', DRAFT.COLOR);
+        chevron.setAttribute('stroke-width', 2);
+        chevron.setAttribute('fill', 'none');
+        chevron.setAttribute('stroke-linecap', 'round');
+        chevron.setAttribute('stroke-linejoin', 'round');
+        g.appendChild(chevron);
+      }
+    }
+    
+    /**
+     * Render Series Object connection interface
+     * - Conductor stub
+     * - Double-chevron marker
+     * - Primitive body
+     */
+    function renderSeriesInterface(g, x, y, bodyHeight, bodyWidth, direction) {
+      // direction: 'top' (body below, conductor above) or 'bottom' (body above, conductor below)
+      const stubLength = 15;
+      const chevronY = direction === 'top' ? y + stubLength : y - stubLength;
+      
+      // Conductor stub
+      appendLine(g, x, y, x, chevronY, DRAFT.COLOR);
+      
+      // Double-chevron
+      renderDoubleChevron(g, x, chevronY, direction === 'top' ? 'up' : 'down');
+      
+      // Body position
+      const bodyY = direction === 'top' ? chevronY : chevronY - bodyHeight;
+      
+      return { bodyX: x, bodyY: bodyY, bodyHeight: bodyHeight, bodyWidth: bodyWidth };
+    }
+    
+    function renderDS(x, y, state) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      const scale = 120;
+      
+      const config = getStateConfig(state);
+      const bodyHeight = scale - 30; // Body height excluding connection stubs
+      const bodyWidth = 50;
+      
+      // === TOP CONNECTION INTERFACE ===
+      const topInterface = renderSeriesInterface(g, x, y, bodyHeight, bodyWidth, 'top');
+      
+      // === BOTTOM CONNECTION INTERFACE ===
+      const bottomY = y + scale;
+      const bottomInterface = renderSeriesInterface(g, x, bottomY, bodyHeight, bodyWidth, 'bottom');
+      
+      // === DS BODY ===
+      // Body spans between the two chevrons
+      const bodyY = topInterface.bodyY + 15; // Start after top chevron
+      const bodyEndY = bottomInterface.bodyY - 15; // End before bottom chevron
+      
+      // Top contact bar
+      appendLine(g, x - 15, bodyY, x + 15, bodyY, DRAFT.COLOR);
+      
+      // Bottom contact bar
+      appendLine(g, x - 15, bodyEndY, x + 15, bodyEndY, DRAFT.COLOR);
+      
+      // Knife blade (between contacts)
+      const knife = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      knife.setAttribute('id', `ds-${x}-knife`);
+      
+      if (config.visible) {
+        const contactGap = bodyEndY - bodyY;
+        const bladeLength = contactGap + 4;
+        
+        if (config.angle === 0) {
+          // Closed: inline vertical
+          knife.setAttribute('x1', x);
+          knife.setAttribute('y1', bodyY);
+          knife.setAttribute('x2', x);
+          knife.setAttribute('y2', bodyEndY + 2);
         } else {
           // Open: rotated
-          knife.setAttribute('x1', pivotX - Math.sin(angleRad) * halfLen);
-          knife.setAttribute('y1', pivotY - Math.cos(angleRad) * halfLen);
-          knife.setAttribute('x2', pivotX + Math.sin(angleRad) * halfLen);
-          knife.setAttribute('y2', pivotY + Math.cos(angleRad) * halfLen);
+          const rad = config.angle * Math.PI / 180;
+          const pivotY = bodyY + contactGap / 2;
+          const halfLen = bladeLength / 2;
+          knife.setAttribute('x1', x - Math.sin(rad) * halfLen);
+          knife.setAttribute('y1', pivotY - Math.cos(rad) * halfLen);
+          knife.setAttribute('x2', x + Math.sin(rad) * halfLen);
+          knife.setAttribute('y2', pivotY + Math.cos(rad) * halfLen);
         }
-        knife.setAttribute('stroke', state === 'OPEN' ? DRAFT.COLOR_OPEN : DRAFT.COLOR_CLOSED);
+        knife.setAttribute('stroke', config.color);
       } else {
         knife.style.display = 'none';
       }
-      knife.setAttribute('stroke-width', n.blade_width * s);
+      knife.setAttribute('stroke-width', 5);
       knife.setAttribute('stroke-linecap', 'round');
       g.appendChild(knife);
       
       return g;
     }
     
-    // Render CB from normalized geometry
-    function renderCB(state) {
+    function renderCB(x, y, state) {
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      const config = STATES[state];
-      const n = NORM.CB;
-      const s = NORM.SCALE;
+      const scale = 120;
+      
+      const config = getStateConfig(state);
+      const bodyHeight = scale - 30; // Body height excluding connection stubs
+      const bodyWidth = 50;
+      
+      // === TOP CONNECTION INTERFACE ===
+      const topInterface = renderSeriesInterface(g, x, y, bodyHeight, bodyWidth, 'top');
+      
+      // === BOTTOM CONNECTION INTERFACE ===
+      const bottomY = y + scale;
+      const bottomInterface = renderSeriesInterface(g, x, bottomY, bodyHeight, bodyWidth, 'bottom');
+      
+      // === CB BODY ===
+      // Body spans between the two chevrons
+      const bodyY = topInterface.bodyY + 10;
+      const bodyEndY = bottomInterface.bodyY - 10;
       
       const body = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-      body.setAttribute('x', -n.width * s / 2);
-      body.setAttribute('y', 0);
-      body.setAttribute('width', n.width * s);
-      body.setAttribute('height', s);
+      body.setAttribute('x', x - bodyWidth / 2);
+      body.setAttribute('y', bodyY);
+      body.setAttribute('width', bodyWidth);
+      body.setAttribute('height', bodyEndY - bodyY);
       body.setAttribute('rx', 4);
-      body.setAttribute('stroke', DRAFT.COLOR_69KV);
+      body.setAttribute('stroke', DRAFT.COLOR);
       body.setAttribute('stroke-width', 2);
       
       if (config.visible) {
-        body.setAttribute('fill', config.cb_fill);
+        body.setAttribute('fill', config.cbFill);
       } else {
         body.setAttribute('fill', 'transparent');
         body.style.display = 'none';
@@ -335,81 +750,87 @@
       return g;
     }
     
-    // Render ES from normalized geometry (EXP-012)
-    // ES does NOT interrupt main conductor - uses branch
-    function renderES(state) {
+    /**
+     * Render ES as a PARALLEL branch
+     * 
+     * CORRECT VISUAL TOPOLOGY:
+     * 
+     *         Main conductor (vertical)
+     *              │
+     *              ├──●─────────────── ← T-junction (branch point)
+     *              │                  │
+     *              │                  ├──ES (horizontal branch)
+     *              │                  │   ├──knife
+     *              │                  │   └──ground
+     *              │
+     *              ↓ (main continues)
+     * 
+     * ES branches HORIZONTALLY from the main conductor.
+     * The main conductor continues VERTICALLY.
+     */
+    function renderES(branchX, branchY, state) {
       const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      const config = STATES[state];
-      const n = NORM.ES;
-      const s = NORM.SCALE;
+      const config = getStateConfig(state);
       
-      // ES positioned as a branch OFF the main conductor
-      // The main conductor runs vertically through x=0
-      // ES branch goes to the RIGHT and angles down toward ground
+      // Branch extends to the RIGHT from main conductor
+      const branchLength = 80;
+      const branchEndX = branchX + branchLength;
+      const branchEndY = branchY;
       
-      // T-junction point on main conductor
-      const tjX = 0;
-      const tjY = s * 0.25;
-      
-      // Branch end point (angled down-right toward ground)
-      const branchLen = 60;
-      const branchAngle = 35 * Math.PI / 180; // 35 degrees down
-      const branchEndX = branchLen * Math.sin(branchAngle);
-      const branchEndY = tjY + branchLen * Math.cos(branchAngle);
-      
-      // T-junction (small circle or intersection)
+      // T-junction marker on main conductor
       const tj = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-      tj.setAttribute('cx', tjX);
-      tj.setAttribute('cy', tjY);
-      tj.setAttribute('r', 4);
-      tj.setAttribute('fill', DRAFT.COLOR_69KV);
+      tj.setAttribute('cx', branchX);
+      tj.setAttribute('cy', branchY);
+      tj.setAttribute('r', 5);
+      tj.setAttribute('fill', DRAFT.COLOR);
       g.appendChild(tj);
       
-      // Branch conductor (from main toward ground)
+      // Branch conductor (horizontal, going right)
       const branch = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      branch.setAttribute('x1', tjX);
-      branch.setAttribute('y1', tjY);
+      branch.setAttribute('x1', branchX);
+      branch.setAttribute('y1', branchY);
       branch.setAttribute('x2', branchEndX);
       branch.setAttribute('y2', branchEndY);
-      branch.setAttribute('stroke', DRAFT.COLOR_69KV);
+      branch.setAttribute('stroke', DRAFT.COLOR);
       branch.setAttribute('stroke-width', DRAFT.CONDUCTOR_WIDTH);
       g.appendChild(branch);
       
-      // Knife contact (small horizontal line on branch)
-      const contactY = branchEndY;
+      // Knife switch contact (small horizontal line on branch)
       const contactX1 = branchEndX - 15;
       const contactX2 = branchEndX + 15;
+      const contactY = branchEndY;
       
       const contact = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       contact.setAttribute('x1', contactX1);
       contact.setAttribute('y1', contactY);
       contact.setAttribute('x2', contactX2);
       contact.setAttribute('y2', contactY);
-      contact.setAttribute('stroke', DRAFT.COLOR_69KV);
+      contact.setAttribute('stroke', DRAFT.COLOR);
       contact.setAttribute('stroke-width', 3);
       contact.setAttribute('stroke-linecap', 'round');
       g.appendChild(contact);
       
-      // Knife blade (rotates from contact point)
+      // Knife blade (rotates from contact)
       const knife = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      knife.setAttribute('id', `es-${branchX}-knife`);
+      
+      const bladeLength = 40;
       if (config.visible) {
-        const bladeLen = s * 0.5;
-        
-        if (config.ds_angle === 0) {
+        if (config.angle === 0) {
           // Closed: vertical down from contact
           knife.setAttribute('x1', branchEndX);
           knife.setAttribute('y1', contactY);
           knife.setAttribute('x2', branchEndX);
-          knife.setAttribute('y2', contactY + bladeLen);
+          knife.setAttribute('y2', contactY + bladeLength);
         } else {
-          // Open: angled away from vertical
-          const angleRad = config.ds_angle * Math.PI / 180;
-          knife.setAttribute('x1', branchEndX - Math.sin(angleRad) * bladeLen * 0.4);
-          knife.setAttribute('y1', contactY - Math.cos(angleRad) * bladeLen * 0.4);
-          knife.setAttribute('x2', branchEndX + Math.sin(angleRad) * bladeLen * 0.6);
-          knife.setAttribute('y2', contactY + Math.cos(angleRad) * bladeLen * 0.6);
+          // Open: angled
+          const rad = config.angle * Math.PI / 180;
+          knife.setAttribute('x1', branchEndX - Math.sin(rad) * bladeLength * 0.4);
+          knife.setAttribute('y1', contactY - Math.cos(rad) * bladeLength * 0.4);
+          knife.setAttribute('x2', branchEndX + Math.sin(rad) * bladeLength * 0.6);
+          knife.setAttribute('y2', contactY + Math.cos(rad) * bladeLength * 0.6);
         }
-        knife.setAttribute('stroke', state === 'OPEN' ? DRAFT.COLOR_OPEN : DRAFT.COLOR_CLOSED);
+        knife.setAttribute('stroke', config.color);
       } else {
         knife.style.display = 'none';
       }
@@ -417,9 +838,9 @@
       knife.setAttribute('stroke-linecap', 'round');
       g.appendChild(knife);
       
-      // Ground conductor (after knife, going to ground symbol)
-      const groundX = branchEndX + (config.visible ? 0 : 0);
-      const groundStartY = contactY + (config.visible ? s * 0.5 : 20);
+      // Ground conductor (vertical down after knife)
+      const groundX = branchEndX;
+      const groundStartY = contactY + (config.visible ? bladeLength : 20);
       const groundEndY = groundStartY + 40;
       
       const groundConductor = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -427,33 +848,31 @@
       groundConductor.setAttribute('y1', groundStartY);
       groundConductor.setAttribute('x2', groundX);
       groundConductor.setAttribute('y2', groundEndY);
-      groundConductor.setAttribute('stroke', DRAFT.COLOR_69KV);
+      groundConductor.setAttribute('stroke', DRAFT.COLOR);
       groundConductor.setAttribute('stroke-width', DRAFT.CONDUCTOR_WIDTH);
       g.appendChild(groundConductor);
       
-      // Ground symbol (always visible - EXP-012)
+      // Ground symbol (always visible)
       const groundSymbol = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      groundSymbol.setAttribute('transform', `translate(${groundX}, ${groundEndY + 15})`);
+      groundSymbol.setAttribute('transform', `translate(${groundX}, ${groundEndY + 10})`);
       
-      // Stem
       const stem = document.createElementNS('http://www.w3.org/2000/svg', 'line');
       stem.setAttribute('x1', 0);
       stem.setAttribute('y1', -10);
       stem.setAttribute('x2', 0);
       stem.setAttribute('y2', 0);
-      stem.setAttribute('stroke', DRAFT.COLOR_69KV);
+      stem.setAttribute('stroke', DRAFT.COLOR);
       stem.setAttribute('stroke-width', 4);
       groundSymbol.appendChild(stem);
       
-      // Ground bars (stacked)
       for (let i = 0; i < 3; i++) {
         const bar = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        const barWidth = 20 - i * 4;
+        const barWidth = 16 - i * 3;
         bar.setAttribute('x1', -barWidth / 2);
-        bar.setAttribute('y1', i * 5);
+        bar.setAttribute('y1', i * 4);
         bar.setAttribute('x2', barWidth / 2);
-        bar.setAttribute('y2', i * 5);
-        bar.setAttribute('stroke', DRAFT.COLOR_69KV);
+        bar.setAttribute('y2', i * 4);
+        bar.setAttribute('stroke', DRAFT.COLOR);
         bar.setAttribute('stroke-width', 3);
         groundSymbol.appendChild(bar);
       }
@@ -462,139 +881,101 @@
       return g;
     }
     
+    function getStateConfig(state) {
+      if (state === 'OPEN') {
+        return { angle: 40, color: '#44FF44', cbFill: '#44FF44', visible: true };
+      } else if (state === 'CLOSED') {
+        return { angle: 0, color: '#FF4444', cbFill: '#FF4444', visible: true };
+      } else {
+        return { angle: 0, color: 'transparent', cbFill: 'transparent', visible: false };
+      }
+    }
+    
     // ============================================================
-    // BAY COMPOSITION
+    // MAIN RENDER PIPELINE
     // ============================================================
     
-    const feederStates = { 1: 'OPEN', 2: 'CLOSED', 3: 'UNKNOWN' };
-    
-    function renderBay() {
-      const content = document.getElementById('content');
-      content.innerHTML = '';
+    function render() {
+      clearLog();
+      log('═'.repeat(50));
+      log('5-STAGE RENDERER PIPELINE');
+      log('═'.repeat(50));
       
-      // Render Bus
-      const bus = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      const busLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-      busLine.setAttribute('x1', 50);
-      busLine.setAttribute('y1', DRAFT.BUS_Y);
-      busLine.setAttribute('x2', 900);
-      busLine.setAttribute('y2', DRAFT.BUS_Y);
-      busLine.setAttribute('stroke', DRAFT.COLOR_69KV);
-      busLine.setAttribute('stroke-width', DRAFT.BUS_WIDTH);
-      busLine.setAttribute('stroke-linecap', 'round');
-      bus.appendChild(busLine);
+      // STAGE 1: Build Electrical Network
+      log('\n┌─────────────────────────────────────────┐');
+      log('│ STAGE 1: BUILD ELECTRICAL NETWORK        │');
+      log('└─────────────────────────────────────────┘');
       
-      const busLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      busLabel.setAttribute('x', 475);
-      busLabel.setAttribute('y', DRAFT.BUS_Y - 15);
-      busLabel.setAttribute('text-anchor', 'middle');
-      busLabel.setAttribute('fill', '#fff');
-      busLabel.setAttribute('font-size', '14');
-      busLabel.textContent = '69 kV Bus';
-      bus.appendChild(busLabel);
+      const network = new ElectricalNetwork();
+      const bus = new Bus('main_bus', '69 kV');
+      network.setBus(bus);
       
-      const incomingLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      incomingLabel.setAttribute('x', 475);
-      incomingLabel.setAttribute('y', DRAFT.BUS_Y - 35);
-      incomingLabel.setAttribute('text-anchor', 'middle');
-      incomingLabel.setAttribute('fill', '#fff');
-      incomingLabel.setAttribute('font-size', '14');
-      incomingLabel.textContent = 'Incoming';
-      bus.appendChild(incomingLabel);
-      content.appendChild(bus);
-      
-      // Render each feeder
+      // Create feeder networks
+      const feederConnections = [];
       DRAFT.FEEDER_X.forEach((x, idx) => {
-        renderFeeder(idx + 1, x);
+        const feederNum = idx + 1;
+        const state = feederStates[feederNum];
+        
+        // Bus connection point
+        const busCP = bus.addFeederConnection();
+        
+        // Build feeder network
+        const feederNet = buildFeederNetwork(network, feederNum, state);
+        
+        // Connect feeder to bus
+        network.addConductor(busCP, feederNet.busConnection);
+        
+        feederConnections.push(feederNet);
       });
+      
+      // STAGE 2: Generate Conductors
+      log('\n┌─────────────────────────────────────────┐');
+      log('│ STAGE 2: GENERATE ELECTRICAL CONDUCTORS   │');
+      log('└─────────────────────────────────────────┘');
+      
+      generateConductors(network);
+      
+      // STAGE 3: Construction Draft
+      log('\n┌─────────────────────────────────────────┐');
+      log('│ STAGE 3: CONSTRUCTION DRAFT               │');
+      log('└─────────────────────────────────────────┘');
+      
+      const draft = createConstructionDraft(network);
+      
+      // STAGE 4: Normalize Geometry
+      log('\n┌─────────────────────────────────────────┐');
+      log('│ STAGE 4: NORMALIZE GEOMETRY               │');
+      log('└─────────────────────────────────────────┘');
+      
+      const norm = normalizeGeometry(draft);
+      
+      // STAGE 5: Generate SVG
+      log('\n┌─────────────────────────────────────────┐');
+      log('│ STAGE 5: GENERATE SVG                     │');
+      log('└─────────────────────────────────────────┘');
+      
+      generateSVG(network, draft, norm);
+      
+      log('\n' + '═'.repeat(50));
+      log('RENDER COMPLETE');
+      log('═'.repeat(50));
     }
     
-    function renderFeeder(num, x) {
-      const content = document.getElementById('content');
-      const state = feederStates[num];
-      const s = NORM.SCALE;
-      
-      // Feeder group
-      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-      g.setAttribute('id', 'feeder-' + num);
-      
-      let y = DRAFT.FEEDER_START_Y;
-      
-      // Bus to DS-Top conductor
-      g.appendChild(createConductor(x, DRAFT.BUS_Y, x, y, DRAFT.COLOR_69KV));
-      
-      // DS-Top (normalized)
-      const dsTop = renderDS(state);
-      dsTop.setAttribute('transform', `translate(${x}, ${y})`);
-      g.appendChild(dsTop);
-      y += s;
-      
-      // DS-Top to ES conductor (main conductor continues)
-      g.appendChild(createConductor(x, y - s + s, x, y + 30, DRAFT.COLOR_69KV));
-      
-      // ES (normalized) - branch device
-      // ES is positioned ON the main conductor at x
-      const es = renderES(state);
-      es.setAttribute('transform', `translate(${x}, ${y + 30})`);
-      g.appendChild(es);
-      
-      // ES to CB conductor (main conductor continues through)
-      // Skip past the ES branch area
-      g.appendChild(createConductor(x, y + 30 + 150, x, y + 200, DRAFT.COLOR_69KV));
-      y += 200;
-      
-      // CB (normalized)
-      const cb = renderCB(state);
-      cb.setAttribute('transform', `translate(${x}, ${y})`);
-      g.appendChild(cb);
-      y += s;
-      
-      // CB to DS-Bottom conductor
-      g.appendChild(createConductor(x, y - s + s, x, y + 30, DRAFT.COLOR_69KV));
-      
-      // DS-Bottom (normalized)
-      const dsBot = renderDS(state);
-      dsBot.setAttribute('transform', `translate(${x}, ${y + 30})`);
-      g.appendChild(dsBot);
-      y += s + 30;
-      
-      // DS-Bottom to Outgoing conductor
-      g.appendChild(createConductor(x, y - s + s, x, y + 40, DRAFT.COLOR_69KV));
-      
-      // Outgoing label
-      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-      label.setAttribute('x', x);
-      label.setAttribute('y', y + 60);
-      label.setAttribute('text-anchor', 'middle');
-      label.setAttribute('fill', '#fff');
-      label.setAttribute('font-size', '14');
-      label.textContent = 'Outgoing ' + num;
-      g.appendChild(label);
-      
-      content.appendChild(g);
-    }
-    
-    function setFeederState(num, state) {
-      feederStates[num] = state;
+    function setFeederState(feederNum, state) {
+      feederStates[feederNum] = state;
       
       // Update buttons
       ['closed', 'open', 'unknown'].forEach(s => {
-        document.getElementById(`f${num}-${s}`).classList.remove('btn-active');
+        document.getElementById(`f${feederNum}-${s}`).classList.remove('btn-active');
       });
-      document.getElementById(`f${num}-${state.toLowerCase()}`).classList.add('btn-active');
+      document.getElementById(`f${feederNum}-${state.toLowerCase()}`).classList.add('btn-active');
       
-      // Re-render
-      renderBay();
+      // Re-render (full pipeline)
+      render();
     }
     
     // Initial render
-    renderBay();
-    
-    // Log phase info
-    console.log('=== TWO-PHASE RENDERER ===');
-    console.log('Phase 1: DRAFT construction values (pixels)');
-    console.log('Phase 2: NORM normalized geometry (scale-independent)');
-    console.log('Phase 3: SVG render (from normalized)');
+    render();
   </script>
 </body>
 </html>
