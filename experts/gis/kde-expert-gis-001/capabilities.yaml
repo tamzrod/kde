@@ -1,0 +1,872 @@
+---
+# GIS Engineering Expert Capabilities
+# Version 0.1.0
+
+capabilities:
+
+  # =========================================================================
+  # GROUP 1: VIEW NAVIGATION
+  # =========================================================================
+  - id: gis-view-navigation
+    name: View Navigation
+    description: |
+      Controls the user's view of the map. Provides methods for panning, 
+      zooming, and centering the map on specific features or regions.
+    question_answered: "How does the user move around the map?"
+    
+    capabilities:
+      - id: pan
+        name: Pan
+        description: Move the map center in any direction
+        inputs:
+          - name: direction
+            type: string
+            required: true
+            values: [north, south, east, west, northeast, northwest, southeast, southwest]
+          - name: distance
+            type: number
+            required: false
+            default: 100
+            unit: pixels
+        implementation:
+          method: map.panBy([dx, dy])
+          knowledge_ref: KDE-GIS-002 Rule 9
+
+      - id: zoom-in
+        name: Zoom In
+        description: Increase map zoom level
+        inputs:
+          - name: delta
+            type: number
+            required: false
+            default: 1
+            range: [0.1, 5]
+        implementation:
+          method: map.zoomIn()
+          knowledge_ref: KDE-GIS-002 Rule 1
+
+      - id: zoom-out
+        name: Zoom Out
+        description: Decrease map zoom level
+        inputs:
+          - name: delta
+            type: number
+            required: false
+            default: 1
+            range: [0.1, 5]
+        implementation:
+          method: map.zoomOut()
+
+      - id: fit-bounds
+        name: Fit to Bounds
+        description: Zoom and pan map to fit specified bounds
+        inputs:
+          - name: bounds
+            type: object
+            required: true
+            properties:
+              sw: {type: array, description: "Southwest [lng, lat]"}
+              ne: {type: array, description: "Northeast [lng, lat]"}
+          - name: padding
+            type: number
+            required: false
+            default: 50
+            unit: pixels
+        implementation:
+          method: map.fitBounds(bounds, padding)
+          knowledge_ref: KDE-GIS-002 Rule 2
+
+      - id: center-map
+        name: Center Map
+        description: Set map center to specific coordinates
+        inputs:
+          - name: coordinates
+            type: array
+            required: true
+            format: "[lng, lat]"
+          - name: zoom
+            type: number
+            required: false
+            range: [0, 22]
+        implementation:
+          method: map.setCenter(coordinates); map.setZoom(zoom)
+
+      - id: focus-device
+        name: Focus Device
+        description: Center map on a specific device
+        inputs:
+          - name: device_id
+            type: string
+            required: true
+          - name: zoom
+            type: number
+            required: false
+            default: 15
+        implementation:
+          method: lookup device coords, then centerMap
+          knowledge_ref: KDE-GIS-007 layer-management
+
+      - id: focus-alarm
+        name: Focus Alarm
+        description: Center map on an active alarm location
+        inputs:
+          - name: alarm_id
+            type: string
+            required: true
+          - name: zoom
+            type: number
+            required: false
+            default: 16
+        implementation:
+          method: lookup alarm location, then centerMap
+          knowledge_ref: KDE-GIS-005 realtime
+
+      - id: reset-view
+        name: Reset View
+        description: Return to default map view
+        inputs: []
+        implementation:
+          method: map.setCenter(defaultCenter); map.setZoom(defaultZoom)
+
+      - id: rotate-view
+        name: Rotate View
+        description: Rotate map view
+        inputs:
+          - name: bearing
+            type: number
+            required: true
+            range: [0, 360]
+            unit: degrees
+        implementation:
+          method: map.setBearing(bearing)
+
+      - id: tilt-view
+        name: Tilt View
+        description: Tilt map view (3D perspective)
+        inputs:
+          - name: pitch
+            type: number
+            required: true
+            range: [0, 60]
+            unit: degrees
+        implementation:
+          method: map.setPitch(pitch)
+
+  # =========================================================================
+  # GROUP 2: ROUTE NAVIGATION
+  # =========================================================================
+  - id: gis-route-navigation
+    name: Route Navigation
+    description: |
+      Navigate through the physical world. Provides routing capabilities
+      for reaching devices, substations, and plants.
+    question_answered: "How does the user physically reach a destination?"
+    
+    capabilities:
+      - id: route-to-device
+        name: Route to Device
+        description: Generate route from current location to device
+        inputs:
+          - name: device_id
+            type: string
+            required: true
+          - name: mode
+            type: string
+            required: false
+            default: driving
+            values: [driving, walking, cycling]
+        implementation:
+          method: External routing API integration
+          knowledge_ref: KDE-GIS-003 best-practices
+
+      - id: route-to-substation
+        name: Route to Substation
+        description: Generate route to substation entrance
+        inputs:
+          - name: substation_id
+            type: string
+            required: true
+          - name: mode
+            type: string
+            required: false
+            default: driving
+        implementation:
+          method: Lookup substation coords, then route
+
+      - id: route-optimization
+        name: Route Optimization
+        description: Optimize multi-stop route
+        inputs:
+          - name: stops
+            type: array
+            required: true
+            items: {type: string, description: "Device IDs"}
+          - name: optimize_for
+            type: string
+            required: false
+            default: time
+            values: [time, distance]
+        implementation:
+          method: Traveling salesman algorithm or API
+          knowledge_ref: KDE-GIS-003 best-practices
+
+      - id: estimated-travel-time
+        name: Estimated Travel Time
+        description: Calculate estimated travel time to destination
+        inputs:
+          - name: destination
+            type: object
+            required: true
+            properties:
+              type: {enum: [device, substation, coordinates]}
+              id: {type: string}
+              coordinates: {type: array}
+          - name: mode
+            type: string
+            required: false
+            default: driving
+        implementation:
+          method: Routing API response parsing
+
+  # =========================================================================
+  # GROUP 3: MAP RENDERING
+  # =========================================================================
+  - id: gis-map-rendering
+    name: Map Rendering
+    description: |
+      Determine how the map is visually presented. Manages basemap styles,
+      themes, and rendering options.
+    question_answered: "How should the map appear?"
+    
+    capabilities:
+      - id: street-view
+        name: Street View
+        description: Display street-level basemap
+        inputs: []
+        implementation:
+          method: Set basemap source to OpenStreetMap
+          knowledge_ref: KDE-GIS-001 fundamentals
+
+      - id: satellite-view
+        name: Satellite View
+        description: Display satellite imagery basemap
+        inputs: []
+        implementation:
+          method: Set basemap source to satellite tiles
+
+      - id: hybrid-view
+        name: Hybrid View
+        description: Display satellite imagery with labels overlay
+        inputs: []
+        implementation:
+          method: Satellite tiles + label overlay
+
+      - id: terrain-view
+        name: Terrain View
+        description: Display terrain elevation basemap
+        inputs: []
+        implementation:
+          method: Set basemap to terrain style
+
+      - id: dark-mode
+        name: Dark Mode
+        description: Enable dark theme for control room environments
+        inputs: []
+        implementation:
+          method: Set dark basemap + dark UI
+          knowledge_ref: KDE-GIS-002 Rule 15
+
+      - id: light-mode
+        name: Light Mode
+        description: Enable light theme for daylight environments
+        inputs: []
+        implementation:
+          method: Set light basemap + light UI
+
+      - id: custom-theme
+        name: Custom Map Theme
+        description: Apply custom styling to map
+        inputs:
+          - name: style
+            type: object
+            required: true
+            description: "MapLibre GL JS style object"
+        implementation:
+          method: map.setStyle(style)
+
+  # =========================================================================
+  # GROUP 4: LAYER MANAGEMENT
+  # =========================================================================
+  - id: gis-layer-management
+    name: Layer Management
+    description: |
+      Manage GIS information layers. Control visibility, ordering, and
+      properties of map layers.
+    question_answered: "What information should be displayed?"
+    
+    capabilities:
+      - id: add-layer
+        name: Add Layer
+        description: Add a new layer to the map
+        inputs:
+          - name: layer_config
+            type: object
+            required: true
+            properties:
+              id: {type: string}
+              type: {enum: [fill, line, circle, symbol, heatmap]}
+              source: {type: string}
+              paint: {type: object}
+              layout: {type: object}
+        implementation:
+          method: map.addLayer(layer_config)
+          knowledge_ref: KDE-GIS-002 Rule 5
+
+      - id: remove-layer
+        name: Remove Layer
+        description: Remove a layer from the map
+        inputs:
+          - name: layer_id
+            type: string
+            required: true
+        implementation:
+          method: map.removeLayer(layer_id)
+
+      - id: set-visibility
+        name: Set Layer Visibility
+        description: Toggle layer visibility
+        inputs:
+          - name: layer_id
+            type: string
+            required: true
+          - name: visible
+            type: boolean
+            required: true
+        implementation:
+          method: map.setLayoutProperty(layer_id, 'visibility', visible ? 'visible' : 'none')
+          knowledge_ref: KDE-GIS-002 Rule 6
+
+      - id: set-opacity
+        name: Set Layer Opacity
+        description: Adjust layer opacity
+        inputs:
+          - name: layer_id
+            type: string
+            required: true
+          - name: opacity
+            type: number
+            required: true
+            range: [0, 1]
+        implementation:
+          method: map.setPaintProperty(layer_id, property + '-opacity', opacity)
+
+      - id: reorder-layers
+        name: Reorder Layers
+        description: Change layer stacking order
+        inputs:
+          - name: layer_order
+            type: array
+            required: true
+            items: {type: string, description: "Layer IDs in desired order"}
+        implementation:
+          method: Remove and re-add layers in order
+          knowledge_ref: KDE-GIS-002 Rule 5
+
+      - id: electrical-network-layer
+        name: Electrical Network Layer
+        description: Display electrical network assets
+        inputs:
+          - name: options
+            type: object
+            required: false
+            properties:
+              show_transmission: {type: boolean}
+              show_distribution: {type: boolean}
+              show_substations: {type: boolean}
+        implementation:
+          method: Add network layers with filters
+          knowledge_ref: KDE-GIS-006 asset-visualization
+
+      - id: weather-layer
+        name: Weather Layer
+        description: Display weather overlay
+        inputs:
+          - name: layer_type
+            type: string
+            required: false
+            default: radar
+            values: [radar, satellite, wind, temperature]
+        implementation:
+          method: Add weather tile layer
+
+      - id: heatmap-layer
+        name: Heatmap Layer
+        description: Display data as heatmap
+        inputs:
+          - name: data_source
+            type: string
+            required: true
+          - name: intensity_property
+            type: string
+            required: true
+        implementation:
+          method: Add heatmap layer type
+          knowledge_ref: KDE-GIS-005 realtime
+
+  # =========================================================================
+  # GROUP 5: DEVICE MANAGEMENT
+  # =========================================================================
+  - id: gis-device-management
+    name: Device Management
+    description: |
+      Represent engineering assets on the map. Handles plotting, updating,
+      and managing device markers.
+    question_answered: "How are engineering assets represented on the map?"
+    
+    capabilities:
+      - id: plot-device
+        name: Plot Device
+        description: Add device to map
+        inputs:
+          - name: device
+            type: object
+            required: true
+            properties:
+              id: {type: string}
+              name: {type: string}
+              type: {type: string}
+              coordinates: {type: array}
+              status: {type: string}
+              properties: {type: object}
+        implementation:
+          method: Add to GeoJSON source, update layer
+          knowledge_ref: KDE-GIS-006 asset-visualization
+
+      - id: update-device
+        name: Update Device
+        description: Update device properties on map
+        inputs:
+          - name: device_id
+            type: string
+            required: true
+          - name: properties
+            type: object
+            required: true
+        implementation:
+          method: Update GeoJSON feature properties
+          knowledge_ref: KDE-GIS-005 realtime
+
+      - id: remove-device
+        name: Remove Device
+        description: Remove device from map
+        inputs:
+          - name: device_id
+            type: string
+            required: true
+        implementation:
+          method: Remove from GeoJSON source
+
+      - id: device-labels
+        name: Device Labels
+        description: Show/hide device name labels
+        inputs:
+          - name: visible
+            type: boolean
+            required: true
+          - name: min_zoom
+            type: number
+            required: false
+            default: 12
+        implementation:
+          method: Toggle label layer visibility
+          knowledge_ref: KDE-GIS-006 asset-visualization
+
+      - id: device-status
+        name: Device Status
+        description: Update device status indicator
+        inputs:
+          - name: device_id
+            type: string
+            required: true
+          - name: status
+            type: string
+            required: true
+            values: [normal, warning, fault, offline, unknown]
+        implementation:
+          method: Update status color property
+          knowledge_ref: KDE-GIS-006 Rule 7
+
+      - id: device-search
+        name: Device Search
+        description: Search for devices by name or ID
+        inputs:
+          - name: query
+            type: string
+            required: true
+          - name: filters
+            type: object
+            required: false
+        implementation:
+          method: Filter GeoJSON features by properties
+
+      - id: device-selection
+        name: Device Selection
+        description: Select device on map
+        inputs:
+          - name: device_id
+            type: string
+            required: true
+        implementation:
+          method: Set feature state, highlight layer
+          knowledge_ref: KDE-GIS-002 Rule 9
+
+      - id: device-clustering
+        name: Device Clustering
+        description: Cluster dense device markers
+        inputs:
+          - name: enabled
+            type: boolean
+            required: true
+          - name: max_zoom
+            type: number
+            required: false
+            default: 14
+          - name: radius
+            type: number
+            required: false
+            default: 50
+        implementation:
+          method: Configure source clustering
+          knowledge_ref: KDE-GIS-004 performance
+
+      - id: device-filtering
+        name: Device Filtering
+        description: Filter visible devices by criteria
+        inputs:
+          - name: filter
+            type: array
+            required: true
+            description: "MapLibre GL filter expression"
+        implementation:
+          method: map.setFilter(layer_id, filter)
+
+  # =========================================================================
+  # GROUP 6: NETWORK VISUALIZATION
+  # =========================================================================
+  - id: gis-network-visualization
+    name: Network Visualization
+    description: |
+      Represent engineering relationships. Visualize transmission lines,
+      distribution feeders, and utility networks.
+    question_answered: "How are engineering networks visualized?"
+    
+    capabilities:
+      - id: transmission-lines
+        name: Transmission Lines
+        description: Display transmission line network
+        inputs:
+          - name: voltage_levels
+            type: array
+            required: false
+            items: {type: string}
+          - name: show_labels
+            type: boolean
+            required: false
+            default: true
+        implementation:
+          method: Add line layer with voltage styling
+          knowledge_ref: KDE-GIS-006 Rule 100-124
+
+      - id: distribution-feeders
+        name: Distribution Feeders
+        description: Display distribution feeder network
+        inputs:
+          - name: feeder_ids
+            type: array
+            required: false
+          - name: show_load
+            type: boolean
+            required: false
+            default: false
+        implementation:
+          method: Add line layer with feeder styling
+          knowledge_ref: KDE-GIS-006
+
+      - id: underground-cable
+        name: Underground Cable
+        description: Display underground cable sections
+        inputs:
+          - name: show_sections
+            type: boolean
+            required: false
+            default: true
+        implementation:
+          method: Dashed line style for underground
+
+      - id: power-flow
+        name: Power Flow Visualization
+        description: Animate power flow direction on lines
+        inputs:
+          - name: enabled
+            type: boolean
+            required: true
+          - name: speed
+            type: number
+            required: false
+            default: 1
+        implementation:
+          method: Animated line-dasharray
+          knowledge_ref: KDE-GIS-005 realtime
+
+      - id: circuit-tracing
+        name: Circuit Tracing
+        description: Highlight connected circuit path
+        inputs:
+          - name: start_device_id
+            type: string
+            required: true
+          - name: direction
+            type: string
+            required: false
+            default: both
+            values: [upstream, downstream, both]
+        implementation:
+          method: Network graph traversal, highlight path
+
+      - id: network-highlighting
+        name: Network Highlighting
+        description: Highlight network section
+        inputs:
+          - name: network_type
+            type: string
+            required: true
+            values: [transmission, distribution, substation]
+          - name: highlight
+            type: boolean
+            required: true
+        implementation:
+          method: Update layer paint for selected features
+
+  # =========================================================================
+  # GROUP 7: SPATIAL ANALYSIS
+  # =========================================================================
+  - id: gis-spatial-analysis
+    name: Spatial Analysis
+    description: |
+      Perform GIS analysis. Provides measurement, search, and analysis
+      capabilities.
+    question_answered: "What spatial analysis can the operator perform?"
+    
+    capabilities:
+      - id: distance-measurement
+        name: Distance Measurement
+        description: Measure distance between two points
+        inputs:
+          - name: start
+            type: array
+            required: true
+            format: "[lng, lat]"
+          - name: end
+            type: array
+            required: true
+            format: "[lng, lat]"
+          - name: units
+            type: string
+            required: false
+            default: km
+            values: [km, mi, m, ft]
+        implementation:
+          method: Turf.js distance()
+          knowledge_ref: KDE-GIS-003 best-practices
+
+      - id: area-measurement
+        name: Area Measurement
+        description: Calculate area of polygon
+        inputs:
+          - name: coordinates
+            type: array
+            required: true
+            description: "Polygon coordinates"
+          - name: units
+            type: string
+            required: false
+            default: sqkm
+            values: [sqkm, sqmi, sqm, acres]
+        implementation:
+          method: Turf.js area()
+
+      - id: buffer-analysis
+        name: Buffer Analysis
+        description: Create buffer zone around features
+        inputs:
+          - name: feature
+            type: object
+            required: true
+          - name: distance
+            type: number
+            required: true
+            unit: meters
+        implementation:
+          method: Turf.js buffer()
+
+      - id: nearest-device
+        name: Nearest Device
+        description: Find nearest device to point
+        inputs:
+          - name: coordinates
+            type: array
+            required: true
+          - name: device_types
+            type: array
+            required: false
+        implementation:
+          method: Turf.js nearestPoint()
+
+      - id: spatial-search
+        name: Spatial Search
+        description: Search features within bounds
+        inputs:
+          - name: bounds
+            type: object
+            required: true
+          - name: filters
+            type: object
+            required: false
+        implementation:
+          method: Filter GeoJSON by bbox
+
+      - id: coordinate-conversion
+        name: Coordinate Conversion
+        description: Convert between coordinate systems
+        inputs:
+          - name: coordinates
+            type: array
+            required: true
+          - name: from_crs
+            type: string
+            required: false
+            default: EPSG:4326
+          - name: to_crs
+            type: string
+            required: false
+            default: EPSG:3857
+        implementation:
+          method: proj4 or coordinate transforms
+          knowledge_ref: KDE-GIS-001 Rule 3
+
+      - id: region-selection
+        name: Region Selection
+        description: Select all features in drawn region
+        inputs:
+          - name: region_type
+            type: string
+            required: true
+            values: [rectangle, polygon, circle]
+          - name: geometry
+            type: object
+            required: true
+        implementation:
+          method: Turf.js intersects() with drawn geometry
+
+  # =========================================================================
+  # GROUP 8: USER INTERACTION
+  # =========================================================================
+  - id: gis-user-interaction
+    name: User Interaction
+    description: |
+      Provide operator interaction with GIS objects. Handles selection,
+      popups, and context menus.
+    question_answered: "How does the operator interact with GIS information?"
+    
+    capabilities:
+      - id: select-object
+        name: Select Object
+        description: Select map object on click
+        inputs:
+          - name: feature_id
+            type: string
+            required: true
+          - name: layer_id
+            type: string
+            required: true
+        implementation:
+          method: map.setFeatureState()
+          knowledge_ref: KDE-GIS-002 Rule 9
+
+      - id: multi-select
+        name: Multi-select
+        description: Select multiple objects
+        inputs:
+          - name: feature_ids
+            type: array
+            required: true
+        implementation:
+          method: map.setFeatureState() for each
+
+      - id: hover-information
+        name: Hover Information
+        description: Show information on feature hover
+        inputs:
+          - name: layer_id
+            type: string
+            required: true
+          - name: fields
+            type: array
+            required: false
+        implementation:
+          method: Hover event with tooltip
+          knowledge_ref: KDE-GIS-003 best-practices
+
+      - id: popup-information
+        name: Popup Information
+        description: Show detailed popup on click
+        inputs:
+          - name: feature
+            type: object
+            required: true
+          - name: position
+            type: array
+            required: true
+          - name: content
+            type: string
+            required: false
+        implementation:
+          method: new maplibregl.Popup()
+          knowledge_ref: KDE-GIS-002 Rule 10
+
+      - id: context-menu
+        name: Context Menu
+        description: Show context menu on right-click
+        inputs:
+          - name: position
+            type: array
+            required: true
+          - name: options
+            type: array
+            required: true
+            items: {type: object}
+        implementation:
+          method: Custom context menu component
+
+      - id: quick-actions
+        name: Quick Actions
+        description: Show quick action buttons on selection
+        inputs:
+          - name: feature
+            type: object
+            required: true
+          - name: actions
+            type: array
+            required: true
+        implementation:
+          method: Popup with action buttons
+
+      - id: object-inspection
+        name: Object Inspection
+        description: Open detailed inspection panel
+        inputs:
+          - name: feature_id
+            type: string
+            required: true
+        implementation:
+          method: Open sidebar panel with full details

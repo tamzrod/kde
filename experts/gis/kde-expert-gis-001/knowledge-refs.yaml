@@ -1,0 +1,280 @@
+---
+# GIS Engineering Expert Knowledge References
+# Version 0.1.0
+
+knowledge_dependencies:
+
+  # =========================================================================
+  # CORE GIS KNOWLEDGE
+  # =========================================================================
+  - id: KDE-GIS-001
+    name: GIS Fundamentals
+    version: ">=1.0.0"
+    source: knowledge/domain/gis/fundamentals.md
+    priority: critical
+    required_sections:
+      - Coordinate Systems (GCS, PCS, EPSG codes)
+      - Geometry Types (Point, Line, Polygon)
+      - Layer Types (Base, Vector, Raster)
+      - Spatial Data Formats (GeoJSON, KML)
+    usage:
+      - purpose: Define coordinate reference systems
+        integration: capability.coordinate-conversion
+      - purpose: Specify geometry types
+        integration: device-management.capabilities
+      - purpose: Data format standards
+        integration: all-capabilities
+
+  - id: KDE-GIS-002
+    name: GIS Design Rules
+    version: ">=1.0.0"
+    source: knowledge/domain/gis/design-rules.md
+    priority: critical
+    required_sections:
+      - Rule 1-2: Map Configuration (Default View, Bounds)
+      - Rule 3-4: Coordinate System Rules
+      - Rule 5-6: Layer Rules
+      - Rule 7-8: Symbolization Rules
+      - Rule 9-10: Interaction Rules
+      - Rule 11-12: Performance Rules
+    usage:
+      - purpose: Default map configuration
+        integration: view-navigation.all
+      - purpose: Status color semantics
+        integration: device-management.device-status
+      - purpose: Feature identification
+        integration: user-interaction.all
+      - purpose: Popup positioning
+        integration: user-interaction.popup-information
+
+  - id: KDE-GIS-003
+    name: GIS Best Practices
+    version: ">=1.0.0"
+    source: knowledge/domain/gis/best-practices.md
+    priority: high
+    required_sections:
+      - Map Design guidelines
+      - Data Management (Feature IDs, Attribute Naming)
+      - Layer Configuration
+      - Interaction Design
+      - Mobile Considerations
+    usage:
+      - purpose: Feature ID stability
+        integration: device-management
+      - purpose: Layer organization
+        integration: layer-management
+      - purpose: Responsive interaction
+        integration: user-interaction
+
+  # =========================================================================
+  # SPECIALIZED GIS KNOWLEDGE
+  # =========================================================================
+  - id: KDE-GIS-004
+    name: GIS Performance Optimization
+    version: ">=1.0.0"
+    source: knowledge/domain/gis/performance.md
+    priority: high
+    required_sections:
+      - Rendering Performance (WebGL)
+      - Large Dataset Strategies
+      - Marker Performance (Clustering)
+      - Memory Management
+    usage:
+      - purpose: Clustering strategy
+        integration: device-management.device-clustering
+      - purpose: Progressive loading
+        integration: layer-management
+      - purpose: Feature simplification
+        integration: network-visualization
+
+  - id: KDE-GIS-005
+    name: Real-Time GIS
+    version: ">=1.0.0"
+    source: knowledge/domain/gis/realtime.md
+    priority: high
+    required_sections:
+      - Real-Time Data Patterns (WebSocket)
+      - Update Strategies (Full Replace, Incremental)
+      - Alert Visualization
+      - Performance Considerations
+    usage:
+      - purpose: Telemetry updates
+        integration: device-management.update-device
+      - purpose: Alarm visualization
+        integration: view-navigation.focus-alarm
+      - purpose: Update batching
+        integration: all-data-driven-capabilities
+
+  - id: KDE-GIS-006
+    name: Asset Visualization
+    version: ">=1.0.0"
+    source: knowledge/domain/gis/asset-visualization.md
+    priority: critical
+    required_sections:
+      - Power Grid Assets (Substation, Lines, Transformers)
+      - Symbol Design (Status-Based Symbols)
+      - Line Visualization (Transmission, Distribution)
+      - Clustering
+    usage:
+      - purpose: Symbol standards
+        integration: device-management
+      - purpose: Status colors
+        integration: device-management.device-status
+      - purpose: Network visualization
+        integration: network-visualization
+
+  - id: KDE-GIS-007
+    name: Layer Management
+    version: ">=1.0.0"
+    source: knowledge/domain/gis/layer-management.md
+    priority: high
+    required_sections:
+      - Layer Types
+      - Layer Configuration
+      - Layer Ordering
+      - Layer Visibility
+    usage:
+      - purpose: Layer structure
+        integration: layer-management
+      - purpose: Layer ordering
+        integration: layer-management.reorder-layers
+
+  - id: KDE-GIS-008
+    name: Offline GIS
+    version: ">=1.0.0"
+    source: knowledge/domain/gis/offline.md
+    priority: medium
+    required_sections:
+      - Offline Architecture
+      - Data Caching
+      - Sync Strategy
+    usage:
+      - purpose: Offline support
+        integration: device-management
+
+# =========================================================================
+# OPTIONAL KNOWLEDGE DEPENDENCIES
+# =========================================================================
+optional_knowledge:
+
+  - id: KDE-GIS-CARTOGRAPHY
+    name: Cartography
+    source: knowledge/domain/gis/cartography.md
+    priority: low
+    usage:
+      - purpose: Advanced map styling
+        integration: map-rendering
+
+  - id: KDE-GIS-TILEMGMT
+    name: Tile Management
+    source: knowledge/domain/gis/tile-management.md
+    priority: low
+    usage:
+      - purpose: Custom tile sources
+        integration: map-rendering
+
+# =========================================================================
+# OWNERSHIP BOUNDARIES
+# =========================================================================
+ownership:
+  expert_owns:
+    - Map visualization implementation
+    - User interaction patterns
+    - Layer composition
+    - Device marker management
+    - Spatial analysis algorithms
+    - Map state management
+  
+  knowledge_owns:
+    - Coordinate reference systems (CRS)
+    - Symbol standards
+    - Status color semantics
+    - Design rules
+    - Performance optimization
+    - Real-time patterns
+  
+  boundary: |
+    The Expert generates GIS implementation code; Knowledge defines what
+    correct GIS implementation looks like. The Expert applies Knowledge rules
+    but does not redefine them.
+
+# =========================================================================
+# TRACEABILITY
+# =========================================================================
+traceability:
+  knowledge_sources:
+    - knowledge_id: KDE-GIS-001
+      sections_used:
+        - Coordinate Systems
+        - Geometry Types
+        - Layer Types
+      capability_coverage: 8/8 capabilities
+
+    - knowledge_id: KDE-GIS-002
+      sections_used:
+        - Rule 1-2: Map Configuration
+        - Rule 5-6: Layer Rules
+        - Rule 7-8: Symbolization
+        - Rule 9-10: Interaction
+      capability_coverage: 6/8 capability groups
+
+    - knowledge_id: KDE-GIS-003
+      sections_used:
+        - Map Design
+        - Data Management
+        - Interaction Design
+      capability_coverage: 4/8 capability groups
+
+    - knowledge_id: KDE-GIS-004
+      sections_used:
+        - Clustering
+        - Large Dataset Strategies
+      capability_coverage: 2/8 capability groups
+
+    - knowledge_id: KDE-GIS-005
+      sections_used:
+        - Real-Time Patterns
+        - Update Strategies
+      capability_coverage: 3/8 capability groups
+
+    - knowledge_id: KDE-GIS-006
+      sections_used:
+        - Power Grid Assets
+        - Symbol Design
+        - Line Visualization
+      capability_coverage: 3/8 capability groups
+
+    - knowledge_id: KDE-GIS-007
+      sections_used:
+        - Layer Configuration
+        - Layer Ordering
+      capability_coverage: 1/8 capability groups
+
+  capability_map:
+    view-navigation:
+      knowledge_ids: [KDE-GIS-002, KDE-GIS-005]
+    route-navigation:
+      knowledge_ids: [KDE-GIS-003]
+    map-rendering:
+      knowledge_ids: [KDE-GIS-001, KDE-GIS-002]
+    layer-management:
+      knowledge_ids: [KDE-GIS-002, KDE-GIS-004, KDE-GIS-007]
+    device-management:
+      knowledge_ids: [KDE-GIS-002, KDE-GIS-003, KDE-GIS-004, KDE-GIS-005, KDE-GIS-006]
+    network-visualization:
+      knowledge_ids: [KDE-GIS-002, KDE-GIS-004, KDE-GIS-006]
+    spatial-analysis:
+      knowledge_ids: [KDE-GIS-001, KDE-GIS-003]
+    user-interaction:
+      knowledge_ids: [KDE-GIS-002, KDE-GIS-003]
+
+  bidirectional_links:
+    - from: KDE-EXPERT-GIS-001
+      to: KDE-GIS-001
+      type: implements
+    - from: KDE-EXPERT-GIS-001
+      to: KDE-GIS-002
+      type: implements
+    - from: KDE-GIS-001
+      to: KDE-EXPERT-GIS-001
+      type: used_by

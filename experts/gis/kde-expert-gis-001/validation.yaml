@@ -1,0 +1,390 @@
+---
+# GIS Engineering Expert Validation Specification
+# Version 0.1.0
+
+validation:
+
+  # =========================================================================
+  # ENGINEERING QUALITY CRITERIA
+  # =========================================================================
+  criteria:
+
+    # -------------------------------------------------------------------------
+    # CRITERION 1: Engineering Correctness
+    # -------------------------------------------------------------------------
+    - id: EQ-001
+      name: Engineering Correctness
+      description: GIS implementation follows engineering standards
+      category: engineering-quality
+      priority: critical
+      
+      checks:
+        - id: EQ-001-1
+          name: Coordinate Reference System
+          description: Uses WGS84 (EPSG:4326) for data, Web Mercator (EPSG:3857) for display
+          method: Code review
+          pass_condition: CRS comments present, transform functions available
+          evidence: Source code inspection
+          
+        - id: EQ-001-2
+          name: Status Color Compliance
+          description: Status colors match KDE-GIS-006 standards
+          method: Visual inspection against color specification
+          pass_condition: |
+            normal: '#22C55E'
+            warning: '#F59E0B'
+            fault: '#EF4444'
+            offline: '#6B7280'
+          evidence: Style configuration review
+          
+        - id: EQ-001-3
+          name: Symbol Standards
+          description: Asset symbols follow utility conventions
+          method: Comparison with KDE-GIS-006 asset table
+          pass_condition: Substation, transformer, line symbols match standards
+          evidence: Map rendering screenshot
+
+    # -------------------------------------------------------------------------
+    # CRITERION 2: Operator Usability
+    # -------------------------------------------------------------------------
+    - id: OU-001
+      name: Operator Usability
+      description: GIS interface supports efficient operator workflows
+      category: usability
+      priority: high
+      
+      checks:
+        - id: OU-001-1
+          name: Navigation Efficiency
+          description: Focus-alarm and focus-device work correctly
+          method: Functional test
+          pass_condition: Map centers on target within 500ms
+          evidence: Test execution log
+          
+        - id: OU-001-2
+          name: Information Accessibility
+          description: Device information accessible within 2 clicks
+          method: Workflow test
+          pass_condition: Click device → popup with key info
+          evidence: Interaction test
+          
+        - id: OU-001-3
+          name: Control Room Compatibility
+          description: Dark mode reduces eye strain in control room
+          method: Visual inspection
+          pass_condition: Dark background, readable text
+          evidence: Screenshot in dark mode
+
+    # -------------------------------------------------------------------------
+    # CRITERION 3: Performance
+    # -------------------------------------------------------------------------
+    - id: PERF-001
+      name: Performance
+      description: GIS renders and updates within acceptable timeframes
+      category: performance
+      priority: high
+      
+      checks:
+        - id: PERF-001-1
+          name: Initial Load Time
+          description: Map loads within 3 seconds
+          method: Performance measurement
+          pass_condition: load_time <= 3000ms
+          evidence: Browser performance log
+          tool: Chrome DevTools
+          
+        - id: PERF-001-2
+          name: Pan/Zoom Responsiveness
+          description: Map responds to input within 100ms
+          method: User experience test
+          pass_condition: No visible lag during pan/zoom
+          evidence: Observation log
+          
+        - id: PERF-001-3
+          name: Update Latency
+          description: Real-time updates reflect within 500ms
+          method: WebSocket message timing
+          pass_condition: update_latency <= 500ms
+          evidence: Message timestamp log
+
+    # -------------------------------------------------------------------------
+    # CRITERION 4: Readability
+    # -------------------------------------------------------------------------
+    - id: READ-001
+      name: Readability
+      description: Map content is readable at operating distances
+      category: readability
+      priority: high
+      
+      checks:
+        - id: READ-001-1
+          name: Font Size
+          description: Labels readable at default zoom
+          method: Visual inspection
+          pass_condition: Minimum 10px font size
+          evidence: Screenshot measurement
+          
+        - id: READ-001-2
+          name: Color Contrast
+          description: Sufficient contrast for control room
+          method: WCAG contrast check
+          pass_condition: contrast_ratio >= 4.5:1
+          evidence: Contrast ratio calculation
+          
+        - id: READ-001-3
+          name: Label Collision
+          description: Labels do not overlap at default zoom
+          method: Visual inspection
+          pass_condition: No overlapping labels
+          evidence: Screenshot
+
+    # -------------------------------------------------------------------------
+    # CRITERION 5: Scalability
+    # -------------------------------------------------------------------------
+    - id: SCALE-001
+      name: Scalability
+      description: GIS handles large asset networks
+      category: scalability
+      priority: medium
+      
+      checks:
+        - id: SCALE-001-1
+          name: Clustering
+          description: Dense areas cluster correctly
+          method: Load 1000+ test markers
+          pass_condition: No performance degradation with clustering enabled
+          evidence: Performance test log
+          
+        - id: SCALE-001-2
+          name: Zoom Level Handling
+          description: Content appropriate at all zoom levels
+          method: Zoom through 0-18
+          pass_condition: No visual artifacts, appropriate detail
+          evidence: Zoom sequence screenshots
+          
+        - id: SCALE-001-3
+          name: Network Complexity
+          description: 100+ network lines render correctly
+          method: Load transmission network
+          pass_condition: Lines visible, no rendering errors
+          evidence: Network rendering screenshot
+
+    # -------------------------------------------------------------------------
+    # CRITERION 6: Professional Appearance
+    # -------------------------------------------------------------------------
+    - id: PROF-001
+      name: Professional Appearance
+      description: GIS looks professional and polished
+      category: appearance
+      priority: medium
+      
+      checks:
+        - id: PROF-001-1
+          name: Visual Hierarchy
+          description: Important elements visually prioritized
+          method: Visual inspection
+          pass_condition: Assets more prominent than labels
+          evidence: Screenshot
+          
+        - id: PROF-001-2
+          name: Consistent Styling
+          description: Consistent colors, fonts, spacing
+          method: Code review
+          pass_condition: Style constants defined, used consistently
+          evidence: Code inspection
+          
+        - id: PROF-001-3
+          name: UI Polish
+          description: Smooth animations, clean borders
+          method: User experience test
+          pass_condition: No visual glitches, smooth transitions
+          evidence: Observation log
+
+  # =========================================================================
+  # REPEATABILITY
+  # =========================================================================
+  repeatability:
+    required: true
+    description: Same input produces consistent output
+    
+    test_runs: 3
+    
+    test_cases:
+      - name: Generate Substation Marker
+        input:
+          device_type: substation
+          coordinates: [121.88, 13.475]
+          status: normal
+        expected:
+          marker_type: polygon
+          color: "#22C55E"
+        tolerance: exact_match
+        runs:
+          - result: polygon, #22C55E
+          - result: polygon, #22C55E
+          - result: polygon, #22C55E
+
+      - name: Generate Transmission Line
+        input:
+          line_type: transmission
+          voltage: 115
+          coordinates: [[121.88, 13.475], [121.90, 13.48]]
+          status: normal
+        expected:
+          line_type: line
+          width: 2
+          color: "#4169E1"
+        tolerance: exact_match
+        runs:
+          - result: line, 2, #4169E1
+          - result: line, 2, #4169E1
+          - result: line, 2, #4169E1
+
+      - name: Focus on Device
+        input:
+          device_id: SUB-001
+          coordinates: [121.88, 13.475]
+          zoom: 15
+        expected:
+          center: [121.88, 13.475]
+          zoom: 15
+        tolerance: exact_match
+        runs:
+          - result: [121.88, 13.475], 15
+          - result: [121.88, 13.475], 15
+          - result: [121.88, 13.475], 15
+
+  # =========================================================================
+  # CONSISTENCY
+  # =========================================================================
+  consistency:
+    deterministic: true
+    description: Output is consistent across different invocations
+    
+    variation_allowed: |
+      Minor variations are acceptable only in:
+      - Animation timing (due to browser rendering)
+      - Popup positioning (due to viewport edge detection)
+      - Label placement (due to collision avoidance)
+    
+    checks:
+      - name: Same device always same color
+        type: functional
+        tolerance: exact
+        
+      - name: Same zoom always same detail level
+        type: zoom-level
+        tolerance: exact
+
+  # =========================================================================
+  # KNOWLEDGE INTEGRATION
+  # =========================================================================
+  knowledge_integration:
+    required: true
+    
+    checks:
+      - name: All status colors from knowledge
+        description: Status colors match KDE-GIS-002 exactly
+        validation: String comparison with hex codes
+        
+      - name: CRS comments present
+        description: Coordinate system documented
+        validation: Comment presence in source
+        
+      - name: Layer order matches design rules
+        description: Layer stacking per KDE-GIS-002 Rule 5
+        validation: Layer order inspection
+
+  # =========================================================================
+  # CAPABILITY VERIFICATION
+  # =========================================================================
+  capability_verification:
+    required: true
+    
+    verification_matrix:
+      view-navigation:
+        - capability: pan
+          test: Pan map north 100px
+          expected: Map center moves north
+          status: must_pass
+        - capability: zoom-in
+          test: Zoom in 1 level
+          expected: Zoom increases by 1
+          status: must_pass
+        - capability: focus-device
+          test: Focus on SUB-001
+          expected: Map centers on device coordinates
+          status: must_pass
+
+      layer-management:
+        - capability: set-visibility
+          test: Toggle electrical-network layer
+          expected: Layer shows/hides
+          status: must_pass
+        - capability: set-opacity
+          test: Set layer opacity to 0.5
+          expected: Layer becomes semi-transparent
+          status: must_pass
+
+      device-management:
+        - capability: plot-device
+          test: Add new device
+          expected: Device appears on map
+          status: must_pass
+        - capability: device-status
+          test: Update device status to fault
+          expected: Device color changes to #EF4444
+          status: must_pass
+        - capability: device-clustering
+          test: Enable clustering with 100+ devices
+          expected: Devices cluster at low zoom
+          status: must_pass
+
+      network-visualization:
+        - capability: transmission-lines
+          test: Display 115kV transmission line
+          expected: Line width 2, color #4169E1
+          status: must_pass
+        - capability: power-flow
+          test: Enable power flow animation
+          expected: Animated dashes moving along line
+          status: should_pass
+
+      user-interaction:
+        - capability: popup-information
+          test: Click on device
+          expected: Popup with device details
+          status: must_pass
+        - capability: hover-information
+          test: Hover over device
+          expected: Cursor changes, tooltip appears
+          status: must_pass
+
+  # =========================================================================
+  # TEST ENVIRONMENTS
+  # =========================================================================
+  test_environments:
+    - name: Development
+      url: http://localhost:3000
+      browser: Chrome latest
+      viewport: 1920x1080
+      
+    - name: Production-like
+      url: https://work-1-dnsxhpotgmhavfnl.prod-runtime.all-hands.dev
+      browser: Chrome latest
+      viewport: 1920x1080
+
+  # =========================================================================
+  # VALIDATION REPORTING
+  # =========================================================================
+  reporting:
+    format: markdown
+    include:
+      - Test execution logs
+      - Screenshot evidence
+      - Performance measurements
+      - Knowledge compliance checklist
+    pass_threshold: 85%
+    critical_failures:
+      - EQ-001 (Engineering Correctness)
+      - OU-001 (Operator Usability)

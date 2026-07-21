@@ -1,0 +1,79 @@
+---
+# Engineering Expert Metadata
+id: KDE-EXPERT-GIS-001
+name: GIS Engineering Expert
+version: 0.1.0
+status: SYNTHESIZED
+domain: gis
+confidence: MEDIUM
+evidence-level: 2
+owner: EXP-003
+created: 2026-07-21T10:47:00Z
+updated: 2026-07-21T10:47:00Z
+source-investigation: EXP-003
+validation_investigation: null
+approver: null
+registered: null
+
+# Expert Purpose
+purpose: |
+  Design, generate, improve, and validate professional utility-grade GIS 
+  interfaces for SCADA systems. Produces GIS implementations suitable for 
+  transmission, distribution, renewable energy, and industrial facilities.
+
+# Scope
+scope:
+  owns:
+    - GIS engineering decisions
+    - Map visualization
+    - Spatial analysis
+    - Layer management
+    - Device representation
+    - Network visualization
+    - User interaction patterns
+  
+  does_not_own:
+    - Electrical engineering (KDE-EXPERT-SLD-001)
+    - Dashboard engineering
+    - Alarm engineering
+    - Data acquisition
+    - SCADA backend systems
+
+# Domain
+domain_info:
+  primary: gis
+  secondary:
+    - cartography
+    - geoinformatics
+    - spatial-analysis
+  industries:
+    - electrical-transmission
+    - electrical-distribution
+    - renewable-energy
+    - industrial-facilities
+    - water-utilities
+    - gas-utilities
+
+# Capabilities Summary
+capability_groups: 8
+  - view-navigation
+  - route-navigation
+  - map-rendering
+  - layer-management
+  - device-management
+  - network-visualization
+  - spatial-analysis
+  - user-interaction
+
+# Dependencies
+knowledge_dependencies_count: 8
+  - KDE-GIS-001 (fundamentals)
+  - KDE-GIS-002 (design-rules)
+  - KDE-GIS-003 (best-practices)
+  - KDE-GIS-004 (performance)
+  - KDE-GIS-005 (realtime)
+  - KDE-GIS-006 (asset-visualization)
+  - KDE-GIS-007 (layer-management)
+  - KDE-GIS-008 (offline)
+
+skill_dependencies: []

@@ -1,0 +1,77 @@
+---
+# KDE Engineering Expert Registry
+# Version 1.0.0
+# Last Updated: 2026-07-21
+
+registry:
+  version: 1.0.0
+  last_updated: 2026-07-21T10:47:00Z
+  
+  # =========================================================================
+  # REGISTERED EXPERTS
+  # =========================================================================
+  experts:
+    - id: KDE-EXPERT-GIS-001
+      name: GIS Engineering Expert
+      version: 0.1.0
+      status: SYNTHESIZED
+      domain: gis
+      subdomain:
+        - cartography
+        - geoinformatics
+        - spatial-analysis
+      path: gis/kde-expert-gis-001/
+      registered: null
+      created: 2026-07-21
+      source: EXP-003
+      description: |
+        Designs, generates, improves, and validates professional utility-grade
+        GIS interfaces for SCADA systems. Produces implementations suitable
+        for transmission, distribution, renewable energy, and industrial facilities.
+      
+      capability_groups: 8
+      capabilities_count: 58
+      knowledge_dependencies: 8
+      
+      responsibilities:
+        owns:
+          - GIS engineering decisions
+          - Map visualization
+          - Spatial analysis
+        does_not_own:
+          - Electrical engineering
+          - Dashboard engineering
+          - Alarm engineering
+
+  # =========================================================================
+  # DOMAINS
+  # =========================================================================
+  domains:
+    - name: gis
+      description: Geographic Information Systems for utility applications
+      experts: 1
+      expert_ids:
+        - KDE-EXPERT-GIS-001
+
+  # =========================================================================
+  # LIFECYCLE SUMMARY
+  # =========================================================================
+  lifecycle_summary:
+    synthesized: 1
+    candidate: 0
+    validated: 0
+    registered: 0
+    active: 0
+    deprecated: 0
+
+# =========================================================================
+# GOVERNANCE NOTES
+# =========================================================================
+governance:
+  next_actions:
+    - expert_id: KDE-EXPERT-GIS-001
+      action: Validate
+      priority: high
+      notes: Run validation suite per validation.yaml criteria
+  
+  pending_review: []
