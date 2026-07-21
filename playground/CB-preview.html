@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circuit Breaker - Interactive Preview</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 { margin-bottom: 0.5rem; }
+    p { color: #888; margin-bottom: 2rem; }
+    .container { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; }
+    .breaker-card {
+      background: #16213e;
+      border-radius: 12px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+    .breaker-card:hover { border-color: #0f3460; transform: translateY(-2px); }
+    .breaker-card.active { border-color: #e94560; }
+    .breaker-card svg { display: block; }
+    .state-label { text-align: center; margin-top: 1rem; font-weight: bold; font-size: 1.1rem; }
+    .click-hint { color: #666; font-size: 0.85rem; margin-top: 0.5rem; text-align: center; }
+    .controls { margin-top: 3rem; background: #16213e; padding: 1.5rem 2rem; border-radius: 12px; text-align: center; }
+    .controls h3 { margin-bottom: 1rem; }
+    .btn-group { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+    .btn { padding: 0.5rem 1rem; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; transition: all 0.15s; }
+    .btn:hover { transform: scale(1.05); }
+    .btn:active { transform: scale(0.98); }
+    .btn-open { background: #44FF44; color: #000; }
+    .btn-closed { background: #FF4444; color: #fff; }
+    .btn-unknown { background: transparent; border: 2px solid #888; color: #888; }
+    .btn-oos { background: #888; color: #fff; }
+    .selected-info { margin-top: 1.5rem; padding: 1rem; background: #0f3460; border-radius: 8px; font-family: monospace; min-width: 300px; }
+    .selected-info strong { color: #e94560; }
+  </style>
+</head>
+<body>
+  <h1>Circuit Breaker - Interactive Preview</h1>
+  <p>Click any breaker to select it, then change state using buttons below</p>
+  
+  <div class="container">
+    <div class="breaker-card" data-id="CB-1" onclick="selectBreaker('CB-1')">
+      <svg width="100" height="200" viewBox="0 0 100 200">
+        <line class="conductor" x1="50" y1="0" x2="50" y2="200" stroke="black" stroke-width="4" fill="none"/>
+        <rect id="body-CB-1" x="30" y="70" width="40" height="60" rx="4" stroke="black" stroke-width="2" fill="#44FF44"/>
+      </svg>
+      <div class="state-label" id="label-CB-1">OPEN</div>
+      <div class="click-hint">Click to select</div>
+    </div>
+    
+    <div class="breaker-card" data-id="CB-2" onclick="selectBreaker('CB-2')">
+      <svg width="100" height="200" viewBox="0 0 100 200">
+        <line x1="50" y1="0" x2="50" y2="200" stroke="black" stroke-width="4" fill="none"/>
+        <rect id="body-CB-2" x="30" y="70" width="40" height="60" rx="4" stroke="black" stroke-width="2" fill="#FF4444"/>
+      </svg>
+      <div class="state-label" id="label-CB-2">CLOSED</div>
+      <div class="click-hint">Click to select</div>
+    </div>
+    
+    <div class="breaker-card" data-id="CB-3" onclick="selectBreaker('CB-3')">
+      <svg width="100" height="200" viewBox="0 0 100 200">
+        <line x1="50" y1="0" x2="50" y2="200" stroke="black" stroke-width="4" fill="none"/>
+        <rect id="body-CB-3" x="30" y="70" width="40" height="60" rx="4" stroke="black" stroke-width="2" fill="transparent"/>
+      </svg>
+      <div class="state-label" id="label-CB-3">UNKNOWN</div>
+      <div class="click-hint">Click to select</div>
+    </div>
+    
+    <div class="breaker-card" data-id="CB-4" onclick="selectBreaker('CB-4')">
+      <svg width="100" height="200" viewBox="0 0 100 200">
+        <line x1="50" y1="0" x2="50" y2="200" stroke="black" stroke-width="4" fill="none"/>
+        <rect id="body-CB-4" x="30" y="70" width="40" height="60" rx="4" stroke="black" stroke-width="2" fill="#888888" stroke-dasharray="8 4"/>
+      </svg>
+      <div class="state-label" id="label-CB-4">OUT OF SERVICE</div>
+      <div class="click-hint">Click to select</div>
+    </div>
+  </div>
+  
+  <div class="controls">
+    <h3>Change State of Selected Breaker</h3>
+    <div class="btn-group">
+      <button class="btn btn-open" onclick="setState('OPEN')">OPEN</button>
+      <button class="btn btn-closed" onclick="setState('CLOSED')">CLOSED</button>
+      <button class="btn btn-unknown" onclick="setState('UNKNOWN')">UNKNOWN</button>
+      <button class="btn btn-oos" onclick="setState('OUT_OF_SERVICE')">OUT OF SERVICE</button>
+    </div>
+    <div class="selected-info">
+      <strong>Selected:</strong> <span id="selected-id">None</span><br>
+      <strong>State:</strong> <span id="selected-state">—</span>
+    </div>
+  </div>
+
+  <script>
+    const states = {
+      OPEN: { fill: '#44FF44', strokeDasharray: 'none' },
+      CLOSED: { fill: '#FF4444', strokeDasharray: 'none' },
+      UNKNOWN: { fill: 'transparent', strokeDasharray: 'none' },
+      OUT_OF_SERVICE: { fill: '#888888', strokeDasharray: '8 4' }
+    };
+    
+    let selected = null;
+    
+    function selectBreaker(id) {
+      document.querySelectorAll('.breaker-card').forEach(c => c.classList.remove('active'));
+      document.querySelector('[data-id="' + id + '"]').classList.add('active');
+      selected = id;
+      document.getElementById('selected-id').textContent = id;
+      document.getElementById('selected-state').textContent = document.getElementById('label-' + id).textContent;
+    }
+    
+    function setState(state) {
+      if (!selected) { alert('Select a breaker first!'); return; }
+      const body = document.getElementById('body-' + selected);
+      const label = document.getElementById('label-' + selected);
+      body.setAttribute('fill', states[state].fill);
+      body.setAttribute('stroke-dasharray', states[state].strokeDasharray);
+      label.textContent = state.replace('_', ' ');
+      document.getElementById('selected-state').textContent = state.replace('_', ' ');
+    }
+  </script>
+</body>
+</html>
