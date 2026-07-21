@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-The MARELCO SCADA implementation was created as a separate repository (`/workspace/project/marelco-scada`) instead of within the existing KDE Playground workspace (`/workspace/project/kde/playground/INV-013/`). This investigation analyzes why this occurred and identifies the root cause.
+The MARELCO SCADA implementation was originally created as a separate repository (`/workspace/project/marelco-scada`) but has since been relocated to the KDE Playground workspace (`/workspace/project/kde/playground/marelco-scada/`). This investigation analyzes why this occurred and identifies the root cause.
 
 ---
 
@@ -88,7 +88,7 @@ Before performing any work:
 | 1 | User provides INV-013 task | New task received | Accept task |
 | 2 | Initialize Runtime | Per instructions | Runtime initialized |
 | 3 | Check workspace | Implicit | Found KDE workspace |
-| 4 | Create project directory | **Decision point** | Created `/workspace/project/marelco-scada` |
+| 4 | Create project directory | **Decision point** | Created `/workspace/project/marelco-scada` (now `/workspace/project/kde/playground/marelco-scada`) |
 | 5 | Implement project | Per requirements | Full implementation |
 | 6 | Create git repository | Per practice | New repo initialized |
 | 7 | Push to GitHub | Per practice | Pushed to `tamzrod/marelco-scada` |
@@ -141,7 +141,7 @@ User Request (INV-013)
 └─────────────────────────────────┘
          │
          ▼
-    `/workspace/project/marelco-scada`
+    `/workspace/project/kde/playground/marelco-scada` (relocated)
 ```
 
 ---
@@ -149,9 +149,9 @@ User Request (INV-013)
 ## Alternative Decisions Analysis
 
 ### Option A: Create in Current Directory
-**Location**: `/workspace/project/marelco-scada` (what happened)  
+**Location**: `/workspace/project/marelco-scada` (original location, now relocated)  
 **Rationale**: Safe, doesn't modify existing workspace  
-**Evidence**: Implementation created here  
+**Evidence**: Implementation created here, later moved to `/workspace/project/kde/playground/marelco-scada`  
 
 ### Option B: Create in Playground
 **Location**: `/workspace/project/kde/playground/INV-013/scada-platform/`  
@@ -314,7 +314,7 @@ All evidence collected and analyzed. Root cause identified. Recommendations docu
 
 ## Appendix: Directory Comparison
 
-### New Implementation (`/workspace/project/marelco-scada`)
+### New Implementation (`/workspace/project/kde/playground/marelco-scada`)
 - 95 files
 - Own GitHub repo (`tamzrod/marelco-scada`)
 - Full Flask backend
@@ -322,6 +322,7 @@ All evidence collected and analyzed. Root cause identified. Recommendations docu
 - Mock simulator
 - PostgreSQL schema
 - Docker Compose deployment
+- **Relocated from**: `/workspace/project/marelco-scada` → `/workspace/project/kde/playground/marelco-scada`
 
 ### Existing Implementation (`/workspace/project/kde/playground/INV-013/scada-platform`)
 - 53 files
