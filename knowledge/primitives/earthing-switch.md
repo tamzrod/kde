@@ -551,6 +551,7 @@ The expert who has absorbed this knowledge can correctly answer:
 | KDE-PRIM-CB-001 | Adjacent primitive | Circuit breaker provides isolation |
 | KDE-UTILITY-SLD-SYMBOLS | Parent standard | Defines ES symbol |
 | KDE-UTILITY-SLD-COLORS | Parent standard | Defines state colors |
+| **KDE-GEOM-KNIFE-001** | **Shared Component** | **Knife switch geometry (EXP-011)** |
 
 ---
 

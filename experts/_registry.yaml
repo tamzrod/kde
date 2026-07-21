@@ -64,12 +64,13 @@ registry:
       
       capability_groups: 5
       capabilities_count: 35
-      knowledge_dependencies: 4
+      knowledge_dependencies: 5
       enrolled_lessons:
         - EXP-005: Circuit Breaker Primitive
         - EXP-007: Disconnect Switch Primitive
         - EXP-008: Earthing Switch Primitive
         - EXP-010: NGCP Bus Voltage Profile
+        - EXP-011: Knife Switch Geometry
       
       responsibilities:
         owns:

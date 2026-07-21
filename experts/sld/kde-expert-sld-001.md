@@ -43,8 +43,21 @@ The expert has been taught the following engineering primitives:
 | Disconnect Switch (DS) | KDE-PRIM-DS-001 | TAUGHT | EXP-007 |
 | Earthing Switch (ES) | KDE-PRIM-ES-001 | TAUGHT | EXP-008 |
 | Bus Voltage Profile | KDE-VOLTAGE-NGCP-001 | TAUGHT | EXP-010 |
+| Knife Switch Geometry | KDE-GEOM-KNIFE-001 | TAUGHT | EXP-011 |
 
 ---
+
+### Knife Switch Geometry (Shared)
+- **File**: `knowledge/primitives/knife-switch.md`
+- **Used by**: DS, ES primitives
+- **Key Rules**:
+  - Blade length = Conductor Gap + 1px
+  - Conductor Gap = 52px (TOP_CONTACT_Y to BOTTOM_CONTACT_Y)
+  - Blade length = 53px
+  - Contacts: 30px wide, 3px thick
+  - CLOSED: 0°, RED blade
+  - OPEN: 40°, GREEN blade
+  - Pivot: center of gap
 
 ### Bus Voltage Profile (NGCP)
 - **File**: `knowledge/bus-voltage/ngcp-profile.md`
@@ -113,6 +126,7 @@ The expert has been taught the following engineering primitives:
 | EXP-007 | Disconnect Switch Primitive | 2026-07-21 | COMPLETE |
 | EXP-008 | Earthing Switch Primitive | 2026-07-21 | COMPLETE |
 | EXP-010 | NGCP Bus Voltage Profile | 2026-07-21 | COMPLETE |
+| EXP-011 | Knife Switch Geometry | 2026-07-21 | COMPLETE |
 
 ---
 
@@ -149,6 +163,13 @@ The expert can correctly answer:
 ✓ What color represents 230kV Bus?  
 ✓ Can a Breaker override Bus color?  
 ✓ Can another utility provide a different voltage profile?  
+
+**Knife Switch Geometry (EXP-011):**
+✓ Why is knife longer than conductor gap?  
+✓ What defines the conductor gap?  
+✓ What changes between OPEN and CLOSED?  
+✓ Why must knife not touch contacts when OPEN?  
+✓ Why is knife hidden in UNKNOWN?  
 
 ---
 

@@ -636,6 +636,7 @@ The expert who has absorbed this knowledge can correctly answer:
 | KDE-UTILITY-SLD-LAYOUT | Composition context | Bay layout patterns |
 | KDE-PRIM-CONDUCTOR | Composes with | Connects to DS anchors |
 | KDE-PRIM-BUSBAR | Ancestor | Source of conductor color |
+| **KDE-GEOM-KNIFE-001** | **Shared Component** | **Knife switch geometry (EXP-011)** |
 
 ---
 
