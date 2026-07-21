@@ -41,6 +41,7 @@ The expert has been taught the following engineering primitives:
 |-----------|-------------|--------|--------|
 | Circuit Breaker (CB) | KDE-PRIM-CB-001 | TAUGHT | EXP-005 |
 | Disconnect Switch (DS) | KDE-PRIM-DS-001 | TAUGHT | EXP-007 |
+| Earthing Switch (ES) | KDE-PRIM-ES-001 | TAUGHT | EXP-008 |
 
 ### Circuit Breaker (CB)
 - **File**: `knowledge/primitives/circuit-breaker.md`
