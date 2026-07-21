@@ -53,14 +53,20 @@ The expert has been taught the following engineering primitives:
 ### Knife Switch Geometry (Shared)
 - **File**: `knowledge/primitives/knife-switch.md`
 - **Used by**: DS, ES primitives
+- **Internal Topology**:
+  - **Source Contact**: Permanently connected to incoming conductor (NEVER moves)
+  - **Load Contact**: Permanently connected to outgoing conductor (NEVER moves)
+  - **Moving Knife**: Only moving component, bridges/isolates contacts
+  - **Mechanical Pivot**: Axis of rotation, NOT electrical connection point
 - **Key Rules**:
-  - Blade length = Conductor Gap + 1px
-  - Conductor Gap = 52px (TOP_CONTACT_Y to BOTTOM_CONTACT_Y)
-  - Blade length = 53px
+  - Knife length = Conductor Gap + 1px
+  - Conductor Gap = 52px (SOURCE_CONTACT_Y to LOAD_CONTACT_Y)
+  - Knife length = 53px
   - Contacts: 30px wide, 3px thick
-  - CLOSED: 0°, RED blade
-  - OPEN: 40°, GREEN blade
-  - Pivot: center of gap
+  - CLOSED: 0°, RED knife bridges both contacts
+  - OPEN: 40°, GREEN knife, air gap to Load Contact
+  - UNKNOWN: No knife, both contacts visible
+- **Key Insight**: The knife does NOT connect directly to the main conductor. Source Contact is the permanent electrical connection.
 
 ### Bus Voltage Profile (NGCP)
 - **File**: `knowledge/bus-voltage/ngcp-profile.md`
@@ -147,6 +153,7 @@ Main Conductor Path:
 | EXP-008 | Earthing Switch Primitive | 2026-07-21 | COMPLETE |
 | EXP-010 | NGCP Bus Voltage Profile | 2026-07-21 | COMPLETE |
 | EXP-011 | Knife Switch Geometry | 2026-07-21 | COMPLETE |
+| EXP-011-Rev1 | Knife Switch Internal Topology | 2026-07-21 | COMPLETE |
 | EXP-012 | ES Physical Arrangement | 2026-07-21 | COMPLETE |
 | EXP-013 | Engineering Geometry Model | 2026-07-21 | COMPLETE |
 | EXP-014 | Electrical Network Model | 2026-07-21 | COMPLETE |
@@ -194,6 +201,14 @@ The expert can correctly answer:
 ✓ What changes between OPEN and CLOSED?  
 ✓ Why must knife not touch contacts when OPEN?  
 ✓ Why is knife hidden in UNKNOWN?  
+
+**Knife Switch Internal Topology (EXP-011-Rev1):**
+✓ Which component is permanently connected to the incoming conductor?  
+✓ Does the knife connect directly to the main conductor?  
+✓ Which component rotates?  
+✓ What is the function of the Mechanical Pivot?  
+✓ What remains electrically connected when the switch is OPEN?  
+✓ Why does the Main Conductor remain continuous in an Earth Switch?  
 
 **ES Physical Arrangement (EXP-012):**
 ✓ Does ES interrupt the main conductor?  
