@@ -1,0 +1,198 @@
+# INV-022: Runtime Skill Loading Architecture
+
+**Investigation ID**: INV-022  
+**Title**: Runtime Skill Loading Architecture  
+**Type**: Implementation Investigation  
+**Status**: COMPLETE  
+**Created**: 2026-07-21  
+**Engine**: KDE-ENGINE-004 (Delta)  
+
+---
+
+## Purpose
+
+Design and implement a runtime architecture that treats skills as pluggable capabilities loaded on demand based on the current engineering task.
+
+---
+
+## Research Question
+
+> Can the KDE Runtime dynamically load and execute skills without modifying the Engine?
+
+---
+
+## Hypothesis
+
+Separating Skills from the Engine will improve maintainability, extensibility, and reuse while preserving a single generic reasoning engine.
+
+---
+
+## Design Goals
+
+| Goal | Status | Evidence |
+|------|--------|----------|
+| Engine remains generic | ✅ | No Engine modifications |
+| Runtime determines required skills | ✅ | Task classification |
+| Skills load dynamically | ✅ | `SkillLoader` class |
+| Skills are replaceable | ✅ | Versioned registry |
+| Skills independently versioned | ✅ | Semantic versioning |
+| Runtime records loaded skills | ✅ | `ExecutionLog` |
+
+---
+
+## Implementation Components
+
+### 1. Skill Registry
+
+**File**: `runtime/skills/registry.json`
+
+Contains:
+- 8 promoted skills
+- Skill metadata (ID, name, version, status)
+- Dependencies
+- Triggers
+- Context contributions
+- Validation evidence
+
+### 2. Skill Loader
+
+**File**: `runtime/skills/loader.py`
+
+Components:
+- `SkillRegistry`: Loads and manages skill definitions
+- `DependencyResolver`: Resolves skill dependencies
+- `SkillLoader`: Dynamic skill loading and context building
+- `ExecutionLog`: Records execution details
+
+### 3. Runtime Flow
+
+```
+User Request
+    │
+    ▼
+Runtime
+    │
+    ▼
+Task Classification ──► Triggers Identified
+    │
+    ▼
+Required Skills ──► Registry Lookup
+    │
+    ▼
+Load Skills ──► Dependency Resolution
+    │
+    ▼
+Retrieve Knowledge (Knowledge-on-Demand)
+    │
+    ▼
+Apply SOP
+    │
+    ▼
+Build Context ──► Combined Skill Context
+    │
+    ▼
+Execute Engine (unchanged)
+    │
+    ▼
+Return Result
+```
+
+---
+
+## Validation Evidence
+
+### Evidence 1: Dynamic Skill Loading
+
+```
+=== Skill Selection (continuation) ===
+  Knowledge Retrieval (deps: [])
+  Investigation Planning (deps: [])
+=== Loading Skills ===
+Loaded 2 skills in 0.03ms
+```
+
+### Evidence 2: Promoted Skills
+
+| Skill ID | Name | Version | Status |
+|----------|------|---------|--------|
+| skill-investigation-planning | Investigation Planning | 1.0.0 | promoted |
+| skill-experiment-design | Experiment Design | 1.0.0 | promoted |
+| skill-knowledge-retrieval | Knowledge Retrieval | 1.0.0 | promoted |
+| skill-evidence-collection | Evidence Collection | 1.0.0 | promoted |
+| skill-decision-attribution | Decision Attribution | 1.0.0 | promoted |
+| skill-artifact-traceability | Artifact Traceability | 1.0.0 | promoted |
+| skill-governance-review | Governance Review | 1.0.0 | promoted |
+| skill-frontend-design | Frontend Design | 1.0.0 | promoted |
+
+### Evidence 3: Dependency Resolution
+
+Skills with dependencies:
+- `skill-experiment-design` → depends on `skill-investigation-planning`
+- `skill-decision-attribution` → depends on `skill-evidence-collection`
+
+### Evidence 4: Context Building
+
+Combined context includes:
+- Instructions from all loaded skills
+- Workflows
+- Constraints
+- Examples
+- Knowledge references
+
+---
+
+## Success Criteria
+
+| Criterion | Evidence | Result |
+|-----------|----------|--------|
+| Runtime automatically selects skills | Task triggers | ✅ |
+| Skills load dynamically | `SkillLoader.load_skills()` | ✅ |
+| Engine remains generic | No Engine modifications | ✅ |
+| Skills can be independently upgraded | Registry versioning | ✅ |
+| Runtime records loaded skills | `ExecutionLog` | ✅ |
+| Multiple skills cooperate | Context combination | ✅ |
+| No Engine modifications required | Architecture design | ✅ |
+
+---
+
+## Architecture Summary
+
+```
+runtime/
+├── skills/
+│   ├── __init__.py          # Module init
+│   ├── registry.json         # 8 promoted skills
+│   └── loader.py             # SkillLoader, DependencyResolver
+├── knowledge/                # From INV-019
+│   └── catalog.json          # 13 knowledge artifacts
+├── runtime.py                # Knowledge-on-Demand Runtime
+└── __init__.py               # Runtime package
+```
+
+---
+
+## Lessons Learned
+
+1. **Separation works**: Skills are independent of Engine
+2. **Registry enables management**: Centralized skill definitions
+3. **Dependencies require resolution**: Order matters
+4. **Context combination is key**: Skills contribute, Runtime combines
+
+---
+
+## Recommendations
+
+1. **Adopt Runtime Skill Loading** as standard architecture
+2. **Maintain skill registry** with promoted skills only
+3. **Version skills independently** from Engine and Runtime
+4. **Log all executions** for validation
+
+---
+
+## Investigation Status
+
+**COMPLETE** - All success criteria met
+
+---
+
+*Generated by KDE under INV-022*
