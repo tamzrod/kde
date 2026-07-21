@@ -33,6 +33,7 @@ kde/
 
 | Document | Purpose |
 |---------|---------|
+| [LABORATORY-SOP.md](./LABORATORY-SOP.md) | Laboratory Standard Operating Procedures |
 | [ENGINE-VERSIONING.md](./ENGINE-VERSIONING.md) | Engine versioning policies |
 | [STATE-MACHINE.md](./STATE-MACHINE.md) | Document lifecycle states |
 | [VERSION.md](./VERSION.md) | Version history |
