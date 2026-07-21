@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Substation Bay - Iteration 3</title>
+  <title>Substation Bay - Iteration 5 (Two-Phase Renderer)</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -41,429 +41,560 @@
     .btn-open.btn-active { background: #44FF44; color: #000; }
     .btn-unknown { border-color: #888; }
     .btn-unknown.btn-active { background: #888; color: #000; }
+    .info { font-size: 0.75rem; color: #666; margin-top: 0.5rem; text-align: center; }
   </style>
 </head>
 <body>
-  <h1>Substation Bay - Primitive Composition (Iteration 3)</h1>
-  <p class="subtitle">69 kV Configuration | NGCP Profile</p>
+  <h1>Substation Bay - Two-Phase Renderer (Iteration 5)</h1>
+  <p class="subtitle">69 kV | Construction Draft → Normalized Geometry</p>
   
   <div class="container">
-    <svg id="sld" width="850" height="750" viewBox="0 0 850 750">
-      <!-- Background -->
-      <rect width="850" height="750" fill="#000"/>
-      
-      <!-- ============================================== -->
-      <!-- 69kV Bus (Cyan #00FFFF per NGCP Profile)     -->
-      <!-- ============================================== -->
-      <g id="main-bus">
-        <line x1="80" y1="50" x2="770" y2="50" 
-              stroke="#00FFFF" stroke-width="8" stroke-linecap="round"/>
-        <text x="425" y="40" text-anchor="middle" fill="#fff" font-size="14">69 kV Bus</text>
-      </g>
-      
-      <!-- Incoming feeder label -->
-      <text x="425" y="25" text-anchor="middle" fill="#fff" font-size="14">Incoming</text>
-      <line x1="425" y1="30" x2="425" y2="45" stroke="#00FFFF" stroke-width="4"/>
-      
-      <!-- ============================================== -->
-      <!-- FEEDER 1 (Left) - OPEN                       -->
-      <!-- KNIFE SWITCH GEOMETRY: Gap=52px, Blade=53px -->
-      <!-- Contacts: 94px (top), 146px (bottom)         -->
-      <!-- ============================================== -->
-      <g id="feeder1" transform="translate(100, 0)">
-        
-        <!-- Main conductor (continuous per EXP-012) -->
-        <line x1="0" y1="50" x2="0" y2="200" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== DS1-T (Disconnect Switch - Inline) ========== -->
-        <!-- Using KNIFE SWITCH GEOMETRY (EXP-011)                   -->
-        <g id="ds1-top" transform="translate(0, 200)">
-          <line x1="-15" y1="94" x2="15" y2="94" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line x1="-15" y1="146" x2="15" y2="146" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line id="f1ds-top-knife" x1="0" y1="94" x2="0" y2="147" 
-                stroke="#44FF44" stroke-width="5" stroke-linecap="round"/>
-        </g>
-        
-        <!-- Conductor segment -->
-        <line x1="0" y1="350" x2="0" y2="400" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== ES1-T (Earthing Switch - Branch) ========== -->
-        <!-- Per EXP-012: ES connects via SHORT BRANCH from main   -->
-        <!-- Main conductor remains CONTINUOUS                      -->
-        <!-- NOTE: Branch geometry synthesized (not in knowledge)   -->
-        <g id="es1-top" transform="translate(0, 400)">
-          <!-- T-junction branch -->
-          <line x1="0" y1="0" x2="30" y2="30" stroke="#00FFFF" stroke-width="4"/>
-          <!-- Knife switch on branch -->
-          <line x1="-15" y1="94" x2="15" y2="94" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line x1="-15" y1="146" x2="15" y2="146" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line id="f1es-top-knife" x1="30" y1="94" x2="30" y2="147" 
-                stroke="#44FF44" stroke-width="5" stroke-linecap="round"/>
-          <!-- Ground conductor (after knife per EXP-012) -->
-          <line x1="30" y1="150" x2="30" y2="180" stroke="#00FFFF" stroke-width="4"/>
-          <!-- Ground symbol (always visible per EXP-012) -->
-          <g transform="translate(30, 200)">
-            <line x1="0" y1="-20" x2="0" y2="0" stroke="#00FFFF" stroke-width="4"/>
-            <line x1="-12" y1="-8" x2="12" y2="-8" stroke="#00FFFF" stroke-width="3"/>
-            <line x1="-8" y1="0" x2="8" y2="0" stroke="#00FFFF" stroke-width="3"/>
-            <line x1="-4" y1="8" x2="4" y2="8" stroke="#00FFFF" stroke-width="3"/>
-          </g>
-        </g>
-        
-        <!-- Main conductor continues past ES (per EXP-012) -->
-        <line x1="0" y1="420" x2="0" y2="600" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== CB1 (Circuit Breaker) ========== -->
-        <!-- SYNTHESIZED: vertical orientation for bay layout -->
-        <g id="cb1" transform="translate(0, 600)">
-          <rect id="f1-body" x="-20" y="0" width="40" height="50" 
-                fill="#44FF44" stroke="#00FFFF" stroke-width="2" rx="4"/>
-          <line x1="0" y1="-5" x2="0" y2="0" stroke="#00FFFF" stroke-width="4"/>
-          <line x1="0" y1="50" x2="0" y2="55" stroke="#00FFFF" stroke-width="4"/>
-        </g>
-        
-        <!-- Conductor segment -->
-        <line x1="0" y1="655" x2="0" y2="700" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== DS1-B (Disconnect Switch - Inline) ========== -->
-        <g id="ds1-bottom" transform="translate(0, 700)">
-          <line x1="-15" y1="94" x2="15" y2="94" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line x1="-15" y1="146" x2="15" y2="146" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line id="f1ds-bottom-knife" x1="0" y1="94" x2="0" y2="147" 
-                stroke="#44FF44" stroke-width="5" stroke-linecap="round"/>
-        </g>
-        
-        <!-- Conductor to ground/outgoing -->
-        <line x1="0" y1="850" x2="0" y2="900" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- Outgoing label -->
-        <text x="0" y="930" text-anchor="middle" fill="#fff" font-size="14">Outgoing 1</text>
-      </g>
-      
-      <!-- ============================================== -->
-      <!-- FEEDER 2 (Center) - CLOSED                   -->
-      <!-- ============================================== -->
-      <g id="feeder2" transform="translate(425, 0)">
-        
-        <!-- Main conductor -->
-        <line x1="0" y1="50" x2="0" y2="200" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== DS2-T ========== -->
-        <g id="ds2-top" transform="translate(0, 200)">
-          <line x1="-15" y1="94" x2="15" y2="94" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line x1="-15" y1="146" x2="15" y2="146" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line id="f2ds-top-knife" x1="0" y1="94" x2="0" y2="147" 
-                stroke="#FF4444" stroke-width="5" stroke-linecap="round"/>
-        </g>
-        
-        <!-- Conductor segment -->
-        <line x1="0" y1="350" x2="0" y2="400" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== ES2-T ========== -->
-        <g id="es2-top" transform="translate(0, 400)">
-          <line x1="0" y1="0" x2="30" y2="30" stroke="#00FFFF" stroke-width="4"/>
-          <line x1="-15" y1="94" x2="15" y2="94" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line x1="-15" y1="146" x2="15" y2="146" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line id="f2es-top-knife" x1="30" y1="94" x2="30" y2="147" 
-                stroke="#FF4444" stroke-width="5" stroke-linecap="round"/>
-          <line x1="30" y1="150" x2="30" y2="180" stroke="#00FFFF" stroke-width="4"/>
-          <g transform="translate(30, 200)">
-            <line x1="0" y1="-20" x2="0" y2="0" stroke="#00FFFF" stroke-width="4"/>
-            <line x1="-12" y1="-8" x2="12" y2="-8" stroke="#00FFFF" stroke-width="3"/>
-            <line x1="-8" y1="0" x2="8" y2="0" stroke="#00FFFF" stroke-width="3"/>
-            <line x1="-4" y1="8" x2="4" y2="8" stroke="#00FFFF" stroke-width="3"/>
-          </g>
-        </g>
-        
-        <!-- Main conductor continues -->
-        <line x1="0" y1="420" x2="0" y2="600" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== CB2 ========== -->
-        <g id="cb2" transform="translate(0, 600)">
-          <rect id="f2-body" x="-20" y="0" width="40" height="50" 
-                fill="#FF4444" stroke="#00FFFF" stroke-width="2" rx="4"/>
-          <line x1="0" y1="-5" x2="0" y2="0" stroke="#00FFFF" stroke-width="4"/>
-          <line x1="0" y1="50" x2="0" y2="55" stroke="#00FFFF" stroke-width="4"/>
-        </g>
-        
-        <!-- Conductor segment -->
-        <line x1="0" y1="655" x2="0" y2="700" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== DS2-B ========== -->
-        <g id="ds2-bottom" transform="translate(0, 700)">
-          <line x1="-15" y1="94" x2="15" y2="94" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line x1="-15" y1="146" x2="15" y2="146" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line id="f2ds-bottom-knife" x1="0" y1="94" x2="0" y2="147" 
-                stroke="#FF4444" stroke-width="5" stroke-linecap="round"/>
-        </g>
-        
-        <!-- Conductor -->
-        <line x1="0" y1="850" x2="0" y2="900" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- Outgoing label -->
-        <text x="0" y="930" text-anchor="middle" fill="#fff" font-size="14">Outgoing 2</text>
-      </g>
-      
-      <!-- ============================================== -->
-      <!-- FEEDER 3 (Right) - UNKNOWN                   -->
-      <!-- ============================================== -->
-      <g id="feeder3" transform="translate(750, 0)">
-        
-        <!-- Main conductor -->
-        <line x1="0" y1="50" x2="0" y2="200" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== DS3-T ========== -->
-        <g id="ds3-top" transform="translate(0, 200)">
-          <line x1="-15" y1="94" x2="15" y2="94" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line x1="-15" y1="146" x2="15" y2="146" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line id="f3ds-top-knife" x1="0" y1="94" x2="0" y2="147" 
-                stroke="#888" stroke-width="5" stroke-linecap="round" style="display:none"/>
-        </g>
-        
-        <!-- Conductor segment -->
-        <line x1="0" y1="350" x2="0" y2="400" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== ES3-T ========== -->
-        <g id="es3-top" transform="translate(0, 400)">
-          <line x1="0" y1="0" x2="30" y2="30" stroke="#00FFFF" stroke-width="4"/>
-          <line x1="-15" y1="94" x2="15" y2="94" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line x1="-15" y1="146" x2="15" y2="146" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <!-- Knife hidden in UNKNOWN per knowledge -->
-          <line id="f3es-top-knife" x1="30" y1="94" x2="30" y2="147" 
-                stroke="#888" stroke-width="5" stroke-linecap="round" style="display:none"/>
-          <line x1="30" y1="150" x2="30" y2="180" stroke="#00FFFF" stroke-width="4"/>
-          <g transform="translate(30, 200)">
-            <line x1="0" y1="-20" x2="0" y2="0" stroke="#00FFFF" stroke-width="4"/>
-            <line x1="-12" y1="-8" x2="12" y2="-8" stroke="#00FFFF" stroke-width="3"/>
-            <line x1="-8" y1="0" x2="8" y2="0" stroke="#00FFFF" stroke-width="3"/>
-            <line x1="-4" y1="8" x2="4" y2="8" stroke="#00FFFF" stroke-width="3"/>
-          </g>
-        </g>
-        
-        <!-- Main conductor continues -->
-        <line x1="0" y1="420" x2="0" y2="600" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== CB3 ========== -->
-        <g id="cb3" transform="translate(0, 600)">
-          <!-- CB hidden in UNKNOWN -->
-          <rect id="f3-body" x="-20" y="0" width="40" height="50" 
-                fill="transparent" stroke="#00FFFF" stroke-width="2" rx="4" style="display:none"/>
-          <line x1="0" y1="-5" x2="0" y2="0" stroke="#00FFFF" stroke-width="4"/>
-          <line x1="0" y1="50" x2="0" y2="55" stroke="#00FFFF" stroke-width="4"/>
-        </g>
-        
-        <!-- Conductor segment -->
-        <line x1="0" y1="655" x2="0" y2="700" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- ========== DS3-B ========== -->
-        <g id="ds3-bottom" transform="translate(0, 700)">
-          <line x1="-15" y1="94" x2="15" y2="94" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line x1="-15" y1="146" x2="15" y2="146" 
-                stroke="#00FFFF" stroke-width="3" stroke-linecap="round"/>
-          <line id="f3ds-bottom-knife" x1="0" y1="94" x2="0" y2="147" 
-                stroke="#888" stroke-width="5" stroke-linecap="round" style="display:none"/>
-        </g>
-        
-        <!-- Conductor -->
-        <line x1="0" y1="850" x2="0" y2="900" stroke="#00FFFF" stroke-width="4"/>
-        
-        <!-- Outgoing label -->
-        <text x="0" y="930" text-anchor="middle" fill="#fff" font-size="14">Outgoing 3</text>
-      </g>
-      
+    <svg id="sld" width="950" height="900" viewBox="0 0 950 900">
+      <rect width="950" height="900" fill="#000"/>
+      <g id="content"></g>
     </svg>
     
     <div class="controls">
       <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center;">
         <div style="text-align: center;">
-          <div style="color: #44FF44; font-size: 0.75rem; margin-bottom: 0.5rem;">FEEDER 1</div>
-          <button class="btn btn-closed" onclick="setFeederState(1, 'CLOSED')">CLOSED</button>
-          <button class="btn btn-open btn-active" onclick="setFeederState(1, 'OPEN')">OPEN</button>
-          <button class="btn btn-unknown" onclick="setFeederState(1, 'UNKNOWN')">UNKNOWN</button>
+          <div style="color: #888; font-size: 0.75rem; margin-bottom: 0.5rem;">FEEDER 1</div>
+          <button id="f1-closed" class="btn btn-closed" onclick="setFeederState(1, 'CLOSED')">CLOSED</button>
+          <button id="f1-open" class="btn btn-open btn-active" onclick="setFeederState(1, 'OPEN')">OPEN</button>
+          <button id="f1-unknown" class="btn btn-unknown" onclick="setFeederState(1, 'UNKNOWN')">UNKNOWN</button>
         </div>
         <div style="text-align: center;">
-          <div style="color: #FF4444; font-size: 0.75rem; margin-bottom: 0.5rem;">FEEDER 2</div>
-          <button class="btn btn-closed btn-active" onclick="setFeederState(2, 'CLOSED')">CLOSED</button>
-          <button class="btn btn-open" onclick="setFeederState(2, 'OPEN')">OPEN</button>
-          <button class="btn btn-unknown" onclick="setFeederState(2, 'UNKNOWN')">UNKNOWN</button>
+          <div style="color: #888; font-size: 0.75rem; margin-bottom: 0.5rem;">FEEDER 2</div>
+          <button id="f2-closed" class="btn btn-closed btn-active" onclick="setFeederState(2, 'CLOSED')">CLOSED</button>
+          <button id="f2-open" class="btn btn-open" onclick="setFeederState(2, 'OPEN')">OPEN</button>
+          <button id="f2-unknown" class="btn btn-unknown" onclick="setFeederState(2, 'UNKNOWN')">UNKNOWN</button>
         </div>
         <div style="text-align: center;">
           <div style="color: #888; font-size: 0.75rem; margin-bottom: 0.5rem;">FEEDER 3</div>
-          <button class="btn btn-closed" onclick="setFeederState(3, 'CLOSED')">CLOSED</button>
-          <button class="btn btn-open" onclick="setFeederState(3, 'OPEN')">OPEN</button>
-          <button class="btn btn-unknown btn-active" onclick="setFeederState(3, 'UNKNOWN')">UNKNOWN</button>
+          <button id="f3-closed" class="btn btn-closed" onclick="setFeederState(3, 'CLOSED')">CLOSED</button>
+          <button id="f3-open" class="btn btn-open" onclick="setFeederState(3, 'OPEN')">OPEN</button>
+          <button id="f3-unknown" class="btn btn-unknown btn-active" onclick="setFeederState(3, 'UNKNOWN')">UNKNOWN</button>
         </div>
       </div>
     </div>
+    
+    <p class="info">
+      Phase 1: Construction Draft (pixel units) → Phase 2: Normalized Geometry → Phase 3: SVG Render
+    </p>
   </div>
 
   <script>
-    // ============================================
-    // KNIFE SWITCH GEOMETRY (EXP-011)
-    // Retrieved from: knowledge/primitives/knife-switch.md
-    // TOP_CONTACT_Y = 94px
-    // BOTTOM_CONTACT_Y = 146px
-    // GAP = 52px
-    // BLADE_LENGTH = 53px (gap + 1px)
-    // ============================================
+    // ============================================================
+    // TWO-PHASE RENDERER
+    // Phase 1: Construction Draft (visual layout)
+    // Phase 2: Normalized Geometry (from draft proportions)
+    // Phase 3: SVG Render (from normalized)
+    // ============================================================
+
+    // ============================================================
+    // PHASE 1: CONSTRUCTION DRAFT (Draftsman View)
+    // All values in pixels - like a technical drawing
+    // ============================================================
     
-    const KNIFE_GEOMETRY = {
-      GAP: 52,
-      BLADE_LENGTH: 53,
-      TOP_CONTACT_Y: 94,
-      BOTTOM_CONTACT_Y: 146,
-      PIVOT_Y: 96,
-      CONTACT_WIDTH: 30,
-      CONTACT_THICKNESS: 3,
-      BLADE_WIDTH: 5,
-      OPEN_ANGLE: 40
+    const DRAFT = {
+      // Bay layout - symmetrical spacing
+      FEEDER_X: [125, 475, 825],    // Horizontal positions (symmetrical)
+      BUS_Y: 60,                     // Bus vertical position
+      FEEDER_START_Y: 60,          // Where feeder starts below bus
+      
+      // Device spacing - clean vertical rhythm
+      DEVICE_HEIGHT: 120,           // Standard device vertical extent
+      DEVICE_GAP: 40,              // Gap between devices
+      FEEDER_PITCH: 160,           // Total pitch: DEVICE_HEIGHT + DEVICE_GAP
+      
+      // Conductor dimensions
+      CONDUCTOR_WIDTH: 4,
+      BUS_WIDTH: 8,
+      
+      // Colors
+      COLOR_69KV: '#00FFFF',
+      COLOR_CLOSED: '#FF4444',
+      COLOR_OPEN: '#44FF44',
+      COLOR_UNKNOWN: '#888888',
+      
+      // DS dimensions (from EXP-011)
+      DS_CONTACT_WIDTH: 30,
+      DS_CONTACT_THICKNESS: 3,
+      DS_GAP: 52,                  // Gap between contacts
+      DS_BLADE_LENGTH: 53,         // Gap + tolerance
+      DS_BLADE_WIDTH: 5,
+      DS_OPEN_ANGLE: 40,
+      
+      // CB dimensions
+      CB_WIDTH: 50,
+      CB_HEIGHT: 100,
+      
+      // ES branch dimensions (from EXP-012)
+      ES_BRANCH_LENGTH: 50,        // Short branch to ground
+      ES_BRANCH_ANGLE: 45,         // Degrees from vertical toward ground
+      ES_GROUND_CONDUCTOR: 50,     // Length after knife to ground symbol
+      ES_GROUND_SYMBOL_SIZE: 20,
     };
     
-    // ============================================
-    // STATE CONFIGURATION
-    // Retrieved from knowledge/primitives/
-    // ============================================
+    // ============================================================
+    // PHASE 2: NORMALIZED GEOMETRY (From Draft Proportions)
+    // Scale-independent values derived from draft
+    // ============================================================
+    
+    const NORM = {
+      // Normalize to device height = 1.0
+      SCALE: DRAFT.DEVICE_HEIGHT,
+      
+      // DS normalized
+      DS: {
+        width: 1.0,
+        height: 1.0,
+        contact_width: DRAFT.DS_CONTACT_WIDTH / DRAFT.DEVICE_HEIGHT,
+        contact_thickness: DRAFT.DS_CONTACT_THICKNESS / DRAFT.DEVICE_HEIGHT,
+        gap: DRAFT.DS_GAP / DRAFT.DEVICE_HEIGHT,
+        blade_length: DRAFT.DS_BLADE_LENGTH / DRAFT.DEVICE_HEIGHT,
+        blade_width: DRAFT.DS_BLADE_WIDTH / DRAFT.DEVICE_HEIGHT,
+        open_angle: DRAFT.DS_OPEN_ANGLE,
+        closed_angle: 0,
+        // Anchors
+        anchors: {
+          top: { x: 0.5, y: 0 },
+          bottom: { x: 0.5, y: 1 }
+        }
+      },
+      
+      // CB normalized
+      CB: {
+        width: DRAFT.CB_WIDTH / DRAFT.DEVICE_HEIGHT,
+        height: 1.0,
+        anchors: {
+          top: { x: 0.5, y: 0 },
+          bottom: { x: 0.5, y: 1 }
+        }
+      },
+      
+      // ES normalized (branch device)
+      ES: {
+        width: 1.2,
+        height: 1.0,
+        branch_length: DRAFT.ES_BRANCH_LENGTH / DRAFT.DEVICE_HEIGHT,
+        branch_angle: DRAFT.ES_BRANCH_ANGLE,
+        ground_conductor: DRAFT.ES_GROUND_CONDUCTOR / DRAFT.DEVICE_HEIGHT,
+        ground_symbol_size: DRAFT.ES_GROUND_SYMBOL_SIZE / DRAFT.DEVICE_HEIGHT,
+        anchors: {
+          main: { x: 0.5, y: 0 },
+          ground: { x: 0.5, y: 1 }
+        }
+      },
+      
+      // Bus normalized
+      BUS: {
+        height: 1.0,
+        anchors: {
+          conn: { x: 0.5, y: 0 }
+        }
+      },
+      
+      // Feeder composition
+      FEEDER: {
+        pitch: 1.0 + (DRAFT.DEVICE_GAP / DRAFT.DEVICE_HEIGHT),
+        devices: ['DS', 'CB', 'DS']  // Top-DS, CB, Bottom-DS
+      }
+    };
+    
+    // ============================================================
+    // STATE CONFIGURATIONS
+    // ============================================================
+    
     const STATES = {
       OPEN: {
-        angle: 40,
-        color: '#44FF44',
-        cbFill: '#44FF44',
+        ds_angle: NORM.DS.open_angle,
+        cb_fill: DRAFT.COLOR_OPEN,
         visible: true
       },
       CLOSED: {
-        angle: 0,
-        color: '#FF4444',
-        cbFill: '#FF4444',
+        ds_angle: NORM.DS.closed_angle,
+        cb_fill: DRAFT.COLOR_CLOSED,
         visible: true
       },
       UNKNOWN: {
-        angle: 0,
-        color: 'transparent',
-        cbFill: 'transparent',
+        ds_angle: 0,
+        cb_fill: 'transparent',
         visible: false
       }
     };
     
-    // ============================================
-    // KNIFE SWITCH UPDATE
-    // Per EXP-011: BLADE_LENGTH = GAP + 1px
-    // OPEN angle = 40 degrees
-    // CLOSED angle = 0 degrees
-    // ============================================
-    function updateKnifeSwitch(knifeId, state) {
-      const knife = document.getElementById(knifeId);
-      if (!knife) return;
-      
+    // ============================================================
+    // PHASE 3: SVG RENDERER (From Normalized Geometry)
+    // ============================================================
+    
+    function createConductor(x1, y1, x2, y2, color) {
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', x1);
+      line.setAttribute('y1', y1);
+      line.setAttribute('x2', x2);
+      line.setAttribute('y2', y2);
+      line.setAttribute('stroke', color);
+      line.setAttribute('stroke-width', DRAFT.CONDUCTOR_WIDTH);
+      line.setAttribute('stroke-linecap', 'round');
+      return line;
+    }
+    
+    // Render DS from normalized geometry
+    function renderDS(state) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
       const config = STATES[state];
-      const geo = KNIFE_GEOMETRY;
+      const n = NORM.DS;
+      const s = NORM.SCALE;
       
-      if (!config.visible) {
-        knife.style.display = 'none';
-        return;
-      }
+      // Top contact (normalized position)
+      const topY = 0;
+      const topX1 = (0.5 - n.contact_width / 2) * s;
+      const topX2 = (0.5 + n.contact_width / 2) * s;
       
-      knife.style.display = 'block';
+      const topContact = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      topContact.setAttribute('x1', topX1);
+      topContact.setAttribute('y1', topY);
+      topContact.setAttribute('x2', topX2);
+      topContact.setAttribute('y2', topY);
+      topContact.setAttribute('stroke', DRAFT.COLOR_69KV);
+      topContact.setAttribute('stroke-width', n.contact_thickness * s);
+      topContact.setAttribute('stroke-linecap', 'round');
+      g.appendChild(topContact);
       
-      const centerX = parseFloat(knife.getAttribute('x1'));
-      const centerY = geo.TOP_CONTACT_Y + (geo.GAP / 2) + 1;
-      const halfLength = (geo.GAP + 1) / 2;
+      // Bottom contact
+      const botY = s;
+      const botX1 = (0.5 - n.contact_width / 2) * s;
+      const botX2 = (0.5 + n.contact_width / 2) * s;
       
-      if (config.angle === 0) {
-        // CLOSED: inline vertical
-        knife.setAttribute('x1', centerX);
-        knife.setAttribute('y1', geo.TOP_CONTACT_Y);
-        knife.setAttribute('x2', centerX);
-        knife.setAttribute('y2', geo.BOTTOM_CONTACT_Y + 1);
-      } else {
-        // OPEN: 40° rotation
-        const angleRad = config.angle * Math.PI / 180;
-        const dx = Math.sin(angleRad) * halfLength;
-        const dy = Math.cos(angleRad) * halfLength;
+      const botContact = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      botContact.setAttribute('x1', botX1);
+      botContact.setAttribute('y1', botY);
+      botContact.setAttribute('x2', botX2);
+      botContact.setAttribute('y2', botY);
+      botContact.setAttribute('stroke', DRAFT.COLOR_69KV);
+      botContact.setAttribute('stroke-width', n.contact_thickness * s);
+      botContact.setAttribute('stroke-linecap', 'round');
+      g.appendChild(botContact);
+      
+      // Knife blade (state-dependent)
+      const knife = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      if (config.visible) {
+        const angleRad = config.ds_angle * Math.PI / 180;
+        const pivotX = 0.5 * s;
+        const pivotY = (0.5 * n.gap + 0.01) * s;
+        const halfLen = (n.gap / 2 + 0.01) * s;
         
-        knife.setAttribute('x1', centerX - dx);
-        knife.setAttribute('y1', centerY - dy);
-        knife.setAttribute('x2', centerX + dx);
-        knife.setAttribute('y2', centerY + dy);
-      }
-      
-      knife.setAttribute('stroke', config.color);
-    }
-    
-    // ============================================
-    // BREAKER UPDATE
-    // Note: CB vertical orientation SYNTHESIZED
-    // Knowledge only defines horizontal CB
-    // ============================================
-    function updateBreaker(breakerId, state) {
-      const body = document.getElementById(breakerId);
-      if (!body) return;
-      
-      const config = STATES[state];
-      
-      if (!config.visible) {
-        body.style.display = 'none';
+        if (config.ds_angle === 0) {
+          // Closed: inline
+          knife.setAttribute('x1', 0.5 * s);
+          knife.setAttribute('y1', 0);
+          knife.setAttribute('x2', 0.5 * s);
+          knife.setAttribute('y2', s + 2);
+        } else {
+          // Open: rotated
+          knife.setAttribute('x1', pivotX - Math.sin(angleRad) * halfLen);
+          knife.setAttribute('y1', pivotY - Math.cos(angleRad) * halfLen);
+          knife.setAttribute('x2', pivotX + Math.sin(angleRad) * halfLen);
+          knife.setAttribute('y2', pivotY + Math.cos(angleRad) * halfLen);
+        }
+        knife.setAttribute('stroke', state === 'OPEN' ? DRAFT.COLOR_OPEN : DRAFT.COLOR_CLOSED);
       } else {
-        body.style.display = 'block';
-        body.setAttribute('fill', config.cbFill);
+        knife.style.display = 'none';
       }
+      knife.setAttribute('stroke-width', n.blade_width * s);
+      knife.setAttribute('stroke-linecap', 'round');
+      g.appendChild(knife);
+      
+      return g;
     }
     
-    // ============================================
-    // FEEDER STATE CONTROL
-    // ============================================
+    // Render CB from normalized geometry
+    function renderCB(state) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      const config = STATES[state];
+      const n = NORM.CB;
+      const s = NORM.SCALE;
+      
+      const body = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      body.setAttribute('x', -n.width * s / 2);
+      body.setAttribute('y', 0);
+      body.setAttribute('width', n.width * s);
+      body.setAttribute('height', s);
+      body.setAttribute('rx', 4);
+      body.setAttribute('stroke', DRAFT.COLOR_69KV);
+      body.setAttribute('stroke-width', 2);
+      
+      if (config.visible) {
+        body.setAttribute('fill', config.cb_fill);
+      } else {
+        body.setAttribute('fill', 'transparent');
+        body.style.display = 'none';
+      }
+      g.appendChild(body);
+      
+      return g;
+    }
+    
+    // Render ES from normalized geometry (EXP-012)
+    // ES does NOT interrupt main conductor - uses branch
+    function renderES(state) {
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      const config = STATES[state];
+      const n = NORM.ES;
+      const s = NORM.SCALE;
+      
+      // ES positioned as a branch OFF the main conductor
+      // The main conductor runs vertically through x=0
+      // ES branch goes to the RIGHT and angles down toward ground
+      
+      // T-junction point on main conductor
+      const tjX = 0;
+      const tjY = s * 0.25;
+      
+      // Branch end point (angled down-right toward ground)
+      const branchLen = 60;
+      const branchAngle = 35 * Math.PI / 180; // 35 degrees down
+      const branchEndX = branchLen * Math.sin(branchAngle);
+      const branchEndY = tjY + branchLen * Math.cos(branchAngle);
+      
+      // T-junction (small circle or intersection)
+      const tj = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      tj.setAttribute('cx', tjX);
+      tj.setAttribute('cy', tjY);
+      tj.setAttribute('r', 4);
+      tj.setAttribute('fill', DRAFT.COLOR_69KV);
+      g.appendChild(tj);
+      
+      // Branch conductor (from main toward ground)
+      const branch = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      branch.setAttribute('x1', tjX);
+      branch.setAttribute('y1', tjY);
+      branch.setAttribute('x2', branchEndX);
+      branch.setAttribute('y2', branchEndY);
+      branch.setAttribute('stroke', DRAFT.COLOR_69KV);
+      branch.setAttribute('stroke-width', DRAFT.CONDUCTOR_WIDTH);
+      g.appendChild(branch);
+      
+      // Knife contact (small horizontal line on branch)
+      const contactY = branchEndY;
+      const contactX1 = branchEndX - 15;
+      const contactX2 = branchEndX + 15;
+      
+      const contact = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      contact.setAttribute('x1', contactX1);
+      contact.setAttribute('y1', contactY);
+      contact.setAttribute('x2', contactX2);
+      contact.setAttribute('y2', contactY);
+      contact.setAttribute('stroke', DRAFT.COLOR_69KV);
+      contact.setAttribute('stroke-width', 3);
+      contact.setAttribute('stroke-linecap', 'round');
+      g.appendChild(contact);
+      
+      // Knife blade (rotates from contact point)
+      const knife = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      if (config.visible) {
+        const bladeLen = s * 0.5;
+        
+        if (config.ds_angle === 0) {
+          // Closed: vertical down from contact
+          knife.setAttribute('x1', branchEndX);
+          knife.setAttribute('y1', contactY);
+          knife.setAttribute('x2', branchEndX);
+          knife.setAttribute('y2', contactY + bladeLen);
+        } else {
+          // Open: angled away from vertical
+          const angleRad = config.ds_angle * Math.PI / 180;
+          knife.setAttribute('x1', branchEndX - Math.sin(angleRad) * bladeLen * 0.4);
+          knife.setAttribute('y1', contactY - Math.cos(angleRad) * bladeLen * 0.4);
+          knife.setAttribute('x2', branchEndX + Math.sin(angleRad) * bladeLen * 0.6);
+          knife.setAttribute('y2', contactY + Math.cos(angleRad) * bladeLen * 0.6);
+        }
+        knife.setAttribute('stroke', state === 'OPEN' ? DRAFT.COLOR_OPEN : DRAFT.COLOR_CLOSED);
+      } else {
+        knife.style.display = 'none';
+      }
+      knife.setAttribute('stroke-width', 5);
+      knife.setAttribute('stroke-linecap', 'round');
+      g.appendChild(knife);
+      
+      // Ground conductor (after knife, going to ground symbol)
+      const groundX = branchEndX + (config.visible ? 0 : 0);
+      const groundStartY = contactY + (config.visible ? s * 0.5 : 20);
+      const groundEndY = groundStartY + 40;
+      
+      const groundConductor = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      groundConductor.setAttribute('x1', groundX);
+      groundConductor.setAttribute('y1', groundStartY);
+      groundConductor.setAttribute('x2', groundX);
+      groundConductor.setAttribute('y2', groundEndY);
+      groundConductor.setAttribute('stroke', DRAFT.COLOR_69KV);
+      groundConductor.setAttribute('stroke-width', DRAFT.CONDUCTOR_WIDTH);
+      g.appendChild(groundConductor);
+      
+      // Ground symbol (always visible - EXP-012)
+      const groundSymbol = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      groundSymbol.setAttribute('transform', `translate(${groundX}, ${groundEndY + 15})`);
+      
+      // Stem
+      const stem = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      stem.setAttribute('x1', 0);
+      stem.setAttribute('y1', -10);
+      stem.setAttribute('x2', 0);
+      stem.setAttribute('y2', 0);
+      stem.setAttribute('stroke', DRAFT.COLOR_69KV);
+      stem.setAttribute('stroke-width', 4);
+      groundSymbol.appendChild(stem);
+      
+      // Ground bars (stacked)
+      for (let i = 0; i < 3; i++) {
+        const bar = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        const barWidth = 20 - i * 4;
+        bar.setAttribute('x1', -barWidth / 2);
+        bar.setAttribute('y1', i * 5);
+        bar.setAttribute('x2', barWidth / 2);
+        bar.setAttribute('y2', i * 5);
+        bar.setAttribute('stroke', DRAFT.COLOR_69KV);
+        bar.setAttribute('stroke-width', 3);
+        groundSymbol.appendChild(bar);
+      }
+      g.appendChild(groundSymbol);
+      
+      return g;
+    }
+    
+    // ============================================================
+    // BAY COMPOSITION
+    // ============================================================
+    
     const feederStates = { 1: 'OPEN', 2: 'CLOSED', 3: 'UNKNOWN' };
     
-    function setFeederState(feeder, state) {
-      feederStates[feeder] = state;
+    function renderBay() {
+      const content = document.getElementById('content');
+      content.innerHTML = '';
       
-      const prefix = 'f' + feeder;
+      // Render Bus
+      const bus = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      const busLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      busLine.setAttribute('x1', 50);
+      busLine.setAttribute('y1', DRAFT.BUS_Y);
+      busLine.setAttribute('x2', 900);
+      busLine.setAttribute('y2', DRAFT.BUS_Y);
+      busLine.setAttribute('stroke', DRAFT.COLOR_69KV);
+      busLine.setAttribute('stroke-width', DRAFT.BUS_WIDTH);
+      busLine.setAttribute('stroke-linecap', 'round');
+      bus.appendChild(busLine);
       
-      // Update knife switches for this feeder
-      updateKnifeSwitch(prefix + 'ds-top-knife', state);
-      updateKnifeSwitch(prefix + 'ds-bottom-knife', state);
-      updateKnifeSwitch(prefix + 'es-top-knife', state);
-      updateKnifeSwitch(prefix + 'es-bottom-knife', state);
+      const busLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      busLabel.setAttribute('x', 475);
+      busLabel.setAttribute('y', DRAFT.BUS_Y - 15);
+      busLabel.setAttribute('text-anchor', 'middle');
+      busLabel.setAttribute('fill', '#fff');
+      busLabel.setAttribute('font-size', '14');
+      busLabel.textContent = '69 kV Bus';
+      bus.appendChild(busLabel);
       
-      // Update breaker
-      updateBreaker(prefix + '-body', state);
+      const incomingLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      incomingLabel.setAttribute('x', 475);
+      incomingLabel.setAttribute('y', DRAFT.BUS_Y - 35);
+      incomingLabel.setAttribute('text-anchor', 'middle');
+      incomingLabel.setAttribute('fill', '#fff');
+      incomingLabel.setAttribute('font-size', '14');
+      incomingLabel.textContent = 'Incoming';
+      bus.appendChild(incomingLabel);
+      content.appendChild(bus);
       
-      // Update button states for this feeder
-      const feederIndex = feeder - 1;
-      const controlDivs = document.querySelectorAll('.controls > div > div:first-child');
-      if (controlDivs[feederIndex]) {
-        const parent = controlDivs[feederIndex].parentElement;
-        parent.querySelectorAll('.btn').forEach(btn => {
-          btn.classList.remove('btn-active');
-          if ((state === 'CLOSED' && btn.textContent === 'CLOSED') ||
-              (state === 'OPEN' && btn.textContent === 'OPEN') ||
-              (state === 'UNKNOWN' && btn.textContent === 'UNKNOWN')) {
-            btn.classList.add('btn-active');
-          }
-        });
-      }
+      // Render each feeder
+      DRAFT.FEEDER_X.forEach((x, idx) => {
+        renderFeeder(idx + 1, x);
+      });
     }
     
-    // Initialize all feeders
-    setFeederState(1, 'OPEN');
-    setFeederState(2, 'CLOSED');
-    setFeederState(3, 'UNKNOWN');
+    function renderFeeder(num, x) {
+      const content = document.getElementById('content');
+      const state = feederStates[num];
+      const s = NORM.SCALE;
+      
+      // Feeder group
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('id', 'feeder-' + num);
+      
+      let y = DRAFT.FEEDER_START_Y;
+      
+      // Bus to DS-Top conductor
+      g.appendChild(createConductor(x, DRAFT.BUS_Y, x, y, DRAFT.COLOR_69KV));
+      
+      // DS-Top (normalized)
+      const dsTop = renderDS(state);
+      dsTop.setAttribute('transform', `translate(${x}, ${y})`);
+      g.appendChild(dsTop);
+      y += s;
+      
+      // DS-Top to ES conductor (main conductor continues)
+      g.appendChild(createConductor(x, y - s + s, x, y + 30, DRAFT.COLOR_69KV));
+      
+      // ES (normalized) - branch device
+      // ES is positioned ON the main conductor at x
+      const es = renderES(state);
+      es.setAttribute('transform', `translate(${x}, ${y + 30})`);
+      g.appendChild(es);
+      
+      // ES to CB conductor (main conductor continues through)
+      // Skip past the ES branch area
+      g.appendChild(createConductor(x, y + 30 + 150, x, y + 200, DRAFT.COLOR_69KV));
+      y += 200;
+      
+      // CB (normalized)
+      const cb = renderCB(state);
+      cb.setAttribute('transform', `translate(${x}, ${y})`);
+      g.appendChild(cb);
+      y += s;
+      
+      // CB to DS-Bottom conductor
+      g.appendChild(createConductor(x, y - s + s, x, y + 30, DRAFT.COLOR_69KV));
+      
+      // DS-Bottom (normalized)
+      const dsBot = renderDS(state);
+      dsBot.setAttribute('transform', `translate(${x}, ${y + 30})`);
+      g.appendChild(dsBot);
+      y += s + 30;
+      
+      // DS-Bottom to Outgoing conductor
+      g.appendChild(createConductor(x, y - s + s, x, y + 40, DRAFT.COLOR_69KV));
+      
+      // Outgoing label
+      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      label.setAttribute('x', x);
+      label.setAttribute('y', y + 60);
+      label.setAttribute('text-anchor', 'middle');
+      label.setAttribute('fill', '#fff');
+      label.setAttribute('font-size', '14');
+      label.textContent = 'Outgoing ' + num;
+      g.appendChild(label);
+      
+      content.appendChild(g);
+    }
+    
+    function setFeederState(num, state) {
+      feederStates[num] = state;
+      
+      // Update buttons
+      ['closed', 'open', 'unknown'].forEach(s => {
+        document.getElementById(`f${num}-${s}`).classList.remove('btn-active');
+      });
+      document.getElementById(`f${num}-${state.toLowerCase()}`).classList.add('btn-active');
+      
+      // Re-render
+      renderBay();
+    }
+    
+    // Initial render
+    renderBay();
+    
+    // Log phase info
+    console.log('=== TWO-PHASE RENDERER ===');
+    console.log('Phase 1: DRAFT construction values (pixels)');
+    console.log('Phase 2: NORM normalized geometry (scale-independent)');
+    console.log('Phase 3: SVG render (from normalized)');
   </script>
 </body>
 </html>

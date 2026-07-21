@@ -46,6 +46,7 @@ The expert has been taught the following engineering primitives:
 | Knife Switch Geometry | KDE-GEOM-KNIFE-001 | TAUGHT | EXP-011 |
 | ES Physical Arrangement | KDE-PRIM-ES-001 | TAUGHT | EXP-012 |
 | Engineering Geometry Model | KDE-GEOM-MODEL-001 | TAUGHT | EXP-013 |
+| Electrical Network Model | KDE-NETWORK-MODEL-001 | TAUGHT | EXP-014 |
 
 ---
 
@@ -131,6 +132,7 @@ The expert has been taught the following engineering primitives:
 | EXP-011 | Knife Switch Geometry | 2026-07-21 | COMPLETE |
 | EXP-012 | ES Physical Arrangement | 2026-07-21 | COMPLETE |
 | EXP-013 | Engineering Geometry Model | 2026-07-21 | COMPLETE |
+| EXP-014 | Electrical Network Model | 2026-07-21 | COMPLETE |
 
 ---
 
@@ -187,6 +189,16 @@ The expert can correctly answer:
 ✓ What is an Engineering Anchor?  
 ✓ Why are primitive dimensions normalized?  
 ✓ Who determines physical size?  
+
+**Electrical Network Model (EXP-014):**
+✓ What does a continuous conductor represent?  
+✓ What does a broken conductor represent?  
+✓ What is a Series Object?  
+✓ What is a Parallel Object?  
+✓ How many connection points does a Series Object expose?  
+✓ How many connection points does a Parallel Object expose?  
+✓ Who generates conductors?  
+✓ Does an Earth Switch interrupt the main conductor?  
 
 ---
 
