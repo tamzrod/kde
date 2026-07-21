@@ -58,7 +58,7 @@ The expert has been taught the following engineering primitives:
 ### Earthing Switch (ES)
 - **File**: `knowledge/primitives/earthing-switch.md`
 - **Inline Grounding Device**: Vertical orientation
-- **States**: CLOSED (black knife, 0°), OPEN (green knife, 40°), UNKNOWN (no knife)
+- **States**: CLOSED (red knife, 0°), OPEN (green knife, 40°), UNKNOWN (no knife)
 - **Key Rule**: Lower end connects to ground symbol (not conductor)
 - **Geometry**: Knife from contact (y=94) to ground conductor (y=206)
 

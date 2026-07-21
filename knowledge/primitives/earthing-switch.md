@@ -121,8 +121,8 @@ Busbar ════════════════════════�
 | `orientation` | Enum | VERTICAL (only valid orientation) |
 | `knife_length` | Float | Physical blade length |
 | `ground_symbol` | Fixed | Always present at bottom |
-| `knife_color_closed` | Color | Color when closed (typically black/yellow) |
-| `knife_color_open` | Color | Color when open (typically green) |
+| `knife_color_closed` | Color | Color when closed (typically red #FF4444) |
+| `knife_color_open` | Color | Color when open (typically green #44FF44) |
 
 **Mutable Properties**:
 
@@ -196,15 +196,15 @@ TOP ANCHOR (X, Y_top)
 |-----------|-------|-------|
 | **Blade Width** | 4-6px at 100% zoom | Thin conductor stroke |
 | **Blade Length** | Spans from top contact to ground symbol | Fixed length |
-| **Blade Color (Closed)** | Black (#000000) | Standard ground indication |
+| **Blade Color (Closed)** | Red (#FF4444) | Indicates closed/grounded state |
 | **Blade Color (Open)** | Green (#44FF44) | Indicates open state |
 | **Rotation Angle (Closed)** | 0° | Inline vertical, touching ground |
 | **Rotation Angle (Open)** | 35-45° | Center rotation, breaks ground connection |
 | **Pivot** | Center of blade | Conceptual rotation point |
 
 **Blade Behavior by State**:
-- **CLOSED**: Blade is a straight vertical line connecting top contact to ground. Circuit is grounded.
-- **OPEN**: Blade rotates 40° about its center. No connection to ground.
+- **CLOSED**: Blade is a straight vertical line connecting top contact to ground. Circuit is grounded. Red color.
+- **OPEN**: Blade rotates 40° about its center. No connection to ground. Green color.
 - **UNKNOWN**: Blade not rendered. Only conductor and ground symbol visible.
 
 ---
@@ -275,7 +275,7 @@ TOP ANCHOR (X, Y_top)
 | State | Knife Position | Knife Color | Ground Connected | Rendering |
 |-------|---------------|-------------|------------------|-----------|
 | OPEN | 35-45° from vertical | Green (#44FF44) | No | Blade clearly angled |
-| CLOSED | 0° (inline) | Black (#000000) | Yes | Blade aligned with conductor |
+| CLOSED | 0° (inline) | Red (#FF4444) | Yes | Blade aligned with conductor |
 | UNKNOWN | Not rendered | — | Unknown | No blade visible |
 
 ### 4.3 Ground Symbol Specification
@@ -426,7 +426,7 @@ For transformer protection:
   <!-- Knife Blade (inline - connecting to ground) -->
   <!-- Ends at y=206, just above ground conductor at y=210 -->
   <line x1="100" y1="94" x2="100" y2="206" 
-        stroke="#000000" stroke-width="5" stroke-linecap="round"/>
+        stroke="#FF4444" stroke-width="5" stroke-linecap="round"/>
   
   <!-- Ground Conductor -->
   <line x1="100" y1="210" x2="100" y2="230" stroke="black" stroke-width="4"/>
@@ -441,7 +441,7 @@ For transformer protection:
 
 **Visual Characteristics**:
 - Knife aligned with conductor (0° angle)
-- Black color indicates closed state (grounded)
+- Red color indicates closed state (grounded)
 - Blade connects through to ground conductor
 - Ground symbol visible at bottom
 
