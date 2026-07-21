@@ -43,6 +43,43 @@ registry:
           - Dashboard engineering
           - Alarm engineering
 
+    - id: KDE-EXPERT-SLD-001
+      name: SLD Engineering Expert
+      version: 0.1.0
+      status: SYNTHESIZED
+      domain: utility-sld
+      subdomain:
+        - primitives
+        - substation-layout
+        - state-visualization
+      path: sld/kde-expert-sld-001/
+      registered: null
+      created: 2026-07-21
+      source: EXP-005, EXP-007
+      description: |
+        Generates, validates, renders, and reasons about Single Line Diagrams
+        for utility-grade SCADA systems. Specializes in electrical primitives
+        including circuit breakers, disconnect switches, busbars, conductors,
+        and transformers.
+      
+      capability_groups: 5
+      capabilities_count: 35
+      knowledge_dependencies: 2
+      enrolled_lessons:
+        - EXP-005: Circuit Breaker Primitive
+        - EXP-007: Disconnect Switch Primitive
+      
+      responsibilities:
+        owns:
+          - SLD engineering decisions
+          - Primitive rendering
+          - Substation layout
+          - State visualization
+        does_not_own:
+          - GIS engineering decisions
+          - Physical electrical calculations
+          - Protection coordination
+
   # =========================================================================
   # DOMAINS
   # =========================================================================
@@ -53,11 +90,17 @@ registry:
       expert_ids:
         - KDE-EXPERT-GIS-001
 
+    - name: utility-sld
+      description: Single Line Diagrams for utility SCADA systems
+      experts: 1
+      expert_ids:
+        - KDE-EXPERT-SLD-001
+
   # =========================================================================
   # LIFECYCLE SUMMARY
   # =========================================================================
   lifecycle_summary:
-    synthesized: 1
+    synthesized: 2
     candidate: 0
     validated: 0
     registered: 0
@@ -73,5 +116,9 @@ governance:
       action: Validate
       priority: high
       notes: Run validation suite per validation.yaml criteria
+    - expert_id: KDE-EXPERT-SLD-001
+      action: Validate
+      priority: high
+      notes: Run primitive validation suite
   
   pending_review: []
