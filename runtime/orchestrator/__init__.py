@@ -13,10 +13,14 @@ The Runtime shall:
 
 import json
 import re
+import os
 from typing import List, Dict, Optional, Tuple, Any
 from dataclasses import dataclass, field
 from datetime import datetime
 from enum import Enum
+
+# Import workspace resolver
+from .workspace import WorkspaceResolver
 
 
 class TaskType(Enum):
@@ -192,12 +196,35 @@ class SkillSelection:
 
 
 @dataclass
+class WorkspaceInfo:
+    """Information about the resolved workspace."""
+    base_path: Optional[str]
+    resolved_path: str
+    exists: bool
+    task_type: str
+    task_id: Optional[str] = None
+    requires_id: bool = False
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """Serialize to dictionary."""
+        return {
+            "base_path": self.base_path,
+            "resolved_path": self.resolved_path,
+            "exists": self.exists,
+            "task_type": self.task_type,
+            "task_id": self.task_id,
+            "requires_id": self.requires_id
+        }
+
+
+@dataclass
 class OrchestrationResult:
     """Complete orchestration result."""
     timestamp: str
     request: str
     classification: ClassificationResult
     skill_selection: SkillSelection
+    workspace: WorkspaceInfo  # NEW: Resolved workspace
     loaded_skills_count: int
     knowledge_retrieved_count: int
     context_size: int
@@ -367,6 +394,7 @@ class RuntimeOrchestrator:
     def __init__(self):
         self.classifier = TaskClassifier()
         self.selector = SkillSelector()
+        self.workspace_resolver = WorkspaceResolver()  # NEW
         self.orchestration_count = 0
     
     def orchestrate(
@@ -388,7 +416,13 @@ class RuntimeOrchestrator:
         
         # Step 1: Classify
         classification = self.classifier.classify(request)
-        
+
+        # Step 1.5: Resolve workspace (NEW)
+        workspace_info = self.workspace_resolver.resolve(
+            task_type=classification.task_type.value,
+            task_id=investigation_id,
+        )
+
         # Step 2: Select skills
         skill_selection = self.selector.select(classification.task_type)
         
@@ -420,6 +454,7 @@ class RuntimeOrchestrator:
             request=request[:100] + "..." if len(request) > 100 else request,
             classification=classification,
             skill_selection=skill_selection,
+            workspace=workspace_info,  # NEW
             loaded_skills_count=loaded_count,
             knowledge_retrieved_count=knowledge_count,
             context_size=context_size,
