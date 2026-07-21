@@ -272,6 +272,67 @@ A validation tool should check:
 
 ---
 
+## Handling Ambiguous Concepts
+
+*Added by LAB-028 Falsification Experiment*
+
+### The "Both" Problem
+
+Some concepts have both architectural and domain-specific aspects. Examples:
+- **Networking**: Infrastructure (Architecture) + API design (Domain)
+- **Database**: Storage engines (Architecture) + schema design (Domain)
+- **Machine Learning**: Model architecture (Architecture) + application (Domain)
+
+### Decision Rule for Ambiguous Concepts
+
+When a concept has both aspects:
+
+1. **Determine primary purpose**: Is the concept primarily infrastructure or application?
+
+2. **Infrastructure** = Provides runtime environment, enables applications
+   - Examples: Desktop Runtime, Operating System, Networking stack
+   - Classification: Architecture
+
+3. **Application** = Contains distinct techniques, has domain practitioners
+   - Examples: GIS (cartography), Visualization (charts), ML (models)
+   - Classification: Domain
+
+4. **If still ambiguous**, apply the **Conservative Rule**:
+   - Classify as Architecture if it provides foundational capabilities
+   - Classify as Domain if it has specialized vocabulary/techniques
+
+### Terminology Check
+
+**Do NOT** classify based on terminology alone:
+- "Runtime" → Architecture (infrastructure)
+- "System" → Architecture (but verify)
+- "GIS" → Domain (field with practitioners)
+
+**Verify** classification by asking: Does this concept describe HOW the system works, or HOW to do something?
+
+### Examples of Correct Classification
+
+| Concept | Primary Aspect | Classification |
+|---------|---------------|----------------|
+| Desktop Runtime | Infrastructure | Architecture |
+| Visualization | Techniques | Domain |
+| GIS | Application field | Domain |
+| Networking | Infrastructure | Architecture |
+| Database | Infrastructure | Architecture |
+| Microservices | Pattern | Architecture |
+| Compiler | Tool | Domain |
+| Machine Learning | Technology | Architecture |
+
+### Examples of Incorrect Classification
+
+| Concept | Mistake | Reason |
+|---------|---------|--------|
+| Database | Domain | Incorrect — database SYSTEMS are infrastructure |
+| Visualization | Architecture | Incorrect — visualization TECHNIQUES are domain |
+| Networking | Domain | Incorrect — networking INFRASTRUCTURE is architecture |
+
+---
+
 ## References
 
 | Document | Relationship |
@@ -279,17 +340,19 @@ A validation tool should check:
 | KDE-KNOWLEDGE-DOCUMENT-SPECIFICATION.md | Metadata requirements |
 | KDE-KNOWLEDGE-TAXONOMY.md | Document classification |
 | LAB-027 | Adversarial analysis source |
+| LAB-028 | Falsification experiment |
 
 ---
 
 ## Version History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 1.0.0 | 2026-07-21 | Initial rules from LAB-027 |
+| Version | Date | Changes | Authority |
+|---------|------|---------|-----------|
+| 1.0.0 | 2026-07-21 | Initial rules from LAB-027 | LAB-027 |
+| 1.1.0 | 2026-07-21 | Added ambiguous concepts guidance | LAB-028 |
 
 ---
 
 **Status**: APPROVED
-**Authority**: LAB-027 Adversarial Analysis
+**Authority**: LAB-027 Adversarial Analysis, LAB-028 Falsification
 **Compliance**: MANDATORY for new documents
