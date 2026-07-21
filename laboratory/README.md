@@ -1,13 +1,23 @@
-# KDE Laboratory
+# Laboratory
 
-**Document Version**: 5.0
-**Date**: 2026-07-20T21:00:00Z
-**Status**: OPERATIONAL (Architecture C)
+**Document Version**: 1.0.0
+**Date**: 2026-07-21
+**Status**: OPERATIONAL
 **Architecture**: Architecture C (Hybrid Investigation-Experiment Model)
 
 ---
 
-## Quick Start
+## Overview
+
+The Laboratory is the **scientific execution environment** for all KDE investigations. It validates approved knowledge through empirical testing, accumulates evidence, and provides feedback to the knowledge system.
+
+### Mission Statement
+
+> The Laboratory evaluates approved knowledge through reproducible experiments, accumulates empirical evidence, and reports findings to Governance for knowledge improvement.
+
+---
+
+## Entry Point
 
 **For new sessions, start here:** [`BOOTSTRAP.md`](./BOOTSTRAP.md)
 
@@ -29,16 +39,6 @@ For detailed specification, see: [`ARCHITECTURE-C.md`](ARCHITECTURE-C.md)
 | **Bidirectional Links** | Complete traceability between artifacts |
 | **Evidence with Experiment** | Evidence stored with experiments for reproducibility |
 | **Knowledge Never in Laboratory** | Validated knowledge promoted to `/knowledge/` |
-
----
-
-## Overview
-
-The Laboratory is the **scientific experimentation environment** for KDE. It validates approved knowledge through empirical testing, accumulates evidence, and provides feedback to the knowledge system.
-
-### Mission Statement
-
-> The Laboratory evaluates approved knowledge through reproducible experiments, accumulates empirical evidence, and reports findings to Governance for knowledge improvement.
 
 ---
 
