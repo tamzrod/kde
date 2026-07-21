@@ -42,6 +42,20 @@ The expert has been taught the following engineering primitives:
 | Circuit Breaker (CB) | KDE-PRIM-CB-001 | TAUGHT | EXP-005 |
 | Disconnect Switch (DS) | KDE-PRIM-DS-001 | TAUGHT | EXP-007 |
 | Earthing Switch (ES) | KDE-PRIM-ES-001 | TAUGHT | EXP-008 |
+| Bus Voltage Profile | KDE-VOLTAGE-NGCP-001 | TAUGHT | EXP-010 |
+
+---
+
+### Bus Voltage Profile (NGCP)
+- **File**: `knowledge/bus-voltage/ngcp-profile.md`
+- **Owner**: Bus primitive
+- **Key Rule**: Bus determines conductor color from voltage profile
+- **NGCP Mapping**:
+  - 500kV → Blue (#0000FF)
+  - 230kV → Red (#FF0000)
+  - 115kV → Yellow-Orange (#FFBF00)
+  - 69kV → Cyan (#00FFFF)
+  - 34.5kV → Dark Green (#006400)
 
 ### Circuit Breaker (CB)
 - **File**: `knowledge/primitives/circuit-breaker.md`
@@ -98,6 +112,7 @@ The expert has been taught the following engineering primitives:
 | EXP-005 | Circuit Breaker Primitive | 2026-07-21 | COMPLETE |
 | EXP-007 | Disconnect Switch Primitive | 2026-07-21 | COMPLETE |
 | EXP-008 | Earthing Switch Primitive | 2026-07-21 | COMPLETE |
+| EXP-010 | NGCP Bus Voltage Profile | 2026-07-21 | COMPLETE |
 
 ---
 
@@ -126,6 +141,14 @@ The expert can correctly answer:
 ✓ How does ES differ from DS?  
 ✓ Why is ground symbol always visible?  
 ✓ When is it safe to close an ES?  
+
+**Voltage Profile (EXP-010):**
+✓ What is a Bus Voltage Profile?  
+✓ Which object owns conductor color?  
+✓ What color represents 69kV Bus?  
+✓ What color represents 230kV Bus?  
+✓ Can a Breaker override Bus color?  
+✓ Can another utility provide a different voltage profile?  
 
 ---
 
