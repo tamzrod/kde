@@ -45,6 +45,7 @@ The expert has been taught the following engineering primitives:
 | Bus Voltage Profile | KDE-VOLTAGE-NGCP-001 | TAUGHT | EXP-010 |
 | Knife Switch Geometry | KDE-GEOM-KNIFE-001 | TAUGHT | EXP-011 |
 | ES Physical Arrangement | KDE-PRIM-ES-001 | TAUGHT | EXP-012 |
+| Engineering Geometry Model | KDE-GEOM-MODEL-001 | TAUGHT | EXP-013 |
 
 ---
 
@@ -129,6 +130,7 @@ The expert has been taught the following engineering primitives:
 | EXP-010 | NGCP Bus Voltage Profile | 2026-07-21 | COMPLETE |
 | EXP-011 | Knife Switch Geometry | 2026-07-21 | COMPLETE |
 | EXP-012 | ES Physical Arrangement | 2026-07-21 | COMPLETE |
+| EXP-013 | Engineering Geometry Model | 2026-07-21 | COMPLETE |
 
 ---
 
@@ -178,6 +180,13 @@ The expert can correctly answer:
 ✓ Where does the branch originate?  
 ✓ What is connected after the knife switch?  
 ✓ Which geometry remains fixed?  
+
+**Engineering Geometry Model (EXP-013):**
+✓ Does a primitive own neighbouring conductors?  
+✓ What defines conductor continuity?  
+✓ What is an Engineering Anchor?  
+✓ Why are primitive dimensions normalized?  
+✓ Who determines physical size?  
 
 ---
 
