@@ -273,5 +273,7 @@ Every Expert SHALL include:
 
 ---
 
-**Status**: CANDIDATE  
-**Ready for Review**: Yes
+**Status**: APPROVED  
+**Ready for Use**: Yes  
+**Version**: 1.1.0  
+**Last Updated**: 2026-07-22

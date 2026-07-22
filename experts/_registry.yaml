@@ -1,11 +1,22 @@
 ---
 # KDE Engineering Expert Registry
-# Version 1.0.0
-# Last Updated: 2026-07-21
+# Version: 1.1.0
+# Last Updated: 2026-07-22
 
 registry:
-  version: 1.0.0
-  last_updated: 2026-07-21T10:47:00Z
+  version: 1.1.0
+  last_updated: 2026-07-22T00:00:00Z
+  
+  # =========================================================================
+  # TEMPLATE
+  # =========================================================================
+  template:
+    path: _template/
+    files:
+      - SPEC.md
+      - interface.yaml
+      - CHANGELOG.md
+    usage: Copy to new domain directory and customize
   
   # =========================================================================
   # REGISTERED EXPERTS
@@ -13,7 +24,7 @@ registry:
   experts:
     - id: KDE-EXPERT-GIS-001
       name: GIS Engineering Expert
-      version: 0.1.0
+      version: 1.0.0
       status: SYNTHESIZED
       domain: gis
       subdomain:
@@ -24,6 +35,10 @@ registry:
       registered: null
       created: 2026-07-21
       source: EXP-003
+      interface:
+        method: direct
+        invoke_params: [task, context, knowledge_refs]
+        produces: [result, confidence, decisions, validation]
       description: |
         Designs, generates, improves, and validates professional utility-grade
         GIS interfaces for SCADA systems. Produces implementations suitable
@@ -45,7 +60,7 @@ registry:
 
     - id: KDE-EXPERT-SLD-001
       name: SLD Engineering Expert
-      version: 0.1.0
+      version: 1.1.0
       status: SYNTHESIZED
       domain: utility-sld
       subdomain:
@@ -55,28 +70,22 @@ registry:
       path: sld/kde-expert-sld-001/
       registered: null
       created: 2026-07-21
-      source: EXP-005, EXP-007
+      updated: 2026-07-22
+      source: EXP-005, EXP-007, EXP-008, EXP-010, EXP-011, EXP-012, EXP-013, EXP-014
+      interface:
+        method: direct
+        invoke_params: [task, action, context, primitives, knowledge_refs]
+        produces: [result, confidence, decisions, validation, metadata]
+        actions: [render, validate, compose, analyze]
       description: |
         Generates, validates, renders, and reasons about Single Line Diagrams
         for utility-grade SCADA systems. Specializes in electrical primitives
         including circuit breakers, disconnect switches, busbars, conductors,
         and transformers.
       
-      capability_groups: 5
-      capabilities_count: 35
-      knowledge_dependencies: 11
-      enrolled_lessons:
-        - EXP-005: Circuit Breaker Primitive
-        - EXP-007: Disconnect Switch Primitive
-        - EXP-008: Earthing Switch Primitive
-        - EXP-010: NGCP Bus Voltage Profile
-        - EXP-011: Knife Switch Geometry
-        - EXP-011-Rev1: Knife Switch Internal Topology
-        - EXP-011-Rev2: Knife Switch Hinge Concept
-        - EXP-012: ES Physical Arrangement
-        - EXP-013: Engineering Geometry Model
-        - EXP-014: Electrical Network Model
-        - EXP-LAB-6: Lab Experiment: Network Topology & Connection Interface
+      capability_groups: 6
+      capabilities_count: 18
+      knowledge_dependencies: 7
       
       responsibilities:
         owns:

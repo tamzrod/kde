@@ -1,0 +1,95 @@
+---
+# Expert Interface Contract
+# Version: 1.0.0
+
+interface:
+  version: "1.0"
+  expert_id: KDE-EXPERT-TEMPLATE-001
+  
+  # How the Engine/Laboratory invokes this expert
+  invoke:
+    method: direct  # direct | skill | api
+    parameters:
+      task:
+        type: string
+        required: true
+        description: Task description from caller
+      
+      context:
+        type: object
+        required: false
+        description: Execution context (domain, constraints, preferences)
+      
+      knowledge_refs:
+        type: array
+        required: false
+        description: Specific knowledge IDs to use
+      
+      options:
+        type: object
+        required: false
+        description: Expert-specific options
+  
+  # What this expert produces
+  produces:
+    - name: result
+      type: object
+      description: Expert output
+      
+    - name: confidence
+      type: enum
+      values: [HIGH, MEDIUM, LOW]
+      description: Confidence level for the output
+      
+    - name: decisions
+      type: array
+      description: Engineering decisions made during execution
+      
+    - name: validation
+      type: object
+      description: Validation results for decisions
+  
+  # Error handling
+  errors:
+    insufficient_context:
+      code: E001
+      message: "Task requires additional context"
+      severity: error
+      response: request_more_info
+      
+    unknown_domain:
+      code: E002
+      message: "Task outside expert scope"
+      severity: error
+      response: delegate_or_reject
+      
+    validation_failure:
+      code: E003
+      message: "Output failed validation"
+      severity: warning
+      response: return_with_warnings
+      
+    knowledge_missing:
+      code: E004
+      message: "Required knowledge not available"
+      severity: error
+      response: fail_or_fallback
+  
+  # Confidence determination
+  confidence_rules:
+    - condition: "output has no validation warnings"
+      confidence: HIGH
+      
+    - condition: "output has validation warnings"
+      confidence: MEDIUM
+      
+    - condition: "knowledge partially available"
+      confidence: MEDIUM
+      
+    - condition: "knowledge missing or invalid"
+      confidence: LOW
+  
+  # Version compatibility
+  compatibility:
+    engine_versions: [">=2.0.0"]
+    knowledge_versions: [">=1.0.0"]
