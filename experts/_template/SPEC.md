@@ -1,51 +1,32 @@
 # [Expert Name]
 
-**Expert ID**: KDE-EXPERT-[DOMAIN]-[N]  
-**Version**: 1.0.0  
-**Status**: SYNTHESIZED  
-**Domain**: [domain-name]  
-**Source**: [investigation(s)]
+**ID**: KDE-EXPERT-[DOMAIN]-[N] | **Version**: 1.0.0 | **Status**: SYNTHESIZED  
+**Domain**: [domain] | **Source**: [investigation]
 
 ---
 
 ## Purpose
-
 [What this expert does - 1-2 sentences]
 
----
-
 ## Scope
-
 **Owns**: [capabilities]  
 **Does Not Own**: [excluded capabilities]
 
----
-
 ## Capabilities
-
 | Capability | Description |
 |-----------|-------------|
-| action-1 | [Description] |
-| action-2 | [Description] |
+| action-1 | [Desc] |
 
----
+## Dependencies
+| ID | Purpose |
+|----|---------|
+| KDE-XXX-001 | [Purpose] |
 
-## Knowledge Dependencies
+## Confidence
+| Condition | Level |
+|---------|-------|
+| Valid + knowledge | HIGH |
+| Warnings | MEDIUM |
+| Missing knowledge | LOW |
 
-| ID | Purpose | Status |
-|----|---------|--------|
-| KDE-XXX-001 | [Purpose] | REQUIRED |
-
----
-
-## Confidence Rules
-
-| Condition | Confidence |
-|-----------|------------|
-| [Rule 1] | HIGH |
-| [Rule 2] | MEDIUM |
-| [Fallback] | LOW |
-
----
-
-**Version**: 1.0.0 | **Created**: YYYY-MM-DD
+**v1.0.0 | YYYY-MM-DD**

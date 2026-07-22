@@ -1,48 +1,29 @@
 ---
 # SLD Expert Interface
-# Version: 1.1.0
-
 expert_id: KDE-EXPERT-SLD-001
 domain: utility-sld
 
-# Invoke
-# Beta Engine calls expert with:
-#   task: string (what to do)
-#   action: render|validate|compose|analyze
-#   context: {domain, voltage_level?, layout_type?}
-#   primitives: [{type, id, state, position}]
-#   knowledge_refs: [optional knowledge IDs]
+# Engine calls:
+#   task: "Render CB-101"
+#   action: render
+#   context: {voltage_level: "115kV"}
+#   knowledge_refs: [KDE-PRIM-CB-001]
 
 invoke:
   method: direct
-  params:
-    task: string        # REQUIRED - what to do
-    action: string      # REQUIRED - render|validate|compose|analyze
-    context: object      # OPTIONAL - domain, voltage_level, layout_type
-    primitives: array    # OPTIONAL - list of primitives
-    knowledge_refs: array  # OPTIONAL - knowledge IDs
+  params: [task, action, context?, primitives?, knowledge_refs?]
+  actions: [render, validate, compose, analyze]
+  primitives: [circuit-breaker, disconnect-switch, earthing-switch, busbar]
 
-# Produce
 produces:
-  result: object       # Expert output (SVG, topology, validation)
-  confidence: enum   # HIGH | MEDIUM | LOW
-  decisions: array  # Engineering decisions made
-  validation: object # Validation results
+  result: object
+  confidence: HIGH|MEDIUM|LOW
+  decisions: array
+  validation: object
 
-# Errors
-errors:
-  E001: insufficient_context    # Need more info
-  E002: unknown_primitive     # Unknown type
-  E003: validation_failure    # Output failed validation
-  E004: knowledge_missing    # Required knowledge unavailable
+errors: [E001-context, E002-unknown, E003-validation, E004-knowledge]
 
-# Confidence
 confidence:
-  HIGH: "valid output + all knowledge available"
-  MEDIUM: "warnings present or partial knowledge"
-  LOW: "knowledge missing or critical errors"
-
-# Supported
-primitives: [circuit-breaker, disconnect-switch, earthing-switch, busbar]
-actions: [render, validate, compose, analyze]
-voltage_levels: [500kV, 230kV, 115kV, 69kV]
+  HIGH: valid + knowledge
+  MEDIUM: warnings
+  LOW: missing knowledge

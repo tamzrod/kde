@@ -1,41 +1,29 @@
 ---
-# Expert Interface Template
-# Version: 1.1.0
-
+# Expert Interface
 expert_id: KDE-EXPERT-[DOMAIN]-[N]
-domain: [domain-name]
+domain: [domain]
 
-# Invoke
-# Beta Engine calls: {task, action?, context?, knowledge_refs?}
+# Engine calls with:
+#   task: string (REQUIRED)
+#   action?: string
+#   context?: object
+#   knowledge_refs?: array
 
 invoke:
-  method: direct  # direct | skill | api
-  params:
-    task: string      # REQUIRED - what to do
-    action: string    # OPTIONAL - specific action
-    context: object    # OPTIONAL - execution context
-    knowledge_refs: array  # OPTIONAL - knowledge IDs
+  method: direct
+  params: [task, action?, context?, knowledge_refs?]
 
-# Produce
 produces:
-  result: object       # Expert output
-  confidence: enum     # HIGH | MEDIUM | LOW
-  decisions: array      # Engineering decisions
-  validation: object   # Validation results
+  - result: object
+  - confidence: HIGH|MEDIUM|LOW
+  - decisions: array
+  - validation: object
 
-# Errors
-errors:
-  E001: insufficient_context  # Need more info
-  E002: unknown_domain        # Outside scope
-  E003: validation_failure     # Output failed
-  E004: knowledge_missing    # Required knowledge unavailable
+errors: [E001-insufficient_context, E002-unknown_domain, E003-validation_failure, E004-knowledge_missing]
 
-# Confidence
 confidence:
-  HIGH: "valid output + all knowledge"
-  MEDIUM: "warnings or partial knowledge"
-  LOW: "knowledge missing or errors"
+  HIGH: valid + knowledge
+  MEDIUM: warnings
+  LOW: missing knowledge
 
-# Supported (customize for each expert)
-capabilities: []  # List of capabilities
-actions: []      # render, validate, etc.
+actions: []  # customize

@@ -1,101 +1,29 @@
 ---
-# KDE Engineering Expert Registry
-# Version: 1.2.0
-# Last Updated: 2026-07-22
+# Expert Registry v1.2.0
 
-registry:
-  version: 1.2.0
-  last_updated: 2026-07-22T00:00:00Z
-  
-  # =========================================================================
-  # HOW TO ADD A NEW EXPERT (Checklist)
-  # =========================================================================
-  # 1. Create directory: experts/[domain]/kde-expert-[id]-001/
-  # 2. Copy _template/SPEC.md → SPEC.md, fill in details
-  # 3. Copy _template/interface.yaml → interface.yaml, customize
-  # 4. Create CHANGELOG.md with version 1.0.0
-  # 5. Add entry to experts[] below
-  # 6. Commit and push
-  # =========================================================================
-  
-  # =========================================================================
-  # HOW BETA ENGINE CALLS AN EXPERT
-  # =========================================================================
-  invocation_example: |
-    ## Beta Engine → Expert Call
-    ```yaml
-    # 1. Engine identifies task domain
-    task: "Render circuit breaker CB-101"
-    action: render
-    
-    # 2. Engine selects expert by domain match
-    expert: KDE-EXPERT-SLD-001
-    
-    # 3. Engine loads expert interface and knowledge
-    knowledge_refs: [KDE-PRIM-CB-001, KDE-VOLTAGE-NGCP-001]
-    
-    # 4. Expert produces output
-    result:
-      svg: "<g id='CB-101'>...</g>"
-      confidence: HIGH
-      decisions: ["Red fill for CLOSED state"]
-      validation: [{rule: CB-001, status: PASS}]
-    ```
-  
-  # =========================================================================
-  # REGISTERED EXPERTS
-  # =========================================================================
-  experts:
-    - id: KDE-EXPERT-SLD-001
-      name: SLD Engineering Expert
-      version: 1.1.0
-      status: SYNTHESIZED
-      domain: utility-sld
-      path: sld/kde-expert-sld-001/
-      created: 2026-07-21
-      source: EXP-005, EXP-007, EXP-008, EXP-010, EXP-011
-      description: Generates and renders Single Line Diagrams for SCADA systems
-      capabilities: [render, validate, compose, analyze]
-      knowledge_dependencies: 5
+# ADD NEW EXPERT:
+# 1. mkdir experts/[domain]/kde-expert-[id]-001/
+# 2. cp _template/SPEC.md + interface.yaml → fill in
+# 3. git add + commit + push
 
-    - id: KDE-EXPERT-GIS-001
-      name: GIS Engineering Expert
-      version: 1.0.0
-      status: SYNTHESIZED
-      domain: gis
-      path: gis/kde-expert-gis-001/
-      created: 2026-07-21
-      source: EXP-003
-      description: Designs and renders GIS interfaces for SCADA systems
-      capabilities: [map-rendering, spatial-analysis, route-navigation]
-      knowledge_dependencies: 8
+# BETA ENGINE CALLS EXPERT:
+# =============================================
+# Engine identifies domain from task
+# Loads expert interface + knowledge
+# Calls expert.invoke({task, action, context, knowledge_refs})
+# Expert returns {result, confidence, decisions, validation}
+# =============================================
 
-  # =========================================================================
-  # DOMAINS
-  # =========================================================================
-  domains:
-    - name: gis
-      description: Geographic Information Systems for utility applications
-      experts: 1
-      expert_ids:
-        - KDE-EXPERT-GIS-001
+experts:
+  - id: KDE-EXPERT-SLD-001
+    domain: utility-sld
+    path: sld/kde-expert-sld-001/
+    actions: [render, validate, compose]
 
-    - name: utility-sld
-      description: Single Line Diagrams for utility SCADA systems
-      experts: 1
-      expert_ids:
-        - KDE-EXPERT-SLD-001
-
-  # =========================================================================
-  # LIFECYCLE SUMMARY
-  # =========================================================================
-  lifecycle_summary:
-    synthesized: 2
-    candidate: 0
-    validated: 0
-    registered: 0
-    active: 0
-    deprecated: 0
+  - id: KDE-EXPERT-GIS-001
+    domain: gis
+    path: gis/kde-expert-gis-001/
+    actions: [render, analyze]
 
 # =========================================================================
 # GOVERNANCE NOTES
