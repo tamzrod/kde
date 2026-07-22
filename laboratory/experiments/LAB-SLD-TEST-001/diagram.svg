@@ -1,49 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330">
-  <title>Disconnector (DS) - Line/Stroke Style</title>
+  <title>Disconnector (DS) - Continuous Vertical Line</title>
   
   <!-- Background -->
   <rect width="700" height="330" fill="#fafafa"/>
   
   <!-- Title -->
-  <text x="350" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#333">DISCONNECTOR (DS) - OUTLINE STYLE</text>
+  <text x="350" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#333">DISCONNECTOR (DS) - CONTINUOUS LINE</text>
   
   <!-- ============================================ -->
   <!-- DS CLOSED -->
   <!-- ============================================ -->
   <g transform="translate(120, 50)">
     <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#CC0000">DS CLOSED</text>
-    <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Zero gap - continuous lines</text>
+    <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">One continuous vertical line</text>
     
     <!-- Top conductor -->
-    <line x1="100" y1="25" x2="100" y2="50" stroke="#CC0000" stroke-width="3"/>
+    <line x1="100" y1="25" x2="100" y2="52" stroke="#CC0000" stroke-width="3"/>
     
-    <!-- 1. Chevron UP -->
-    <polyline points="92,62 100,52 108,62" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,68 100,60 105,68" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Chevron UP -->
+    <polyline points="92,64 100,54 108,64" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,70 100,62 105,70" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
     
-    <!-- 2. Vertical line -->
-    <line x1="100" y1="68" x2="100" y2="80" stroke="#CC0000" stroke-width="3"/>
+    <!-- CONTINUOUS VERTICAL LINE (thick) -->
+    <line x1="100" y1="70" x2="100" y2="155" stroke="#CC0000" stroke-width="8"/>
     
-    <!-- 3. Pivot circle (hollow) -->
-    <circle cx="100" cy="95" r="6" fill="none" stroke="#CC0000" stroke-width="2.5"/>
+    <!-- Pivot circle ON TOP (hollow outline) -->
+    <circle cx="100" cy="95" r="8" fill="none" stroke="#CC0000" stroke-width="2.5"/>
     
-    <!-- 4. Knife (straight, connects to contact) -->
-    <line x1="100" y1="95" x2="100" y2="124" stroke="#CC0000" stroke-width="5" stroke-linecap="round"/>
+    <!-- Contact circle ON TOP (hollow outline) -->
+    <circle cx="100" cy="135" r="8" fill="none" stroke="#CC0000" stroke-width="2.5"/>
     
-    <!-- 5. Contact circle (hollow, touching knife) -->
-    <circle cx="100" cy="130" r="6" fill="none" stroke="#CC0000" stroke-width="2.5"/>
-    
-    <!-- 6. Chevron DOWN -->
-    <polyline points="92,145 100,155 108,145" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,139 100,147 105,139" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Chevron DOWN -->
+    <polyline points="92,158 100,168 108,158" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,152 100,160 105,152" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Bottom conductor -->
-    <line x1="100" y1="155" x2="100" y2="175" stroke="#CC0000" stroke-width="3"/>
+    <line x1="100" y1="168" x2="100" y2="188" stroke="#CC0000" stroke-width="3"/>
     
     <!-- Labels -->
-    <text x="100" y="195" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">PIVOT</text>
-    <text x="100" y="207" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">CONTACT</text>
-    <text x="100" y="227" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#CC0000">ZERO GAP</text>
+    <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">PIVOT</text>
+    <text x="100" y="222" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">CONTACT</text>
+    <text x="100" y="242" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#CC0000">ZERO GAP</text>
   </g>
   
   <!-- ============================================ -->
@@ -54,76 +51,61 @@
     <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">35° rotation - visible gap</text>
     
     <!-- Top conductor -->
-    <line x1="100" y1="25" x2="100" y2="50" stroke="#009900" stroke-width="3"/>
+    <line x1="100" y1="25" x2="100" y2="52" stroke="#009900" stroke-width="3"/>
     
-    <!-- 1. Chevron UP -->
-    <polyline points="92,62 100,52 108,62" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,68 100,60 105,68" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Chevron UP -->
+    <polyline points="92,64 100,54 108,64" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,70 100,62 105,70" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
     
-    <!-- 2. Vertical line -->
-    <line x1="100" y1="68" x2="100" y2="80" stroke="#009900" stroke-width="3"/>
+    <!-- Top part of vertical line -->
+    <line x1="100" y1="70" x2="100" y2="87" stroke="#009900" stroke-width="8"/>
     
-    <!-- 3. Pivot circle (hollow) -->
-    <circle cx="100" cy="95" r="6" fill="none" stroke="#009900" stroke-width="2.5"/>
+    <!-- Pivot circle ON TOP (hollow outline) -->
+    <circle cx="100" cy="95" r="8" fill="none" stroke="#009900" stroke-width="2.5"/>
     
-    <!-- 4. Knife (rotated 35°) -->
-    <line x1="100" y1="95" x2="125" y2="70" stroke="#009900" stroke-width="5" stroke-linecap="round"/>
+    <!-- Knife (rotated 35°) -->
+    <line x1="100" y1="95" x2="120" y2="75" stroke="#009900" stroke-width="8" stroke-linecap="round"/>
     
-    <!-- Gap indicator (dashed line between knife end and contact) -->
-    <line x1="118" y1="80" x2="106" y2="122" stroke="#009900" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <!-- Gap indicator (dashed) -->
+    <line x1="112" y1="83" x2="106" y2="127" stroke="#009900" stroke-width="1.5" stroke-dasharray="4,3"/>
     
-    <!-- 5. Contact circle (hollow, FIXED position) -->
-    <circle cx="100" cy="130" r="6" fill="none" stroke="#009900" stroke-width="2.5"/>
+    <!-- Bottom part of vertical line (separated) -->
+    <line x1="100" y1="135" x2="100" y2="155" stroke="#009900" stroke-width="8"/>
     
-    <!-- 6. Chevron DOWN -->
-    <polyline points="92,145 100,155 108,145" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,139 100,147 105,139" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Contact circle ON TOP (hollow outline) -->
+    <circle cx="100" cy="135" r="8" fill="none" stroke="#009900" stroke-width="2.5"/>
+    
+    <!-- Chevron DOWN -->
+    <polyline points="92,158 100,168 108,158" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,152 100,160 105,152" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Bottom conductor -->
-    <line x1="100" y1="155" x2="100" y2="175" stroke="#009900" stroke-width="3"/>
+    <line x1="100" y1="168" x2="100" y2="188" stroke="#009900" stroke-width="3"/>
     
     <!-- Labels -->
-    <text x="100" y="195" text-anchor="middle" font-family="Arial" font-size="9" fill="#009900">PIVOT</text>
-    <text x="100" y="207" text-anchor="middle" font-family="Arial" font-size="9" fill="#009900">CONTACT</text>
-    <text x="100" y="227" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#009900">VISIBLE GAP</text>
+    <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#009900">PIVOT</text>
+    <text x="100" y="222" text-anchor="middle" font-family="Arial" font-size="9" fill="#009900">CONTACT</text>
+    <text x="100" y="242" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#009900">GAP</text>
   </g>
   
   <!-- ============================================ -->
   <!-- Legend -->
   <!-- ============================================ -->
-  <g transform="translate(20, 250)">
-    <rect x="0" y="0" width="660" height="65" fill="#fff" stroke="#ddd" rx="4"/>
+  <g transform="translate(20, 265)">
+    <rect x="0" y="0" width="660" height="50" fill="#fff" stroke="#ddd" rx="4"/>
     
     <text x="15" y="18" font-family="Arial" font-size="10" font-weight="bold" fill="#333">STRUCTURE:</text>
     
-    <!-- Chevron -->
-    <g transform="translate(90, 35)">
-      <polyline points="-5,-3 0,-8 5,-3" fill="none" stroke="#666" stroke-width="2"/>
-      <polyline points="-5,2 0,-3 5,2" fill="none" stroke="#666" stroke-width="2"/>
-      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">Chevron</text>
-    </g>
-    
-    <!-- Pivot -->
-    <g transform="translate(175, 35)">
-      <circle cx="0" cy="0" r="4" fill="none" stroke="#666" stroke-width="2"/>
-      <text x="12" y="4" font-family="Arial" font-size="9" fill="#666">Pivot</text>
-    </g>
-    
-    <!-- Knife -->
-    <g transform="translate(240, 35)">
-      <line x1="0" y1="-6" x2="0" y2="6" stroke="#666" stroke-width="4"/>
-      <text x="12" y="4" font-family="Arial" font-size="9" fill="#666">Knife</text>
-    </g>
-    
-    <!-- Contact -->
-    <g transform="translate(315, 35)">
-      <circle cx="0" cy="0" r="4" fill="none" stroke="#666" stroke-width="2"/>
-      <text x="12" y="4" font-family="Arial" font-size="9" fill="#666">Contact</text>
+    <!-- Continuous line symbol -->
+    <g transform="translate(90, 30)">
+      <line x1="0" y1="-8" x2="0" y2="8" stroke="#666" stroke-width="6"/>
+      <circle cx="0" cy="0" r="4" fill="none" stroke="#fff" stroke-width="2"/>
+      <text x="12" y="4" font-family="Arial" font-size="9" fill="#666">Continuous line + circles on top</text>
     </g>
     
     <!-- Note -->
-    <text x="15" y="58" font-family="Arial" font-size="9" fill="#666">
-      CLOSED: All lines connected - zero gaps. OPEN: Knife 35° from pivot - contact fixed - gap visible.
+    <text x="280" y="18" font-family="Arial" font-size="10" fill="#666">
+      CLOSED: One thick line with circles on top. OPEN: Line broken by rotated knife.
     </text>
   </g>
 </svg>
