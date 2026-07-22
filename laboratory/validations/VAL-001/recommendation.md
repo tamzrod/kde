@@ -158,5 +158,18 @@ This recommendation maintains all validation constraints:
 
 ---
 
-**Recommendation Status**: COMPLETE
-**Awaiting**: Human review and approval
+## Promotion Update (2026-07-22)
+
+**NOTE**: Following LAB-DELTA-VALIDATION-001, Delta has been promoted to Experimental status.
+
+| Status Change | Date | Evidence |
+|---------------|------|----------|
+| Candidate → **Experimental** | 2026-07-22 | LAB-DELTA-VALIDATION-001 |
+
+**This recommendation has been superseded by subsequent validation.**
+
+---
+
+**Recommendation Status**: SUPERSEDED
+**Current Status**: Delta is now Experimental
+**Reference**: `/governance/promotions/PROMOTION-2026-07-22-DELTA.md`

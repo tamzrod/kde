@@ -270,5 +270,7 @@ interface:
 
 ---
 
-**Document Status**: CANDIDATE (Research Artifact)
-**Validation Required**: YES
+**Document Status**: EXPERIMENTAL
+**Validation Complete**: LAB-DELTA-VALIDATION-001
+**Available For**: Experimental investigations
+**Default**: NO (Beta remains default)

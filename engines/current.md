@@ -1,6 +1,6 @@
 # Current KDE Engine
 
-**Last Updated**: 2026-07-20
+**Last Updated**: 2026-07-22
 
 ---
 
@@ -10,10 +10,10 @@ The Laboratory supports multiple engines. Select the appropriate engine for each
 
 | Engine ID | Version | Codename | Status | Default | Use Case |
 |-----------|---------|----------|--------|---------|----------|
-| **KDE-ENGINE-002** | 0.1.0 | Beta | Active | **YES** | Contextual knowledge discovery |
+| **KDE-ENGINE-002** | 0.1.0 | Beta | Active | **YES** | Contextual knowledge discovery (default) |
 | KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | NO | Pattern discovery (legacy) |
 | KDE-ENGINE-003 | 0.1.0 | Gamma | Experimental | NO | Causal discovery |
-| KDE-ENGINE-004 | 0.1.0 | Delta | Candidate (Validated) | NO | Bootstrap + Context discovery |
+| **KDE-ENGINE-004** | 0.1.0 | Delta | **Experimental** | NO | Bootstrap + Context discovery |
 
 ---
 
@@ -123,7 +123,7 @@ For detailed information about Delta, see:
 | KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | NO | 2026-07-19 | Pattern discovery |
 | KDE-ENGINE-002 | 0.1.0 | Beta | Active | **YES** | 2026-07-20 | Contextual knowledge |
 | KDE-ENGINE-003 | 0.1.0 | Gamma | Experimental | NO | 2026-07-20 | Causal discovery |
-| KDE-ENGINE-004 | 0.1.0 | Delta | Candidate (Validated) | NO | 2026-07-20 | Bootstrap + Context |
+| KDE-ENGINE-004 | 0.1.0 | Delta | **Experimental** | NO | 2026-07-20 | Bootstrap + Context |
 
 ---
 
@@ -195,6 +195,7 @@ For detailed information about Gamma, see:
 | 2026-07-20 | Engine Evolution | KDE-ENGINE-002 (Beta) released, Alpha → Historical |
 | 2026-07-20 | Engine Expansion | KDE-ENGINE-003 (Gamma) experimental release |
 | 2026-07-20 | Bootstrap Engine | KDE-ENGINE-004 (Delta) created, Candidate |
+| 2026-07-22 | **Delta Promotion** | Delta: Candidate → Experimental (LAB-DELTA-VALIDATION-001) |
 
 ---
 
