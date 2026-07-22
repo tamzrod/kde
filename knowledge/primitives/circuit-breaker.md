@@ -4,21 +4,74 @@
 **Title**: Circuit Breaker Primitive — Engineering Knowledge
 **Class**: DOMAIN
 **Domain**: utility-sld
-**Version**: 1.0.0
-**Status**: DRAFT
+**Version**: 2.0.0
+**Status**: **APPROVED** ✅
 **Confidence**: HIGH
-**Evidence Level**: 4
+**Evidence Level**: 5
 **Owner**: KDE-EXPERT-SLD-001
 **Created**: 2026-07-21T13:10:00Z
-**Updated**: 2026-07-21T13:10:00Z
-**Reviewed**: 2026-07-21
-**Source Investigation**: EXP-005
+**Updated**: 2026-07-22T06:45:00Z
+**Reviewed**: 2026-07-22
+**Source Investigation**: EXP-005, LAB-SLD-TEST-001
+**Approved By**: LAB-SLD-TEST-001
 **Evidence**:
   - KDE-UTILITY-SLD-SYMBOLS
   - KDE-UTILITY-SLD-COLORS
   - KDE-UTILITY-SLD-LAYOUT
   - IEEE C37.2
   - IEC 60617
+  - `playground/CB-improved.html` (validated implementation)
+
+---
+
+## ⭐ APPROVED SYMBOL GEOMETRY (v2.0.0)
+
+### Visual Structure
+```
+┌─────────────────────────────────────┐
+│           Conductor                │
+│              ║                     │
+│             ∧∧    ← Double Chev UP│
+│             │ │    ← Continuous   │
+│           ┌──────┐                 │
+│           │██████│ ← Rectangle   │
+│           │██████│   (state fill) │
+│           └──────┘                 │
+│             ∧∧    ← Double Chev DN│
+│             │ │                    │
+│              ║                     │
+│           Conductor                │
+└─────────────────────────────────────┘
+```
+
+### Approved Element Specifications
+
+| Element | SVG | Geometry | Color |
+|---------|-----|----------|-------|
+| Top Conductor | `<line>` | Vertical, x=60, y=0→40 | Bus color |
+| Double Chevron UP (∧∧) | `<path>` × 2 | M -8,-12 L 0,-20 L 8,-12 | Bus color |
+| Continuous Line | `<line>` | Vertical, x=60, y=25→175 | Bus color |
+| Rectangle Body | `<rect>` | x=42, y=80, w=36, h=80, rx=4 | State color |
+| Double Chevron DOWN (∨∨) | `<path>` × 2 | M -8,4 L 0,12 L 8,4 | Bus color |
+| Bottom Conductor | `<line>` | Vertical, x=60, y=200→240 | Bus color |
+
+### Approved State Colors (69 kV)
+
+| State | Rectangle Fill | Hex |
+|-------|----------------|-----|
+| CLOSED | Red (solid) | `#ef4444` |
+| OPEN | Green (solid) | `#22c55e` |
+| UNKNOWN | None (dashed outline) | `#00FFFF` |
+
+### Key Differences from DS
+
+| Feature | DS | CB |
+|---------|----|----|
+| Pivot/Hinge | Yes (circle) | **No** |
+| Contact Circles | Yes | **No** |
+| Moving Knife | Yes (rotates) | **No knife** |
+| State Indication | Knife angle + color | Rectangle fill color |
+| Bus Elements | Contacts | Double chevrons (∧∧ ∧∨) |
 
 ---
 

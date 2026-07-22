@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Earthing Switch - Corrected (LAB-SLD-MULTILOOP-001)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 { color: #00d4ff; margin-bottom: 0.5rem; }
+    .subtitle { color: #888; margin-bottom: 2rem; font-size: 0.9rem; }
+    .container { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; }
+    .symbol-card {
+      background: #0f1629;
+      border: 2px solid #2a3f5f;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+    .symbol-card h3 { margin-bottom: 0.25rem; font-size: 1rem; }
+    .symbol-card h4 { color: #888; margin-bottom: 1rem; font-size: 0.85rem; font-weight: normal; }
+    .state-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .badge-closed { background: #ef4444; color: #fff; }
+    .badge-open { background: #22c55e; color: #000; }
+    svg { display: block; margin: 0 auto; }
+    .info {
+      margin-top: 2rem;
+      background: #16213e;
+      border-radius: 8px;
+      padding: 1.5rem;
+      max-width: 900px;
+    }
+    .info h3 { color: #00d4ff; margin-bottom: 1rem; }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .spec-table th, .spec-table td {
+      padding: 0.5rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+    .spec-table th { color: #888; font-weight: normal; }
+    .key-diff {
+      background: #1a1a2e;
+      border-left: 3px solid #ef4444;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Earthing Switch - Corrected Structure</h1>
+  <p class="subtitle">LAB-SLD-MULTILOOP-001 | No Chevrons | 69 kV</p>
+  
+  <div class="container">
+    
+    <!-- ========================================= -->
+    <!-- SIMPLE VERTICAL VERSION -->
+    <!-- ========================================= -->
+    
+    <div class="symbol-card">
+      <h3>Earthing Switch</h3>
+      <h4>Simple Vertical</h4>
+      <div class="state-badge badge-closed">CLOSED</div>
+      <svg width="100" height="300" viewBox="0 0 100 300">
+        <defs>
+          <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#222" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="100" height="300" fill="url(#grid)"/>
+        
+        <!-- Top conductor -->
+        <line x1="50" y1="0" x2="50" y2="70" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- Top contact -->
+        <line x1="35" y1="70" x2="65" y2="70" stroke="#00FFFF" stroke-width="3"/>
+        
+        <!-- Pivot circle -->
+        <circle cx="50" cy="70" r="6" fill="none" stroke="#00FFFF" stroke-width="2"/>
+        
+        <!-- Knife (CLOSED - vertical) -->
+        <line x1="50" y1="74" x2="50" y2="170" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+        
+        <!-- Bottom contact -->
+        <line x1="35" y1="175" x2="65" y2="175" stroke="#00FFFF" stroke-width="3"/>
+        
+        <!-- Downward connection to ground -->
+        <line x1="50" y1="175" x2="50" y2="195" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- Ground symbol -->
+        <g transform="translate(50, 200)">
+          <line x1="0" y1="0" x2="0" y2="10" stroke="#00FFFF" stroke-width="4"/>
+          <line x1="-15" y1="10" x2="15" y2="10" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-10" y1="16" x2="10" y2="16" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-5" y1="22" x2="5" y2="22" stroke="#00FFFF" stroke-width="3"/>
+        </g>
+        
+        <text x="50" y="280" text-anchor="middle" fill="#888" font-size="12">ES</text>
+      </svg>
+    </div>
+    
+    <!-- ES OPEN -->
+    <div class="symbol-card">
+      <h3>Earthing Switch</h3>
+      <h4>Simple Vertical</h4>
+      <div class="state-badge badge-open">OPEN</div>
+      <svg width="100" height="300" viewBox="0 0 100 300">
+        <defs>
+          <pattern id="grid2" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#222" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="100" height="300" fill="url(#grid2)"/>
+        
+        <!-- Top conductor -->
+        <line x1="50" y1="0" x2="50" y2="70" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- Top contact -->
+        <line x1="35" y1="70" x2="65" y2="70" stroke="#00FFFF" stroke-width="3"/>
+        
+        <!-- Pivot circle -->
+        <circle cx="50" cy="70" r="6" fill="none" stroke="#00FFFF" stroke-width="2"/>
+        
+        <!-- Knife (OPEN - angled 40°) -->
+        <line x1="50" y1="74" x2="80" y2="140" stroke="#22c55e" stroke-width="5" stroke-linecap="round"/>
+        
+        <!-- Bottom contact (visible but knife disconnected) -->
+        <line x1="35" y1="175" x2="65" y2="175" stroke="#00FFFF" stroke-width="3" opacity="0.4"/>
+        
+        <!-- Downward connection (dashed - disconnected) -->
+        <line x1="50" y1="175" x2="50" y2="195" stroke="#00FFFF" stroke-width="4" stroke-dasharray="4 2" opacity="0.4"/>
+        
+        <!-- Ground symbol (dimmed) -->
+        <g transform="translate(50, 200)" opacity="0.4">
+          <line x1="0" y1="0" x2="0" y2="10" stroke="#00FFFF" stroke-width="4"/>
+          <line x1="-15" y1="10" x2="15" y2="10" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-10" y1="16" x2="10" y2="16" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-5" y1="22" x2="5" y2="22" stroke="#00FFFF" stroke-width="3"/>
+        </g>
+        
+        <text x="50" y="280" text-anchor="middle" fill="#888" font-size="12">ES</text>
+      </svg>
+    </div>
+    
+    <!-- ========================================= -->
+    <!-- VERTICAL BUS WITH HORIZONTAL BRANCH -->
+    <!-- ========================================= -->
+    
+    <div class="symbol-card">
+      <h3>Earthing Switch</h3>
+      <h4>Vertical Bus Branch</h4>
+      <div class="state-badge badge-closed">CLOSED</div>
+      <svg width="160" height="300" viewBox="0 0 160 300">
+        <defs>
+          <pattern id="grid3" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#222" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="160" height="300" fill="url(#grid3)"/>
+        
+        <!-- Vertical bus (main conductor) -->
+        <line x1="80" y1="0" x2="80" y2="300" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- Horizontal branch connection -->
+        <line x1="80" y1="70" x2="50" y2="70" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- Top contact -->
+        <line x1="25" y1="70" x2="75" y2="70" stroke="#00FFFF" stroke-width="3"/>
+        
+        <!-- Pivot circle -->
+        <circle cx="50" cy="70" r="6" fill="none" stroke="#00FFFF" stroke-width="2"/>
+        
+        <!-- Knife (CLOSED - vertical) -->
+        <line x1="50" y1="74" x2="50" y2="170" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+        
+        <!-- Bottom contact -->
+        <line x1="25" y1="175" x2="75" y2="175" stroke="#00FFFF" stroke-width="3"/>
+        
+        <!-- Downward connection to ground -->
+        <line x1="50" y1="175" x2="50" y2="195" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- Ground symbol -->
+        <g transform="translate(50, 200)">
+          <line x1="0" y1="0" x2="0" y2="10" stroke="#00FFFF" stroke-width="4"/>
+          <line x1="-15" y1="10" x2="15" y2="10" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-10" y1="16" x2="10" y2="16" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-5" y1="22" x2="5" y2="22" stroke="#00FFFF" stroke-width="3"/>
+        </g>
+        
+        <text x="50" y="280" text-anchor="middle" fill="#888" font-size="12">ES</text>
+      </svg>
+    </div>
+    
+    <!-- ES OPEN - Vertical Bus -->
+    <div class="symbol-card">
+      <h3>Earthing Switch</h3>
+      <h4>Vertical Bus Branch</h4>
+      <div class="state-badge badge-open">OPEN</div>
+      <svg width="160" height="300" viewBox="0 0 160 300">
+        <defs>
+          <pattern id="grid4" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#222" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="160" height="300" fill="url(#grid4)"/>
+        
+        <!-- Vertical bus (main conductor) -->
+        <line x1="80" y1="0" x2="80" y2="300" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- Horizontal branch connection -->
+        <line x1="80" y1="70" x2="50" y2="70" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- Top contact -->
+        <line x1="25" y1="70" x2="75" y2="70" stroke="#00FFFF" stroke-width="3"/>
+        
+        <!-- Pivot circle -->
+        <circle cx="50" cy="70" r="6" fill="none" stroke="#00FFFF" stroke-width="2"/>
+        
+        <!-- Knife (OPEN - angled 40°) -->
+        <line x1="50" y1="74" x2="80" y2="140" stroke="#22c55e" stroke-width="5" stroke-linecap="round"/>
+        
+        <!-- Bottom contact (dimmed) -->
+        <line x1="25" y1="175" x2="75" y2="175" stroke="#00FFFF" stroke-width="3" opacity="0.4"/>
+        
+        <!-- Downward connection (dashed - disconnected) -->
+        <line x1="50" y1="175" x2="50" y2="195" stroke="#00FFFF" stroke-width="4" stroke-dasharray="4 2" opacity="0.4"/>
+        
+        <!-- Ground symbol (dimmed) -->
+        <g transform="translate(50, 200)" opacity="0.4">
+          <line x1="0" y1="0" x2="0" y2="10" stroke="#00FFFF" stroke-width="4"/>
+          <line x1="-15" y1="10" x2="15" y2="10" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-10" y1="16" x2="10" y2="16" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-5" y1="22" x2="5" y2="22" stroke="#00FFFF" stroke-width="3"/>
+        </g>
+        
+        <text x="50" y="280" text-anchor="middle" fill="#888" font-size="12">ES</text>
+      </svg>
+    </div>
+    
+  </div>
+  
+  <div class="info">
+    <h3>ES Symbol Specification (Corrected)</h3>
+    
+    <div class="key-diff">
+      <strong>Key Difference from DS:</strong> ES has NO double chevrons. ES connects directly to contacts like DS, but continues downward to ground instead of another conductor.
+    </div>
+    
+    <table class="spec-table">
+      <tr>
+        <th>Element</th>
+        <th>Geometry</th>
+        <th>Color (69 kV)</th>
+      </tr>
+      <tr>
+        <td>Conductor / Bus</td>
+        <td>Vertical line</td>
+        <td>Cyan #00FFFF</td>
+      </tr>
+      <tr>
+        <td>Horizontal Branch</td>
+        <td>Horizontal line (for bus connection)</td>
+        <td>Cyan #00FFFF</td>
+      </tr>
+      <tr>
+        <td>Top/Bottom Contacts</td>
+        <td>Horizontal lines</td>
+        <td>Cyan #00FFFF</td>
+      </tr>
+      <tr>
+        <td>Pivot</td>
+        <td>Circle (r=6)</td>
+        <td>Cyan #00FFFF</td>
+      </tr>
+      <tr>
+        <td>Knife</td>
+        <td>Line (0° closed, 40° open)</td>
+        <td>CLOSED=Red, OPEN=Green</td>
+      </tr>
+      <tr>
+        <td>Ground Symbol</td>
+        <td>3-bar symbol</td>
+        <td>Cyan #00FFFF</td>
+      </tr>
+    </table>
+    
+    <h3 style="margin-top: 1.5rem;">ES vs DS vs CB</h3>
+    <table class="spec-table">
+      <tr>
+        <th>Feature</th>
+        <th>DS</th>
+        <th>CB</th>
+        <th>ES</th>
+      </tr>
+      <tr>
+        <td>Double Chevrons</td>
+        <td>No</td>
+        <td>Yes</td>
+        <td><strong>No</strong></td>
+      </tr>
+      <tr>
+        <td>Has Knife</td>
+        <td>Yes</td>
+        <td>No</td>
+        <td><strong>Yes</strong></td>
+      </tr>
+      <tr>
+        <td>Has Pivot</td>
+        <td>Yes</td>
+        <td>No</td>
+        <td><strong>Yes</strong></td>
+      </tr>
+      <tr>
+        <td>Has Ground</td>
+        <td>No</td>
+        <td>No</td>
+        <td><strong>Yes</strong></td>
+      </tr>
+      <tr>
+        <td>State Colors</td>
+        <td>Knife: red/green</td>
+        <td>Rect: red/green</td>
+        <td>Knife: red/green</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>

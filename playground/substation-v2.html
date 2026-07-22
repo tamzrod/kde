@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-Feeder Substation (LAB-SLD-MULTILOOP-001)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 { color: #00d4ff; margin-bottom: 0.5rem; }
+    .subtitle { color: #888; margin-bottom: 2rem; font-size: 0.9rem; }
+    .container {
+      background: #0f1629;
+      border: 2px solid #2a3f5f;
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    svg { display: block; }
+    .controls {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+      border: 2px solid #444;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      background: #222;
+      color: #fff;
+    }
+    .btn:hover { border-color: #00d4ff; }
+    .btn.active { background: #00d4ff; color: #000; border-color: #00d4ff; }
+    .legend {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #16213e;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+    .legend-item { display: flex; align-items: center; gap: 0.5rem; margin: 0.25rem 0; }
+    .color-box { width: 12px; height: 12px; border-radius: 2px; }
+    .summary {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #16213e;
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+    pre {
+      background: #0f1629;
+      padding: 1rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>3-Feeder Substation</h1>
+  <p class="subtitle">Loop 3: Busbar & Layout Validation | LAB-SLD-MULTILOOP-001</p>
+  
+  <div class="container">
+    <svg width="700" height="550" viewBox="0 0 700 550">
+      <defs>
+        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#222" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="700" height="550" fill="url(#grid)"/>
+      
+      <!-- === BUS BAR === -->
+      <g id="busbar">
+        <rect x="50" y="30" width="600" height="25" fill="#00FFFF" rx="4"/>
+        <text x="350" y="70" text-anchor="middle" fill="#00FFFF" font-size="14" font-weight="bold">69 kV Substation Bus</text>
+      </g>
+      
+      <!-- === FEEDER 1 === -->
+      <g id="f1" transform="translate(150, 0)">
+        <!-- Tap -->
+        <line x1="0" y1="55" x2="0" y2="80" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- DS Top -->
+        <g transform="translate(0, 85)">
+          <g transform="translate(0, 0)">
+            <line x1="0" y1="10" x2="0" y2="35" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,3 L 0,-5 L 8,3" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,11 L 0,3 L 8,11" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <line id="f1-ds1-knife" x1="0" y1="40" x2="0" y2="100" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+          <line x1="-15" y1="105" x2="15" y2="105" stroke="#00FFFF" stroke-width="3"/>
+          <text x="0" y="125" text-anchor="middle" fill="#888" font-size="10">DS1</text>
+        </g>
+        
+        <line x1="0" y1="215" x2="0" y2="245" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- CB -->
+        <g transform="translate(0, 250)">
+          <g transform="translate(0, 0)">
+            <line x1="0" y1="10" x2="0" y2="35" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,3 L 0,-5 L 8,3" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,11 L 0,3 L 8,11" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <rect id="f1-cb-rect" x="-18" y="40" width="36" height="60" rx="4" fill="#ef4444" stroke="#00FFFF" stroke-width="2"/>
+          <g transform="translate(0, 105)">
+            <path d="M -8,5 L 0,13 L 8,5" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,13 L 0,21 L 8,13" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <line x1="0" y1="0" x2="0" y2="15" stroke="#00FFFF" stroke-width="4"/>
+          </g>
+          <text x="0" y="145" text-anchor="middle" fill="#888" font-size="10">CB1</text>
+        </g>
+        
+        <line x1="0" y1="400" x2="0" y2="430" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- ES -->
+        <g transform="translate(0, 435)">
+          <line x1="0" y1="-5" x2="0" y2="15" stroke="#00FFFF" stroke-width="4"/>
+          <g transform="translate(0, 20)">
+            <line x1="0" y1="5" x2="0" y2="25" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,10 L 0,3 L 8,10" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,18 L 0,11 L 8,18" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <line id="f1-es-knife" x1="0" y1="50" x2="0" y2="95" stroke="#22c55e" stroke-width="5" stroke-linecap="round"/>
+          <line x1="0" y1="95" x2="0" y2="105" stroke="#00FFFF" stroke-width="4"/>
+          <line x1="-12" y1="105" x2="12" y2="105" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-8" y1="111" x2="8" y2="111" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-4" y1="117" x2="4" y2="117" stroke="#00FFFF" stroke-width="3"/>
+          <text x="30" y="70" fill="#888" font-size="10">ES1</text>
+        </g>
+        
+        <line x1="0" y1="555" x2="0" y2="580" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- DS Bottom -->
+        <g transform="translate(0, 585)">
+          <line x1="-15" y1="0" x2="15" y2="0" stroke="#00FFFF" stroke-width="3"/>
+          <line id="f1-ds2-knife" x1="0" y1="5" x2="0" y2="65" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+          <g transform="translate(0, 70)">
+            <line x1="0" y1="0" x2="0" y2="20" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,5 L 0,13 L 8,5" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,13 L 0,21 L 8,13" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <text x="0" y="115" text-anchor="middle" fill="#888" font-size="10">DS2</text>
+        </g>
+        
+        <line x1="0" y1="700" x2="0" y2="620" stroke="#00FFFF" stroke-width="4"/>
+        <text x="0" y="640" text-anchor="middle" fill="#888" font-size="10">LINE 1</text>
+        <text x="0" y="50" text-anchor="middle" fill="#00d4ff" font-size="11" font-weight="bold">FEEDER 1</text>
+      </g>
+      
+      <!-- === FEEDER 2 === -->
+      <g id="f2" transform="translate(350, 0)">
+        <!-- Tap -->
+        <line x1="0" y1="55" x2="0" y2="80" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- DS Top -->
+        <g transform="translate(0, 85)">
+          <g transform="translate(0, 0)">
+            <line x1="0" y1="10" x2="0" y2="35" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,3 L 0,-5 L 8,3" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,11 L 0,3 L 8,11" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <line id="f2-ds1-knife" x1="0" y1="40" x2="0" y2="100" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+          <line x1="-15" y1="105" x2="15" y2="105" stroke="#00FFFF" stroke-width="3"/>
+          <text x="0" y="125" text-anchor="middle" fill="#888" font-size="10">DS1</text>
+        </g>
+        
+        <line x1="0" y1="215" x2="0" y2="245" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- CB -->
+        <g transform="translate(0, 250)">
+          <g transform="translate(0, 0)">
+            <line x1="0" y1="10" x2="0" y2="35" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,3 L 0,-5 L 8,3" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,11 L 0,3 L 8,11" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <rect id="f2-cb-rect" x="-18" y="40" width="36" height="60" rx="4" fill="#ef4444" stroke="#00FFFF" stroke-width="2"/>
+          <g transform="translate(0, 105)">
+            <path d="M -8,5 L 0,13 L 8,5" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,13 L 0,21 L 8,13" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <line x1="0" y1="0" x2="0" y2="15" stroke="#00FFFF" stroke-width="4"/>
+          </g>
+          <text x="0" y="145" text-anchor="middle" fill="#888" font-size="10">CB2</text>
+        </g>
+        
+        <line x1="0" y1="400" x2="0" y2="430" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- ES -->
+        <g transform="translate(0, 435)">
+          <line x1="0" y1="-5" x2="0" y2="15" stroke="#00FFFF" stroke-width="4"/>
+          <g transform="translate(0, 20)">
+            <line x1="0" y1="5" x2="0" y2="25" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,10 L 0,3 L 8,10" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,18 L 0,11 L 8,18" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <line id="f2-es-knife" x1="0" y1="50" x2="0" y2="95" stroke="#22c55e" stroke-width="5" stroke-linecap="round"/>
+          <line x1="0" y1="95" x2="0" y2="105" stroke="#00FFFF" stroke-width="4"/>
+          <line x1="-12" y1="105" x2="12" y2="105" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-8" y1="111" x2="8" y2="111" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-4" y1="117" x2="4" y2="117" stroke="#00FFFF" stroke-width="3"/>
+          <text x="30" y="70" fill="#888" font-size="10">ES2</text>
+        </g>
+        
+        <line x1="0" y1="555" x2="0" y2="580" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- DS Bottom -->
+        <g transform="translate(0, 585)">
+          <line x1="-15" y1="0" x2="15" y2="0" stroke="#00FFFF" stroke-width="3"/>
+          <line id="f2-ds2-knife" x1="0" y1="5" x2="0" y2="65" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+          <g transform="translate(0, 70)">
+            <line x1="0" y1="0" x2="0" y2="20" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,5 L 0,13 L 8,5" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,13 L 0,21 L 8,13" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <text x="0" y="115" text-anchor="middle" fill="#888" font-size="10">DS2</text>
+        </g>
+        
+        <line x1="0" y1="700" x2="0" y2="620" stroke="#00FFFF" stroke-width="4"/>
+        <text x="0" y="640" text-anchor="middle" fill="#888" font-size="10">LINE 2</text>
+        <text x="0" y="50" text-anchor="middle" fill="#00d4ff" font-size="11" font-weight="bold">FEEDER 2</text>
+      </g>
+      
+      <!-- === FEEDER 3 === -->
+      <g id="f3" transform="translate(550, 0)">
+        <!-- Tap -->
+        <line x1="0" y1="55" x2="0" y2="80" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- DS Top -->
+        <g transform="translate(0, 85)">
+          <g transform="translate(0, 0)">
+            <line x1="0" y1="10" x2="0" y2="35" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,3 L 0,-5 L 8,3" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,11 L 0,3 L 8,11" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <line id="f3-ds1-knife" x1="0" y1="40" x2="0" y2="100" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+          <line x1="-15" y1="105" x2="15" y2="105" stroke="#00FFFF" stroke-width="3"/>
+          <text x="0" y="125" text-anchor="middle" fill="#888" font-size="10">DS1</text>
+        </g>
+        
+        <line x1="0" y1="215" x2="0" y2="245" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- CB -->
+        <g transform="translate(0, 250)">
+          <g transform="translate(0, 0)">
+            <line x1="0" y1="10" x2="0" y2="35" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,3 L 0,-5 L 8,3" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,11 L 0,3 L 8,11" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <rect id="f3-cb-rect" x="-18" y="40" width="36" height="60" rx="4" fill="#ef4444" stroke="#00FFFF" stroke-width="2"/>
+          <g transform="translate(0, 105)">
+            <path d="M -8,5 L 0,13 L 8,5" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,13 L 0,21 L 8,13" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <line x1="0" y1="0" x2="0" y2="15" stroke="#00FFFF" stroke-width="4"/>
+          </g>
+          <text x="0" y="145" text-anchor="middle" fill="#888" font-size="10">CB3</text>
+        </g>
+        
+        <line x1="0" y1="400" x2="0" y2="430" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- ES -->
+        <g transform="translate(0, 435)">
+          <line x1="0" y1="-5" x2="0" y2="15" stroke="#00FFFF" stroke-width="4"/>
+          <g transform="translate(0, 20)">
+            <line x1="0" y1="5" x2="0" y2="25" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,10 L 0,3 L 8,10" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,18 L 0,11 L 8,18" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <line id="f3-es-knife" x1="0" y1="50" x2="0" y2="95" stroke="#22c55e" stroke-width="5" stroke-linecap="round"/>
+          <line x1="0" y1="95" x2="0" y2="105" stroke="#00FFFF" stroke-width="4"/>
+          <line x1="-12" y1="105" x2="12" y2="105" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-8" y1="111" x2="8" y2="111" stroke="#00FFFF" stroke-width="3"/>
+          <line x1="-4" y1="117" x2="4" y2="117" stroke="#00FFFF" stroke-width="3"/>
+          <text x="30" y="70" fill="#888" font-size="10">ES3</text>
+        </g>
+        
+        <line x1="0" y1="555" x2="0" y2="580" stroke="#00FFFF" stroke-width="4"/>
+        
+        <!-- DS Bottom -->
+        <g transform="translate(0, 585)">
+          <line x1="-15" y1="0" x2="15" y2="0" stroke="#00FFFF" stroke-width="3"/>
+          <line id="f3-ds2-knife" x1="0" y1="5" x2="0" y2="65" stroke="#ef4444" stroke-width="5" stroke-linecap="round"/>
+          <g transform="translate(0, 70)">
+            <line x1="0" y1="0" x2="0" y2="20" stroke="#00FFFF" stroke-width="4"/>
+            <path d="M -8,5 L 0,13 L 8,5" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+            <path d="M -8,13 L 0,21 L 8,13" stroke="#00FFFF" stroke-width="2.5" fill="none"/>
+          </g>
+          <text x="0" y="115" text-anchor="middle" fill="#888" font-size="10">DS2</text>
+        </g>
+        
+        <line x1="0" y1="700" x2="0" y2="620" stroke="#00FFFF" stroke-width="4"/>
+        <text x="0" y="640" text-anchor="middle" fill="#888" font-size="10">LINE 3</text>
+        <text x="0" y="50" text-anchor="middle" fill="#00d4ff" font-size="11" font-weight="bold">FEEDER 3</text>
+      </g>
+      
+    </svg>
+    
+    <div class="controls">
+      <button class="btn active" onclick="setNormal()">NORMAL</button>
+      <button class="btn" onclick="setFeeder1Open()">F1 OPEN</button>
+      <button class="btn" onclick="setAllClosed()">ALL CLOSED</button>
+      <button class="btn" onclick="setAllOpen()">ALL OPEN</button>
+    </div>
+    
+    <div class="legend">
+      <div class="legend-item">
+        <div class="color-box" style="background:#00FFFF"></div>
+        <span>69 kV Bus / Conductors</span>
+      </div>
+      <div class="legend-item">
+        <div class="color-box" style="background:#ef4444"></div>
+        <span>CLOSED state</span>
+      </div>
+      <div class="legend-item">
+        <div class="color-box" style="background:#22c55e"></div>
+        <span>OPEN state</span>
+      </div>
+    </div>
+    
+    <div class="summary">
+      <strong>Layout Validation:</strong>
+      <pre>
+Spacing: 200px between feeder centers
+Bus height: 25px, rx=4
+Grid: 20px base unit
+Alignment: All feeders at X={150, 350, 550}
+Conductor: 4px stroke
+Chevrons: 8px, 2.5px stroke
+      </pre>
+    </div>
+  </div>
+
+  <script>
+    const C = { closed: '#ef4444', open: '#22c55e' };
+    
+    function setNormal() { updateAll(C.closed, C.closed, C.open, C.closed); }
+    function setAllClosed() { updateAll(C.closed, C.closed, C.closed, C.closed); }
+    function setAllOpen() { updateAll(C.open, C.open, C.open, C.open); }
+    
+    function setFeeder1Open() {
+      updateAll(C.closed, C.closed, C.open, C.closed);
+      document.getElementById('f1-cb-rect').setAttribute('fill', C.open);
+      document.getElementById('f1-ds1-knife').setAttribute('stroke', C.open);
+      document.getElementById('f1-es-knife').setAttribute('stroke', C.closed);
+      document.getElementById('f1-ds2-knife').setAttribute('stroke', C.open);
+    }
+    
+    function updateAll(ds1, cb, es, ds2) {
+      ['1','2','3'].forEach(n => {
+        document.getElementById(`f${n}-cb-rect`).setAttribute('fill', cb);
+        document.getElementById(`f${n}-ds1-knife`).setAttribute('stroke', ds1);
+        document.getElementById(`f${n}-es-knife`).setAttribute('stroke', es);
+        document.getElementById(`f${n}-ds2-knife`).setAttribute('stroke', ds2);
+      });
+    }
+  </script>
+</body>
+</html>

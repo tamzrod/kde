@@ -4,21 +4,61 @@
 **Title**: Disconnect Switch Primitive — Engineering Knowledge
 **Class**: DOMAIN
 **Domain**: utility-sld
-**Version**: 1.0.0
-**Status**: DRAFT
+**Version**: 2.0.0
+**Status**: **APPROVED** ✅
 **Confidence**: HIGH
-**Evidence Level**: 4
+**Evidence Level**: 5
 **Owner**: KDE-EXPERT-SLD-001
 **Created**: 2026-07-21T13:15:00Z
-**Updated**: 2026-07-21T13:15:00Z
-**Reviewed**: 2026-07-21
-**Source Investigation**: EXP-007
+**Updated**: 2026-07-22T06:45:00Z
+**Reviewed**: 2026-07-22
+**Source Investigation**: EXP-007, LAB-SLD-TEST-001
+**Approved By**: LAB-SLD-TEST-001
 **Evidence**:
   - KDE-PRIM-CB-001
   - KDE-UTILITY-SLD-SYMBOLS
   - KDE-UTILITY-SLD-COLORS
   - IEEE C37.2
   - IEC 60617
+  - `playground/disconnect-switch.html` (validated implementation)
+
+---
+
+## ⭐ APPROVED SYMBOL GEOMETRY (v2.0.0)
+
+### Visual Structure
+```
+┌─────────────────────────────────────┐
+│           Conductor                │
+│              ║                     │
+│     ────────●───────  ← Top Contact│
+│              │                     │
+│              │  ← Knife (0°/40°)  │
+│              │                     │
+│     ────────●───────  ← Bottom Cont│
+│              ║                     │
+│           Conductor                │
+└─────────────────────────────────────┘
+```
+
+### Approved Element Specifications
+
+| Element | SVG | Geometry | Color |
+|---------|-----|----------|-------|
+| Top Conductor | `<line>` | Vertical, x=100, y=0→90 | Bus color |
+| Top Contact | `<line>` | Horizontal, x=85→115, y=90 | Bus color |
+| Pivot/Hinge | `<circle>` | r=6, cx=100, cy=90 | Bus color |
+| Knife Blade | `<line>` | x=100, y=94→206, stroke-width=5 | State color |
+| Bottom Contact | `<line>` | Horizontal, x=85→115, y=210 | Bus color |
+| Bottom Conductor | `<line>` | Vertical, x=100, y=210→280 | Bus color |
+
+### Approved State Colors (69 kV)
+
+| State | Knife Color | Hex |
+|-------|-------------|-----|
+| CLOSED | Red | `#FF4444` |
+| OPEN | Green | `#44FF44` |
+| UNKNOWN | Hidden | — |
 
 ---
 

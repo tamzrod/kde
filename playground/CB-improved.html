@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circuit Breaker - Improved Symbol (LAB-SLD-TEST-001)</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 { color: #00d4ff; margin-bottom: 0.5rem; }
+    .subtitle { color: #888; margin-bottom: 2rem; font-size: 0.9rem; }
+    .container { display: flex; gap: 3rem; justify-content: center; flex-wrap: wrap; }
+    .symbol-card {
+      background: #0f1629;
+      border: 2px solid #2a3f5f;
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .symbol-card:hover { border-color: #00d4ff; transform: translateY(-4px); }
+    .symbol-card h3 { margin-bottom: 0.5rem; font-size: 1.1rem; }
+    .state-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .badge-closed { background: #ef4444; color: #fff; }
+    .badge-open { background: #22c55e; color: #000; }
+    .badge-unknown { background: #555; color: #fff; }
+    svg { display: block; margin: 0 auto; }
+    .info {
+      margin-top: 2rem;
+      background: #16213e;
+      border-radius: 8px;
+      padding: 1.5rem;
+      max-width: 900px;
+    }
+    .info h3 { color: #00d4ff; margin-bottom: 1rem; }
+    .spec-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .spec-table th, .spec-table td {
+      padding: 0.5rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+    .spec-table th { color: #888; font-weight: normal; }
+    .color-swatch {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      vertical-align: middle;
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Circuit Breaker - Improved Symbol</h1>
+  <p class="subtitle">Based on DS template | LAB-SLD-TEST-001 | 69 kV</p>
+  
+  <div class="container">
+    
+    <!-- CB CLOSED -->
+    <div class="symbol-card">
+      <h3>Circuit Breaker</h3>
+      <div class="state-badge badge-closed">CLOSED</div>
+      <svg width="120" height="280" viewBox="0 0 120 280">
+        <defs>
+          <pattern id="gridClosed" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#222" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="120" height="280" fill="url(#gridClosed)"/>
+        
+        <!-- Top Conductor -->
+        <line x1="60" y1="0" x2="60" y2="40" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+        
+        <!-- Double Chevron UP (∧∧) -->
+        <g transform="translate(60, 45)">
+          <!-- Continuous vertical line overlapping chevrons -->
+          <line x1="0" y1="-20" x2="0" y2="135" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+          
+          <!-- Chevron 1 (upper) -->
+          <path d="M -8,-12 L 0,-20 L 8,-12" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Chevron 2 (lower) -->
+          <path d="M -8,-4 L 0,-12 L 8,-4" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        
+        <!-- Vertical Rectangle (CLOSED - solid Red fill) -->
+        <rect x="42" y="80" width="36" height="80" rx="4" fill="#ef4444" stroke="#00FFFF" stroke-width="2"/>
+        
+        <!-- Double Chevron DOWN (∨∨) -->
+        <g transform="translate(60, 175)">
+          <!-- Chevron 1 (upper) -->
+          <path d="M -8,4 L 0,12 L 8,4" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Chevron 2 (lower) -->
+          <path d="M -8,12 L 0,20 L 8,12" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          
+          <!-- Continuous vertical line overlapping chevrons -->
+          <line x1="0" y1="-5" x2="0" y2="25" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        
+        <!-- Bottom Conductor -->
+        <line x1="60" y1="200" x2="60" y2="240" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+        
+        <!-- Label -->
+        <text x="60" y="265" text-anchor="middle" fill="#888" font-size="14" font-weight="bold">CB</text>
+      </svg>
+    </div>
+    
+    <!-- CB OPEN -->
+    <div class="symbol-card">
+      <h3>Circuit Breaker</h3>
+      <div class="state-badge badge-open">OPEN</div>
+      <svg width="120" height="280" viewBox="0 0 120 280">
+        <defs>
+          <pattern id="gridOpen" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#222" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="120" height="280" fill="url(#gridOpen)"/>
+        
+        <!-- Top Conductor -->
+        <line x1="60" y1="0" x2="60" y2="40" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+        
+        <!-- Double Chevron UP (∧∧) -->
+        <g transform="translate(60, 45)">
+          <!-- Continuous vertical line overlapping chevrons -->
+          <line x1="0" y1="-20" x2="0" y2="135" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+          
+          <!-- Chevron 1 (upper) -->
+          <path d="M -8,-12 L 0,-20 L 8,-12" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Chevron 2 (lower) -->
+          <path d="M -8,-4 L 0,-12 L 8,-4" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        
+        <!-- Vertical Rectangle (OPEN - solid Green fill) -->
+        <rect x="42" y="80" width="36" height="80" rx="4" fill="#22c55e" stroke="#00FFFF" stroke-width="2"/>
+        
+        <!-- Double Chevron DOWN (∨∨) -->
+        <g transform="translate(60, 175)">
+          <!-- Chevron 1 (upper) -->
+          <path d="M -8,4 L 0,12 L 8,4" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Chevron 2 (lower) -->
+          <path d="M -8,12 L 0,20 L 8,12" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          
+          <!-- Continuous vertical line overlapping chevrons -->
+          <line x1="0" y1="-5" x2="0" y2="25" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        
+        <!-- Bottom Conductor -->
+        <line x1="60" y1="200" x2="60" y2="240" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+        
+        <!-- Label -->
+        <text x="60" y="265" text-anchor="middle" fill="#888" font-size="14" font-weight="bold">CB</text>
+      </svg>
+    </div>
+    
+    <!-- CB UNKNOWN -->
+    <div class="symbol-card">
+      <h3>Circuit Breaker</h3>
+      <div class="state-badge badge-unknown">UNKNOWN</div>
+      <svg width="120" height="280" viewBox="0 0 120 280">
+        <defs>
+          <pattern id="gridUnknown" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#222" stroke-width="0.5"/>
+          </pattern>
+        </defs>
+        <rect width="120" height="280" fill="url(#gridUnknown)"/>
+        
+        <!-- Top Conductor -->
+        <line x1="60" y1="0" x2="60" y2="40" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+        
+        <!-- Double Chevron UP (∧∧) -->
+        <g transform="translate(60, 45)">
+          <!-- Continuous vertical line overlapping chevrons -->
+          <line x1="0" y1="-20" x2="0" y2="135" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+          
+          <!-- Chevron 1 (upper) -->
+          <path d="M -8,-12 L 0,-20 L 8,-12" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Chevron 2 (lower) -->
+          <path d="M -8,-4 L 0,-12 L 8,-4" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+        
+        <!-- Vertical Rectangle (UNKNOWN - outline only, no fill) -->
+        <rect x="42" y="80" width="36" height="80" rx="4" fill="none" stroke="#00FFFF" stroke-width="2" stroke-dasharray="4 2"/>
+        
+        <!-- Double Chevron DOWN (∨∨) -->
+        <g transform="translate(60, 175)">
+          <!-- Chevron 1 (upper) -->
+          <path d="M -8,4 L 0,12 L 8,4" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Chevron 2 (lower) -->
+          <path d="M -8,12 L 0,20 L 8,12" stroke="#00FFFF" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          
+          <!-- Continuous vertical line overlapping chevrons -->
+          <line x1="0" y1="-5" x2="0" y2="25" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        
+        <!-- Bottom Conductor -->
+        <line x1="60" y1="200" x2="60" y2="240" stroke="#00FFFF" stroke-width="4" stroke-linecap="round"/>
+        
+        <!-- Label -->
+        <text x="60" y="265" text-anchor="middle" fill="#888" font-size="14" font-weight="bold">CB</text>
+        
+        <!-- Unknown indicator -->
+        <text x="60" y="130" text-anchor="middle" fill="#888" font-size="20" font-style="italic">?</text>
+      </svg>
+    </div>
+    
+  </div>
+  
+  <div class="info">
+    <h3>Symbol Specification</h3>
+    <table class="spec-table">
+      <tr>
+        <th>Element</th>
+        <th>Description</th>
+        <th>Color (69 kV)</th>
+      </tr>
+      <tr>
+        <td>Conductor / Chevrons</td>
+        <td>Top/bottom conductors + double chevrons ∧∧ and ∨∨</td>
+        <td><span class="color-swatch" style="background:#00FFFF"></span>Cyan #00FFFF</td>
+      </tr>
+      <tr>
+        <td>Rectangle - CLOSED</td>
+        <td>Vertical rectangle with solid red fill</td>
+        <td><span class="color-swatch" style="background:#ef4444"></span>Red #ef4444</td>
+      </tr>
+      <tr>
+        <td>Rectangle - OPEN</td>
+        <td>Vertical rectangle with solid green fill</td>
+        <td><span class="color-swatch" style="background:#22c55e"></span>Green #22c55e</td>
+      </tr>
+      <tr>
+        <td>Rectangle - UNKNOWN</td>
+        <td>Vertical rectangle outline only, dashed</td>
+        <td><span class="color-swatch" style="background:transparent; border:2px solid #00FFFF"></span>Cyan outline</td>
+      </tr>
+      <tr>
+        <td>Continuous Line</td>
+        <td>Vertical line overlapping chevrons (bus connection)</td>
+        <td><span class="color-swatch" style="background:#00FFFF"></span>Cyan #00FFFF</td>
+      </tr>
+    </table>
+    
+    <h3 style="margin-top: 1.5rem;">Key Differences from DS</h3>
+    <table class="spec-table">
+      <tr>
+        <th>Feature</th>
+        <th>DS (Disconnect Switch)</th>
+        <th>CB (Circuit Breaker)</th>
+      </tr>
+      <tr>
+        <td>Pivot/Hinge</td>
+        <td>Has pivot circle</td>
+        <td>None (no knife)</td>
+      </tr>
+      <tr>
+        <td>Contact Circle</td>
+        <td>Has contact circles</td>
+        <td>None</td>
+      </tr>
+      <tr>
+        <td>Moving Knife</td>
+        <td>Yes (rotates 40°)</td>
+        <td>No knife</td>
+      </tr>
+      <tr>
+        <td>State Indication</td>
+        <td>Knife angle + color</td>
+        <td>Rectangle fill color</td>
+      </tr>
+    </table>
+  </div>
+</body>
+</html>
