@@ -1,7 +1,7 @@
 # Laboratory Experiment Registry
 
 **Last Updated**: 2026-07-22
-**Total Experiments**: 12
+**Total Experiments**: 14
 **Active Experiments**: 1
 **Schema Version**: 2.0
 
@@ -23,6 +23,8 @@
 | LAB-010 | Knowledge-to-Simulation Validation | COMPLETE | Engineering | KDE-001, KDE-002, KDE-003 | 1 | SUPPORTS | HIGH | ESTABLISHED |
 | LAB-011 | Center Control Strategy Discovery | ACTIVE | Chess Strategy | KDE-001 | 11 | PARTIALLY SUPPORTS | MEDIUM | ESTABLISHED |
 | LAB-030 | LinkedIn Public Introduction Strategy | COMPLETE | Communication | Methodology | 1 | SUPPORTS | HIGH | N/A |
+| LAB-031 | Multi-Engine Rubik's Cube Reasoning Benchmark | COMPLETE | AI Reasoning | Methodology | 12 | SUPPORTS | MEDIUM | ESTABLISHED |
+| LAB-032 | Evidence Integrity Engine Hypothesis | COMPLETE | Governance | Methodology | 1 | SUPPORTS | MEDIUM | ESTABLISHED |
 
 ---
 
@@ -189,9 +191,11 @@ CREATE INDEX idx_evidence_experiment ON evidence(experiment_id);
 
 | Date | ID | Activity | Details |
 |------|-----|----------|---------|
+| 2026-07-22 | LAB-032 | CREATED | Evidence Integrity Engine Hypothesis initiated |
+| 2026-07-22 | LAB-032 | COMPLETE | Recommendation: Hybrid Runtime validation approach |
+| 2026-07-22 | LAB-031 | CREATED | Multi-Engine Rubik's Cube Reasoning Benchmark initiated |
+| 2026-07-22 | LAB-031 | COMPLETE | Results: Delta optimal, Beta fastest, all 100% correctness |
 | 2026-07-20 | LAB-011 | CREATED | Center Control Strategy Discovery experiment initiated |
-| 2026-07-20 | LAB-011 | RUN-001 | Completed - 10 positions analyzed |
-| 2026-07-20 | LAB-011 | RUN-002 to RUN-011 | Batch 1 complete - 100 positions, 7 patterns identified |
 | 2026-07-20 | LAB-011 | BATCH 1 | Complete - Recommendation: Begin validation |
 
 ---
