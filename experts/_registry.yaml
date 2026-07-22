@@ -1,102 +1,74 @@
 ---
 # KDE Engineering Expert Registry
-# Version: 1.1.0
+# Version: 1.2.0
 # Last Updated: 2026-07-22
 
 registry:
-  version: 1.1.0
+  version: 1.2.0
   last_updated: 2026-07-22T00:00:00Z
   
   # =========================================================================
-  # TEMPLATE
+  # HOW TO ADD A NEW EXPERT (Checklist)
   # =========================================================================
-  template:
-    path: _template/
-    files:
-      - SPEC.md
-      - interface.yaml
-      - CHANGELOG.md
-    usage: Copy to new domain directory and customize
+  # 1. Create directory: experts/[domain]/kde-expert-[id]-001/
+  # 2. Copy _template/SPEC.md → SPEC.md, fill in details
+  # 3. Copy _template/interface.yaml → interface.yaml, customize
+  # 4. Create CHANGELOG.md with version 1.0.0
+  # 5. Add entry to experts[] below
+  # 6. Commit and push
+  # =========================================================================
+  
+  # =========================================================================
+  # HOW BETA ENGINE CALLS AN EXPERT
+  # =========================================================================
+  invocation_example: |
+    ## Beta Engine → Expert Call
+    ```yaml
+    # 1. Engine identifies task domain
+    task: "Render circuit breaker CB-101"
+    action: render
+    
+    # 2. Engine selects expert by domain match
+    expert: KDE-EXPERT-SLD-001
+    
+    # 3. Engine loads expert interface and knowledge
+    knowledge_refs: [KDE-PRIM-CB-001, KDE-VOLTAGE-NGCP-001]
+    
+    # 4. Expert produces output
+    result:
+      svg: "<g id='CB-101'>...</g>"
+      confidence: HIGH
+      decisions: ["Red fill for CLOSED state"]
+      validation: [{rule: CB-001, status: PASS}]
+    ```
   
   # =========================================================================
   # REGISTERED EXPERTS
   # =========================================================================
   experts:
-    - id: KDE-EXPERT-GIS-001
-      name: GIS Engineering Expert
-      version: 1.0.0
-      status: SYNTHESIZED
-      domain: gis
-      subdomain:
-        - cartography
-        - geoinformatics
-        - spatial-analysis
-      path: gis/kde-expert-gis-001/
-      registered: null
-      created: 2026-07-21
-      source: EXP-003
-      interface:
-        method: direct
-        invoke_params: [task, context, knowledge_refs]
-        produces: [result, confidence, decisions, validation]
-      description: |
-        Designs, generates, improves, and validates professional utility-grade
-        GIS interfaces for SCADA systems. Produces implementations suitable
-        for transmission, distribution, renewable energy, and industrial facilities.
-      
-      capability_groups: 8
-      capabilities_count: 58
-      knowledge_dependencies: 8
-      
-      responsibilities:
-        owns:
-          - GIS engineering decisions
-          - Map visualization
-          - Spatial analysis
-        does_not_own:
-          - Electrical engineering
-          - Dashboard engineering
-          - Alarm engineering
-
     - id: KDE-EXPERT-SLD-001
       name: SLD Engineering Expert
       version: 1.1.0
       status: SYNTHESIZED
       domain: utility-sld
-      subdomain:
-        - primitives
-        - substation-layout
-        - state-visualization
       path: sld/kde-expert-sld-001/
-      registered: null
       created: 2026-07-21
-      updated: 2026-07-22
-      source: EXP-005, EXP-007, EXP-008, EXP-010, EXP-011, EXP-012, EXP-013, EXP-014
-      interface:
-        method: direct
-        invoke_params: [task, action, context, primitives, knowledge_refs]
-        produces: [result, confidence, decisions, validation, metadata]
-        actions: [render, validate, compose, analyze]
-      description: |
-        Generates, validates, renders, and reasons about Single Line Diagrams
-        for utility-grade SCADA systems. Specializes in electrical primitives
-        including circuit breakers, disconnect switches, busbars, conductors,
-        and transformers.
-      
-      capability_groups: 6
-      capabilities_count: 18
-      knowledge_dependencies: 7
-      
-      responsibilities:
-        owns:
-          - SLD engineering decisions
-          - Primitive rendering
-          - Substation layout
-          - State visualization
-        does_not_own:
-          - GIS engineering decisions
-          - Physical electrical calculations
-          - Protection coordination
+      source: EXP-005, EXP-007, EXP-008, EXP-010, EXP-011
+      description: Generates and renders Single Line Diagrams for SCADA systems
+      capabilities: [render, validate, compose, analyze]
+      knowledge_dependencies: 5
+
+    - id: KDE-EXPERT-GIS-001
+      name: GIS Engineering Expert
+      version: 1.0.0
+      status: SYNTHESIZED
+      domain: gis
+      path: gis/kde-expert-gis-001/
+      created: 2026-07-21
+      source: EXP-003
+      description: Designs and renders GIS interfaces for SCADA systems
+      capabilities: [map-rendering, spatial-analysis, route-navigation]
+      knowledge_dependencies: 8
 
   # =========================================================================
   # DOMAINS

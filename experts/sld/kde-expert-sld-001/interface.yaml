@@ -1,212 +1,48 @@
 ---
-# SLD Expert Interface Contract
-# Version: 1.0.0
+# SLD Expert Interface
+# Version: 1.1.0
 
-interface:
-  version: "1.0"
-  expert_id: KDE-EXPERT-SLD-001
-  domain: utility-sld
-  
-  # How the Engine/Laboratory invokes this expert
-  invoke:
-    method: direct
-    parameters:
-      task:
-        type: string
-        required: true
-        description: Task description
-      
-      action:
-        type: string
-        required: true
-        description: Action type
-        values:
-          - render
-          - validate
-          - compose
-          - analyze
-      
-      context:
-        type: object
-        required: false
-        description: Execution context
-        properties:
-          domain:
-            type: string
-            default: utility-sld
-          voltage_level:
-            type: string
-            description: "e.g., 115kV, 230kV"
-          layout_type:
-            type: string
-            description: "e.g., feeder-bay, ring-main"
-      
-      primitives:
-        type: array
-        required: false
-        description: List of primitives for composition
-        items:
-          type: object
-          properties:
-            type:
-              type: string
-              enum: [circuit-breaker, disconnect-switch, earthing-switch, busbar, conductor, transformer]
-            id:
-              type: string
-            state:
-              type: string
-              enum: [CLOSED, OPEN, UNKNOWN, TRIPPED]
-            position:
-              type: array
-              items:
-                type: number
-      
-      knowledge_refs:
-        type: array
-        required: false
-        description: Specific knowledge IDs to use
-  
-  # What this expert produces
-  produces:
-    - name: result
-      type: object
-      description: Expert output (SVG, topology, etc.)
-      properties:
-        type:
-          type: string
-          enum: [svg_element, substation_bay, validation_result]
-        content:
-          type: string
-          description: SVG content (when type=svg_element)
-        topology:
-          type: object
-          description: Network topology (when type=substation_bay)
-        issues:
-          type: array
-          description: Issues found (when type=validation_result)
-      
-    - name: confidence
-      type: enum
-      values: [HIGH, MEDIUM, LOW]
-      description: Confidence level for the output
-      
-    - name: decisions
-      type: array
-      description: Engineering decisions made during execution
-      items:
-        type: string
-      
-    - name: validation
-      type: object
-      description: Validation results
-      properties:
-        rules:
-          type: array
-          items:
-            type: object
-            properties:
-              rule:
-                type: string
-              status:
-                type: string
-                enum: [PASS, FAIL, WARNING]
-              message:
-                type: string
-      
-    - name: metadata
-      type: object
-      description: Expert metadata
-  
-  # Error handling
-  errors:
-    insufficient_context:
-      code: E001
-      message: "Task requires additional context (e.g., voltage_level)"
-      severity: error
-      response: request_more_info
-      
-    unknown_primitive:
-      code: E002
-      message: "Unknown primitive type"
-      severity: error
-      response: return_with_error
-      
-    unknown_state:
-      code: E003
-      message: "Unknown device state"
-      severity: warning
-      response: use_UNKNOWN
-      
-    validation_failure:
-      code: E004
-      message: "Output failed validation"
-      severity: warning
-      response: return_with_warnings
-      
-    knowledge_missing:
-      code: E005
-      message: "Required knowledge not available"
-      severity: error
-      response: fail_or_fallback
-      
-    topology_error:
-      code: E006
-      message: "Invalid topology detected"
-      severity: error
-      response: return_validation_errors
-  
-  # Confidence determination rules
-  confidence_rules:
-    - condition: "output has no validation warnings and all knowledge available"
-      confidence: HIGH
-      
-    - condition: "output has validation warnings but no errors"
-      confidence: MEDIUM
-      
-    - condition: "knowledge partially available"
-      confidence: MEDIUM
-      
-    - condition: "output has critical validation errors"
-      confidence: LOW
-      
-    - condition: "knowledge missing or invalid"
-      confidence: LOW
-      
-    - condition: "novel configuration (non-standard topology)"
-      confidence: MEDIUM
-  
-  # Domain capabilities
-  capabilities:
-    primitives:
-      - circuit-breaker
-      - disconnect-switch
-      - earthing-switch
-      - busbar
-      - conductor
-      - transformer
-    
-    actions:
-      - render
-      - validate
-      - compose
-      - analyze
-    
-    voltage_levels:
-      - 500kV
-      - 230kV
-      - 115kV
-      - 69kV
-      - 34.5kV
-  
-  # Version compatibility
-  compatibility:
-    engine_versions: [">=2.0.0"]
-    knowledge_versions: [">=1.0.0"]
-  
-  # Delegation
-  delegation:
-    can_delegate_to:
-      - KDE-EXPERT-GIS-001
-    delegation_rules:
-      - condition: "task involves map visualization"
-        delegate_to: KDE-EXPERT-GIS-001
+expert_id: KDE-EXPERT-SLD-001
+domain: utility-sld
+
+# Invoke
+# Beta Engine calls expert with:
+#   task: string (what to do)
+#   action: render|validate|compose|analyze
+#   context: {domain, voltage_level?, layout_type?}
+#   primitives: [{type, id, state, position}]
+#   knowledge_refs: [optional knowledge IDs]
+
+invoke:
+  method: direct
+  params:
+    task: string        # REQUIRED - what to do
+    action: string      # REQUIRED - render|validate|compose|analyze
+    context: object      # OPTIONAL - domain, voltage_level, layout_type
+    primitives: array    # OPTIONAL - list of primitives
+    knowledge_refs: array  # OPTIONAL - knowledge IDs
+
+# Produce
+produces:
+  result: object       # Expert output (SVG, topology, validation)
+  confidence: enum   # HIGH | MEDIUM | LOW
+  decisions: array  # Engineering decisions made
+  validation: object # Validation results
+
+# Errors
+errors:
+  E001: insufficient_context    # Need more info
+  E002: unknown_primitive     # Unknown type
+  E003: validation_failure    # Output failed validation
+  E004: knowledge_missing    # Required knowledge unavailable
+
+# Confidence
+confidence:
+  HIGH: "valid output + all knowledge available"
+  MEDIUM: "warnings present or partial knowledge"
+  LOW: "knowledge missing or critical errors"
+
+# Supported
+primitives: [circuit-breaker, disconnect-switch, earthing-switch, busbar]
+actions: [render, validate, compose, analyze]
+voltage_levels: [500kV, 230kV, 115kV, 69kV]
