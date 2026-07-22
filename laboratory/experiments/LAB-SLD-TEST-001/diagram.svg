@@ -1,41 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330">
-  <title>Disconnector (DS) - Continuous Vertical Line</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340">
+  <title>Disconnector (DS) - Extended Line Overlapping Chevrons</title>
   
   <!-- Background -->
-  <rect width="700" height="330" fill="#fafafa"/>
+  <rect width="700" height="340" fill="#fafafa"/>
   
   <!-- Title -->
-  <text x="350" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#333">DISCONNECTOR (DS) - CONTINUOUS LINE</text>
+  <text x="350" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#333">DISCONNECTOR (DS)</text>
   
   <!-- ============================================ -->
   <!-- DS CLOSED -->
   <!-- ============================================ -->
-  <g transform="translate(120, 50)">
+  <g transform="translate(120, 55)">
     <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#CC0000">DS CLOSED</text>
-    <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">One continuous vertical line</text>
+    <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Line overlaps chevrons</text>
     
-    <!-- Top conductor -->
-    <line x1="100" y1="25" x2="100" y2="52" stroke="#CC0000" stroke-width="3"/>
+    <!-- Chevron UP (drawn first, line will overlap) -->
+    <polyline points="92,55 100,45 108,55" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,62 100,53 105,62" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
     
-    <!-- Chevron UP -->
-    <polyline points="92,64 100,54 108,64" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,70 100,62 105,70" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- CONTINUOUS VERTICAL LINE - extends through chevrons -->
+    <line x1="100" y1="45" x2="100" y2="168" stroke="#CC0000" stroke-width="4"/>
     
-    <!-- CONTINUOUS VERTICAL LINE (thick) -->
-    <line x1="100" y1="70" x2="100" y2="155" stroke="#CC0000" stroke-width="8"/>
+    <!-- Pivot circle ON TOP -->
+    <circle cx="100" cy="95" r="7" fill="none" stroke="#CC0000" stroke-width="2.5"/>
     
-    <!-- Pivot circle ON TOP (hollow outline) -->
-    <circle cx="100" cy="95" r="8" fill="none" stroke="#CC0000" stroke-width="2.5"/>
-    
-    <!-- Contact circle ON TOP (hollow outline) -->
-    <circle cx="100" cy="135" r="8" fill="none" stroke="#CC0000" stroke-width="2.5"/>
+    <!-- Contact circle ON TOP -->
+    <circle cx="100" cy="135" r="7" fill="none" stroke="#CC0000" stroke-width="2.5"/>
     
     <!-- Chevron DOWN -->
     <polyline points="92,158 100,168 108,158" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,152 100,160 105,152" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,151 100,160 105,151" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
+    
+    <!-- Top conductor -->
+    <line x1="100" y1="30" x2="100" y2="45" stroke="#CC0000" stroke-width="3"/>
     
     <!-- Bottom conductor -->
-    <line x1="100" y1="168" x2="100" y2="188" stroke="#CC0000" stroke-width="3"/>
+    <line x1="100" y1="168" x2="100" y2="185" stroke="#CC0000" stroke-width="3"/>
     
     <!-- Labels -->
     <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">PIVOT</text>
@@ -46,41 +46,41 @@
   <!-- ============================================ -->
   <!-- DS OPEN -->
   <!-- ============================================ -->
-  <g transform="translate(450, 50)">
+  <g transform="translate(450, 55)">
     <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#009900">DS OPEN</text>
-    <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">35° rotation - visible gap</text>
-    
-    <!-- Top conductor -->
-    <line x1="100" y1="25" x2="100" y2="52" stroke="#009900" stroke-width="3"/>
+    <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">35 degree rotation</text>
     
     <!-- Chevron UP -->
-    <polyline points="92,64 100,54 108,64" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,70 100,62 105,70" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="92,55 100,45 108,55" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,62 100,53 105,62" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Top part of vertical line -->
-    <line x1="100" y1="70" x2="100" y2="87" stroke="#009900" stroke-width="8"/>
+    <line x1="100" y1="45" x2="100" y2="88" stroke="#009900" stroke-width="4"/>
     
-    <!-- Pivot circle ON TOP (hollow outline) -->
-    <circle cx="100" cy="95" r="8" fill="none" stroke="#009900" stroke-width="2.5"/>
+    <!-- Pivot circle -->
+    <circle cx="100" cy="95" r="7" fill="none" stroke="#009900" stroke-width="2.5"/>
     
-    <!-- Knife (rotated 35°) -->
-    <line x1="100" y1="95" x2="120" y2="75" stroke="#009900" stroke-width="8" stroke-linecap="round"/>
+    <!-- Knife (rotated 35 deg) -->
+    <line x1="100" y1="95" x2="125" y2="70" stroke="#009900" stroke-width="4" stroke-linecap="round"/>
     
-    <!-- Gap indicator (dashed) -->
-    <line x1="112" y1="83" x2="106" y2="127" stroke="#009900" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <!-- Gap indicator -->
+    <line x1="115" y1="78" x2="106" y2="128" stroke="#009900" stroke-width="1.5" stroke-dasharray="4,3"/>
     
-    <!-- Bottom part of vertical line (separated) -->
-    <line x1="100" y1="135" x2="100" y2="155" stroke="#009900" stroke-width="8"/>
+    <!-- Bottom part of vertical line -->
+    <line x1="100" y1="142" x2="100" y2="168" stroke="#009900" stroke-width="4"/>
     
-    <!-- Contact circle ON TOP (hollow outline) -->
-    <circle cx="100" cy="135" r="8" fill="none" stroke="#009900" stroke-width="2.5"/>
+    <!-- Contact circle (fixed position) -->
+    <circle cx="100" cy="135" r="7" fill="none" stroke="#009900" stroke-width="2.5"/>
     
     <!-- Chevron DOWN -->
     <polyline points="92,158 100,168 108,158" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,152 100,160 105,152" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,151 100,160 105,151" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
+    
+    <!-- Top conductor -->
+    <line x1="100" y1="30" x2="100" y2="45" stroke="#009900" stroke-width="3"/>
     
     <!-- Bottom conductor -->
-    <line x1="100" y1="168" x2="100" y2="188" stroke="#009900" stroke-width="3"/>
+    <line x1="100" y1="168" x2="100" y2="185" stroke="#009900" stroke-width="3"/>
     
     <!-- Labels -->
     <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#009900">PIVOT</text>
@@ -91,21 +91,17 @@
   <!-- ============================================ -->
   <!-- Legend -->
   <!-- ============================================ -->
-  <g transform="translate(20, 265)">
+  <g transform="translate(20, 275)">
     <rect x="0" y="0" width="660" height="50" fill="#fff" stroke="#ddd" rx="4"/>
     
     <text x="15" y="18" font-family="Arial" font-size="10" font-weight="bold" fill="#333">STRUCTURE:</text>
     
-    <!-- Continuous line symbol -->
-    <g transform="translate(90, 30)">
-      <line x1="0" y1="-8" x2="0" y2="8" stroke="#666" stroke-width="6"/>
-      <circle cx="0" cy="0" r="4" fill="none" stroke="#fff" stroke-width="2"/>
-      <text x="12" y="4" font-family="Arial" font-size="9" fill="#666">Continuous line + circles on top</text>
-    </g>
+    <text x="15" y="40" font-family="Arial" font-size="10" fill="#666">
+      CLOSED: Vertical line overlaps chevrons, continuous path through circles.
+    </text>
     
-    <!-- Note -->
-    <text x="280" y="18" font-family="Arial" font-size="10" fill="#666">
-      CLOSED: One thick line with circles on top. OPEN: Line broken by rotated knife.
+    <text x="380" y="40" font-family="Arial" font-size="10" fill="#666">
+      OPEN: Knife rotates 35 deg, contact fixed, gap visible.
     </text>
   </g>
 </svg>
