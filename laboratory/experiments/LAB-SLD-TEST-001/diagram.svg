@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340">
-  <title>Disconnector (DS) - Correct 30° Knife Angle</title>
+  <title>Disconnector (DS) - Final Polish</title>
   
   <!-- Background -->
   <rect width="700" height="340" fill="#fafafa"/>
@@ -14,29 +14,29 @@
     <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DS CLOSED</text>
     <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Knife = Red, Bus = Cyan (69kV)</text>
     
-    <!-- Chevron UP (Cyan) -->
-    <polyline points="92,55 100,45 108,55" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,62 100,53 105,62" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Chevron UP (arrow head pointing up) -->
+    <polyline points="92,62 100,52 108,62" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,56 100,50 105,56" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Continuous vertical line (Cyan) -->
-    <line x1="100" y1="45" x2="100" y2="168" stroke="#00FFFF" stroke-width="4"/>
+    <line x1="100" y1="50" x2="100" y2="165" stroke="#00FFFF" stroke-width="4"/>
     
     <!-- Pivot circle (Cyan) -->
     <circle cx="100" cy="95" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Knife (RED) - straight down = 180° -->
-    <line x1="100" y1="88" x2="100" y2="142" stroke="#CC0000" stroke-width="5" stroke-linecap="round"/>
+    <!-- Knife (RED) - straight down = 180 deg -->
+    <line x1="100" y1="88" x2="100" y2="140" stroke="#CC0000" stroke-width="5" stroke-linecap="round"/>
     
     <!-- Contact circle (Cyan) -->
     <circle cx="100" cy="135" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Chevron DOWN (Cyan) -->
-    <polyline points="92,158 100,168 108,158" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,151 100,160 105,151" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Chevron DOWN (arrow head pointing down) -->
+    <polyline points="92,153 100,163 108,153" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,159 100,165 105,159" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Conductors (Cyan) -->
-    <line x1="100" y1="30" x2="100" y2="45" stroke="#00FFFF" stroke-width="3"/>
-    <line x1="100" y1="168" x2="100" y2="185" stroke="#00FFFF" stroke-width="3"/>
+    <line x1="100" y1="30" x2="100" y2="50" stroke="#00FFFF" stroke-width="3"/>
+    <line x1="100" y1="165" x2="100" y2="185" stroke="#00FFFF" stroke-width="3"/>
     
     <!-- Labels -->
     <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">PIVOT</text>
@@ -46,44 +46,38 @@
   </g>
   
   <!-- ============================================ -->
-  <!-- DS OPEN - Corrected 30° from vertical -->
+  <!-- DS OPEN -->
   <!-- ============================================ -->
   <g transform="translate(450, 55)">
     <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DS OPEN</text>
     <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Knife = Green, 30 deg from vertical</text>
     
-    <!-- Chevron UP (Cyan) -->
-    <polyline points="92,55 100,45 108,55" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,62 100,53 105,62" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Chevron UP (arrow head pointing up) -->
+    <polyline points="92,62 100,52 108,62" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,56 100,50 105,56" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Top line (Cyan) -->
-    <line x1="100" y1="45" x2="100" y2="88" stroke="#00FFFF" stroke-width="4"/>
+    <line x1="100" y1="50" x2="100" y2="88" stroke="#00FFFF" stroke-width="4"/>
     
     <!-- Pivot circle (Cyan) -->
     <circle cx="100" cy="95" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Knife (GREEN) - 30 deg from vertical (down-right) -->
-    <!-- Pivot at (100, 95), length=40, angle from vertical = 30 deg -->
-    <!-- dx = 40 * sin(30) = 20, dy = 40 * cos(30) = 34.64 -->
-    <!-- End at (120, 130) -->
+    <!-- Knife (GREEN) - 30 deg from vertical -->
     <line x1="100" y1="95" x2="120" y2="130" stroke="#009900" stroke-width="5" stroke-linecap="round"/>
     
-    <!-- Gap indicator (from knife end to contact) -->
-    <line x1="116" y1="122" x2="106" y2="128" stroke="#009900" stroke-width="1.5" stroke-dasharray="4,3"/>
-    
     <!-- Bottom line (Cyan) -->
-    <line x1="100" y1="142" x2="100" y2="168" stroke="#00FFFF" stroke-width="4"/>
+    <line x1="100" y1="140" x2="100" y2="165" stroke="#00FFFF" stroke-width="4"/>
     
     <!-- Contact circle (Cyan) - FIXED position -->
     <circle cx="100" cy="135" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Chevron DOWN (Cyan) -->
-    <polyline points="92,158 100,168 108,158" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,151 100,160 105,151" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Chevron DOWN (arrow head pointing down) -->
+    <polyline points="92,153 100,163 108,153" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,159 100,165 105,159" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Conductors (Cyan) -->
-    <line x1="100" y1="30" x2="100" y2="45" stroke="#00FFFF" stroke-width="3"/>
-    <line x1="100" y1="168" x2="100" y2="185" stroke="#00FFFF" stroke-width="3"/>
+    <line x1="100" y1="30" x2="100" y2="50" stroke="#00FFFF" stroke-width="3"/>
+    <line x1="100" y1="165" x2="100" y2="185" stroke="#00FFFF" stroke-width="3"/>
     
     <!-- Labels -->
     <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">PIVOT</text>
@@ -98,14 +92,10 @@
   <g transform="translate(20, 280)">
     <rect x="0" y="0" width="660" height="45" fill="#fff" stroke="#ddd" rx="4"/>
     
-    <text x="15" y="18" font-family="Arial" font-size="10" font-weight="bold" fill="#333">GEOMETRY:</text>
+    <text x="15" y="18" font-family="Arial" font-size="10" font-weight="bold" fill="#333">DESIGN:</text>
     
     <text x="15" y="35" font-family="Arial" font-size="10" fill="#666">
-      CLOSED: Knife straight down (180 deg from x-axis)
-    </text>
-    
-    <text x="320" y="35" font-family="Arial" font-size="10" fill="#666">
-      OPEN: Knife 30 deg from vertical (150 deg from x-axis, down-right)
+      Chevron = Arrow head pointing outward. Same size top and bottom. No gap indicator line.
     </text>
   </g>
 </svg>
