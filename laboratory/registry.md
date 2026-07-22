@@ -1,7 +1,7 @@
 # Laboratory Experiment Registry
 
-**Last Updated**: 2026-07-20
-**Total Experiments**: 11
+**Last Updated**: 2026-07-22
+**Total Experiments**: 12
 **Active Experiments**: 1
 **Schema Version**: 2.0
 
@@ -22,6 +22,7 @@
 | LAB-009 | Knowledge DNA Discovery | COMPLETE | Cross-Domain | KDE-001, KDE-002, KDE-003 | 5 | SUPPORTS | HIGH | ESTABLISHED |
 | LAB-010 | Knowledge-to-Simulation Validation | COMPLETE | Engineering | KDE-001, KDE-002, KDE-003 | 1 | SUPPORTS | HIGH | ESTABLISHED |
 | LAB-011 | Center Control Strategy Discovery | ACTIVE | Chess Strategy | KDE-001 | 11 | PARTIALLY SUPPORTS | MEDIUM | ESTABLISHED |
+| LAB-030 | LinkedIn Public Introduction Strategy | COMPLETE | Communication | Methodology | 1 | SUPPORTS | HIGH | N/A |
 
 ---
 
