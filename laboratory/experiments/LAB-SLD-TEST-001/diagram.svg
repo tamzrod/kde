@@ -1,188 +1,160 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 420">
-  <title>SLD Component Symbols - Exact Spec</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400">
+  <title>Disconnector (DS) Symbols - Fixed</title>
   
   <!-- Background -->
-  <rect width="750" height="420" fill="#fafafa"/>
+  <rect width="700" height="400" fill="#fafafa"/>
+  
+  <!-- Title -->
+  <text x="30" y="30" font-family="Arial" font-size="16" font-weight="bold" fill="#333">DISCONNECTOR (DS) - Correct Structure</text>
+  <text x="30" y="48" font-family="Arial" font-size="11" fill="#666">1. Double chevron UP  →  2. Vertical line  →  3. PIVOT circle  →  4. Knife  →  5. Contact circle  →  6. Double chevron DOWN</text>
   
   <!-- ============================================ -->
-  <!-- SECTION 1: CIRCUIT BREAKER (CB) -->
-  <!-- ============================================ -->
-  <text x="30" y="25" font-family="Arial" font-size="13" font-weight="bold" fill="#333">1. CIRCUIT BREAKER (CB)</text>
-  
-  <!-- CB CLOSED -->
-  <g transform="translate(60, 55)">
-    <!-- Conductor -->
-    <line x1="35" y1="0" x2="35" y2="20" stroke="#FF0000" stroke-width="3"/>
-    <!-- Double chevron UP -->
-    <polygon points="27,28 35,18 43,28" fill="none" stroke="#FF0000" stroke-width="2"/>
-    <polygon points="30,32 35,25 40,32" fill="none" stroke="#FF0000" stroke-width="2"/>
-    <!-- Body (vertical rectangle, solid red) -->
-    <rect x="27" y="32" width="16" height="36" fill="#FF0000"/>
-    <!-- Double chevron DOWN -->
-    <polygon points="27,68 35,78 43,68" fill="none" stroke="#FF0000" stroke-width="2"/>
-    <polygon points="30,64 35,71 40,64" fill="none" stroke="#FF0000" stroke-width="2"/>
-    <!-- Conductor -->
-    <line x1="35" y1="78" x2="35" y2="95" stroke="#FF0000" stroke-width="3"/>
-    <!-- Label -->
-    <text x="35" y="120" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#FF0000">CB CLOSED</text>
-  </g>
-  
-  <!-- CB OPEN -->
-  <g transform="translate(180, 55)">
-    <!-- Conductor -->
-    <line x1="35" y1="0" x2="35" y2="20" stroke="#00AA00" stroke-width="3"/>
-    <!-- Double chevron UP -->
-    <polygon points="27,28 35,18 43,28" fill="none" stroke="#00AA00" stroke-width="2"/>
-    <polygon points="30,32 35,25 40,32" fill="none" stroke="#00AA00" stroke-width="2"/>
-    <!-- Body (vertical rectangle, solid green) -->
-    <rect x="27" y="32" width="16" height="36" fill="#00AA00"/>
-    <!-- Double chevron DOWN -->
-    <polygon points="27,68 35,78 43,68" fill="none" stroke="#00AA00" stroke-width="2"/>
-    <polygon points="30,64 35,71 40,64" fill="none" stroke="#00AA00" stroke-width="2"/>
-    <!-- Conductor -->
-    <line x1="35" y1="78" x2="35" y2="95" stroke="#00AA00" stroke-width="3"/>
-    <!-- Label -->
-    <text x="35" y="120" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#00AA00">CB OPEN</text>
-  </g>
-  
-  <!-- CB UNKNOWN -->
-  <g transform="translate(300, 55)">
-    <!-- Conductor -->
-    <line x1="35" y1="0" x2="35" y2="20" stroke="#333333" stroke-width="2"/>
-    <!-- Double chevron UP (black outline) -->
-    <polygon points="27,28 35,18 43,28" fill="none" stroke="#333333" stroke-width="2"/>
-    <polygon points="30,32 35,25 40,32" fill="none" stroke="#333333" stroke-width="2"/>
-    <!-- Body (NO FILL - black outline only) -->
-    <rect x="27" y="32" width="16" height="36" fill="none" stroke="#333333" stroke-width="2"/>
-    <!-- Double chevron DOWN (black outline) -->
-    <polygon points="27,68 35,78 43,68" fill="none" stroke="#333333" stroke-width="2"/>
-    <polygon points="30,64 35,71 40,64" fill="none" stroke="#333333" stroke-width="2"/>
-    <!-- Conductor -->
-    <line x1="35" y1="78" x2="35" y2="95" stroke="#333333" stroke-width="2"/>
-    <!-- Label -->
-    <text x="35" y="120" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#333333">CB UNKNOWN</text>
-  </g>
-  
-  <!-- ============================================ -->
-  <!-- SECTION 2: DISCONNECTOR (DS) -->
-  <!-- ============================================ -->
-  <text x="30" y="210" font-family="Arial" font-size="13" font-weight="bold" fill="#333">2. DISCONNECTOR (DS)</text>
-  
   <!-- DS CLOSED -->
-  <g transform="translate(60, 240)">
-    <!-- Conductor -->
-    <line x1="35" y1="0" x2="35" y2="20" stroke="#FF0000" stroke-width="3"/>
-    <!-- 1. Double chevron UP -->
-    <polygon points="27,28 35,18 43,28" fill="none" stroke="#FF0000" stroke-width="2"/>
-    <polygon points="30,32 35,25 40,32" fill="none" stroke="#FF0000" stroke-width="2"/>
-    <!-- 2. Small vertical line -->
-    <line x1="35" y1="32" x2="35" y2="40" stroke="#FF0000" stroke-width="2"/>
-    <!-- 3. Small circle (pivot) -->
-    <circle cx="35" cy="45" r="4" fill="none" stroke="#FF0000" stroke-width="2"/>
-    <!-- 4. Knife blade (STRAIGHT/VERTICAL = continuous path) -->
-    <line x1="35" y1="41" x2="35" y2="49" stroke="#FF0000" stroke-width="4"/>
-    <!-- 5. Small circle (contact point) -->
-    <circle cx="35" cy="53" r="3" fill="#FF0000"/>
-    <!-- 6. Double chevron DOWN -->
-    <polygon points="27,60 35,70 43,60" fill="none" stroke="#FF0000" stroke-width="2"/>
-    <polygon points="30,56 35,63 40,56" fill="none" stroke="#FF0000" stroke-width="2"/>
-    <!-- Conductor -->
-    <line x1="35" y1="70" x2="35" y2="90" stroke="#FF0000" stroke-width="3"/>
-    <!-- Label -->
-    <text x="35" y="115" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#FF0000">DS CLOSED</text>
-    <text x="35" y="130" text-anchor="middle" font-family="Arial" font-size="9" fill="#666">Knife straight</text>
-  </g>
-  
-  <!-- DS OPEN -->
-  <g transform="translate(180, 240)">
-    <!-- Conductor -->
-    <line x1="35" y1="0" x2="35" y2="20" stroke="#00AA00" stroke-width="3"/>
-    <!-- 1. Double chevron UP -->
-    <polygon points="27,28 35,18 43,28" fill="none" stroke="#00AA00" stroke-width="2"/>
-    <polygon points="30,32 35,25 40,32" fill="none" stroke="#00AA00" stroke-width="2"/>
-    <!-- 2. Small vertical line -->
-    <line x1="35" y1="32" x2="35" y2="40" stroke="#00AA00" stroke-width="2"/>
-    <!-- 3. Small circle (pivot) -->
-    <circle cx="35" cy="45" r="4" fill="none" stroke="#00AA00" stroke-width="2"/>
-    <!-- 4. Knife blade (ANGLED = visible gap) -->
-    <line x1="35" y1="45" x2="48" y2="32" stroke="#00AA00" stroke-width="4" stroke-linecap="round"/>
-    <!-- 5. Small circle (contact point - separated) -->
-    <circle cx="45" cy="35" r="3" fill="none" stroke="#00AA00" stroke-width="2"/>
-    <!-- 6. Double chevron DOWN -->
-    <polygon points="27,60 35,70 43,60" fill="none" stroke="#00AA00" stroke-width="2"/>
-    <polygon points="30,56 35,63 40,56" fill="none" stroke="#00AA00" stroke-width="2"/>
-    <!-- Conductor -->
-    <line x1="35" y1="70" x2="35" y2="90" stroke="#00AA00" stroke-width="3"/>
-    <!-- Label -->
-    <text x="35" y="115" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#00AA00">DS OPEN</text>
-    <text x="35" y="130" text-anchor="middle" font-family="Arial" font-size="9" fill="#666">Knife angled</text>
-  </g>
-  
   <!-- ============================================ -->
-  <!-- SECTION 3: EARTHING SWITCH (ES) -->
-  <!-- ============================================ -->
-  <text x="400" y="210" font-family="Arial" font-size="13" font-weight="bold" fill="#333">3. EARTHING SWITCH (ES)</text>
-  
-  <!-- ES -->
-  <g transform="translate(440, 240)">
+  <g transform="translate(100, 80)">
+    <!-- Section label -->
+    <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DS CLOSED</text>
+    <text x="100" y="18" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Knife straight - Continuous path</text>
+    
     <!-- Conductor from top -->
-    <line x1="35" y1="0" x2="35" y2="35" stroke="#333333" stroke-width="3"/>
-    <!-- Horizontal switch line with circle -->
-    <line x1="15" y1="35" x2="55" y2="35" stroke="#333333" stroke-width="2"/>
-    <circle cx="35" cy="35" r="5" fill="none" stroke="#333333" stroke-width="2"/>
-    <!-- Switch handle (vertical to ground) -->
-    <line x1="35" y1="35" x2="35" y2="55" stroke="#333333" stroke-width="2"/>
-    <!-- Ground symbol -->
-    <line x1="35" y1="55" x2="35" y2="62" stroke="#333333" stroke-width="2"/>
-    <line x1="22" y1="62" x2="48" y2="62" stroke="#333333" stroke-width="2.5"/>
-    <line x1="26" y1="68" x2="44" y2="68" stroke="#333333" stroke-width="2.5"/>
-    <line x1="30" y1="74" x2="40" y2="74" stroke="#333333" stroke-width="2.5"/>
-    <!-- Label -->
-    <text x="35" y="100" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#333333">ES</text>
+    <line x1="100" y1="35" x2="100" y2="55" stroke="#FF0000" stroke-width="4"/>
+    
+    <!-- 1. Double chevron UP -->
+    <polygon points="88,68 100,55 112,68" fill="none" stroke="#FF0000" stroke-width="2.5"/>
+    <polygon points="92,76 100,66 108,76" fill="none" stroke="#FF0000" stroke-width="2.5"/>
+    
+    <!-- 2. Short vertical line -->
+    <line x1="100" y1="76" x2="100" y2="95" stroke="#FF0000" stroke-width="3"/>
+    
+    <!-- 3. PIVOT circle (center of rotation) -->
+    <circle cx="100" cy="115" r="8" fill="none" stroke="#FF0000" stroke-width="3"/>
+    <text x="100" y="135" text-anchor="middle" font-family="Arial" font-size="9" fill="#FF0000">PIVOT</text>
+    
+    <!-- 4. Knife blade - LONG STRAIGHT LINE connecting pivot to contact -->
+    <line x1="100" y1="107" x2="100" y2="163" stroke="#FF0000" stroke-width="6" stroke-linecap="round"/>
+    
+    <!-- 5. Contact circle (at end of knife) -->
+    <circle cx="100" cy="170" r="8" fill="none" stroke="#FF0000" stroke-width="3"/>
+    <text x="100" y="190" text-anchor="middle" font-family="Arial" font-size="9" fill="#FF0000">CONTACT</text>
+    
+    <!-- 6. Double chevron DOWN -->
+    <polygon points="88,195 100,208 112,195" fill="none" stroke="#FF0000" stroke-width="2.5"/>
+    <polygon points="92,187 100,197 108,187" fill="none" stroke="#FF0000" stroke-width="2.5"/>
+    
+    <!-- Conductor to bottom -->
+    <line x1="100" y1="208" x2="100" y2="230" stroke="#FF0000" stroke-width="4"/>
+    
+    <!-- Gap indicator (NONE - continuous) -->
+    <text x="100" y="260" text-anchor="middle" font-family="Arial" font-size="11" fill="#FF0000" font-weight="bold">NO GAP - CONTINUOUS PATH</text>
   </g>
   
   <!-- ============================================ -->
-  <!-- LEGEND -->
+  <!-- DS OPEN -->
   <!-- ============================================ -->
-  <g transform="translate(30, 350)">
-    <rect x="0" y="0" width="690" height="55" fill="#fff" stroke="#ddd" rx="4"/>
+  <g transform="translate(450, 80)">
+    <!-- Section label -->
+    <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DS OPEN</text>
+    <text x="100" y="18" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Knife angled - Visible air gap</text>
     
-    <text x="15" y="18" font-family="Arial" font-size="11" font-weight="bold" fill="#333">LEGEND</text>
+    <!-- Conductor from top -->
+    <line x1="100" y1="35" x2="100" y2="55" stroke="#00AA00" stroke-width="4"/>
     
-    <!-- CB -->
-    <g transform="translate(15, 30)">
-      <rect x="0" y="-6" width="10" height="14" fill="#FF0000"/>
-      <polygon points="-5,5 0,-2 5,5" fill="none" stroke="#FF0000" stroke-width="1.5"/>
-      <polygon points="-5,10 0,5 5,10" fill="none" stroke="#FF0000" stroke-width="1.5"/>
-      <text x="15" y="5" font-family="Arial" font-size="10" fill="#666">CB = Circuit Breaker</text>
+    <!-- 1. Double chevron UP -->
+    <polygon points="88,68 100,55 112,68" fill="none" stroke="#00AA00" stroke-width="2.5"/>
+    <polygon points="92,76 100,66 108,76" fill="none" stroke="#00AA00" stroke-width="2.5"/>
+    
+    <!-- 2. Short vertical line -->
+    <line x1="100" y1="76" x2="100" y2="95" stroke="#00AA00" stroke-width="3"/>
+    
+    <!-- 3. PIVOT circle (center of rotation) -->
+    <circle cx="100" cy="115" r="8" fill="none" stroke="#00AA00" stroke-width="3"/>
+    <text x="100" y="135" text-anchor="middle" font-family="Arial" font-size="9" fill="#00AA00">PIVOT</text>
+    
+    <!-- 4. Knife blade - LONG ANGLED LINE swinging away from contact -->
+    <line x1="100" y1="115" x2="145" y2="70" stroke="#00AA00" stroke-width="6" stroke-linecap="round"/>
+    
+    <!-- 5. Contact circle (SEPARATED from knife) -->
+    <circle cx="138" cy="63" r="8" fill="none" stroke="#00AA00" stroke-width="3"/>
+    <text x="138" y="50" text-anchor="middle" font-family="Arial" font-size="9" fill="#00AA00">CONTACT</text>
+    
+    <!-- Air gap indicator -->
+    <line x1="115" y1="85" x2="128" y2="72" stroke="#00AA00" stroke-width="1" stroke-dasharray="3,2"/>
+    
+    <!-- 6. Double chevron DOWN -->
+    <polygon points="88,195 100,208 112,195" fill="none" stroke="#00AA00" stroke-width="2.5"/>
+    <polygon points="92,187 100,197 108,187" fill="none" stroke="#00AA00" stroke-width="2.5"/>
+    
+    <!-- Conductor to bottom -->
+    <line x1="100" y1="208" x2="100" y2="230" stroke="#00AA00" stroke-width="4"/>
+    
+    <!-- Gap indicator -->
+    <text x="100" y="260" text-anchor="middle" font-family="Arial" font-size="11" fill="#00AA00" font-weight="bold">VISIBLE AIR GAP</text>
+  </g>
+  
+  <!-- ============================================ -->
+  <!-- Structure Diagram -->
+  <!-- ============================================ -->
+  <g transform="translate(30, 300)">
+    <rect x="0" y="0" width="640" height="80" fill="#fff" stroke="#ddd" rx="4"/>
+    
+    <text x="15" y="20" font-family="Arial" font-size="11" font-weight="bold" fill="#333">DS STRUCTURE (top to bottom):</text>
+    
+    <!-- Step 1 -->
+    <g transform="translate(20, 35)">
+      <polygon points="-5,0 0,-8 5,0" fill="none" stroke="#666" stroke-width="1.5"/>
+      <polygon points="-5,6 0,0 5,6" fill="none" stroke="#666" stroke-width="1.5"/>
+      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">1. Chev UP</text>
     </g>
     
-    <!-- DS -->
-    <g transform="translate(180, 30)">
-      <line x1="0" y1="0" x2="0" y2="8" stroke="#FF0000" stroke-width="2"/>
-      <circle cx="0" cy="12" r="3" fill="none" stroke="#FF0000" stroke-width="1.5"/>
-      <line x1="0" y1="9" x2="0" y2="15" stroke="#FF0000" stroke-width="3"/>
-      <circle cx="0" cy="17" r="2" fill="#FF0000"/>
-      <text x="15" y="5" font-family="Arial" font-size="10" fill="#666">DS = Disconnector</text>
+    <!-- Arrow -->
+    <text x="95" y="45" font-family="Arial" font-size="12" fill="#999">→</text>
+    
+    <!-- Step 2 -->
+    <g transform="translate(110, 35)">
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#666" stroke-width="2"/>
+      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">2. Line</text>
     </g>
     
-    <!-- ES -->
-    <g transform="translate(340, 30)">
-      <line x1="0" y1="0" x2="0" y2="10" stroke="#333" stroke-width="2"/>
-      <line x1="-8" y1="10" x2="8" y2="10" stroke="#333" stroke-width="2"/>
-      <line x1="0" y1="10" x2="0" y2="18" stroke="#333" stroke-width="2"/>
-      <line x1="-8" y1="18" x2="8" y2="18" stroke="#333" stroke-width="2"/>
-      <text x="15" y="5" font-family="Arial" font-size="10" fill="#666">ES = Earthing Switch</text>
+    <!-- Arrow -->
+    <text x="165" y="45" font-family="Arial" font-size="12" fill="#999">→</text>
+    
+    <!-- Step 3 -->
+    <g transform="translate(180, 35)">
+      <circle cx="0" cy="6" r="5" fill="none" stroke="#666" stroke-width="2"/>
+      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">3. PIVOT</text>
     </g>
     
-    <!-- Colors -->
-    <g transform="translate(480, 30)">
-      <rect x="0" y="-5" width="10" height="10" fill="#FF0000"/>
-      <text x="15" y="5" font-family="Arial" font-size="10" fill="#666">= CLOSED</text>
-      <rect x="75" y="-5" width="10" height="10" fill="#00AA00"/>
-      <text x="90" y="5" font-family="Arial" font-size="10" fill="#666">= OPEN</text>
-      <rect x="130" y="-5" width="10" height="10" fill="none" stroke="#333" stroke-width="1.5"/>
-      <text x="145" y="5" font-family="Arial" font-size="10" fill="#666">= UNKNOWN</text>
+    <!-- Arrow -->
+    <text x="245" y="45" font-family="Arial" font-size="12" fill="#999">→</text>
+    
+    <!-- Step 4 -->
+    <g transform="translate(280, 35)">
+      <line x1="0" y1="0" x2="0" y2="14" stroke="#666" stroke-width="4" stroke-linecap="round"/>
+      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">4. Knife</text>
     </g>
+    
+    <!-- Arrow -->
+    <text x="345" y="45" font-family="Arial" font-size="12" fill="#999">→</text>
+    
+    <!-- Step 5 -->
+    <g transform="translate(380, 35)">
+      <circle cx="0" cy="6" r="5" fill="#666"/>
+      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">5. Contact</text>
+    </g>
+    
+    <!-- Arrow -->
+    <text x="445" y="45" font-family="Arial" font-size="12" fill="#999">→</text>
+    
+    <!-- Step 6 -->
+    <g transform="translate(480, 35)">
+      <polygon points="-5,14 0,22 5,14" fill="none" stroke="#666" stroke-width="1.5"/>
+      <polygon points="-5,8 0,14 5,8" fill="none" stroke="#666" stroke-width="1.5"/>
+      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">6. Chev DOWN</text>
+    </g>
+    
+    <!-- Key rule -->
+    <text x="15" y="65" font-family="Arial" font-size="10" fill="#666">
+      <tspan font-weight="bold">Key:</tspan> Pivot is the rotation center. CLOSED = knife connects pivot to contact (straight). OPEN = knife swings away (angled).
+    </text>
   </g>
 </svg>
