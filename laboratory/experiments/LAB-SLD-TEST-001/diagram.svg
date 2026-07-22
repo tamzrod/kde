@@ -1,107 +1,121 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340">
-  <title>Disconnector (DS) - Extended Line Overlapping Chevrons</title>
+  <title>Disconnector (DS) - 69kV Bus Color</title>
   
   <!-- Background -->
   <rect width="700" height="340" fill="#fafafa"/>
   
   <!-- Title -->
-  <text x="350" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#333">DISCONNECTOR (DS)</text>
+  <text x="350" y="28" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#333">DISCONNECTOR (DS) - 69kV Bus Color (Cyan)</text>
+  
+  <!-- Color definitions -->
+  <!-- 69kV = Cyan (#00FFFF) -->
+  <!-- Knife CLOSED = Red (#CC0000) -->
+  <!-- Knife OPEN = Green (#009900) -->
   
   <!-- ============================================ -->
   <!-- DS CLOSED -->
   <!-- ============================================ -->
   <g transform="translate(120, 55)">
-    <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#CC0000">DS CLOSED</text>
-    <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Line overlaps chevrons</text>
+    <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DS CLOSED</text>
+    <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Knife = Red, Bus = Cyan (69kV)</text>
     
-    <!-- Chevron UP (drawn first, line will overlap) -->
-    <polyline points="92,55 100,45 108,55" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,62 100,53 105,62" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Chevron UP (Cyan - bus color) -->
+    <polyline points="92,55 100,45 108,55" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,62 100,53 105,62" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
-    <!-- CONTINUOUS VERTICAL LINE - extends through chevrons -->
-    <line x1="100" y1="45" x2="100" y2="168" stroke="#CC0000" stroke-width="4"/>
+    <!-- CONTINUOUS VERTICAL LINE (Cyan - bus color) -->
+    <line x1="100" y1="45" x2="100" y2="168" stroke="#00FFFF" stroke-width="4"/>
     
-    <!-- Pivot circle ON TOP -->
-    <circle cx="100" cy="95" r="7" fill="none" stroke="#CC0000" stroke-width="2.5"/>
+    <!-- Pivot circle (Cyan - bus color) -->
+    <circle cx="100" cy="95" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Contact circle ON TOP -->
-    <circle cx="100" cy="135" r="7" fill="none" stroke="#CC0000" stroke-width="2.5"/>
+    <!-- Knife (RED for CLOSED) -->
+    <line x1="100" y1="88" x2="100" y2="142" stroke="#CC0000" stroke-width="5" stroke-linecap="round"/>
     
-    <!-- Chevron DOWN -->
-    <polyline points="92,158 100,168 108,158" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,151 100,160 105,151" fill="none" stroke="#CC0000" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Contact circle (Cyan - bus color) -->
+    <circle cx="100" cy="135" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Top conductor -->
-    <line x1="100" y1="30" x2="100" y2="45" stroke="#CC0000" stroke-width="3"/>
+    <!-- Chevron DOWN (Cyan - bus color) -->
+    <polyline points="92,158 100,168 108,158" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,151 100,160 105,151" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
-    <!-- Bottom conductor -->
-    <line x1="100" y1="168" x2="100" y2="185" stroke="#CC0000" stroke-width="3"/>
+    <!-- Top conductor (Cyan - bus color) -->
+    <line x1="100" y1="30" x2="100" y2="45" stroke="#00FFFF" stroke-width="3"/>
+    
+    <!-- Bottom conductor (Cyan - bus color) -->
+    <line x1="100" y1="168" x2="100" y2="185" stroke="#00FFFF" stroke-width="3"/>
     
     <!-- Labels -->
-    <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">PIVOT</text>
-    <text x="100" y="222" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">CONTACT</text>
-    <text x="100" y="242" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#CC0000">ZERO GAP</text>
+    <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">PIVOT</text>
+    <text x="100" y="222" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">KNIFE</text>
+    <text x="100" y="234" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">CONTACT</text>
+    <text x="100" y="254" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#CC0000">CLOSED</text>
   </g>
   
   <!-- ============================================ -->
   <!-- DS OPEN -->
   <!-- ============================================ -->
   <g transform="translate(450, 55)">
-    <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#009900">DS OPEN</text>
-    <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">35 degree rotation</text>
+    <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DS OPEN</text>
+    <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Knife = Green, Bus = Cyan (69kV)</text>
     
-    <!-- Chevron UP -->
-    <polyline points="92,55 100,45 108,55" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,62 100,53 105,62" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Chevron UP (Cyan - bus color) -->
+    <polyline points="92,55 100,45 108,55" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,62 100,53 105,62" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
-    <!-- Top part of vertical line -->
-    <line x1="100" y1="45" x2="100" y2="88" stroke="#009900" stroke-width="4"/>
+    <!-- Top part of vertical line (Cyan - bus color) -->
+    <line x1="100" y1="45" x2="100" y2="88" stroke="#00FFFF" stroke-width="4"/>
     
-    <!-- Pivot circle -->
-    <circle cx="100" cy="95" r="7" fill="none" stroke="#009900" stroke-width="2.5"/>
+    <!-- Pivot circle (Cyan - bus color) -->
+    <circle cx="100" cy="95" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Knife (rotated 35 deg) -->
-    <line x1="100" y1="95" x2="125" y2="70" stroke="#009900" stroke-width="4" stroke-linecap="round"/>
+    <!-- Knife (GREEN for OPEN) -->
+    <line x1="100" y1="95" x2="125" y2="70" stroke="#009900" stroke-width="5" stroke-linecap="round"/>
     
     <!-- Gap indicator -->
     <line x1="115" y1="78" x2="106" y2="128" stroke="#009900" stroke-width="1.5" stroke-dasharray="4,3"/>
     
-    <!-- Bottom part of vertical line -->
-    <line x1="100" y1="142" x2="100" y2="168" stroke="#009900" stroke-width="4"/>
+    <!-- Bottom part of vertical line (Cyan - bus color) -->
+    <line x1="100" y1="142" x2="100" y2="168" stroke="#00FFFF" stroke-width="4"/>
     
-    <!-- Contact circle (fixed position) -->
-    <circle cx="100" cy="135" r="7" fill="none" stroke="#009900" stroke-width="2.5"/>
+    <!-- Contact circle (Cyan - bus color) -->
+    <circle cx="100" cy="135" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Chevron DOWN -->
-    <polyline points="92,158 100,168 108,158" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,151 100,160 105,151" fill="none" stroke="#009900" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Chevron DOWN (Cyan - bus color) -->
+    <polyline points="92,158 100,168 108,158" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="95,151 100,160 105,151" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
-    <!-- Top conductor -->
-    <line x1="100" y1="30" x2="100" y2="45" stroke="#009900" stroke-width="3"/>
+    <!-- Top conductor (Cyan - bus color) -->
+    <line x1="100" y1="30" x2="100" y2="45" stroke="#00FFFF" stroke-width="3"/>
     
-    <!-- Bottom conductor -->
-    <line x1="100" y1="168" x2="100" y2="185" stroke="#009900" stroke-width="3"/>
+    <!-- Bottom conductor (Cyan - bus color) -->
+    <line x1="100" y1="168" x2="100" y2="185" stroke="#00FFFF" stroke-width="3"/>
     
     <!-- Labels -->
-    <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#009900">PIVOT</text>
-    <text x="100" y="222" text-anchor="middle" font-family="Arial" font-size="9" fill="#009900">CONTACT</text>
-    <text x="100" y="242" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#009900">GAP</text>
+    <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">PIVOT</text>
+    <text x="100" y="222" text-anchor="middle" font-family="Arial" font-size="9" fill="#009900">KNIFE</text>
+    <text x="100" y="234" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">CONTACT</text>
+    <text x="100" y="254" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#009900">OPEN</text>
   </g>
   
   <!-- ============================================ -->
   <!-- Legend -->
   <!-- ============================================ -->
-  <g transform="translate(20, 275)">
-    <rect x="0" y="0" width="660" height="50" fill="#fff" stroke="#ddd" rx="4"/>
+  <g transform="translate(20, 280)">
+    <rect x="0" y="0" width="660" height="45" fill="#fff" stroke="#ddd" rx="4"/>
     
-    <text x="15" y="18" font-family="Arial" font-size="10" font-weight="bold" fill="#333">STRUCTURE:</text>
+    <text x="15" y="18" font-family="Arial" font-size="10" font-weight="bold" fill="#333">69kV BUS COLOR:</text>
     
-    <text x="15" y="40" font-family="Arial" font-size="10" fill="#666">
-      CLOSED: Vertical line overlaps chevrons, continuous path through circles.
-    </text>
+    <!-- Cyan swatch -->
+    <rect x="130" y="8" width="20" height="12" fill="#00FFFF"/>
+    <text x="155" y="18" font-family="Arial" font-size="10" fill="#666">Cyan (#00FFFF) = 69kV bus, chevrons, conductors, circles</text>
     
-    <text x="380" y="40" font-family="Arial" font-size="10" fill="#666">
-      OPEN: Knife rotates 35 deg, contact fixed, gap visible.
-    </text>
+    <!-- Red swatch -->
+    <rect x="400" y="8" width="20" height="12" fill="#CC0000"/>
+    <text x="425" y="18" font-family="Arial" font-size="10" fill="#666">Red = Knife CLOSED</text>
+    
+    <!-- Green swatch -->
+    <rect x="130" y="28" width="20" height="12" fill="#009900"/>
+    <text x="155" y="38" font-family="Arial" font-size="10" fill="#666">Green = Knife OPEN</text>
   </g>
 </svg>
