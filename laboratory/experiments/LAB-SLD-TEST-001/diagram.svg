@@ -1,160 +1,123 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400">
-  <title>Disconnector (DS) Symbols - Fixed</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 650 320">
+  <title>Disconnector (DS) Symbols - Moderate Angle</title>
   
   <!-- Background -->
-  <rect width="700" height="400" fill="#fafafa"/>
+  <rect width="650" height="320" fill="#fafafa"/>
   
   <!-- Title -->
-  <text x="30" y="30" font-family="Arial" font-size="16" font-weight="bold" fill="#333">DISCONNECTOR (DS) - Correct Structure</text>
-  <text x="30" y="48" font-family="Arial" font-size="11" fill="#666">1. Double chevron UP  →  2. Vertical line  →  3. PIVOT circle  →  4. Knife  →  5. Contact circle  →  6. Double chevron DOWN</text>
+  <text x="325" y="25" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DISCONNECTOR (DS)</text>
+  <text x="325" y="42" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">1. Chev UP  →  2. Line  →  3. Pivot  →  4. Knife  →  5. Contact  →  6. Chev DOWN</text>
   
   <!-- ============================================ -->
   <!-- DS CLOSED -->
   <!-- ============================================ -->
-  <g transform="translate(100, 80)">
-    <!-- Section label -->
-    <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DS CLOSED</text>
-    <text x="100" y="18" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Knife straight - Continuous path</text>
+  <g transform="translate(100, 70)">
+    <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#CC0000">DS CLOSED</text>
     
-    <!-- Conductor from top -->
-    <line x1="100" y1="35" x2="100" y2="55" stroke="#FF0000" stroke-width="4"/>
+    <!-- Conductor -->
+    <line x1="100" y1="25" x2="100" y2="42" stroke="#CC0000" stroke-width="3"/>
     
-    <!-- 1. Double chevron UP -->
-    <polygon points="88,68 100,55 112,68" fill="none" stroke="#FF0000" stroke-width="2.5"/>
-    <polygon points="92,76 100,66 108,76" fill="none" stroke="#FF0000" stroke-width="2.5"/>
+    <!-- 1. Double chevron UP (arrows, not triangles) -->
+    <polygon points="92,52 100,42 108,52" fill="none" stroke="#CC0000" stroke-width="2"/>
+    <polygon points="95,58 100,50 105,58" fill="none" stroke="#CC0000" stroke-width="2"/>
     
     <!-- 2. Short vertical line -->
-    <line x1="100" y1="76" x2="100" y2="95" stroke="#FF0000" stroke-width="3"/>
+    <line x1="100" y1="58" x2="100" y2="68" stroke="#CC0000" stroke-width="2.5"/>
     
-    <!-- 3. PIVOT circle (center of rotation) -->
-    <circle cx="100" cy="115" r="8" fill="none" stroke="#FF0000" stroke-width="3"/>
-    <text x="100" y="135" text-anchor="middle" font-family="Arial" font-size="9" fill="#FF0000">PIVOT</text>
+    <!-- 3. Pivot circle -->
+    <circle cx="100" cy="82" r="5" fill="none" stroke="#CC0000" stroke-width="2.5"/>
     
-    <!-- 4. Knife blade - LONG STRAIGHT LINE connecting pivot to contact -->
-    <line x1="100" y1="107" x2="100" y2="163" stroke="#FF0000" stroke-width="6" stroke-linecap="round"/>
+    <!-- 4. Knife blade - STRAIGHT VERTICAL -->
+    <line x1="100" y1="77" x2="100" y2="122" stroke="#CC0000" stroke-width="5" stroke-linecap="round"/>
     
-    <!-- 5. Contact circle (at end of knife) -->
-    <circle cx="100" cy="170" r="8" fill="none" stroke="#FF0000" stroke-width="3"/>
-    <text x="100" y="190" text-anchor="middle" font-family="Arial" font-size="9" fill="#FF0000">CONTACT</text>
+    <!-- 5. Contact circle (NOT part of knife - separate) -->
+    <circle cx="100" cy="127" r="5" fill="none" stroke="#CC0000" stroke-width="2.5"/>
     
     <!-- 6. Double chevron DOWN -->
-    <polygon points="88,195 100,208 112,195" fill="none" stroke="#FF0000" stroke-width="2.5"/>
-    <polygon points="92,187 100,197 108,187" fill="none" stroke="#FF0000" stroke-width="2.5"/>
+    <polygon points="92,142 100,152 108,142" fill="none" stroke="#CC0000" stroke-width="2"/>
+    <polygon points="95,136 100,144 105,136" fill="none" stroke="#CC0000" stroke-width="2"/>
     
-    <!-- Conductor to bottom -->
-    <line x1="100" y1="208" x2="100" y2="230" stroke="#FF0000" stroke-width="4"/>
+    <!-- Conductor -->
+    <line x1="100" y1="152" x2="100" y2="165" stroke="#CC0000" stroke-width="3"/>
     
-    <!-- Gap indicator (NONE - continuous) -->
-    <text x="100" y="260" text-anchor="middle" font-family="Arial" font-size="11" fill="#FF0000" font-weight="bold">NO GAP - CONTINUOUS PATH</text>
+    <!-- Labels -->
+    <text x="100" y="185" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">PIVOT</text>
+    <text x="100" y="197" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">CONTACT</text>
+    <text x="100" y="215" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#CC0000">ZERO AIR GAP</text>
   </g>
   
   <!-- ============================================ -->
   <!-- DS OPEN -->
   <!-- ============================================ -->
-  <g transform="translate(450, 80)">
-    <!-- Section label -->
-    <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DS OPEN</text>
-    <text x="100" y="18" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Knife angled - Visible air gap</text>
+  <g transform="translate(420, 70)">
+    <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#008800">DS OPEN</text>
     
-    <!-- Conductor from top -->
-    <line x1="100" y1="35" x2="100" y2="55" stroke="#00AA00" stroke-width="4"/>
+    <!-- Conductor -->
+    <line x1="100" y1="25" x2="100" y2="42" stroke="#008800" stroke-width="3"/>
     
     <!-- 1. Double chevron UP -->
-    <polygon points="88,68 100,55 112,68" fill="none" stroke="#00AA00" stroke-width="2.5"/>
-    <polygon points="92,76 100,66 108,76" fill="none" stroke="#00AA00" stroke-width="2.5"/>
+    <polygon points="92,52 100,42 108,52" fill="none" stroke="#008800" stroke-width="2"/>
+    <polygon points="95,58 100,50 105,58" fill="none" stroke="#008800" stroke-width="2"/>
     
     <!-- 2. Short vertical line -->
-    <line x1="100" y1="76" x2="100" y2="95" stroke="#00AA00" stroke-width="3"/>
+    <line x1="100" y1="58" x2="100" y2="68" stroke="#008800" stroke-width="2.5"/>
     
-    <!-- 3. PIVOT circle (center of rotation) -->
-    <circle cx="100" cy="115" r="8" fill="none" stroke="#00AA00" stroke-width="3"/>
-    <text x="100" y="135" text-anchor="middle" font-family="Arial" font-size="9" fill="#00AA00">PIVOT</text>
+    <!-- 3. Pivot circle -->
+    <circle cx="100" cy="82" r="5" fill="none" stroke="#008800" stroke-width="2.5"/>
     
-    <!-- 4. Knife blade - LONG ANGLED LINE swinging away from contact -->
-    <line x1="100" y1="115" x2="145" y2="70" stroke="#00AA00" stroke-width="6" stroke-linecap="round"/>
+    <!-- 4. Knife blade - ANGLED 30-45 degrees (moderate) -->
+    <line x1="100" y1="82" x2="125" y2="57" stroke="#008800" stroke-width="5" stroke-linecap="round"/>
     
-    <!-- 5. Contact circle (SEPARATED from knife) -->
-    <circle cx="138" cy="63" r="8" fill="none" stroke="#00AA00" stroke-width="3"/>
-    <text x="138" y="50" text-anchor="middle" font-family="Arial" font-size="9" fill="#00AA00">CONTACT</text>
-    
-    <!-- Air gap indicator -->
-    <line x1="115" y1="85" x2="128" y2="72" stroke="#00AA00" stroke-width="1" stroke-dasharray="3,2"/>
+    <!-- 5. Contact circle (NOT part of knife - separate position) -->
+    <circle cx="118" cy="52" r="5" fill="none" stroke="#008800" stroke-width="2.5"/>
     
     <!-- 6. Double chevron DOWN -->
-    <polygon points="88,195 100,208 112,195" fill="none" stroke="#00AA00" stroke-width="2.5"/>
-    <polygon points="92,187 100,197 108,187" fill="none" stroke="#00AA00" stroke-width="2.5"/>
+    <polygon points="92,142 100,152 108,142" fill="none" stroke="#008800" stroke-width="2"/>
+    <polygon points="95,136 100,144 105,136" fill="none" stroke="#008800" stroke-width="2"/>
     
-    <!-- Conductor to bottom -->
-    <line x1="100" y1="208" x2="100" y2="230" stroke="#00AA00" stroke-width="4"/>
+    <!-- Conductor -->
+    <line x1="100" y1="152" x2="100" y2="165" stroke="#008800" stroke-width="3"/>
     
-    <!-- Gap indicator -->
-    <text x="100" y="260" text-anchor="middle" font-family="Arial" font-size="11" fill="#00AA00" font-weight="bold">VISIBLE AIR GAP</text>
+    <!-- Labels -->
+    <text x="100" y="185" text-anchor="middle" font-family="Arial" font-size="9" fill="#008800">PIVOT</text>
+    <text x="120" y="42" text-anchor="middle" font-family="Arial" font-size="9" fill="#008800">CONTACT</text>
+    <text x="100" y="215" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#008800">~30-45° ANGLE</text>
   </g>
   
   <!-- ============================================ -->
-  <!-- Structure Diagram -->
+  <!-- Legend -->
   <!-- ============================================ -->
-  <g transform="translate(30, 300)">
-    <rect x="0" y="0" width="640" height="80" fill="#fff" stroke="#ddd" rx="4"/>
+  <g transform="translate(20, 250)">
+    <rect x="0" y="0" width="610" height="55" fill="#fff" stroke="#ddd" rx="4"/>
     
-    <text x="15" y="20" font-family="Arial" font-size="11" font-weight="bold" fill="#333">DS STRUCTURE (top to bottom):</text>
+    <text x="15" y="18" font-family="Arial" font-size="10" font-weight="bold" fill="#333">STRUCTURE:</text>
     
-    <!-- Step 1 -->
-    <g transform="translate(20, 35)">
-      <polygon points="-5,0 0,-8 5,0" fill="none" stroke="#666" stroke-width="1.5"/>
-      <polygon points="-5,6 0,0 5,6" fill="none" stroke="#666" stroke-width="1.5"/>
-      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">1. Chev UP</text>
+    <!-- Chevron symbol -->
+    <g transform="translate(100, 12)">
+      <polygon points="-5,0 0,-6 5,0" fill="none" stroke="#666" stroke-width="1.5"/>
+      <polygon points="-5,5 0,1 5,5" fill="none" stroke="#666" stroke-width="1.5"/>
+      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">Chevron (arrow)</text>
     </g>
     
-    <!-- Arrow -->
-    <text x="95" y="45" font-family="Arial" font-size="12" fill="#999">→</text>
-    
-    <!-- Step 2 -->
-    <g transform="translate(110, 35)">
-      <line x1="0" y1="0" x2="0" y2="12" stroke="#666" stroke-width="2"/>
-      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">2. Line</text>
+    <!-- Pivot symbol -->
+    <g transform="translate(230, 12)">
+      <circle cx="0" cy="2" r="4" fill="none" stroke="#666" stroke-width="1.5"/>
+      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">Pivot (rotation center)</text>
     </g>
     
-    <!-- Arrow -->
-    <text x="165" y="45" font-family="Arial" font-size="12" fill="#999">→</text>
-    
-    <!-- Step 3 -->
-    <g transform="translate(180, 35)">
-      <circle cx="0" cy="6" r="5" fill="none" stroke="#666" stroke-width="2"/>
-      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">3. PIVOT</text>
+    <!-- Knife symbol -->
+    <g transform="translate(370, 12)">
+      <line x1="-4" y1="-6" x2="0" y2="6" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">Knife blade</text>
     </g>
     
-    <!-- Arrow -->
-    <text x="245" y="45" font-family="Arial" font-size="12" fill="#999">→</text>
-    
-    <!-- Step 4 -->
-    <g transform="translate(280, 35)">
-      <line x1="0" y1="0" x2="0" y2="14" stroke="#666" stroke-width="4" stroke-linecap="round"/>
-      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">4. Knife</text>
+    <!-- Contact symbol -->
+    <g transform="translate(480, 12)">
+      <circle cx="0" cy="2" r="4" fill="none" stroke="#666" stroke-width="1.5"/>
+      <circle cx="0" cy="2" r="2" fill="#666"/>
+      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">Contact</text>
     </g>
     
-    <!-- Arrow -->
-    <text x="345" y="45" font-family="Arial" font-size="12" fill="#999">→</text>
-    
-    <!-- Step 5 -->
-    <g transform="translate(380, 35)">
-      <circle cx="0" cy="6" r="5" fill="#666"/>
-      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">5. Contact</text>
-    </g>
-    
-    <!-- Arrow -->
-    <text x="445" y="45" font-family="Arial" font-size="12" fill="#999">→</text>
-    
-    <!-- Step 6 -->
-    <g transform="translate(480, 35)">
-      <polygon points="-5,14 0,22 5,14" fill="none" stroke="#666" stroke-width="1.5"/>
-      <polygon points="-5,8 0,14 5,8" fill="none" stroke="#666" stroke-width="1.5"/>
-      <text x="12" y="5" font-family="Arial" font-size="9" fill="#666">6. Chev DOWN</text>
-    </g>
-    
-    <!-- Key rule -->
-    <text x="15" y="65" font-family="Arial" font-size="10" fill="#666">
-      <tspan font-weight="bold">Key:</tspan> Pivot is the rotation center. CLOSED = knife connects pivot to contact (straight). OPEN = knife swings away (angled).
-    </text>
+    <text x="15" y="45" font-family="Arial" font-size="10" fill="#666">Note: Contact circle is NOT part of knife - it's a separate receiving point.</text>
   </g>
 </svg>
