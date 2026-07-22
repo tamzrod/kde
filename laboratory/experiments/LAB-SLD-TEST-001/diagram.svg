@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340">
-  <title>Disconnector (DS) - Final Polish</title>
+  <title>Disconnector (DS) - Symmetric Chevrons</title>
   
   <!-- Background -->
   <rect width="700" height="340" fill="#fafafa"/>
@@ -14,35 +14,35 @@
     <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DS CLOSED</text>
     <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Knife = Red, Bus = Cyan (69kV)</text>
     
-    <!-- Chevron UP (arrow head pointing up) -->
-    <polyline points="92,62 100,52 108,62" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,56 100,50 105,56" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Double Chevron UP (outermost, symmetric) -->
+    <polyline points="90,58 100,48 110,58" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="93,54 100,47 107,54" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Continuous vertical line (Cyan) -->
-    <line x1="100" y1="50" x2="100" y2="165" stroke="#00FFFF" stroke-width="4"/>
+    <line x1="100" y1="54" x2="100" y2="165" stroke="#00FFFF" stroke-width="4"/>
     
     <!-- Pivot circle (Cyan) -->
     <circle cx="100" cy="95" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Knife (RED) - straight down = 180 deg -->
+    <!-- Knife (RED) - straight down -->
     <line x1="100" y1="88" x2="100" y2="140" stroke="#CC0000" stroke-width="5" stroke-linecap="round"/>
     
     <!-- Contact circle (Cyan) -->
     <circle cx="100" cy="135" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Chevron DOWN (arrow head pointing down) -->
-    <polyline points="92,153 100,163 108,153" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,159 100,165 105,159" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Double Chevron DOWN (same size as UP, symmetric) -->
+    <polyline points="90,161 100,171 110,161" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="93,165 100,172 107,165" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Conductors (Cyan) -->
-    <line x1="100" y1="30" x2="100" y2="50" stroke="#00FFFF" stroke-width="3"/>
-    <line x1="100" y1="165" x2="100" y2="185" stroke="#00FFFF" stroke-width="3"/>
+    <line x1="100" y1="30" x2="100" y2="47" stroke="#00FFFF" stroke-width="3"/>
+    <line x1="100" y1="172" x2="100" y2="190" stroke="#00FFFF" stroke-width="3"/>
     
     <!-- Labels -->
-    <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">PIVOT</text>
-    <text x="100" y="222" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">KNIFE</text>
-    <text x="100" y="234" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">CONTACT</text>
-    <text x="100" y="254" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#CC0000">CLOSED</text>
+    <text x="100" y="215" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">PIVOT</text>
+    <text x="100" y="227" text-anchor="middle" font-family="Arial" font-size="9" fill="#CC0000">KNIFE</text>
+    <text x="100" y="239" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">CONTACT</text>
+    <text x="100" y="259" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#CC0000">CLOSED</text>
   </g>
   
   <!-- ============================================ -->
@@ -52,12 +52,12 @@
     <text x="100" y="0" text-anchor="middle" font-family="Arial" font-size="14" font-weight="bold" fill="#333">DS OPEN</text>
     <text x="100" y="14" text-anchor="middle" font-family="Arial" font-size="10" fill="#666">Knife = Green, 30 deg from vertical</text>
     
-    <!-- Chevron UP (arrow head pointing up) -->
-    <polyline points="92,62 100,52 108,62" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,56 100,50 105,56" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Double Chevron UP (outermost, symmetric) -->
+    <polyline points="90,58 100,48 110,58" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="93,54 100,47 107,54" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Top line (Cyan) -->
-    <line x1="100" y1="50" x2="100" y2="88" stroke="#00FFFF" stroke-width="4"/>
+    <line x1="100" y1="54" x2="100" y2="88" stroke="#00FFFF" stroke-width="4"/>
     
     <!-- Pivot circle (Cyan) -->
     <circle cx="100" cy="95" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
@@ -68,19 +68,19 @@
     <!-- Bottom line (Cyan) -->
     <line x1="100" y1="140" x2="100" y2="165" stroke="#00FFFF" stroke-width="4"/>
     
-    <!-- Contact circle (Cyan) - FIXED position -->
+    <!-- Contact circle (Cyan) - FIXED -->
     <circle cx="100" cy="135" r="7" fill="none" stroke="#00FFFF" stroke-width="2.5"/>
     
-    <!-- Chevron DOWN (arrow head pointing down) -->
-    <polyline points="92,153 100,163 108,153" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
-    <polyline points="95,159 100,165 105,159" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Double Chevron DOWN (same size as UP, symmetric) -->
+    <polyline points="90,161 100,171 110,161" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
+    <polyline points="93,165 100,172 107,165" fill="none" stroke="#00FFFF" stroke-width="2.5" stroke-linejoin="round"/>
     
     <!-- Conductors (Cyan) -->
-    <line x1="100" y1="30" x2="100" y2="50" stroke="#00FFFF" stroke-width="3"/>
-    <line x1="100" y1="165" x2="100" y2="185" stroke="#00FFFF" stroke-width="3"/>
+    <line x1="100" y1="30" x2="100" y2="47" stroke="#00FFFF" stroke-width="3"/>
+    <line x1="100" y1="172" x2="100" y2="190" stroke="#00FFFF" stroke-width="3"/>
     
     <!-- Labels -->
-    <text x="100" y="210" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">PIVOT</text>
+    <text x="100" y="215" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">PIVOT</text>
     <text x="115" y="148" text-anchor="middle" font-family="Arial" font-size="9" fill="#009900">KNIFE</text>
     <text x="100" y="160" text-anchor="middle" font-family="Arial" font-size="9" fill="#00FFFF">CONTACT</text>
     <text x="100" y="180" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#009900">30 deg</text>
@@ -92,10 +92,10 @@
   <g transform="translate(20, 280)">
     <rect x="0" y="0" width="660" height="45" fill="#fff" stroke="#ddd" rx="4"/>
     
-    <text x="15" y="18" font-family="Arial" font-size="10" font-weight="bold" fill="#333">DESIGN:</text>
+    <text x="15" y="18" font-family="Arial" font-size="10" font-weight="bold" fill="#333">SYMMETRIC DESIGN:</text>
     
     <text x="15" y="35" font-family="Arial" font-size="10" fill="#666">
-      Chevron = Arrow head pointing outward. Same size top and bottom. No gap indicator line.
+      Top and bottom double chevrons are EXACTLY the same size. Chevrons are at the outermost connection points.
     </text>
   </g>
 </svg>
