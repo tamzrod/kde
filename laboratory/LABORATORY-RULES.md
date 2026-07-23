@@ -97,6 +97,54 @@ The Laboratory Rules derive authority from SEED-001:
 
 ---
 
+### Rule 6: Experiment Identifier Permanence
+
+**Statement**: Once assigned, experiment identifiers (LAB-XXX) are permanent and cannot be renumbered, reused, or replaced.
+
+**Implementation**:
+
+| Prohibition | Rationale |
+|-------------|-----------|
+| Never renumber experiments | Identifiers are historical markers |
+| Never reuse identifiers | Each experiment is unique |
+| Never create variant identifiers | LAB-XXX-revised is prohibited |
+| Never merge identifiers | Each experiment stands alone |
+
+**Examples of Prohibited Actions**:
+- Renaming LAB-003 to LAB-002
+- Creating LAB-010-revised
+- Merging LAB-012 and LAB-013 into LAB-012B
+- Renumbering to fill gaps: LAB-001, LAB-002, LAB-003 (skipping LAB-004)
+
+**Authority**: Derived from Experiment immutability principle (see Rule 7)
+
+---
+
+### Rule 7: Historical Experiment Protection
+
+**Statement**: Historical experiments are immutable evidence and shall not be renamed, moved, deleted, overwritten, or merged.
+
+**Definition**: Historical experiments are experiments with LAB-XXX where XXX < current highest experiment number.
+
+**Prohibited Actions**:
+
+| Action | Prohibition | Rationale |
+|--------|-------------|-----------|
+| Rename directory | ABSOLUTE | Identifiers are permanent |
+| Move location | ABSOLUTE | Locations are part of evidence |
+| Delete directory | ABSOLUTE | Records must be preserved |
+| Delete files | ABSOLUTE | Evidence must be preserved |
+| Overwrite content | ABSOLUTE | Original records immutable |
+| Merge experiments | ABSOLUTE | Each experiment is distinct |
+
+**Exceptions**: None. Historical experiments are immutable evidence.
+
+**Evidence**: See [`/governance/ARTIFACT-PROTECTION.md`](/workspace/project/kde/governance/ARTIFACT-PROTECTION.md) for complete protection matrix.
+
+**Authority**: Derived from Evidence preservation principles
+
+---
+
 ## Runtime Initialization Procedure
 
 ### Pre-Initialization Phase
@@ -351,6 +399,7 @@ Before beginning any Experiment or Investigation, verify:
 | Version | Date | Changes | Authority |
 |---------|------|---------|-----------|
 | 1.0.0 | 2026-07-20 | Initial production release | SEED-001 |
+| 1.1.0 | 2026-07-23 | Added Rule 6 (Experiment ID Permanence) and Rule 7 (Historical Experiment Protection) | Human Review, LAB-040 |
 
 ---
 
@@ -371,6 +420,14 @@ Before beginning any Experiment or Investigation, verify:
 | [`BOOTSTRAP.md`](./BOOTSTRAP.md) | KDE entry point |
 | [`README.md`](./README.md) | Laboratory overview |
 | [`ARCHITECTURE-C.md`](./ARCHITECTURE-C.md) | Architecture specification |
+
+### Artifact Protection
+
+| Document | Purpose |
+|----------|---------|
+| [`/governance/ARTIFACT-PROTECTION.md`](/workspace/project/kde/governance/ARTIFACT-PROTECTION.md) | Protection levels matrix |
+| [`/governance/runtime/protection.yaml`](/workspace/project/kde/governance/runtime/protection.yaml) | Protection configuration |
+| [`/laboratory/EVIDENCE.md`](./EVIDENCE.md) | Evidence protection rules |
 
 ### Engines
 
