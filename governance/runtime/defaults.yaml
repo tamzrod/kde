@@ -1,8 +1,8 @@
 # Runtime Default Configuration
 
 **Document ID**: RUNTIME-DEFAULTS
-**Version**: 1.0.0
-**Date**: 2026-07-20
+**Version**: 1.1.0
+**Date**: 2026-07-23
 **Authority**: Human Authority
 **Status**: PRODUCTION
 
@@ -114,7 +114,7 @@ This configuration implements a **browser-style default model**:
 |--------|--------|---------|-------------|
 | KDE-ENGINE-001 | Historical | NO | Scientifically deprecated |
 | KDE-ENGINE-002 | Active | **YES** | Scientifically active, human-selected as default |
-| KDE-ENGINE-003 | Experimental | NO | Scientifically immature |
+| KDE-ENGINE-003 | **Candidate** | NO | Under validation for promotion (LAB-045/046) |
 | KDE-ENGINE-004 | Candidate | NO | Scientifically validating |
 
 **Key Insight**: An Engine can have any Status and be Default or not. They are independent dimensions.
@@ -126,6 +126,7 @@ This configuration implements a **browser-style default model**:
 | Date | Change | Authority |
 |------|--------|-----------|
 | 2026-07-20 | Initial configuration | Human |
+| 2026-07-23 | Gamma status update | Human (LAB-045 approval) |
 
 ---
 

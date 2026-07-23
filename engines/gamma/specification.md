@@ -3,8 +3,10 @@
 **Engine ID**: KDE-ENGINE-003
 **Version**: 0.1.0
 **Codename**: Gamma
-**Status**: Experimental
+**Status**: Candidate
 **Effective Date**: 2026-07-20
+**Promotion Date**: 2026-07-23
+**Promotion Evidence**: LAB-017, LAB-044, LAB-045, LAB-046
 
 ---
 
@@ -16,9 +18,10 @@
 | **Name** | Causal Knowledge Discovery Engine |
 | **Codename** | Gamma |
 | **Version** | 0.1.0 |
-| **Status** | Experimental |
+| **Status** | Candidate |
 | **Type** | Causal Inference Engine |
 | **Created** | 2026-07-20 |
+| **Promoted** | 2026-07-23 |
 
 ---
 
@@ -94,13 +97,23 @@ Gamma enables the last two: explanation and intervention.
 | Status | Description |
 |--------|-------------|
 | **Experimental** | New engine, validating methodology |
+| **Candidate** | Under validation for promotion |
 | **Active** | Validated, available for experiments |
-| **Historical** | Superseded by newer engine |
+| **Historical** | Former engine, preserved for reference |
 | **Deprecated** | Not recommended for use |
 
 ### Current Status
 
-**Gamma is currently in Experimental status.**
+**Gamma is currently in Candidate status.**
+
+### Promotion Evidence
+
+| Evidence | Description | Date |
+|----------|-------------|------|
+| LAB-017 | Initial engine comparison demonstrating causal capabilities | 2026-07-20 |
+| LAB-044 | Gamma vs Delta comparison | 2026-07-23 |
+| LAB-045 | Feasibility study with promotion readiness 87.5% | 2026-07-23 |
+| LAB-046 | Repeatability validation: 100% hypothesis agreement | 2026-07-23 |
 
 ---
 

@@ -1,7 +1,7 @@
 # Laboratory Experiment Registry
 
-**Last Updated**: 2026-07-22
-**Total Experiments**: 17
+**Last Updated**: 2026-07-23
+**Total Experiments**: 21
 **Active Experiments**: 1
 **Schema Version**: 2.0
 
@@ -28,6 +28,10 @@
 | LAB-033 | Runtime Validation Pipeline Investigation | COMPLETE | Runtime | Methodology | 1 | SUPPORTS | HIGH | ESTABLISHED |
 | LAB-034 | Runtime Validation Shadow Prototype | COMPLETE | Runtime | Methodology | 1 | SUPPORTS | HIGH | ESTABLISHED |
 | LAB-035 | Controlled Runtime Integration Trial | COMPLETE | Engineering | Methodology | 1 | SUPPORTS | HIGH | ESTABLISHED |
+| LAB-043 | Gamma Capability Utilization Assessment | COMPLETE | Meta-Investigation | Engine Characterization | 0 | SUPPORTS | HIGH | PENDING |
+| LAB-044 | Gamma vs Delta Engine Comparison | COMPLETE | Comparative Analysis | Engine Comparison | 2 | SUPPORTS | HIGH | ESTABLISHED |
+| LAB-045 | Gamma Promotion Feasibility Study | COMPLETE | Feasibility Study | Engine Promotion | 0 | SUPPORTS | HIGH | **IMPLEMENTED** |
+| LAB-046 | Gamma Causal Repeatability Validation | COMPLETE | Validation | Engine Validation | 5 | SUPPORTS | HIGH | ESTABLISHED |
 
 ---
 
@@ -194,7 +198,10 @@ CREATE INDEX idx_evidence_experiment ON evidence(experiment_id);
 
 | Date | ID | Activity | Details |
 |------|-----|----------|---------|
-| 2026-07-22 | LAB-035 | CREATED | Controlled Runtime Integration Trial initiated |
+| 2026-07-23 | LAB-045 | **IMPLEMENTED** | Gamma promoted to Candidate (Human approved) |
+| 2026-07-23 | LAB-046 | COMPLETE | Repeatability CONFIRMED: 100% hypothesis agreement |
+| 2026-07-23 | LAB-044 | COMPLETE | Gamma vs Delta: Combined approach optimal |
+| 2026-07-23 | LAB-043 | COMPLETE | Recommendation: Additional validation experiments before new engines |
 | 2026-07-22 | LAB-035 | COMPLETE | Engineering trial successful: Proceed with integration |
 | 2026-07-22 | LAB-034 | COMPLETE | Recommendation: Proceed to controlled runtime integration |
 | 2026-07-22 | LAB-033 | COMPLETE | Identified 9 required capabilities, 4-gate pipeline |

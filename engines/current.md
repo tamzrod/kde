@@ -1,6 +1,6 @@
 # Current KDE Engine
 
-**Last Updated**: 2026-07-22
+**Last Updated**: 2026-07-23
 
 ---
 
@@ -12,8 +12,8 @@ The Laboratory supports multiple engines. Select the appropriate engine for each
 |-----------|---------|----------|--------|---------|----------|
 | **KDE-ENGINE-002** | 0.1.0 | Beta | Active | **YES** | Contextual knowledge discovery (default) |
 | KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | NO | Pattern discovery (legacy) |
-| KDE-ENGINE-003 | 0.1.0 | Gamma | Experimental | NO | Causal discovery |
-| **KDE-ENGINE-004** | 0.1.0 | Delta | **Experimental** | NO | Bootstrap + Context discovery |
+| **KDE-ENGINE-003** | 0.1.0 | Gamma | **Candidate** | NO | Causal discovery |
+| **KDE-ENGINE-004** | 0.1.0 | Delta | **Candidate** | NO | Bootstrap + Context discovery |
 
 ---
 
@@ -122,8 +122,8 @@ For detailed information about Delta, see:
 |-----------|---------|----------|--------|---------|-----------|---------|
 | KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | NO | 2026-07-19 | Pattern discovery |
 | KDE-ENGINE-002 | 0.1.0 | Beta | Active | **YES** | 2026-07-20 | Contextual knowledge |
-| KDE-ENGINE-003 | 0.1.0 | Gamma | Experimental | NO | 2026-07-20 | Causal discovery |
-| KDE-ENGINE-004 | 0.1.0 | Delta | **Experimental** | NO | 2026-07-20 | Bootstrap + Context |
+| KDE-ENGINE-003 | 0.1.0 | Gamma | **Candidate** | NO | 2026-07-20 | Causal discovery |
+| KDE-ENGINE-004 | 0.1.0 | Delta | **Candidate** | NO | 2026-07-20 | Bootstrap + Context |
 
 ---
 
@@ -143,6 +143,23 @@ Use Alpha for experiments when:
 - Legacy compatibility required
 - Simple pattern discovery sufficient
 - Historical comparison needed
+
+### When to Use Gamma (KDE-ENGINE-003)
+
+Use Gamma for experiments when:
+- Root cause analysis required ("why does X cause Y?")
+- Causal mechanism documentation needed
+- Intervention prediction is required ("what if we change X?")
+- Failure propagation analysis needed
+
+**Gamma Selection Keywords**: why, cause, mechanism, intervention, what if, predict outcome, root cause, lead to
+
+### When to Use Delta (KDE-ENGINE-004)
+
+Use Delta for experiments when:
+- Bootstrap enforcement required
+- Reproducibility is critical
+- Session initialization consistency needed
 
 ---
 
@@ -173,7 +190,7 @@ See [/governance/runtime/SESSION-OVERRIDE.md](/workspace/project/kde/governance/
 
 ## Engine Details (Gamma)
 
-### Gamma (KDE-ENGINE-003) — Experimental
+### Gamma (KDE-ENGINE-003) — **Candidate**
 
 For detailed information about Gamma, see:
 
@@ -185,6 +202,8 @@ For detailed information about Gamma, see:
 - [gamma/changes.md](./gamma/changes.md) — Version history
 - [gamma/provenance.md](./gamma/provenance.md) — Engine lineage
 
+**Promotion Evidence**: LAB-017, LAB-044, LAB-045, LAB-046 (Repeatability: 100%)
+
 ---
 
 ## Migration History
@@ -195,7 +214,8 @@ For detailed information about Gamma, see:
 | 2026-07-20 | Engine Evolution | KDE-ENGINE-002 (Beta) released, Alpha → Historical |
 | 2026-07-20 | Engine Expansion | KDE-ENGINE-003 (Gamma) experimental release |
 | 2026-07-20 | Bootstrap Engine | KDE-ENGINE-004 (Delta) created, Candidate |
-| 2026-07-22 | **Delta Promotion** | Delta: Candidate → Experimental (LAB-DELTA-VALIDATION-001) |
+| 2026-07-22 | Delta Promotion | Delta: Candidate → Experimental (LAB-DELTA-VALIDATION-001) |
+| 2026-07-23 | **Gamma Promotion** | Gamma: Experimental → Candidate (LAB-045/046) |
 
 ---
 
