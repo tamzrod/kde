@@ -1,7 +1,7 @@
 # Laboratory Experiment Registry
 
 **Last Updated**: 2026-07-23
-**Total Experiments**: 21
+**Total Experiments**: 24
 **Active Experiments**: 1
 **Schema Version**: 2.0
 
@@ -32,6 +32,9 @@
 | LAB-044 | Gamma vs Delta Engine Comparison | COMPLETE | Comparative Analysis | Engine Comparison | 2 | SUPPORTS | HIGH | ESTABLISHED |
 | LAB-045 | Gamma Promotion Feasibility Study | COMPLETE | Feasibility Study | Engine Promotion | 0 | SUPPORTS | HIGH | **IMPLEMENTED** |
 | LAB-046 | Gamma Causal Repeatability Validation | COMPLETE | Validation | Engine Validation | 5 | SUPPORTS | HIGH | ESTABLISHED |
+| LAB-047 | Runtime Auto-Selection Feasibility | COMPLETE | Investigation | Auto-Selection | 0 | SUPPORTS | MEDIUM | PENDING |
+| KDE-EXPERT-SLD-002 | Engineering Relationship Discovery | COMPLETE | Capability Discovery | SLD Expert | 0 | INFORMS | HIGH | COMPLETE |
+| KDE-EXPERT-SLD-003 | Topology Recognition | COMPLETE | Capability Discovery | SLD Expert | 0 | INFORMS | HIGH | PENDING |
 
 ---
 
@@ -198,6 +201,9 @@ CREATE INDEX idx_evidence_experiment ON evidence(experiment_id);
 
 | Date | ID | Activity | Details |
 |------|-----|----------|---------|
+| 2026-07-23 | KDE-EXPERT-SLD-003 | COMPLETE | Topology recognition: 4 validation rules, 6 detection patterns |
+| 2026-07-23 | KDE-EXPERT-SLD-002 | COMPLETE | Engineering relationships: 17 defined, 6 primitives |
+| 2026-07-23 | LAB-047 | COMPLETE | Auto-Selection feasible: 100% selection accuracy |
 | 2026-07-23 | LAB-045 | **IMPLEMENTED** | Gamma promoted to Candidate (Human approved) |
 | 2026-07-23 | LAB-046 | COMPLETE | Repeatability CONFIRMED: 100% hypothesis agreement |
 | 2026-07-23 | LAB-044 | COMPLETE | Gamma vs Delta: Combined approach optimal |
