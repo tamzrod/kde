@@ -117,8 +117,10 @@ kde/
 │       └── specification.md
 │
 ├── governance/               # Runtime configuration
+│   ├── ARTIFACT-PROTECTION.md # Protection levels matrix
 │   └── runtime/
 │       ├── defaults.yaml     # Runtime default configuration
+│       ├── protection.yaml    # Protection configuration
 │       ├── RUNTIME-STARTUP.md
 │       └── SESSION-OVERRIDE.md
 │
@@ -130,6 +132,33 @@ kde/
 │
 └── knowledge/                # Validated knowledge
 ```
+
+---
+
+## Artifact Protection Levels
+
+**Reference**: For the authoritative protection matrix, see [`ARTIFACT-PROTECTION.md`](/workspace/project/kde/governance/ARTIFACT-PROTECTION.md).
+
+### Protection Levels
+
+| Level | Description | Examples | Behavior |
+|-------|-------------|----------|----------|
+| **ABSOLUTE** | Never modify | Seeds, Evidence, PROMOTED Knowledge | Blocked |
+| **HIGH** | Human approval required | Historical Experiments, Governance | Warn + Acknowledge |
+| **MEDIUM** | Follow SOP | Current Experiments, Investigations | Warn |
+| **LOW** | Mutable | Playgrounds, Templates | No restriction |
+
+### Historical Experiment Protection
+
+**Historical experiments (LAB-XXX where XXX < current) are HIGH protection.**
+
+AI SHALL NOT:
+- Rename historical experiment directories
+- Move historical experiments to different locations
+- Delete historical experiment records
+- Overwrite historical experiment content
+
+**See also**: [LABORATORY-RULES.md](./LABORATORY-RULES.md) for Rules 6 and 7.
 
 ---
 

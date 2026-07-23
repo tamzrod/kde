@@ -355,11 +355,150 @@ All evidence access is logged:
 
 ---
 
+## Evidence Immutability Clarification
+
+### The Immutability Principle
+
+Evidence immutability means:
+1. Original evidence is **NEVER** modified or deleted
+2. Corrections create **NEW** evidence versions
+3. Both original and new versions are preserved
+4. Complete audit trail is maintained
+
+### Evidence Versioning
+
+If evidence requires correction:
+
+| Step | Action |
+|------|--------|
+| 1 | Create NEW evidence file with corrections |
+| 2 | Generate NEW SHA-256 hash |
+| 3 | Link NEW to ORIGINAL with explanation |
+| 4 | Preserve BOTH files |
+
+**Original evidence is never modified.** Only new versions are created.
+
+### Version Naming
+
+Evidence versions follow this convention:
+
+```
+evidence/
+├── data.csv                    # Original evidence (immutable)
+├── data.v1.csv                # Version 1 (immutable)
+├── data.v2.csv                # Version 2 (immutable)
+└── data.v2.metadata.yaml      # Version metadata
+```
+
+### Correction Categories
+
+| Category | Example | Allowed? |
+|----------|---------|----------|
+| Format correction | Convert encoding | YES |
+| Metadata enrichment | Add tags | YES |
+| Redaction | Remove sensitive data | YES (with approval) |
+| Typo fix | Correct spelling error | YES |
+
+| Category | Example | Forbidden? |
+|----------|---------|-----------|
+| Data alteration | Change measurement | YES |
+| Timestamp change | Adjust dates | YES |
+| Evidence removal | Delete inconvenient data | YES |
+| Finding modification | Change conclusions | YES |
+
+---
+
+## Evidence Custodian Assignment
+
+### Custodian Definition
+
+A custodian is the agent or human responsible for evidence integrity.
+
+### Default Custodian: SYSTEM
+
+Evidence without explicit custodian assignment is assigned:
+
+| Field | Value |
+|-------|-------|
+| **Custodian Type** | System (KDE Governance) |
+| **Custodian ID** | SYSTEM |
+| **Effective Date** | Evidence creation date |
+| **Authority** | Human Governance (collective) |
+
+### Custodian Assignment Rules
+
+| Evidence Type | Custodian | Override Allowed |
+|--------------|-----------|-----------------|
+| Current evidence | Collecting agent | YES |
+| Legacy evidence | SYSTEM | YES (requires approval) |
+| Critical evidence | Human + Agent | NO |
+| System evidence | Runtime | NO |
+
+### Legacy Evidence Handling
+
+Evidence collected before chain-of-custody implementation has limitations:
+
+| Limitation | Impact | Mitigation |
+|-----------|--------|------------|
+| No custodian history | Unknown provenance | Assign SYSTEM custodian |
+| No access log | Unknown who accessed | Log current access + acknowledge |
+| No modification tracking | Unknown changes | Verify current hash |
+| No verification history | Unknown past checks | Perform initial verification |
+
+---
+
+## Custodian Escalation Path
+
+### Escalation Triggers
+
+Custodian escalation is triggered when:
+
+| Trigger | Condition | Priority |
+|---------|-----------|----------|
+| Custodian Offline | No response for 48 hours | NORMAL |
+| Custodian Unavailable | Agent deleted or role changed | HIGH |
+| Custodian Conflict | Custodian disagrees with verification | HIGH |
+| Emergency | Evidence integrity at risk | CRITICAL |
+
+### Escalation Levels
+
+| Level | Trigger | Action |
+|-------|---------|--------|
+| 1 | No response 48h | Contact custodian |
+| 2 | Unavailable | Assign temporary custodian |
+| 3 | Issue unresolved | Governance review |
+| 4 | Emergency | Lock + investigation |
+
+### Escalation Process
+
+**Level 1 - Contact Custodian**:
+1. Contact via configured channel
+2. Wait 48 hours for response
+3. Log attempt
+
+**Level 2 - Temporary Custodian**:
+1. Runtime assigns temporary custodian
+2. Notify human governance
+3. Log assignment
+
+**Level 3 - Governance Review**:
+1. Human governance reviews case
+2. Determine resolution
+3. May reassign custodian
+
+**Level 4 - Emergency Action**:
+1. Evidence locked (read-only)
+2. Investigation initiated
+3. Root cause analysis
+
+---
+
 ## Revision History
 
 | Version | Date | Changes | Authority |
 |---------|------|---------|-----------|
 | 1.0.0 | 2026-07-21 | Initial version | Architecture C |
+| 1.1.0 | 2026-07-23 | Added chain-of-custody enhancements | Human Review, LAB-040 |
 
 ---
 
@@ -371,6 +510,7 @@ All evidence access is logged:
 | [`WORKFLOW.md`](./WORKFLOW.md) | Investigation lifecycle |
 | [`VALIDATION.md`](./VALIDATION.md) | Validation protocols |
 | [`PROMOTION.md`](./PROMOTION.md) | Knowledge promotion |
+| [`/governance/ARTIFACT-PROTECTION.md`](/workspace/project/kde/governance/ARTIFACT-PROTECTION.md) | Protection levels |
 
 ---
 
