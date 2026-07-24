@@ -1,0 +1,113 @@
+{
+  "mechanisms": [
+    {
+      "mechanism_id": "M-001",
+      "name": "Fat Tails Distribution",
+      "discovery_week": 1,
+      "discovery_period": "2026-01-01 to 2026-01-08",
+      "type": "structural",
+      "definition": "Return distribution has excess kurtosis (>3), indicating extreme values occur more frequently than normal distribution predicts",
+      "evidence": {
+        "discovery": {
+          "kurtosis": 10.02,
+          "threshold": 5.0,
+          "validated": true
+        },
+        "evolution": []
+      },
+      "validation_history": [
+        {"week": 1, "kurtosis": 10.0, "validated": true},
+        {"week": 2, "kurtosis": 12.9, "validated": true},
+        {"week": 3, "kurtosis": 38.0, "validated": true}
+      ],
+      "confidence": 0.95,
+      "status": "active",
+      "regime_sensitivity": "low"
+    },
+    {
+      "mechanism_id": "M-002",
+      "name": "High Volatility Clustering",
+      "discovery_week": 1,
+      "discovery_period": "2026-01-01 to 2026-01-08",
+      "type": "behavioral",
+      "definition": "High volatility periods tend to persist, showing positive autocorrelation in absolute returns",
+      "evidence": {
+        "discovery": {
+          "autocorrelation": 0.009,
+          "threshold": 0.2,
+          "validated": false
+        },
+        "evolution": []
+      },
+      "validation_history": [],
+      "confidence": 0.20,
+      "status": "dormant",
+      "regime_sensitivity": "high"
+    },
+    {
+      "mechanism_id": "M-003",
+      "name": "Weekend Liquidity Deficit",
+      "discovery_week": 1,
+      "discovery_period": "2026-01-01 to 2026-01-08",
+      "type": "structural",
+      "definition": "Trading volume is significantly lower on weekends compared to weekdays",
+      "evidence": {
+        "discovery": {
+          "weekend_volume_pct": 15.0,
+          "weekday_volume_pct": 85.0,
+          "ratio": 0.18
+        },
+        "evolution": []
+      },
+      "validation_history": [],
+      "confidence": 0.85,
+      "status": "active",
+      "regime_sensitivity": "low"
+    },
+    {
+      "mechanism_id": "M-004",
+      "name": "Mean Reversion After Extreme Moves",
+      "discovery_week": 1,
+      "discovery_period": "2026-01-01 to 2026-01-08",
+      "type": "behavioral",
+      "definition": "After extreme price moves (>2% in a candle), price tends to partially reverse in subsequent candles",
+      "evidence": {
+        "discovery": {
+          "sample_size": 45,
+          "mean_reversion_rate": 0.62,
+          "avg_reversion_pct": 0.31
+        },
+        "evolution": []
+      },
+      "validation_history": [],
+      "confidence": 0.60,
+      "status": "active",
+      "regime_sensitivity": "medium"
+    },
+    {
+      "mechanism_id": "M-005",
+      "name": "Volatility Regime Persistence",
+      "discovery_week": 1,
+      "discovery_period": "2026-01-01 to 2026-01-08",
+      "type": "behavioral",
+      "definition": "When HIGH volatility regime begins, it tends to persist for multiple candles before transitioning to lower regime",
+      "evidence": {
+        "discovery": {
+          "high_vol_pct": 20.8,
+          "avg_high_vol_duration": 3.2,
+          "transition_probability": 0.35
+        },
+        "evolution": []
+      },
+      "validation_history": [],
+      "confidence": 0.70,
+      "status": "active",
+      "regime_sensitivity": "high"
+    }
+  ],
+  "total_mechanisms": 5,
+  "active_mechanisms": 4,
+  "dormant_mechanisms": 1,
+  "retired_mechanisms": 0,
+  "last_updated": "2026-01-08"
+}

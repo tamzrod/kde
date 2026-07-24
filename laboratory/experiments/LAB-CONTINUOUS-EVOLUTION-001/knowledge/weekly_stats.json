@@ -1,0 +1,272 @@
+[
+  {
+    "week": 1,
+    "start_price": 88420.0,
+    "end_price": 91400.76,
+    "change": 3.3711377516398944,
+    "kurtosis": 10.023158360491777,
+    "high_vol_pct": 20.838258023456678,
+    "count": 11000
+  },
+  {
+    "week": 2,
+    "start_price": 92450.51,
+    "end_price": 96906.19,
+    "change": 4.81952993012154,
+    "kurtosis": 12.896799530304033,
+    "high_vol_pct": 15.955995999636329,
+    "count": 11000
+  },
+  {
+    "week": 3,
+    "start_price": 94953.69,
+    "end_price": 89611.04,
+    "change": -5.626584917342347,
+    "kurtosis": 37.99932229495683,
+    "high_vol_pct": 12.90117283389399,
+    "count": 11000
+  },
+  {
+    "week": 4,
+    "start_price": 89000.0,
+    "end_price": 89283.05,
+    "change": 0.3180337078651718,
+    "kurtosis": 16.417062826644194,
+    "high_vol_pct": 12.719338121647422,
+    "count": 11000
+  },
+  {
+    "week": 5,
+    "start_price": 89044.92,
+    "end_price": 73152.73,
+    "change": -17.84738534213968,
+    "kurtosis": 37.4014937165051,
+    "high_vol_pct": 25.48413492135649,
+    "count": 11000
+  },
+  {
+    "week": 6,
+    "start_price": 76322.27,
+    "end_price": 67057.89,
+    "change": -12.138501645718875,
+    "kurtosis": 13.367559221204266,
+    "high_vol_pct": 33.09391762887535,
+    "count": 11000
+  },
+  {
+    "week": 7,
+    "start_price": 66995.4,
+    "end_price": 66461.31,
+    "change": -0.7972039871394104,
+    "kurtosis": 20.251760518852663,
+    "high_vol_pct": 18.68351668333485,
+    "count": 11000
+  },
+  {
+    "week": 8,
+    "start_price": 68159.73,
+    "end_price": 67897.47,
+    "change": -0.38477265094799346,
+    "kurtosis": 25.55141178434076,
+    "high_vol_pct": 17.08337121556505,
+    "count": 11000
+  },
+  {
+    "week": 9,
+    "start_price": 65405.68,
+    "end_price": 72747.38,
+    "change": 11.224866097256392,
+    "kurtosis": 11.037930432820794,
+    "high_vol_pct": 25.775070460950992,
+    "count": 11000
+  },
+  {
+    "week": 10,
+    "start_price": 69821.59,
+    "end_price": 70192.65,
+    "change": 0.5314402035244367,
+    "kurtosis": 14.012725744761985,
+    "high_vol_pct": 19.647240658241657,
+    "count": 11000
+  },
+  {
+    "week": 11,
+    "start_price": 69705.28,
+    "end_price": 71206.97,
+    "change": 2.1543418231732265,
+    "kurtosis": 13.646221503126565,
+    "high_vol_pct": 15.937812528411675,
+    "count": 11000
+  },
+  {
+    "week": 12,
+    "start_price": 74105.89,
+    "end_price": 71354.83,
+    "change": -3.712336495790008,
+    "kurtosis": 65.23163984091022,
+    "high_vol_pct": 15.355941449222657,
+    "count": 11000
+  },
+  {
+    "week": 13,
+    "start_price": 71315.61,
+    "end_price": 68091.39,
+    "change": -4.521057872182544,
+    "kurtosis": 38.09137194935951,
+    "high_vol_pct": 12.546595145013184,
+    "count": 11000
+  },
+  {
+    "week": 14,
+    "start_price": 68796.75,
+    "end_price": 71078.16,
+    "change": 3.316159556955821,
+    "kurtosis": 16.0997843964298,
+    "high_vol_pct": 11.755614146740614,
+    "count": 11000
+  },
+  {
+    "week": 15,
+    "start_price": 71757.63,
+    "end_price": 74806.49,
+    "change": 4.248830403122289,
+    "kurtosis": 17.45706226401577,
+    "high_vol_pct": 11.673788526229657,
+    "count": 11000
+  },
+  {
+    "week": 16,
+    "start_price": 74097.38,
+    "end_price": 78246.2,
+    "change": 5.599145340901382,
+    "kurtosis": 15.441021752338859,
+    "high_vol_pct": 12.810255477770708,
+    "count": 11000
+  },
+  {
+    "week": 17,
+    "start_price": 77971.36,
+    "end_price": 75841.77,
+    "change": -2.731246447413507,
+    "kurtosis": 23.311600128877274,
+    "high_vol_pct": 8.26438767160651,
+    "count": 11000
+  },
+  {
+    "week": 18,
+    "start_price": 77038.08,
+    "end_price": 81448.19,
+    "change": 5.724584517163461,
+    "kurtosis": 29.068977807044533,
+    "high_vol_pct": 8.109828166196927,
+    "count": 11000
+  },
+  {
+    "week": 19,
+    "start_price": 81665.12,
+    "end_price": 79335.34,
+    "change": -2.8528458661421165,
+    "kurtosis": 16.24149660590264,
+    "high_vol_pct": 7.027911628329848,
+    "count": 11000
+  },
+  {
+    "week": 20,
+    "start_price": 81094.24,
+    "end_price": 77576.52,
+    "change": -4.337817334498728,
+    "kurtosis": 29.255881273845514,
+    "high_vol_pct": 7.518865351395582,
+    "count": 11000
+  },
+  {
+    "week": 21,
+    "start_price": 77628.97,
+    "end_price": 74503.0,
+    "change": -4.026808548406608,
+    "kurtosis": 40.0533419868583,
+    "high_vol_pct": 6.927902536594235,
+    "count": 11000
+  },
+  {
+    "week": 22,
+    "start_price": 75987.17,
+    "end_price": 64174.76,
+    "change": -15.545269023704918,
+    "kurtosis": 13.506062113720343,
+    "high_vol_pct": 12.292026547867987,
+    "count": 11000
+  },
+  {
+    "week": 23,
+    "start_price": 67000.0,
+    "end_price": 61526.15,
+    "change": -8.169925373134326,
+    "kurtosis": 18.09057175240074,
+    "high_vol_pct": 27.184289480861896,
+    "count": 11000
+  },
+  {
+    "week": 24,
+    "start_price": 61342.17,
+    "end_price": 64494.61,
+    "change": 5.1391074036018,
+    "kurtosis": 19.339573088954737,
+    "high_vol_pct": 12.301118283480317,
+    "count": 11000
+  },
+  {
+    "week": 25,
+    "start_price": 65034.45,
+    "end_price": 61061.55,
+    "change": -6.108916120609914,
+    "kurtosis": 19.67248219812831,
+    "high_vol_pct": 11.773797617965268,
+    "count": 11000
+  },
+  {
+    "week": 26,
+    "start_price": 62719.52,
+    "end_price": 60000.0,
+    "change": -4.336002571448247,
+    "kurtosis": 19.357003928005383,
+    "high_vol_pct": 15.810528229839077,
+    "count": 11000
+  },
+  {
+    "week": 27,
+    "start_price": 58643.6,
+    "end_price": 62304.08,
+    "change": 6.241908750485992,
+    "kurtosis": 20.29086545738052,
+    "high_vol_pct": 10.555505045913264,
+    "count": 11000
+  },
+  {
+    "week": 28,
+    "start_price": 61920.1,
+    "end_price": 64763.1,
+    "change": 4.591400853680792,
+    "kurtosis": 33.22983740384714,
+    "high_vol_pct": 8.31893808528048,
+    "count": 11000
+  },
+  {
+    "week": 29,
+    "start_price": 64722.15,
+    "end_price": 66086.59,
+    "change": 2.108149991927022,
+    "kurtosis": 15.256071586354777,
+    "high_vol_pct": 7.291571961087372,
+    "count": 11000
+  },
+  {
+    "week": 30,
+    "start_price": 65659.39,
+    "end_price": 65096.15,
+    "change": -0.8578209453362238,
+    "kurtosis": 13.579198855287647,
+    "high_vol_pct": 5.802901450725362,
+    "count": 2000
+  }
+]
