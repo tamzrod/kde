@@ -1,0 +1,18 @@
+{
+  "long_strategies": {
+    "total_trades": 109,
+    "wins": 64,
+    "losses": 45,
+    "win_rate": 58.71559633027523,
+    "net_pnl": -46.165596633538684,
+    "profit_factor": 0.7382565374339503
+  },
+  "short_strategies": {
+    "total_trades": 79,
+    "wins": 49,
+    "losses": 30,
+    "win_rate": 62.0253164556962,
+    "net_pnl": -5.119940024792415,
+    "profit_factor": 0.6590287390537174
+  }
+}

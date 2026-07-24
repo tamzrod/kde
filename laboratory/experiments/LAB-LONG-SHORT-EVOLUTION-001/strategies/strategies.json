@@ -1,0 +1,93 @@
+{
+  "strategies": [
+    {
+      "strategy_id": "L-001",
+      "name": "Long Momentum Strategy",
+      "direction": "LONG",
+      "mechanisms": [
+        "L-001",
+        "SH-001"
+      ],
+      "entry_logic": "Enter LONG when candle body > 0.5% and volume above average",
+      "stop_loss": "1.5x candle body",
+      "take_profit": "1x candle body",
+      "position_sizing": 0.05,
+      "evidence": {
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0
+      },
+      "status": "active",
+      "allocation": 0.25
+    },
+    {
+      "strategy_id": "S-001",
+      "name": "Short Momentum Strategy",
+      "direction": "SHORT",
+      "mechanisms": [
+        "S-001",
+        "SH-001"
+      ],
+      "entry_logic": "Enter SHORT when candle body < -0.5% and volume above average",
+      "stop_loss": "1.5x candle body",
+      "take_profit": "1x candle body",
+      "position_sizing": 0.05,
+      "evidence": {
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0
+      },
+      "status": "active",
+      "allocation": 0.25
+    },
+    {
+      "strategy_id": "L-002",
+      "name": "Long Volatility Breakout",
+      "direction": "LONG",
+      "mechanisms": [
+        "SH-001",
+        "SH-002"
+      ],
+      "entry_logic": "Enter LONG after high volatility candle in uptrend",
+      "stop_loss": "2x ATR",
+      "take_profit": "1.5x ATR",
+      "position_sizing": 0.03,
+      "evidence": {
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0
+      },
+      "status": "active",
+      "allocation": 0.25
+    },
+    {
+      "strategy_id": "S-002",
+      "name": "Short Volatility Breakdown",
+      "direction": "SHORT",
+      "mechanisms": [
+        "SH-001",
+        "SH-002"
+      ],
+      "entry_logic": "Enter SHORT after high volatility in downtrend",
+      "stop_loss": "2x ATR",
+      "take_profit": "1.5x ATR",
+      "position_sizing": 0.03,
+      "evidence": {
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0
+      },
+      "status": "active",
+      "allocation": 0.25
+    }
+  ],
+  "capital_allocation": {
+    "long": 0.5,
+    "short": 0.5,
+    "cash": 0.0
+  }
+}
