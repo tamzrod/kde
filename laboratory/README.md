@@ -313,8 +313,10 @@ The Laboratory is **engine-agnostic**. It can execute experiments under any KDE 
 
 | Engine ID | Version | Codename | Status | Purpose |
 |-----------|---------|----------|--------|---------|
-| **KDE-ENGINE-002** | 0.1.0 | Beta | Active | Contextual knowledge discovery |
+| **KDE-ENGINE-002** | 0.1.0 | Beta | Active (Default) | Contextual knowledge discovery |
 | KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | Pattern discovery (legacy) |
+| **KDE-ENGINE-003** | 0.1.0 | Gamma | Active | Causal discovery |
+| **KDE-ENGINE-004** | 0.1.0 | Delta | Active | Bootstrap + Context discovery |
 
 ### Engine Selection for Experiments
 
@@ -325,6 +327,16 @@ When creating a new experiment, select the appropriate engine:
 - Boundary definition is important
 - Statistical validation is mandatory
 - Complete knowledge objects needed
+
+**Use Gamma (KDE-ENGINE-003)** when:
+- Causal mechanism documentation needed
+- Root cause analysis required
+- Intervention prediction required
+
+**Use Delta (KDE-ENGINE-004)** when:
+- Bootstrap enforcement required
+- Reproducibility is critical
+- Session initialization consistency needed
 
 **Use Alpha (KDE-ENGINE-001)** when:
 - Legacy compatibility required

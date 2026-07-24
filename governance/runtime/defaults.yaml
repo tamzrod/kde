@@ -1,10 +1,11 @@
 # Runtime Default Configuration
 
 **Document ID**: RUNTIME-DEFAULTS
-**Version**: 1.1.0
-**Date**: 2026-07-23
+**Version**: 1.2.0
+**Date**: 2026-07-24
 **Authority**: Human Authority
 **Status**: PRODUCTION
+**Source**: INV-EVOLUTION-001 REC-003/REC-004/REC-008
 
 ---
 
@@ -25,8 +26,8 @@ The separation of scientific lifecycle (Engine status) from operational configur
 |-------|-------|-------------|
 | **default_engine** | KDE-ENGINE-002 | Engine loaded at Runtime startup |
 | **default_seed** | SEED-001 | Seed loaded at Runtime startup |
-| **last_updated** | 2026-07-20 | Configuration last modified date |
-| **updated_by** | Human | Authority who made the change |
+| **last_updated** | 2026-07-24 | Configuration last modified date |
+| **updated_by** | Human (INV-EVOLUTION-001) | Authority who made the change |
 
 ---
 
@@ -114,10 +115,25 @@ This configuration implements a **browser-style default model**:
 |--------|--------|---------|-------------|
 | KDE-ENGINE-001 | Historical | NO | Scientifically deprecated |
 | KDE-ENGINE-002 | Active | **YES** | Scientifically active, human-selected as default |
-| KDE-ENGINE-003 | **Candidate** | NO | Under validation for promotion (LAB-045/046) |
-| KDE-ENGINE-004 | Candidate | NO | Scientifically validating |
+| KDE-ENGINE-003 | Active | NO | Causal discovery capability (INV-EVOLUTION-001) |
+| KDE-ENGINE-004 | Active | NO | Bootstrap capability, consider for default (INV-EVOLUTION-001 REC-008) |
 
 **Key Insight**: An Engine can have any Status and be Default or not. They are independent dimensions.
+
+### REC-008 Consideration: Delta as Default
+
+Per INV-EVOLUTION-001 REC-008, Delta has been evaluated as a potential default:
+
+| Evidence | Source | Assessment |
+|----------|--------|------------|
+| Delta optimal in benchmark | LAB-031 | Supports |
+| 100% selection accuracy | LAB-047 | Supports |
+| Bootstrap advantage | Delta specification | Supports |
+| Std dev 0.5 (vs Beta 0.8) | LAB-DELTA-VALIDATION-001 | Supports |
+
+**Decision**: Beta remains default. Delta is available as alternative via session override.
+
+**Note**: Human authority may change default at any time per Human Authority Principle.
 
 ---
 
@@ -127,6 +143,8 @@ This configuration implements a **browser-style default model**:
 |------|--------|-----------|
 | 2026-07-20 | Initial configuration | Human |
 | 2026-07-23 | Gamma status update | Human (LAB-045 approval) |
+| 2026-07-24 | Gamma/Delta Activation | Human (INV-EVOLUTION-001 REC-003/REC-004) |
+| 2026-07-24 | Delta consideration documented | Human (INV-EVOLUTION-001 REC-008) |
 
 ---
 

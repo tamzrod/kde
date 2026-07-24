@@ -3,9 +3,10 @@
 **Engine ID**: KDE-ENGINE-003
 **Version**: 0.1.0
 **Codename**: Gamma
-**Status**: Candidate
+**Status**: Active
 **Effective Date**: 2026-07-20
-**Promotion Date**: 2026-07-23
+**Promotion Date**: 2026-07-23 (to Candidate)
+**Activation Date**: 2026-07-24 (INV-EVOLUTION-001 REC-003)
 **Promotion Evidence**: LAB-017, LAB-044, LAB-045, LAB-046
 
 ---
@@ -18,10 +19,11 @@
 | **Name** | Causal Knowledge Discovery Engine |
 | **Codename** | Gamma |
 | **Version** | 0.1.0 |
-| **Status** | Candidate |
+| **Status** | Active |
 | **Type** | Causal Inference Engine |
 | **Created** | 2026-07-20 |
-| **Promoted** | 2026-07-23 |
+| **Promoted to Candidate** | 2026-07-23 |
+| **Activated** | 2026-07-24 |
 
 ---
 
@@ -104,7 +106,7 @@ Gamma enables the last two: explanation and intervention.
 
 ### Current Status
 
-**Gamma is currently in Candidate status.**
+**Gamma is now ACTIVE as of 2026-07-24 per INV-EVOLUTION-001 REC-003.**
 
 ### Promotion Evidence
 
@@ -156,16 +158,16 @@ KDE-ENGINE-003 (Gamma)    — Causal Discovery
 
 ---
 
-## Experimental Maturity
+## Maturity Assessment
 
-| Dimension | Level |
-|------------|-------|
-| Theoretical Foundation | High |
-| Methodology Validation | Pending |
-| Empirical Testing | Pending |
-| Production Readiness | Not yet |
+| Dimension | Level | Evidence |
+|-----------|-------|----------|
+| Theoretical Foundation | High | Causal inference methodology documented |
+| Methodology Validation | COMPLETE | LAB-045 (87.5% readiness) |
+| Empirical Testing | COMPLETE | LAB-046 (100% repeatability) |
+| Production Readiness | CONFIRMED | INV-EVOLUTION-001 REC-003 |
 
-**Note**: Gamma is released as Experimental to enable validation through laboratory experiments.
+**Status**: Gamma has completed validation and is now ACTIVE per INV-EVOLUTION-001 REC-003.
 
 ---
 
@@ -179,5 +181,6 @@ KDE-ENGINE-003 (Gamma)    — Causal Discovery
 
 ---
 
-**Document Status**: EXPERIMENTAL
-**Review Date**: Upon completion of validation experiments
+**Document Status**: ACTIVE
+**Activation Date**: 2026-07-24
+**Activation Authority**: INV-EVOLUTION-001 REC-003 (Human Approved)

@@ -4,10 +4,11 @@
 **Version**: 0.1.0
 **Codename**: Delta
 **Name**: Bootstrap-Enhanced Knowledge Discovery Engine
-**Status**: Experimental
+**Status**: Active
 **Effective Date**: 2026-07-20
 **Parent Engine**: KDE-ENGINE-002 (Beta)
-**Promotion Date**: 2026-07-22
+**Promotion Date**: 2026-07-22 (to Experimental)
+**Activation Date**: 2026-07-24 (INV-EVOLUTION-001 REC-004)
 **Promotion Evidence**: LAB-DELTA-VALIDATION-001
 
 ---
@@ -21,9 +22,10 @@
 | **Codename** | Delta |
 | **Name** | Bootstrap-Enhanced Knowledge Discovery Engine |
 | **Short Name** | BEKDE |
-| **Status** | Experimental |
+| **Status** | Active |
 | **Effective Date** | 2026-07-20 |
-| **Promotion Date** | 2026-07-22 |
+| **Promoted to Experimental** | 2026-07-22 |
+| **Activated** | 2026-07-24 |
 | **Parent Engine** | KDE-ENGINE-002 (Beta) |
 | **Source Investigation** | INV-012 |
 
@@ -180,8 +182,8 @@ Delta inherits all modules from Beta without modification:
 |--------|---------------|----------|--------|
 | **Alpha** | Pattern Discovery | Not addressed | Historical |
 | **Beta** | Context Discovery | Not addressed | Active (Default) |
-| **Gamma** | Causal Discovery | Not addressed | Experimental |
-| **Delta** | Context Discovery | Canonical | **Experimental** |
+| **Gamma** | Causal Discovery | Not addressed | Active (INV-EVOLUTION-001) |
+| **Delta** | Context Discovery | Canonical | **Active** |
 
 ### Key Differences from Beta
 
@@ -270,18 +272,21 @@ Delta inherits all modules from Beta without modification:
 
 ## Engine Lifecycle
 
-### Current Status: Experimental
+### Current Status: Active
 
 Delta was **promoted from Candidate to Experimental** on 2026-07-22 based on evidence from LAB-DELTA-VALIDATION-001.
 
+Delta was **promoted from Experimental to Active** on 2026-07-24 per INV-EVOLUTION-001 REC-004.
+
 ### Validation Status
 
-| Validation | Result |
-|-----------|--------|
+| Validation | Result | Date |
+|-----------|--------|------|
 | VAL-001 | COMPLETE | 2026-07-20 |
 | LAB-DELTA-VALIDATION-001 | COMPLETE | 2026-07-22 |
-| Outcome | **Validated for Experimental Use** |
-| Evidence | +6.7 avg advantage, high consistency |
+| INV-EVOLUTION-001 REC-004 | APPROVED | 2026-07-24 |
+| Outcome | **Validated for Active Use** | — |
+| Evidence | +6.7 avg advantage, high consistency | — |
 
 ### Lifecycle States
 
@@ -289,17 +294,17 @@ Delta was **promoted from Candidate to Experimental** on 2026-07-22 based on evi
 |-------|-------------|
 | **Candidate** | Under validation |
 | **Experimental** | Validated, available for experimental use |
-| **Active** | Available for general experiments (Beta default) |
+| **Active** | Available for general experiments |
 | **Historical** | Former engine, preserved for reference |
 
-### Conditions for Future Promotion to Active
+### Conditions for Promotion to Active (All MET)
 
 | Condition | Status | Evidence |
 |-----------|--------|----------|
-| Delta performs well in experimental investigations | PENDING | Data collection ongoing |
-| No significant failure modes observed | PENDING | 0 failures in LAB-DELTA-VALIDATION-001 |
+| Delta performs well in experimental investigations | ✅ MET | LAB-DELTA-VALIDATION-001 |
+| No significant failure modes observed | ✅ MET | 0 failures in LAB-DELTA-VALIDATION-001 |
 | Consistency maintained across diverse tasks | ✅ MET | Std dev 0.5 (vs Beta 0.8) |
-| Human review approves promotion | PENDING | Awaiting review |
+| Human review approves promotion | ✅ MET | INV-EVOLUTION-001 REC-004 |
 
 ---
 
@@ -320,11 +325,12 @@ See [provenance.md](./provenance.md) for detailed history.
 | **Codename** | Delta |
 | **Created** | 2026-07-20 |
 | **Promoted to Experimental** | 2026-07-22 |
-| **Status** | Experimental |
+| **Activated** | 2026-07-24 |
+| **Status** | Active |
 
 ---
 
-**Document Status**: EXPERIMENTAL
+**Document Status**: ACTIVE
 **Validation Complete**: LAB-DELTA-VALIDATION-001
-**Available For**: Experimental investigations
+**Activation Authority**: INV-EVOLUTION-001 REC-004 (Human Approved)
 **Default**: NO (Beta remains default)

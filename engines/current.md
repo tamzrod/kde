@@ -1,6 +1,6 @@
 # Current KDE Engine
 
-**Last Updated**: 2026-07-23
+**Last Updated**: 2026-07-24 (INV-EVOLUTION-001 REC-003/REC-004)
 
 ---
 
@@ -12,8 +12,8 @@ The Laboratory supports multiple engines. Select the appropriate engine for each
 |-----------|---------|----------|--------|---------|----------|
 | **KDE-ENGINE-002** | 0.1.0 | Beta | Active | **YES** | Contextual knowledge discovery (default) |
 | KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | NO | Pattern discovery (legacy) |
-| **KDE-ENGINE-003** | 0.1.0 | Gamma | **Candidate** | NO | Causal discovery |
-| **KDE-ENGINE-004** | 0.1.0 | Delta | **Candidate** | NO | Bootstrap + Context discovery |
+| **KDE-ENGINE-003** | 0.1.0 | Gamma | **Active** | NO | Causal discovery (INV-EVOLUTION-001) |
+| **KDE-ENGINE-004** | 0.1.0 | Delta | **Active** | NO | Bootstrap + Context discovery (INV-EVOLUTION-001) |
 
 ---
 
@@ -47,7 +47,8 @@ Default describes the Runtime's operational default:
 | Scenario | Status | Default | Explanation |
 |----------|--------|---------|-------------|
 | Beta | Active | YES | Scientifically active AND Runtime default |
-| Delta | Candidate (Validated) | NO | Scientifically validated but NOT default |
+| Gamma | Active | NO | Causal discovery capability, not default |
+| Delta | Active | NO | Bootstrap capability, not default |
 | Future Engine | Active | NO | Could be scientifically superior but human hasn't selected as default |
 
 **Principle**: Scientific validation does NOT automatically change Runtime defaults. Only human authority can change defaults.
@@ -122,8 +123,8 @@ For detailed information about Delta, see:
 |-----------|---------|----------|--------|---------|-----------|---------|
 | KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | NO | 2026-07-19 | Pattern discovery |
 | KDE-ENGINE-002 | 0.1.0 | Beta | Active | **YES** | 2026-07-20 | Contextual knowledge |
-| KDE-ENGINE-003 | 0.1.0 | Gamma | **Candidate** | NO | 2026-07-20 | Causal discovery |
-| KDE-ENGINE-004 | 0.1.0 | Delta | **Candidate** | NO | 2026-07-20 | Bootstrap + Context |
+| KDE-ENGINE-003 | 0.1.0 | Gamma | **Active** | NO | 2026-07-20 | Causal discovery |
+| KDE-ENGINE-004 | 0.1.0 | Delta | **Active** | NO | 2026-07-20 | Bootstrap + Context |
 
 ---
 
@@ -190,7 +191,7 @@ See [/governance/runtime/SESSION-OVERRIDE.md](/workspace/project/kde/governance/
 
 ## Engine Details (Gamma)
 
-### Gamma (KDE-ENGINE-003) — **Candidate**
+### Gamma (KDE-ENGINE-003) — **Active**
 
 For detailed information about Gamma, see:
 
@@ -202,7 +203,8 @@ For detailed information about Gamma, see:
 - [gamma/changes.md](./gamma/changes.md) — Version history
 - [gamma/provenance.md](./gamma/provenance.md) — Engine lineage
 
-**Promotion Evidence**: LAB-017, LAB-044, LAB-045, LAB-046 (Repeatability: 100%)
+**Activation Evidence**: LAB-017, LAB-044, LAB-045, LAB-046 (Repeatability: 100%)
+**Activation Date**: 2026-07-24 (INV-EVOLUTION-001 REC-003)
 
 ---
 
@@ -215,7 +217,9 @@ For detailed information about Gamma, see:
 | 2026-07-20 | Engine Expansion | KDE-ENGINE-003 (Gamma) experimental release |
 | 2026-07-20 | Bootstrap Engine | KDE-ENGINE-004 (Delta) created, Candidate |
 | 2026-07-22 | Delta Promotion | Delta: Candidate → Experimental (LAB-DELTA-VALIDATION-001) |
-| 2026-07-23 | **Gamma Promotion** | Gamma: Experimental → Candidate (LAB-045/046) |
+| 2026-07-23 | Gamma Promotion | Gamma: Experimental → Candidate (LAB-045/046) |
+| 2026-07-24 | **Gamma Activation** | Gamma: Candidate → Active (INV-EVOLUTION-001 REC-003) |
+| 2026-07-24 | **Delta Activation** | Delta: Experimental → Active (INV-EVOLUTION-001 REC-004) |
 
 ---
 

@@ -14,8 +14,8 @@ This guide describes how to create future KDE Engines. The Engine Framework is d
 ## Engine Lineage
 
 ```
-KDE-ENGINE-001 (Alpha) ──→ KDE-ENGINE-002 (Beta) ──→ [Future Engines]
-     Pattern Discovery         Contextual Knowledge        [TBD]
+KDE-ENGINE-001 (Alpha) ──→ KDE-ENGINE-002 (Beta) ──→ KDE-ENGINE-003 (Gamma) ──→ KDE-ENGINE-004 (Delta) ──→ [Future Engines]
+     Pattern Discovery         Contextual Knowledge      Causal Discovery        Bootstrap + Context         [Epsilon]
 ```
 
 ### Current Engines
@@ -23,14 +23,15 @@ KDE-ENGINE-001 (Alpha) ──→ KDE-ENGINE-002 (Beta) ──→ [Future Engines
 | Engine ID | Version | Codename | Status | Purpose |
 |-----------|---------|----------|--------|---------|
 | KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | Pattern discovery |
-| KDE-ENGINE-002 | 0.1.0 | Beta | Active | Contextual knowledge |
+| KDE-ENGINE-002 | 0.1.0 | Beta | Active (Default) | Contextual knowledge |
+| KDE-ENGINE-003 | 0.1.0 | Gamma | Active | Causal discovery |
+| KDE-ENGINE-004 | 0.1.0 | Delta | Active | Bootstrap + Context |
 
-### Planned Engines
+### Future Potential Engines
 
 | Engine ID | Codename | Expected Features | Status |
 |-----------|----------|------------------|--------|
-| KDE-ENGINE-003 | Gamma | Causal inference | Planned |
-| KDE-ENGINE-004 | Delta | Temporal tracking | Planned |
+| KDE-ENGINE-005 | Epsilon | Formal Verification | Gap Identified (P3) | |
 
 ---
 
@@ -406,25 +407,15 @@ Where NNN is a sequential number:
 
 ## Planned Future Engines
 
-### KDE-ENGINE-003 (Gamma)
+### KDE-ENGINE-005 (Epsilon) — Formal Verification
 
 **Expected Features:**
-- Causal inference module
-- Distinguish correlation from causation
-- Causal diagram support
-- Intervention prediction
+- Mathematical proof of correctness
+- Invariant preservation verification
+- Formal boundary validation
+- Audit-ready verification
 
-**Status:** Planned
-
-### KDE-ENGINE-004 (Delta)
-
-**Expected Features:**
-- Temporal pattern tracking
-- Time-series analysis
-- Trend detection
-- Predictive capabilities
-
-**Status:** Planned
+**Status:** Gap Identified (P3) — See [/engines/epsilon/SPEC.md](./epsilon/SPEC.md)
 
 ---
 
@@ -434,10 +425,11 @@ When creating a new experiment, select the engine that best matches your needs:
 
 | Need | Engine |
 |------|--------|
-| Pattern discovery only | Alpha |
-| Context-aware knowledge | Beta |
-| Causal inference | Gamma (planned) |
-| Temporal prediction | Delta (planned) |
+| Pattern discovery only | Alpha (Historical) |
+| Context-aware knowledge | Beta (Active, Default) |
+| Causal inference | Gamma (Active) |
+| Bootstrap enforcement | Delta (Active) |
+| Formal verification | Epsilon (Future, P3) |
 
 ---
 
@@ -503,5 +495,6 @@ Before releasing a new engine:
 ---
 
 **Document Status**: APPROVED
+**Last Updated**: 2026-07-24 (INV-EVOLUTION-001 REC-007)
 
-**Next Review**: Upon creation of KDE-ENGINE-003 (Gamma)
+**Next Review**: Upon evidence of need for KDE-ENGINE-005 (Epsilon)

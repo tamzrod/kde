@@ -31,12 +31,16 @@ kde/
 
 ## Governance Documents
 
-| Document | Purpose |
-|---------|---------|
-| [LABORATORY-SOP.md](./LABORATORY-SOP.md) | Laboratory Standard Operating Procedures |
-| [ENGINE-VERSIONING.md](./ENGINE-VERSIONING.md) | Engine versioning policies |
-| [STATE-MACHINE.md](./STATE-MACHINE.md) | Document lifecycle states |
-| [VERSION.md](./VERSION.md) | Version history |
+| Document | Purpose | Source |
+|---------|---------|--------|
+| [LABORATORY-SOP.md](./LABORATORY-SOP.md) | Laboratory Standard Operating Procedures | Original |
+| [ENGINE-VERSIONING.md](./ENGINE-VERSIONING.md) | Engine versioning policies | Original |
+| [STATE-MACHINE.md](./STATE-MACHINE.md) | Document lifecycle states | Original |
+| [VERSION.md](./VERSION.md) | Version history | Original |
+| [INVESTIGATION-CLOSURE-SOP.md](./INVESTIGATION-CLOSURE-SOP.md) | Investigation closure requirements | INV-EVOLUTION-001 REC-001 |
+| [LESSONS-LEARNED-SOP.md](./LESSONS-LEARNED-SOP.md) | Lessons-learned capture requirements | INV-EVOLUTION-001 REC-002 |
+| [ARCHIVE-SOP.md](./ARCHIVE-SOP.md) | Archive management | INV-EVOLUTION-001 REC-005 |
+| [NUMBERING-INVESTIGATION.md](./NUMBERING-INVESTIGATION.md) | Investigation numbering audit | INV-EVOLUTION-001 REC-006 |
 
 ## Key Principles
 

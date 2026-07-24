@@ -1,18 +1,14 @@
 services:
   website:
-    image: alpine:latest
+    image: python:alpine
     container_name: tamzrod-website
     restart: unless-stopped
     ports:
       - "3456:3456"
     volumes:
       - .:/usr/share/nginx/html:ro
-    command: >
-      sh -c "
-        apk add --no-cache busybox-extras &&
-        cd /usr/share/nginx/html &&
-        busybox httpd -p 3456 -f
-      "
+    working_dir: /usr/share/nginx/html
+    command: python3 -m http.server 3456
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3456/"]
       interval: 30s

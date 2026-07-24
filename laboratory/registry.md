@@ -201,6 +201,9 @@ CREATE INDEX idx_evidence_experiment ON evidence(experiment_id);
 
 | Date | ID | Activity | Details |
 |------|-----|----------|---------|
+| 2026-07-24 | INV-EVOLUTION-001 | **IMPLEMENTED** | All REC-001 to REC-008 recommendations implemented |
+| 2026-07-24 | ENGINE | ACTIVE | Gamma and Delta promoted to Active |
+| 2026-07-24 | SOP | CREATED | INVESTIGATION-CLOSURE-SOP.md, LESSONS-LEARNED-SOP.md, ARCHIVE-SOP.md |
 | 2026-07-23 | KDE-EXPERT-SLD-003 | COMPLETE | Topology recognition: 4 validation rules, 6 detection patterns |
 | 2026-07-23 | KDE-EXPERT-SLD-002 | COMPLETE | Engineering relationships: 17 defined, 6 primitives |
 | 2026-07-23 | LAB-047 | COMPLETE | Auto-Selection feasible: 100% selection accuracy |
