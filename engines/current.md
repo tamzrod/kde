@@ -1,19 +1,21 @@
 # Current KDE Engine
 
-**Last Updated**: 2026-07-24 (INV-EVOLUTION-001 REC-003/REC-004)
+**Last Updated**: 2026-07-24 (INV-EVOLUTION-001 REC-003/REC-004, INV-AUTO-ENGINE-SELECTION)
 
 ---
 
 ## Engine Selection
 
-The Laboratory supports multiple engines. Select the appropriate engine for each experiment:
+The Laboratory supports multiple engines. **Automatic Engine Selection** is now available based on problem characteristics.
 
-| Engine ID | Version | Codename | Status | Default | Use Case |
-|-----------|---------|----------|--------|---------|----------|
-| **KDE-ENGINE-002** | 0.1.0 | Beta | Active | **YES** | Contextual knowledge discovery (default) |
-| KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | NO | Pattern discovery (legacy) |
-| **KDE-ENGINE-003** | 0.1.0 | Gamma | **Active** | NO | Causal discovery (INV-EVOLUTION-001) |
-| **KDE-ENGINE-004** | 0.1.0 | Delta | **Active** | NO | Bootstrap + Context discovery (INV-EVOLUTION-001) |
+| Engine ID | Version | Codename | Status | Default | Auto-Select Keywords |
+|-----------|---------|----------|--------|---------|---------------------|
+| **KDE-ENGINE-002** | 0.1.0 | Beta | Active | **YES** | context, validate, check |
+| KDE-ENGINE-001 | 0.1.0 | Alpha | Historical | NO | — |
+| **KDE-ENGINE-003** | 0.1.0 | Gamma | **Active** | NO | why, cause, mechanism |
+| **KDE-ENGINE-004** | 0.1.0 | Delta | **Active** | NO | bootstrap, reproduce |
+
+**See**: [/governance/runtime/ENGINE-SELECTION.md](/workspace/project/kde/governance/runtime/ENGINE-SELECTION.md) for Automatic Engine Selection specification.
 
 ---
 
@@ -220,6 +222,7 @@ For detailed information about Gamma, see:
 | 2026-07-23 | Gamma Promotion | Gamma: Experimental → Candidate (LAB-045/046) |
 | 2026-07-24 | **Gamma Activation** | Gamma: Candidate → Active (INV-EVOLUTION-001 REC-003) |
 | 2026-07-24 | **Delta Activation** | Delta: Experimental → Active (INV-EVOLUTION-001 REC-004) |
+| 2026-07-24 | **Auto-Selection** | Automatic Engine Selection implemented (INV-AUTO-ENGINE-SELECTION) |
 
 ---
 
@@ -230,6 +233,7 @@ For detailed information about Gamma, see:
 - [/governance/runtime/defaults.yaml](/workspace/project/kde/governance/runtime/defaults.yaml) — Runtime default configuration
 - [/governance/runtime/RUNTIME-STARTUP.md](/workspace/project/kde/governance/runtime/RUNTIME-STARTUP.md) — Runtime startup sequence
 - [/governance/runtime/SESSION-OVERRIDE.md](/workspace/project/kde/governance/runtime/SESSION-OVERRIDE.md) — Session override behavior
+- [/governance/runtime/ENGINE-SELECTION.md](/workspace/project/kde/governance/runtime/ENGINE-SELECTION.md) — Automatic Engine Selection
 
 ### Engine Framework
 

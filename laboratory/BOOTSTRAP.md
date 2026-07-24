@@ -1,9 +1,10 @@
 # KDE Bootstrap
 
-**Document Version**: 1.0.0
-**Date**: 2026-07-20
+**Document Version**: 1.1.0
+**Date**: 2026-07-24
 **Status**: PRODUCTION
 **Purpose**: Canonical entry point for all KDE sessions
+**Source**: INV-AUTO-ENGINE-SELECTION (Human Approved)
 
 ---
 
@@ -54,11 +55,13 @@ Execute the KDE Runtime initialization by invoking the `shttp_initialize` tool o
 **Runtime Initialization Requirements:**
 
 1. Load Runtime Configuration from `/governance/runtime/defaults.yaml`
-2. Load the Default Engine: **KDE-ENGINE-002 (Beta)** v0.1.0
-3. Load the Default Seed: **SEED-001 (Genesis)** v1.0.0
-4. Verify Runtime state transitions to: **READY**
+2. Check for Session Override (if present, use specified Engine)
+3. If no override, perform **Automatic Engine Selection** based on problem statement
+4. Load Selected Engine (default or auto-selected)
+5. Load Default Seed: **SEED-001 (Genesis)** v1.0.0
+6. Verify Runtime state transitions to: **READY**
 
-**Note**: Runtime uses human-configured defaults. The default Engine and Seed are determined by `/governance/runtime/defaults.yaml`, not by Engine status.
+**Note**: Runtime uses human-configured defaults. The default Engine is determined by `/governance/runtime/defaults.yaml`, but may be auto-selected based on problem characteristics per [`ENGINE-SELECTION.md`](../governance/runtime/ENGINE-SELECTION.md).
 
 ### Step 3: Transfer Execution Authority
 
@@ -95,10 +98,50 @@ After initialization, await the Active Engine's directive for the current sessio
 
 | Component | ID | Version | Status |
 |-----------|-----|---------|--------|
-| **Engine** | KDE-ENGINE-002 (Beta) | 0.1.0 | Active |
+| **Engine** | KDE-ENGINE-002 (Beta) | 0.1.0 | Active (Default) |
 | **Seed** | SEED-001 (Genesis) | 1.0.0 | Active |
 | **Architecture** | Architecture C | 1.0.0 | Production |
-| **Runtime** | KDE Runtime | 1.0.0 | Ready |
+| **Runtime** | KDE Runtime | 1.1.0 | Ready |
+| **Engine Selection** | Automatic | 1.0.0 | Active |
+
+---
+
+## Engine Selection in Bootstrap
+
+### How Engine Selection Works
+
+When a session includes a problem statement, the Runtime automatically selects the most appropriate Engine:
+
+| Keywords Detected | Engine Selected | Confidence |
+|------------------|-----------------|-------------|
+| why, cause, mechanism | Gamma (KDE-ENGINE-003) | HIGH |
+| what if, prevent, intervene | Gamma (KDE-ENGINE-003) | HIGH |
+| bootstrap, reproduce | Delta (KDE-ENGINE-004) | HIGH |
+| context, validate, check | Beta (KDE-ENGINE-002) | HIGH |
+| No specific keywords | Beta (KDE-ENGINE-002) | MEDIUM |
+
+### Example Session
+
+```
+Problem: "Why did the session fail to initialize?"
+         ↓
+Keywords detected: ["why", "cause"]
+         ↓
+Engine selected: Gamma (KDE-ENGINE-003)
+Confidence: 90%
+         ↓
+Session proceeds with Causal Discovery Engine
+```
+
+### Manual Override
+
+Users may override automatic selection:
+
+```yaml
+session_override:
+  engine: KDE-ENGINE-002  # Explicitly use Beta
+  reason: "Standard analysis requested"
+```
 
 ---
 
@@ -122,7 +165,8 @@ kde/
 │       ├── defaults.yaml     # Runtime default configuration
 │       ├── protection.yaml    # Protection configuration
 │       ├── RUNTIME-STARTUP.md
-│       └── SESSION-OVERRIDE.md
+│       ├── SESSION-OVERRIDE.md
+│       └── ENGINE-SELECTION.md  # Automatic Engine Selection (v1.0.0)
 │
 ├── laboratory/               # Scientific workflow
 │   ├── BOOTSTRAP.md         # THIS FILE - Entry point
@@ -212,6 +256,7 @@ Report to Governance with:
 | [`/governance/runtime/defaults.yaml`](/workspace/project/kde/governance/runtime/defaults.yaml) | Runtime default configuration |
 | [`/governance/runtime/RUNTIME-STARTUP.md`](/workspace/project/kde/governance/runtime/RUNTIME-STARTUP.md) | Runtime startup sequence |
 | [`/governance/runtime/SESSION-OVERRIDE.md`](/workspace/project/kde/governance/runtime/SESSION-OVERRIDE.md) | Session override behavior |
+| [`/governance/runtime/ENGINE-SELECTION.md`](/workspace/project/kde/governance/runtime/ENGINE-SELECTION.md) | Automatic Engine Selection |
 
 ### Laboratory
 
@@ -269,6 +314,16 @@ Report to Governance with:
 
 ---
 
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0.0 | 2026-07-20 | Initial production release |
+| 1.1.0 | 2026-07-24 | Added Automatic Engine Selection documentation |
+
+---
+
 **Document Status**: PRODUCTION
 **Entry Point**: Canonical KDE session entry
 **Authority**: Laboratory Rules (Seed-001)
+**Source**: INV-AUTO-ENGINE-SELECTION (Human Approved)

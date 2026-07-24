@@ -1,16 +1,19 @@
 # Runtime Startup Sequence
 
 **Document ID**: RUNTIME-STARTUP
-**Version**: 1.0.0
-**Date**: 2026-07-20
+**Version**: 1.1.0
+**Date**: 2026-07-24
 **Authority**: Human Authority
 **Status**: PRODUCTION
+**Source**: INV-AUTO-ENGINE-SELECTION (Human Approved)
 
 ---
 
 ## Overview
 
-This document describes the Runtime startup sequence for KDE. The Runtime initializes deterministically using human-configured defaults.
+This document describes the Runtime startup sequence for KDE. The Runtime initializes deterministically using human-configured defaults and Automatic Engine Selection.
+
+**Update v1.1.0**: Added Automatic Engine Selection (Step 4) based on INV-AUTO-ENGINE-SELECTION.
 
 ---
 
@@ -47,8 +50,8 @@ This document describes the Runtime startup sequence for KDE. The Runtime initia
               │ YES                            │ NO
               ▼                               ▼
     ┌─────────────────┐            ┌─────────────────┐
-    │  4a. Use Session│            │  4b. Use Runtime │
-    │  Override       │            │  Defaults        │
+    │  4a. Use Session│            │  4b. Automatic  │
+    │  Override       │            │  Engine Selection│
     └────────┬────────┘            └────────┬────────┘
              │                               │
              └───────────────┬───────────────┘
@@ -56,7 +59,7 @@ This document describes the Runtime startup sequence for KDE. The Runtime initia
                              ▼
                     ┌─────────────────┐
                     │  5. Load Engine │
-                    │  (from config)  │
+                    │  (selected)     │
                     └────────┬────────┘
                              │
                              ▼
@@ -152,19 +155,69 @@ session_override:
 
 **Output**: Session configuration determined
 
+**Logging**: Override is logged with reason for audit trail.
+
 ---
 
-### Step 4b: Use Runtime Defaults (if no override)
+### Step 4b: Automatic Engine Selection (if no override)
 
-**Action**: Use Runtime default Engine and Seed
+**Action**: Select Engine based on problem characteristics
+
+**Source**: `/governance/runtime/ENGINE-SELECTION.md`
+
+**Algorithm**:
+1. Parse problem statement (if provided in session)
+2. Extract keywords
+3. Score engines by keyword matches
+4. Apply conflict resolution if ambiguous
+5. Calculate confidence level
+6. Log selection
+
+**Keyword-to-Engine Mapping**:
+
+| Keywords Detected | Engine Selected | Confidence |
+|------------------|-----------------|-------------|
+| why, cause, mechanism | Gamma (KDE-ENGINE-003) | HIGH |
+| what if, prevent, intervene | Gamma (KDE-ENGINE-003) | HIGH |
+| bootstrap, reproduce | Delta (KDE-ENGINE-004) | HIGH |
+| context, validate, check | Beta (KDE-ENGINE-002) | HIGH |
+| No specific keywords | Beta (KDE-ENGINE-002) | MEDIUM |
+
+**Sequential Patterns**:
+| Pattern | Sequence |
+|---------|----------|
+| Causal + Bootstrap | Gamma → Delta |
+| Bootstrap + Analysis | Delta → Beta |
+| Context + Causal | Beta → Gamma |
+
+**Fallback Behavior**:
+| Confidence | Action |
+|------------|--------|
+| ≥50% | Proceed with selection |
+| 30-49% | Log warning, proceed |
+| <30% | Use Beta default, flag |
+
+**Output**: 
+- Selected Engine
+- Confidence level
+- Selection rationale
+- Alternatives considered
+
+**Logging**: All selections logged per ENGINE-SELECTION.md specification.
+
+---
+
+### Step 4c: Session Configuration Summary
 
 **Configuration**:
 ```yaml
-default_engine: KDE-ENGINE-002
-default_seed: SEED-001
+# After Step 4a or 4b:
+selected_engine: KDE-ENGINE-002  # Or KDE-ENGINE-003 or KDE-ENGINE-004
+engine_selection_confidence: 85  # Percentage
+selection_rationale: "Context keywords detected (validate, check)"
 ```
 
-**Output**: Default configuration determined
+**Output**: Session configuration determined
 
 ---
 
@@ -351,9 +404,20 @@ Sessions end with Runtime configuration restored to defaults.
 |----------|---------|
 | [defaults.yaml](./defaults.yaml) | Runtime default configuration |
 | [SESSION-OVERRIDE.md](./SESSION-OVERRIDE.md) | Session override behavior |
+| [ENGINE-SELECTION.md](./ENGINE-SELECTION.md) | Automatic Engine Selection |
 | [/laboratory/LABORATORY-RULES.md](/workspace/project/kde/laboratory/LABORATORY-RULES.md) | Laboratory Rules |
+
+---
+
+## Version History
+
+| Version | Date | Changes | Authority |
+|---------|------|---------|-----------|
+| 1.0.0 | 2026-07-20 | Initial production release | SEED-001 |
+| 1.1.0 | 2026-07-24 | Added Automatic Engine Selection (Step 4b) | INV-AUTO-ENGINE-SELECTION (Human Approved) |
 
 ---
 
 **Status**: PRODUCTION
 **Authority**: Human Authority
+**Source**: INV-AUTO-ENGINE-SELECTION (Human Approved)
