@@ -1,11 +1,34 @@
 # Experiment Template: [Title]
 
-**Template Version**: 1.1.0
-**Date**: 2026-07-20
+**Template Version**: 2.0.0
+**Date**: 2026-07-24
 **Architecture**: Architecture C
+**Source**: INV-TEMPORAL-PROVENANCE (Human Approved)
+
+---
+
+## Timestamp Standard
+
+All experiment artifacts SHALL use ISO-8601 UTC timestamps:
+
+| Field | Format | Description |
+|-------|--------|-------------|
+| `created` | YYYY-MM-DDTHH:MM:SSZ | When document first created |
+| `modified` | YYYY-MM-DDTHH:MM:SSZ | When document last changed |
+| `started` | YYYY-MM-DDTHH:MM:SSZ | When first run executed |
+| `completed` | YYYY-MM-DDTHH:MM:SSZ | When all runs finished |
+
+**Example**: `2026-07-24T12:00:00Z`
+
+---
+
+## Experiment Header
 
 **Experiment ID**: LAB-XXX
-**Created**: YYYY-MM-DDTHH:MM:SSZ
+**created**: YYYY-MM-DDTHH:MM:SSZ
+**modified**: YYYY-MM-DDTHH:MM:SSZ
+**started**: YYYY-MM-DDTHH:MM:SSZ
+**completed**: YYYY-MM-DDTHH:MM:SSZ
 **Status**: PLANNED
 **Domain**: [Software | Electrical | Mechanical | AI | Industrial | Other]
 **Methodology Version**: v2.0
@@ -132,15 +155,19 @@
 
 ## Metadata
 
-| Field | Value |
-|-------|-------|
-| Experiment ID | LAB-XXX |
-| Investigation | [INV-XXX] |
-| Created | YYYY-MM-DDTHH:MM:SSZ |
-| Last Updated | YYYY-MM-DDTHH:MM:SSZ |
-| Total Runs | 0 |
-| Current Assessment | PENDING |
-| Schema Version | 2.0 |
+| Field | Format | Required | Description |
+|-------|--------|----------|-------------|
+| Experiment ID | LAB-XXX | YES | Experiment identifier |
+| Investigation | INV-XXX | YES | Parent investigation |
+| `created` | YYYY-MM-DDTHH:MM:SSZ | YES | Document creation |
+| `modified` | YYYY-MM-DDTHH:MM:SSZ | YES | Last modification |
+| `started` | YYYY-MM-DDTHH:MM:SSZ | RECOMMENDED | First run execution |
+| `completed` | YYYY-MM-DDTHH:MM:SSZ | RECOMMENDED | All runs finished |
+| Total Runs | INTEGER | YES | Number of runs |
+| Current Assessment | ASSESSMENT | YES | PENDING\|SUPPORTS\|CONTRADICTS |
+| Schema Version | 2.0 | YES | Template version |
+
+**Timestamp Format**: All timestamps MUST use ISO-8601 UTC with Z suffix.
 
 ---
 
