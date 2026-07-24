@@ -1,11 +1,12 @@
 # Engine Selection Specification
 
 **Document ID**: ENGINE-SELECTION
-**Version**: 1.0.0
+**Version**: 1.1.0
 **Date**: 2026-07-24
 **Authority**: Human Authority
 **Status**: PRODUCTION
 **Source**: INV-AUTO-ENGINE-SELECTION (Human Approved)
+**Update**: LAB-BOOTSTRAP-ENGINE-AUDIT-001 REC-001 (Human Approved)
 
 ---
 
@@ -14,6 +15,31 @@
 This document defines the **Automatic Engine Selection** mechanism for KDE Runtime. It specifies how the Runtime automatically selects the most appropriate Engine based on the problem statement.
 
 **Source**: INV-AUTO-ENGINE-SELECTION investigation (LAB-047 evidence: 100% task classification accuracy)
+
+---
+
+## REC-001 Approval
+
+**From**: LAB-BOOTSTRAP-ENGINE-AUDIT-001
+**Recommendation**: Implement capability-based engine selection
+**Approval**: APPROVED by Human Authority
+**Date**: 2026-07-24
+
+### Approved Actions
+
+1. ✅ Enhance keyword matching with capability weighting
+2. ✅ Implement multi-engine selection for complex tasks
+3. ✅ Add parallel execution capability
+4. ✅ Document selection rationale in all experiment headers
+
+### Implementation Status
+
+| Component | Status | Evidence |
+|-----------|--------|----------|
+| Capability keywords | ✅ IMPLEMENTED | Section below |
+| Multi-engine selection | ✅ IMPLEMENTED | Section 5 |
+| Parallel execution | 🔄 IN PROGRESS | Section 5.2 |
+| Selection documentation | ✅ IMPLEMENTED | Section 7 |
 
 ---
 
@@ -386,6 +412,87 @@ session:
 
 ---
 
+## Multi-Engine Selection (REC-001 Enhancement)
+
+### When to Use Multi-Engine
+
+Multi-engine selection is appropriate when:
+
+| Scenario | Condition | Engines |
+|----------|-----------|---------|
+| Causal + Reproducible | Task requires both | Gamma → Delta |
+| Pattern + Causal | Pattern discovery + cause | Beta → Gamma |
+| Bootstrap + Analysis | Initialize + investigate | Delta → Beta |
+| Complex Investigation | Multiple dimensions | Beta + Gamma + Delta |
+
+### Multi-Engine Selection Algorithm
+
+```
+FUNCTION detect_multi_engine(scores, problem):
+    engine_count = count(scores > threshold)
+    
+    IF engine_count == 1:
+        RETURN single_engine(scores)
+    
+    IF engine_count > 1:
+        // Check for known patterns
+        IF has_causal_keywords(problem) AND has_validate_keywords(problem):
+            RETURN [Gamma, Beta]
+        IF has_bootstrap_keywords(problem) AND has_analyze_keywords(problem):
+            RETURN [Delta, Beta]
+        IF has_pattern_keywords(problem) AND has_cause_keywords(problem):
+            RETURN [Beta, Gamma]
+        
+        // Default: prioritize by specificity
+        RETURN prioritize_by_specificity(scores)
+    
+    RETURN single_engine(scores)
+```
+
+### Multi-Engine Execution
+
+| Execution Mode | Description | Use Case |
+|---------------|-------------|----------|
+| Sequential | Execute engines one after another | Causal → Reproducible |
+| Parallel | Execute engines simultaneously | Independent analyses |
+| Collaborative | Engines work together on same problem | Complex investigations |
+
+---
+
+## Parallel Execution (REC-001 Enhancement)
+
+### When to Use Parallel Execution
+
+Parallel execution is appropriate when:
+
+| Condition | Example | Benefit |
+|-----------|---------|---------|
+| Independent sub-problems | Pattern analysis + Volume analysis | 2x speed |
+| Redundant analysis | Verify with 2 engines | Higher confidence |
+| Competitive analysis | Compare Beta vs Gamma findings | Better synthesis |
+
+### Parallel Execution Configuration
+
+```yaml
+parallel_execution:
+  enabled: true
+  mode: collaborative  # or "competitive"
+  engines:
+    - KDE-ENGINE-002  # Beta
+    - KDE-ENGINE-003  # Gamma
+  synthesis: automatic  # or "manual"
+```
+
+### Parallel Results Synthesis
+
+| Mode | Behavior |
+|------|----------|
+| collaborative | Engines share findings, synthesize together |
+| competitive | Engines produce independent results, select best |
+| automatic | Runtime decides based on task characteristics |
+
+---
+
 ## Evidence Base
 
 | Evidence | Source | Value |
@@ -395,6 +502,7 @@ session:
 | Sequential patterns | LAB-044, LAB-047 | 3 patterns identified |
 | Conflict resolution | LAB-047 Phase 5 | 4 rules defined |
 | Beta as default | LAB-031 | Proven (9.1s, 100% correct) |
+| Multi-engine necessity | LAB-BOOTSTRAP-ENGINE-AUDIT-001 | REC-001 approved |
 
 ---
 
@@ -403,6 +511,7 @@ session:
 | Version | Date | Changes | Authority |
 |---------|------|---------|-----------|
 | 1.0.0 | 2026-07-24 | Initial specification | Human (INV-AUTO-ENGINE-SELECTION approved) |
+| 1.1.0 | 2026-07-24 | Added multi-engine and parallel execution | Human (LAB-BOOTSTRAP-ENGINE-AUDIT-001 REC-001 approved) |
 
 ---
 
