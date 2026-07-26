@@ -26,7 +26,7 @@ This page explores the intellectual DNA that makes KDE what it is.
 | 🔄 Kaizen | Japanese manufacturing | Continuous improvement |
 | 📚 Evidence-Based Research | Modern medicine | Claims need proof |
 | 🔗 Systems Thinking | Biology & Engineering | Causal analysis |
-| 🎭 Execution Control Unit | Industrial Control / Mission Control | ECU orchestration |
+| 🎭 Industrial Control | Industrial Control / Mission Control | Orchestration without execution |
 
 ---
 
@@ -39,6 +39,10 @@ The scientific method isn't just about labs and beakers. It's a way of thinking:
 ```
 Question → Hypothesis → Evidence → Conclusion
 ```
+
+This inspiration answers a fundamental question:
+
+> **How do we know what we think we know?**
 
 ### How KDE Uses It
 
@@ -65,6 +69,10 @@ KDE requires evidence for every claim. Not because it's pedantic—because it wo
 **"What survives is what works."**
 
 Darwin noticed that life adapts over time. The organisms that work best reproduce most. Over generations, this produces increasingly sophisticated life.
+
+This inspiration answers:
+
+> **How do we improve over time?**
 
 ### How KDE Uses It
 
@@ -93,6 +101,10 @@ Seeds are like DNA—immutable. But engines build on that foundation and adapt. 
 
 When Watson and Crick discovered the double helix, they found something remarkable: four simple letters (A, T, G, C) could encode every living thing.
 
+This inspiration answers:
+
+> **What stays constant while everything else changes?**
+
 ### How KDE Uses It
 
 KDE has "Seeds"—the reasoning DNA:
@@ -117,6 +129,10 @@ Without immutable seeds, you get drift—where the meaning of things slowly chan
 **"Fail early, fail cheaply, fail often."**
 
 The Fail Fast principle says: don't spend months building something that won't work. Find the problems quickly.
+
+This inspiration answers:
+
+> **When should we stop and rethink?**
 
 ### How KDE Uses It
 
@@ -151,6 +167,10 @@ When something goes wrong, there are two approaches:
 | **Find the cause** | "My head hurts" → I'm dehydrated → Drink water |
 
 Root cause analysis asks "why" until you find the real problem.
+
+This inspiration answers:
+
+> **Why did this happen?**
 
 ### How KDE Uses It
 
@@ -189,6 +209,10 @@ Each "why" gets you closer to the fix that actually solves the problem.
 
 Kaizen (Japanese for "improvement") transformed manufacturing. Instead of rare dramatic changes, it advocates for constant small improvements.
 
+This inspiration answers:
+
+> **How do we get better every day?**
+
 ### How KDE Uses It
 
 KDE mandates lessons learned:
@@ -215,6 +239,10 @@ The best methodologies learn faster than their problems can evolve.
 **"Show me the evidence."**
 
 Modern medicine learned a hard lesson: intuition isn't enough. Just because something seems right doesn't mean it is.
+
+This inspiration answers:
+
+> **What can we trust?**
 
 ### The Evidence Hierarchy
 
@@ -247,7 +275,11 @@ Without evidence standards:
 
 A car is more than its parts. The engine affects the transmission affects the wheels affects the steering. Change one thing, unexpected things happen.
 
-Systems thinking looks at the whole picture:
+Systems thinking looks at the whole picture.
+
+This inspiration answers:
+
+> **How do the parts work together?**
 
 ### How KDE Uses It
 
@@ -267,71 +299,48 @@ Single-cause explanations are usually wrong. KDE's Gamma engine specifically add
 
 ---
 
-## 9. The Execution Control Unit (ECU)
+## 9. Industrial Control and Orchestration
 
 **"The conductor doesn't play the instruments—everyone plays better together."**
 
-The ECU is KDE's orchestration layer. But here's the key insight: the ECU doesn't *do* the research. It coordinates everything else.
+Some of the most complex human endeavors—power grids, space missions, air traffic—share a common pattern: coordination without execution.
 
-### Where It Comes From
+A symphony conductor sets tempo but doesn't play the violin. Air traffic controllers guide aircraft but don't fly them. Mission control monitors space missions but doesn't crew the spacecraft.
 
-Industrial control systems have used this pattern for decades:
+This inspiration answers:
 
-| System | What It Orchestrates | ECU Analogy |
-|--------|---------------------|-------------|
-| **SCADA** | Power grids, factories | Coordinates without executing |
-| **Mission Control** | Space missions | Monitors without flying |
-| **Air Traffic Control** | Aircraft | Guides without piloting |
-| **Symphony Conductor** | Orchestra | Tempo without playing |
+> **Who coordinates the process?**
 
-### The Key Distinction
+### Why Orchestration Exists
 
-```
-❌ ECU doesn't do research
-❌ ECU doesn't write conclusions
-❌ ECU doesn't understand knowledge
+When multiple components must work together, someone needs to orchestrate—but orchestration doesn't mean doing the work. It means:
 
-✅ ECU coordinates engines
-✅ ECU resolves capabilities
-✅ ECU enforces policies
-✅ ECU aggregates results
-```
+- Knowing what each component can do
+- Matching tasks to capabilities
+- Ensuring policies are followed
+- Aggregating results from multiple sources
 
-### What the ECU Does
-
-The ECU has several components:
-
-| Component | What It Does |
-|-----------|--------------|
-| **Engine Registry** | Knows what each engine can do |
-| **Capability Resolver** | Matches requests to the right engine |
-| **Execution Planner** | Creates the research pipeline |
-| **Policy Layer** | Enforces governance rules |
-| **Consensus Manager** | Coordinates multi-engine work |
-| **Result Aggregator** | Combines findings with attribution |
-
-### Why This Matters
-
-Without the ECU, you get chaos:
+Without orchestration, you get chaos:
 
 ```
-Without ECU:
 Engine 1: "I'll research this"
 Engine 2: "I'll also research this"
 Engine 3: "I disagree with both"
 Result: Conflicting outputs, no coordination
 ```
 
+With orchestration, components work together:
+
 ```
-With ECU:
-ECU: "Engine 2 researches this, Engine 3 validates that"
+Orchestrator: "Engine 2 researches this, Engine 3 validates that"
 Engine 2: "Here are my findings"
 Engine 3: "Here is my validation"
-ECU: "Aggregating results..."
 Result: Coordinated, validated knowledge
 ```
 
-### The Deeper Insight
+### How KDE Applies It
+
+KDE implements this through the Execution Control Unit (ECU)—a layer that coordinates without executing.
 
 The ECU embodies a profound principle:
 
@@ -341,54 +350,56 @@ The best conductor doesn't play better than the musicians. The best conductor ma
 
 ---
 
-## The Unexpected Connections
+## The Influences Converge
 
-Here's the surprising part: these ideas are all related.
+Here's the surprising part: these ideas answer different questions—but they fit together.
 
 ```
-        Scientific Method
-              ↓
-              ↓
-        ┌─────┴─────┐
-        ↓           ↓
-    Evolution    DNA Structure
-        ↓           ↓
-        └─────┬─────┘
-              ↓
-           Seeds
-              ↓
-    ┌─────────┴─────────┐
-    ↓                   ↓
-Systems Thinking    Evidence-Based
-    ↓                   ↓
-    └───────┬───────────┘
-            ↓
-      Root Cause Analysis
-            ↓
-      ┌─────┴─────┐
-      ↓           ↓
-   Fail Fast    Kaizen
-      ↓           ↓
-      └─────┬─────┘
-            ↓
-        Bootstrap
-            ↓
-            ↓
-        ┌────┴────┐
-        ↓         ↓
-       ECU    Orchestration
-        ↓         ↓
-        └────┬────┘
-             ↓
-      Coordinated Research
+                         KDE
+              ┌─────────────────────────┐
+              │    Knowledge Discovery  │
+              └─────────────────────────┘
+                              │
+          ┌───────────────────┼───────────────────┐
+          │                   │                   │
+    ┌─────┴─────┐     ┌──────┴──────┐     ┌──────┴──────┐
+    │Scientific  │     │  Evolution  │     │    DNA      │
+    │  Method    │     │             │     │  Structure  │
+    └────────────┘     └─────────────┘     └─────────────┘
+          │                   │                   │
+    ┌─────┴─────┐     ┌──────┴──────┐     ┌──────┴──────┐
+    │  Evidence  │     │  Systems   │     │    Root     │
+    │   Based    │     │  Thinking  │     │   Cause      │
+    └────────────┘     └─────────────┘     └─────────────┘
+          │                   │                   │
+          └───────────────────┼───────────────────┘
+                              │
+              ┌────────────────┴────────────────┐
+              │                                 │
+        ┌─────┴─────┐                   ┌───────┴───────┐
+        │ Fail Fast │                   │    Kaizen    │
+        │           │                   │  (Improve)   │
+        └───────────┘                   └───────────────┘
+                              │
+              ┌────────────────┴────────────────┐
+              │                                 │
+        ┌─────┴─────┐                   ┌───────┴───────┐
+        │Industrial │                   │    Seeds      │
+        │  Control  │                   │  (Constant)  │
+        └───────────┘                   └───────────────┘
+                              │
+              ┌────────────────┴────────────────┐
+              │                                 │
+              │   Complementary Ideas,           │
+              │   One Methodology               │
+              └─────────────────────────────────┘
 ```
 
-They all reinforce each other:
-- Evolution needs evidence → Evidence-Based Research
-- DNA enables evolution → Seeds are immutable like DNA
-- Systems thinking needs root cause analysis → Gamma engine
-- Fail Fast needs Kaizen → Continuous improvement
-- Bootstrap needs ECU → Coordination of startup
+They don't compete—they complete each other:
+- Scientific method provides rigor; evolution provides growth
+- DNA/Seeds provide stability; Kaizen provides improvement
+- Fail fast prevents waste; root cause prevents recurrence
+- Systems thinking sees the whole; orchestration coordinates the parts
 
 ---
 
@@ -422,7 +433,7 @@ You don't need a PhD to use KDE. But understanding where it comes from helps:
 | Kaizen | "Small improvements compound. Document them." |
 | Evidence-Based | "Opinions aren't enough. Show the proof." |
 | Systems Thinking | "Look for connections. Nothing is simple." |
-| ECU/Orchestration | "Coordinate, don't execute. Delegate, don't do." |
+| Industrial Control | "Coordinate, don't execute. Delegate, don't do." |
 
 ---
 
@@ -435,4 +446,4 @@ You don't need a PhD to use KDE. But understanding where it comes from helps:
 ---
 
 **Last Updated**: 2026-07-26
-**Inspired by**: Science, biology, engineering, manufacturing, medicine
+**Inspired by**: scientific inquiry, evolutionary biology, information theory, industrial engineering, quality management, systems thinking, and evidence-based research
