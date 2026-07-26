@@ -25,6 +25,61 @@ With KDE:
 
 ---
 
+## A Young Project with Deep Roots
+
+The Git repository for KDE began in July 2026.
+
+That's recent. Very recent.
+
+Many of the foundational concepts—bootstrap gates, evidence hierarchies, the engine architecture—were developed rapidly during its first week. By any measure, KDE is a young project.
+
+But something might feel different about it.
+
+The methodology seems unusually mature. The documentation reads with a clarity that suggests years of refinement. The ideas feel grounded in ways that feel... familiar, somehow.
+
+That familiarity is intentional.
+
+### Two Different Ages
+
+KDE exists in two different timeframes simultaneously:
+
+| Dimension | Age | What It Means |
+|-----------|-----|---------------|
+| **Repository** | ~1 week | The code, documents, and structure are new |
+| **Ideas** | Centuries | The concepts have been tested for decades or centuries |
+
+The repository is young. The ideas are not.
+
+### Where the Ideas Come From
+
+KDE did not invent new scientific principles.
+
+Instead, it integrates proven ideas from centuries of science, engineering, and systems thinking:
+
+| Inspiration | Origin | What KDE Adopts |
+|-------------|--------|-----------------|
+| **Scientific Method** | Francis Bacon, 1620 | Investigation cycle |
+| **Evidence-Based Research** | Modern medicine, 20th century | Claims need proof |
+| **Theory of Evolution** | Charles Darwin, 1859 | Methods improve over time |
+| **DNA Structure** | Watson & Crick, 1953 | Immutable core, mutable implementation |
+| **Root Cause Analysis** | Quality Engineering | Find the real problem |
+| **Systems Thinking** | Biology & Engineering | See the whole picture |
+| **Kaizen** | Japanese manufacturing | Continuous small improvements |
+| **Fail Fast** | Software engineering | Catch problems early |
+| **Industrial Orchestration** | Mission Control | Coordinate without executing |
+
+These ideas have already survived decades—or centuries—of real-world testing. KDE simply assembles them into a coherent methodology for discovering trustworthy knowledge.
+
+### Why This Matters
+
+A young repository can have mature ideas because the ideas were never invented by KDE.
+
+They were already out there. Working. Proven.
+
+What KDE offers is not new ideas. It's a unified framework that makes these ideas accessible and practical for AI-augmented research.
+
+---
+
 ## The Five Human Oversight Rules
 
 KDE has five rules that ensure humans stay in control:
