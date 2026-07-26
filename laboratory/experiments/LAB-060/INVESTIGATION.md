@@ -1,4 +1,4 @@
-# LAB-060: OpenHands Bootstrap Compatibility Investigation
+# LAB-060: KDE Installation in External Repositories Investigation
 
 **Experiment ID**: LAB-060
 **Date**: 2026-07-26
@@ -9,7 +9,9 @@
 
 ## Objective
 
-Investigate how to verify that KDE bootstrap will load correctly in OpenHands (another AI agent environment). The user has tested with OpenHands but cannot test with Claude Code.
+Investigate how KDE was installed in tamzrod/dnp3 repository, which already has KDE runtime integrated. Understand the pattern for future KDE installation in other repositories.
+
+**Context**: Known coding agent is OpenHands. User wants to understand the installation pattern.
 
 ---
 
@@ -26,208 +28,223 @@ Investigate how to verify that KDE bootstrap will load correctly in OpenHands (a
 
 ---
 
-## Investigation Approach
+## Case Study: tamzrod/dnp3 Installation
 
-### The Challenge
+### Repository Overview
 
-Different AI agent runtimes (OpenHands, Claude Code, etc.) have different:
-- Context loading mechanisms
-- File system access patterns
-- Command execution environments
-- Entry point behaviors
+| Property | Value |
+|----------|-------|
+| **Repository** | tamzrod/dnp3 |
+| **Default Branch** | main |
+| **Language** | Go |
+| **KDE Installed** | Yes (2026-07-25) |
 
-### Research Questions
+### Files Installed in dnp3
 
-1. How does OpenHands load context at startup?
-2. What files does OpenHands read first?
-3. How can we make KDE bootstrap compatible?
-4. What verification mechanisms exist?
+```
+tamzrod/dnp3/
+├── .kde/                    # Complete KDE Runtime
+│   ├── bootstrap/            # Bootstrap gates
+│   ├── runtime/              # Core runtime
+│   ├── engines/              # Engines
+│   ├── experts/              # Experts
+│   ├── knowledge/            # Knowledge base
+│   ├── governance/           # Governance
+│   ├── seeds/                # Seeds
+│   ├── commands/             # Commands
+│   ├── capabilities/         # Capabilities
+│   ├── templates/            # Templates
+│   ├── verification/         # Verification
+│   └── laboratory/           # Laboratory structure
+├── .openhands/
+│   └── setup.sh              # OpenHands setup script
+├── laboratory/               # Project laboratory
+├── KDE-BOOTSTRAP-REPORT.md   # Installation report
+```
+
+### Installation Source
+
+From `KDE-BOOTSTRAP-REPORT.md`:
+
+| Property | Value |
+|----------|-------|
+| **Source Repository** | tamzrod/dnp3influxdatalogger |
+| **Source Branch** | bootstrap-template |
+| **Bootstrap Version** | 1.0.0 |
+| **Installation Date** | 2026-07-25 |
+| **Files Installed** | 46 files |
 
 ---
 
-## Findings
+## OpenHands Integration Pattern
 
-### How OpenHands Works
+### .openhands/setup.sh
 
-Based on OpenHands documentation and patterns:
-
-| Aspect | OpenHands Behavior |
-|--------|-------------------|
-| **Context loading** | Reads from AGENTS.md, repository files |
-| **Startup sequence** | Initializes with repository context |
-| **File access** | Has file system access, can read/write |
-| **Commands** | Executes bash commands |
-| **Skills** | Loads skills from .agents/skills/ or cache |
-
-### Key Files OpenHands Reads
-
-1. `AGENTS.md` - Repository context and memory
-2. `.agents/skills/` - Available skills
-3. Repository root files - README, docs
-4. Custom files - As specified in context
-
-### KDE Bootstrap Compatibility
-
-Current KDE structure:
-```
-.kde/bootstrap/      # Bootstrap gates
-laboratory/          # Rules and experiments
-seeds/               # Core principles
-BOOTSTRAP.md         # Entry point
-```
-
-**Question**: Does OpenHands read `laboratory/BOOTSTRAP.md` at startup?
-
----
-
-## Verification Approaches
-
-### Approach 1: AGENTS.md Entry
-
-Add KDE bootstrap entry to `AGENTS.md`:
-
-```markdown
-## KDE Entry Point
-
-On every session start:
-1. Read `laboratory/BOOTSTRAP.md`
-2. Run bootstrap gates: `python3 .kde/bootstrap/gates.py`
-3. Acknowledge rules before proceeding
-```
-
-**Pros**: Clear, documented
-**Cons**: Requires AGENTS.md modification
-
-### Approach 2: OpenHands Skill
-
-Create an OpenHands skill for KDE:
-
-```markdown
-# KDE Bootstrap Skill
-
-Triggers: Session start
-Actions:
-- Read laboratory/BOOTSTRAP.md
-- Run gates
-- Acknowledge rules
-```
-
-**Pros**: Native OpenHands integration
-**Cons**: Requires skill creation
-
-### Approach 3: Test Suite
-
-Create a verification script that tests bootstrap in isolation:
-
-```bash
-# test-openhands-compat.sh
-python3 .kde/bootstrap/gates.py
-# Check output for "PASSED"
-```
-
-**Pros**: Testable, repeatable
-**Cons**: Manual verification needed
-
----
-
-## Recommended Verification Methods
-
-### Method 1: Automated Test
-
-Create `scripts/test-openhands-compat.sh`:
+This script runs **automatically** when OpenHands conversation starts:
 
 ```bash
 #!/bin/bash
-# Test KDE bootstrap compatibility with OpenHands
+# KDE Runtime Bootstrap Setup
+# Runs automatically at OpenHands conversation start
 
-echo "Testing KDE Bootstrap for OpenHands Compatibility..."
-echo ""
+# 1. Install PyYAML (required for KDE Runtime)
+pip install pyyaml --quiet
 
-# Test 1: Bootstrap gates
-echo "Test 1: Bootstrap Gates"
-python3 .kde/bootstrap/gates.py
-if [ $? -eq 0 ]; then
-    echo "✓ Bootstrap gates pass"
-else
-    echo "✗ Bootstrap gates fail"
-    exit 1
-fi
+# 2. Install Go toolchain (project-specific)
+# Download and install Go 1.22.5
 
-# Test 2: BOOTSTRAP.md readable
-echo ""
-echo "Test 2: Entry Point Readable"
-if [ -f "laboratory/BOOTSTRAP.md" ]; then
-    echo "✓ BOOTSTRAP.md exists"
-else
-    echo "✗ BOOTSTRAP.md missing"
-    exit 1
-fi
+# 3. Download Go module dependencies
+go mod download
 
-# Test 3: Rules accessible
-echo ""
-echo "Test 3: Laboratory Rules"
-if [ -f "laboratory/LABORATORY-RULES.md" ]; then
-    echo "✓ Rules accessible"
-else
-    echo "✗ Rules missing"
-    exit 1
-fi
-
-echo ""
-echo "All tests passed. KDE compatible with OpenHands."
+# 4. Run KDE bootstrap gates
+python3 .kde/bootstrap/gates.py --project-type go
 ```
 
-### Method 2: Context Verification
+### How It Works
 
-Verify that OpenHands can read the right files:
+| Step | Action | Purpose |
+|------|--------|---------|
+| 1 | Change to project directory | Ensures correct working directory |
+| 2 | Install PyYAML | Required for KDE runtime |
+| 3 | Install Go | Project dependency |
+| 4 | Download dependencies | Prepare build environment |
+| 5 | Run bootstrap gates | Verify KDE readiness |
 
-```python
-def verify_openhands_compat():
-    """Verify KDE files are accessible to OpenHands."""
-    checks = [
-        ("laboratory/BOOTSTRAP.md", "Entry point"),
-        (".kde/bootstrap/gates.py", "Bootstrap gates"),
-        ("seeds/seed-001/principles/5-principles.md", "Core principles"),
-        ("laboratory/LABORATORY-RULES.md", "Laboratory rules"),
-    ]
-    
-    results = []
-    for path, desc in checks:
-        exists = Path(path).exists()
-        results.append((desc, exists))
-    
-    return results
+---
+
+## KDE Installation Pattern Discovered
+
+### For Go Projects
+
+```bash
+# Pattern from tamzrod/dnp3
+/workspace/project/dnp3   # Project directory
+  ├── .kde/              # KDE Runtime (from template)
+  ├── .openhands/
+  │   └── setup.sh        # OpenHands auto-run script
+  ├── laboratory/         # Project laboratory
+  └── (project files)
+```
+
+### For Python Projects
+
+Would need similar structure:
+```bash
+/workspace/project/python-project
+  ├── .kde/              # KDE Runtime
+  ├── .openhands/
+  │   └── setup.sh       # Python version setup
+  ├── laboratory/         # Project laboratory
+  └── (project files)
 ```
 
 ---
 
-## What We Need to Test
+## Key Files for KDE Installation
 
-### For OpenHands Compatibility
+### Required for Any Project
 
-| Check | Method | Pass Criteria |
-|-------|--------|---------------|
-| Bootstrap gates run | Script execution | Exit code 0 |
-| BOOTSTRAP.md readable | File access | Exists, readable |
-| Rules accessible | File access | Exists, readable |
-| Seeds available | File access | seed-001 exists |
-| AGENTS.md updated | Context loading | KDE entry present |
+| File | Purpose |
+|------|---------|
+| `.kde/bootstrap/gates.py` | Bootstrap gate verification |
+| `.kde/bootstrap/config.yaml` | Bootstrap configuration |
+| `laboratory/BOOTSTRAP.md` | Laboratory entry point |
+| `laboratory/LABORATORY-RULES.md` | Laboratory rules |
+| `seeds/seed-001/` | Core seed |
 
-### Verification Script Output
+### Required for OpenHands
 
-Expected for OpenHands compatibility:
+| File | Purpose |
+|------|---------|
+| `.openhands/setup.sh` | Auto-run at OpenHands start |
+
+### Optional but Recommended
+
+| File | Purpose |
+|------|---------|
+| `KDE-BOOTSTRAP-REPORT.md` | Installation documentation |
+| `AGENTS.md` | Agent context (if needed) |
+
+---
+
+## Installation Workflow
+
+### 1. Prepare KDE Template
+
+Create a `bootstrap-template` branch in KDE source with:
+- All `.kde/` files
+- All `laboratory/` structure
+- `seeds/` directory
+- Bootstrap scripts
+
+### 2. Install to Target Repository
+
+```bash
+# Clone target repository
+git clone https://github.com/user/project.git
+cd project
+
+# Copy KDE from template
+cp -r /path/to/kde-template/.kde .
+cp -r /path/to/kde-template/laboratory .
+
+# Add OpenHands setup
+mkdir -p .openhands
+cp /path/to/kde-template/.openhands/setup.sh .openhands/
+
+# Update identity
+# (Replace template project name with actual project name)
+```
+
+### 3. Normalize for Target
+
+From `KDE-BOOTSTRAP-REPORT.md`:
+
+| Step | Action |
+|------|--------|
+| 1 | Update runtime name |
+| 2 | Update project name |
+| 3 | Update repository URL |
+| 4 | Update naming conventions |
+| 5 | Update .gitignore |
+
+---
+
+## Findings Summary
+
+### How dnp3 Has KDE
+
+1. **KDE Runtime**: Full `.kde/` directory installed
+2. **Laboratory**: Project-specific `laboratory/` directory
+3. **OpenHands**: `.openhands/setup.sh` for auto-initialization
+4. **Bootstrap Gates**: Working for Go project type
+5. **Documentation**: `KDE-BOOTSTRAP-REPORT.md` records installation
+
+### What Makes It Work for OpenHands
+
+| Component | Purpose |
+|-----------|---------|
+| `.openhands/setup.sh` | Runs automatically at OpenHands start |
+| `gates.py --project-type go` | Verifies Go environment |
+| `pip install pyyaml` | Installs KDE dependencies |
+| `laboratory/` | Contains project-specific investigations |
+
+### Key Insight
+
+**The pattern is NOT just files—it's a bootstrap chain:**
 
 ```
-Testing KDE Bootstrap for OpenHands Compatibility...
-======================================================================
-Test 1: Bootstrap Gates
-  ✓ PASSED
-Test 2: Entry Point Readable
-  ✓ BOOTSTRAP.md exists
-Test 3: Laboratory Rules
-  ✓ Rules accessible
-======================================================================
-All tests passed. KDE compatible with OpenHands.
+OpenHands start
+    ↓
+openhands/setup.sh runs
+    ↓
+Install dependencies (PyYAML, Go)
+    ↓
+Run KDE bootstrap gates
+    ↓
+Verify laboratory exists
+    ↓
+Ready for investigation
 ```
 
 ---
@@ -236,51 +253,32 @@ All tests passed. KDE compatible with OpenHands.
 
 | ID | Recommendation | Priority |
 |----|---------------|----------|
-| R1 | Create `scripts/test-openhands-compat.sh` | HIGH |
-| R2 | Add KDE entry to `AGENTS.md` | HIGH |
-| R3 | Create OpenHands skill for KDE | MEDIUM |
-| R4 | Document OpenHands testing procedure | MEDIUM |
-
----
-
-## Key Finding: No AGENTS.md Exists
-
-Currently, KDE does not have an `AGENTS.md` file. This file is the standard way AI agents share context and persistent memory.
-
-### Why This Matters
-
-| Agent | Reads AGENTS.md? |
-|-------|-----------------|
-| OpenHands | Yes |
-| Claude Code | Yes (if exists) |
-| Other agents | Typically yes |
-
-**Without AGENTS.md**, agents may not automatically discover KDE's bootstrap and rules.
-
-### Recommendation
-
-Create `AGENTS.md` with:
-1. KDE entry point
-2. Bootstrap location
-3. Key files to read
-4. Rules acknowledgment
+| R1 | Document KDE installation pattern | HIGH |
+| R2 | Create installation script/template | HIGH |
+| R3 | Add AGENTS.md for agent context | MEDIUM |
+| R4 | Create bootstrap-template branch | HIGH |
 
 ---
 
 ## Awaiting Approval
 
-**Current Status**: Investigation documented
+**Current Status**: Investigation complete, patterns identified
 
-**Recommended path forward**:
-1. **R1**: Create `scripts/test-openhands-compat.sh` to verify compatibility
-2. **R2**: Create `AGENTS.md` with KDE entry point
-3. **R3**: Create OpenHands skill for KDE bootstrap
-4. **R4**: Document OpenHands testing procedure
+**Key Finding**: KDE installation in dnp3 works because:
+1. `.openhands/setup.sh` runs automatically on OpenHands start
+2. Dependencies (PyYAML) are installed
+3. Bootstrap gates verify environment
+4. Laboratory structure is in place
 
-**Please approve which recommendations to implement.**
+**Recommended next steps**:
+1. Document the installation pattern
+2. Create reusable installation script
+3. Add agent context (AGENTS.md)
+
+**Please approve to proceed.**
 
 ---
 
-**Status**: AWAITING_HUMAN_AUTHORIZATION
+**Status**: COMPLETED (investigation only, awaiting approval for recommendations)
 **Author**: OpenHands Agent
 **Date**: 2026-07-26
