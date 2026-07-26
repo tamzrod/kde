@@ -1,5 +1,15 @@
 # Knowledge Discovery Engine (KDE) Research
 
+## What is KDE? (Quick Answer)
+
+**KDE is a scientific methodology for discovering and validating knowledge using AI agents under human oversight.**
+
+In simple terms: AI does the research, humans approve the results.
+
+For a 5-minute overview, see: [docs/getting-started/quick-start.md](./docs/getting-started/quick-start.md)
+
+---
+
 ## Overview
 
 This repository contains research aimed at defining **Knowledge Discovery Engine**.
@@ -12,7 +22,9 @@ This is a research-first initiative. We do not know what KDE will become. This r
 
 ## Getting Started
 
-**For new sessions, start here:** [`laboratory/BOOTSTRAP.md`](./laboratory/BOOTSTRAP.md)
+**For human readers**: See [`docs/`](./docs/) for human-friendly documentation.
+
+**For AI agents (internal sessions)**: See [`laboratory/BOOTSTRAP.md`](./laboratory/BOOTSTRAP.md)
 
 The BOOTSTRAP.md is the canonical entry point for all KDE sessions. It provides the Runtime initialization procedure and ensures consistent session startup across all experiments and investigations.
 
