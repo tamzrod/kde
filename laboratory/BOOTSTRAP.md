@@ -1,7 +1,7 @@
 # KDE Bootstrap
 
-**Document Version**: 1.0.0
-**Date**: 2026-07-20
+**Document Version**: 1.1.0
+**Date**: 2026-07-26
 **Status**: PRODUCTION
 **Purpose**: Canonical entry point for all KDE sessions
 
@@ -57,6 +57,120 @@ Execute the KDE Runtime initialization by invoking the `shttp_initialize` tool o
 2. Load the Default Engine: **KDE-ENGINE-002 (Beta)** v0.1.0
 3. Load the Default Seed: **SEED-001 (Genesis)** v1.0.0
 4. Verify Runtime state transitions to: **READY**
+
+---
+
+## ⚠️ Authority Declaration
+
+**CRITICAL**: Before starting ANY task, you MUST declare your authority level.
+
+### Task Types
+
+| Type | Description | Authority |
+|------|-------------|-----------|
+| **INVESTIGATE** | Research, analyze, document findings | Document only. Wait for approval to implement. |
+| **IMPLEMENT** | Execute, create, modify | May proceed with human approval. |
+| **REPORT** | Summarize existing work | Document only. No new work. |
+
+### Declaration Format
+
+For every task, state:
+
+```
+## Authority Declaration
+
+Task type: [INVESTIGATE / IMPLEMENT / REPORT]
+Authority level: [EXPLICIT / IMPLICIT]
+Human approval received: [YES / NO / N/A]
+
+If IMPLEMENT without approval:
+  → STOP
+  → Request approval
+  → Wait for explicit "proceed"
+```
+
+### Examples
+
+**Correct**:
+```
+## Authority Declaration
+Task type: INVESTIGATE
+Authority level: EXPLICIT
+Human approval received: NO
+→ Document findings, wait for approval
+```
+
+**Violation**:
+```
+## Authority Declaration  
+Task type: INVESTIGATE
+Authority level: IMPLICIT (assumed)
+Human approval received: NO
+→ Should have STOPPED, not implemented
+```
+
+---
+
+## ⚠️ Pre-Work Checklist
+
+**Before starting ANY task**, complete this checklist:
+
+```
+PRE-WORK CHECKLIST
+==================
+□ Bootstrap gates passed (B1, B2, B3)
+□ Task type declared: [_______________]
+□ Authority level understood: [_______________]
+□ Investigation documented (if INVESTIGATE): [YES / N/A]
+□ Human approval received (if IMPLEMENT): [YES / N/A]
+
+If ANY answer is NO or MISSING:
+  → DO NOT PROCEED
+  → Request clarification
+  → Wait for explicit instruction
+```
+
+### Checklist Meanings
+
+| Item | What It Verifies |
+|------|------------------|
+| Bootstrap gates | Environment is ready |
+| Task type declared | You know what kind of task this is |
+| Authority level | You understand your limits |
+| Investigation documented | (INVESTIGATE only) Findings are recorded |
+| Human approval | (IMPLEMENT only) Human said "proceed" |
+
+---
+
+## Violation Prevention
+
+### Red Flags
+
+Stop and ask if you encounter:
+
+| Pattern | What It Means | Correct Response |
+|---------|---------------|------------------|
+| "Investigate X" | No approval implied | Document, then ask |
+| "Look into" | Vague instruction | Clarify intent |
+| "Figure out" | Action might be expected | Ask: investigate or implement? |
+| No explicit approval | Authority unclear | Ask before proceeding |
+
+### Recovery Protocol
+
+If you realize you've violated a rule:
+
+1. **Stop** - Do not continue the violating behavior
+2. **Acknowledge** - State clearly what rule was broken
+3. **Document** - Record in `laboratory/violations/VIO-XXX/`
+4. **Wait** - Do not proceed without explicit approval
+
+---
+
+## Recent Violations
+
+For reference, see the [Violations Registry](../violations/README.md).
+
+**Current Violations**: 1 (VIO-001 - Auto-continuation without approval)
 
 **Note**: Runtime uses human-configured defaults. The default Engine and Seed are determined by `/governance/runtime/defaults.yaml`, not by Engine status.
 
