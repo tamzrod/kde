@@ -1,0 +1,46 @@
+{
+  "kde_version": "1.0.0",
+  "runtime_requirements": {
+    "minimum_python": "3.10",
+    "required_modules": [
+      "engines",
+      "experts",
+      "knowledge",
+      "governance",
+      "seeds"
+    ],
+    "optional_modules": [
+      "commands",
+      "capabilities",
+      "templates",
+      "verification"
+    ]
+  },
+  "python_dependencies": {
+    "required": [
+      {
+        "module_name": "yaml",
+        "minimum_version": "5.0",
+        "import_statement": "import yaml",
+        "description": "YAML parsing for configuration files"
+      }
+    ],
+    "standard_library": [
+      "json",
+      "os",
+      "sys",
+      "time",
+      "datetime",
+      "pathlib",
+      "typing",
+      "dataclasses",
+      "enum"
+    ]
+  },
+  "system_checks": [
+    "filesystem_access",
+    "configuration_valid",
+    "paths_exist",
+    "python_dependencies_installed"
+  ]
+}
