@@ -4,20 +4,21 @@ runtime:
   name: "KDE Research Runtime"
   version: "1.0.0"
   project: "KDE Research"
-  repository: "https://github.com/OpenHands/kde"
+  repository: "https://github.com/tamzrod/kde"
   initialized: true
   bootstrap_date: "2026-07-26"
 
+# Module list for kde repository:
+# - Core modules at root: engines, experts, knowledge, governance, seeds, runtime
+# - Bootstrap under .kde/: .kde (contains bootstrap, commands, capabilities, templates, verification)
 modules:
   - engines
   - experts
   - knowledge
   - governance
   - seeds
-  - commands
-  - capabilities
-  - templates
-  - verification
+  - runtime
+  - .kde
 
 paths:
   engines: "./engines"
@@ -25,9 +26,8 @@ paths:
   knowledge: "./knowledge"
   governance: "./governance"
   seeds: "./seeds"
-  commands: "./commands"
-  capabilities: "./capabilities"
-  templates: "./templates"
+  runtime: "./runtime"
+  .kde: "./.kde"
   verification: "./verification"
 
 settings:

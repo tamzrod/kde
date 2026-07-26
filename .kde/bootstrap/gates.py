@@ -671,7 +671,7 @@ def verify_all_gates(project_type: str = "go", quick: bool = False) -> GateResul
     return result
 
 
-def print_gate_result(result: GateResult) -> None:
+def print_gate_result(result: GateResult, strict: bool = False) -> None:
     """Print a formatted gate result."""
     print("=" * 70)
     print("KDE BOOTSTRAP GATE VERIFICATION")
@@ -695,9 +695,18 @@ def print_gate_result(result: GateResult) -> None:
             print(f"  [{status}] {check.name}: {check.details}")
         print()
     
+    # In strict mode, any failed check blocks operations
+    blocking_failed = strict and not result.passed
+    final_result = "BLOCKED" if blocking_failed else ("PASSED" if result.can_proceed else "FAILED")
+    
     print("=" * 70)
-    print(f"RESULT: {'PASSED' if result.can_proceed else 'FAILED'}")
-    print(f"Summary: {result.summary}")
+    if blocking_failed:
+        print(f"RESULT: ⚠️  {final_result}")
+        print(f"Summary: Operations BLOCKED due to critical gate failures.")
+        print("         Run bootstrap gates before proceeding with investigation.")
+    else:
+        print(f"RESULT: {final_result}")
+        print(f"Summary: {result.summary}")
     print("=" * 70)
 
 
@@ -728,6 +737,67 @@ def export_gate_result(result: GateResult, path: Path) -> None:
 
 
 # =============================================================================
+# REC-001: Agent Framework Integration
+# =============================================================================
+
+def verify_before_operation(project_type: str = "go", strict: bool = True) -> GateResult:
+    """
+    REC-001: Agent Framework Integration
+    
+    This function should be called at the START of any agent operation
+    to verify bootstrap gates before proceeding.
+    
+    Usage in agent code:
+        from .kde.bootstrap.gates import verify_before_operation
+        
+        result = verify_before_operation()
+        if not result.passed:
+            print("CRITICAL: Bootstrap gates failed. Cannot proceed.")
+            print(f"Failed gates: {result.failed_gates}")
+            return  # or raise an exception
+            
+    Args:
+        project_type: Type of project ("go", "python", etc.)
+        strict: If True, any gate failure is treated as blocking
+        
+    Returns:
+        GateResult with verification results
+    """
+    result = verify_all_gates(project_type, quick=True)
+    
+    # In strict mode, any failure means cannot proceed
+    if strict and not result.passed:
+        result.can_proceed = False
+        result.summary = f"Bootstrap gates FAILED: {len([c for c in result.checks if not c.passed])}/{len(result.checks)} checks failed. CANNOT proceed."
+    
+    return result
+
+
+def require_gates_passed(func):
+    """
+    REC-001: Decorator for agent operations
+    
+    Use this decorator to enforce bootstrap gate verification
+    before any agent operation.
+    
+    Usage:
+        @require_gates_passed
+        def investigate_github_repo(repo_url):
+            # This will only execute if bootstrap gates passed
+            ...
+    """
+    def wrapper(*args, **kwargs):
+        result = verify_before_operation(strict=True)
+        if not result.passed:
+            raise RuntimeError(
+                f"Bootstrap gates failed. Cannot execute {func.__name__}. "
+                f"Failed gates: {result.failed_gates}"
+            )
+        return func(*args, **kwargs)
+    return wrapper
+
+
+# =============================================================================
 # CLI Interface
 # =============================================================================
 
@@ -752,6 +822,11 @@ if __name__ == "__main__":
         action="store_true",
         help="Output as JSON"
     )
+    parser.add_argument(
+        "--strict",
+        action="store_true",
+        help="STRICT MODE: Block operations if ANY gate fails. Use this for enforcement."
+    )
     quick_group = parser.add_mutually_exclusive_group()
     quick_group.add_argument(
         "--quick",
@@ -768,15 +843,17 @@ if __name__ == "__main__":
     
     # --full is the default, --quick enables quick mode
     quick_mode = args.quick
+    strict_mode = args.strict
     
     result = verify_all_gates(args.project_type, quick=quick_mode)
     
     if args.json:
-        print(json.dumps({
+        output = {
             "timestamp": result.timestamp,
             "project_type": result.project_type,
             "passed": result.passed,
             "can_proceed": result.can_proceed,
+            "strict_blocked": strict_mode and not result.passed,
             "failed_gates": result.failed_gates,
             "summary": result.summary,
             "checks": [
@@ -788,13 +865,19 @@ if __name__ == "__main__":
                 }
                 for c in result.checks
             ]
-        }, indent=2))
+        }
+        print(json.dumps(output, indent=2))
     else:
-        print_gate_result(result)
+        print_gate_result(result, strict=strict_mode)
     
     if args.export:
         export_gate_result(result, args.export)
         print(f"\nResult exported to: {args.export}")
     
     # Exit with appropriate code
-    sys.exit(0 if result.can_proceed else 1)
+    # In strict mode: 1 if any gate failed, else 0
+    # In normal mode: 1 only if critical gates failed (can_proceed=False), else 0
+    if strict_mode:
+        sys.exit(0 if result.passed else 1)
+    else:
+        sys.exit(0 if result.can_proceed else 1)

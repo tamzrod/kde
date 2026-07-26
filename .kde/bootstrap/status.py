@@ -75,29 +75,51 @@ class BootstrapStatusChecker:
             current = Path(__file__).resolve() if '__file__' in dir() else Path.cwd()
             if '.kde' in current.parts:
                 idx = current.parts.index('.kde')
-                kde_root = Path(*current.parts[:idx+1])
+                kde_root = Path(*current.parts[:idx])
             else:
-                kde_root = Path.cwd() / '.kde'
+                kde_root = Path.cwd()
         
         self.kde_root = kde_root
-        self.modules_dir = kde_root
+        # For kde repository: modules are at root level (engines/, governance/, etc.)
+        # For tamzrod/dnp3: modules are under .kde/ (.kde/engines/, etc.)
+        # Check which structure is in use
+        if (kde_root / '.kde').exists() and (kde_root / '.kde' / 'engines').exists():
+            self.modules_dir = kde_root / '.kde'
+        else:
+            self.modules_dir = kde_root
         
     def get_module_list(self) -> List[str]:
         """Get list of expected modules from config."""
-        config_path = self.kde_root / 'bootstrap' / 'config.yaml'
-        if config_path.exists():
-            try:
-                import yaml
-                with open(config_path) as f:
-                    config = yaml.safe_load(f)
-                return config.get('modules', [])
-            except:
-                pass
+        # Check multiple locations for config.yaml
+        config_paths = [
+            self.kde_root / '.kde' / 'bootstrap' / 'config.yaml',  # kde repository
+            self.modules_dir / '.kde' / 'bootstrap' / 'config.yaml',  # tamzrod/dnp3
+            self.kde_root / 'bootstrap' / 'config.yaml',
+            self.modules_dir / 'bootstrap' / 'config.yaml'
+        ]
         
-        # Fallback to directory listing
-        return ['engines', 'experts', 'knowledge', 'governance', 
-                'seeds', 'commands', 'capabilities', 'templates', 
-                'verification', 'runtime', 'bootstrap']
+        for config_path in config_paths:
+            if config_path.exists():
+                try:
+                    import yaml
+                    with open(config_path) as f:
+                        config = yaml.safe_load(f)
+                    return config.get('modules', [])
+                except:
+                    pass
+        
+        # Fallback to directory listing based on repository structure
+        # For kde repository: core modules at root, bootstrap-specific under .kde/
+        # For tamzrod/dnp3: all modules under .kde/
+        if self.modules_dir == self.kde_root:
+            # tamzrod/dnp3 structure
+            return ['engines', 'experts', 'knowledge', 'governance', 
+                    'seeds', 'commands', 'capabilities', 'templates', 
+                    'verification', 'runtime', 'bootstrap']
+        else:
+            # kde repository structure: core modules at root, bootstrap under .kde/
+            return ['engines', 'experts', 'knowledge', 'governance', 
+                    'seeds', 'runtime', '.kde']
     
     def compute_checksum(self, path: Path) -> Optional[str]:
         """Compute SHA256 checksum of a file or directory."""
@@ -115,28 +137,56 @@ class BootstrapStatusChecker:
     
     def verify_module(self, module_name: str) -> ModuleStatus:
         """Verify a single module."""
-        module_path = self.modules_dir / module_name
         issues = []
         
-        exists = module_path.exists()
-        valid = exists
-        
-        if not exists:
-            issues.append(f"Module directory not found: {module_name}")
-            valid = False
-        elif not module_path.is_dir():
-            issues.append(f"Path is not a directory: {module_name}")
-            valid = False
+        # Handle .kde as a special module
+        if module_name == '.kde':
+            module_path = self.kde_root / '.kde'
+            exists = module_path.exists()
+            valid = exists and (module_path / 'bootstrap' / 'gates.py').exists()
+            if not valid:
+                if not exists:
+                    issues.append("Module directory not found: .kde")
+                else:
+                    issues.append("Missing .kde/bootstrap/gates.py")
         else:
-            # Check for required files
-            if module_name == 'runtime':
-                if not (module_path / 'state.json').exists():
-                    issues.append("Missing runtime/state.json")
-                    valid = False
-            elif module_name == 'bootstrap':
-                if not (module_path / 'config.yaml').exists():
-                    issues.append("Missing bootstrap/config.yaml")
-                    valid = False
+            module_path = self.modules_dir / module_name
+            exists = module_path.exists()
+            valid = exists
+            
+            if not exists:
+                # For kde repository, modules are at root level, not under .kde
+                # Check if module exists at root level when not found under modules_dir
+                root_module_path = self.kde_root / module_name
+                if root_module_path.exists() and root_module_path.is_dir():
+                    module_path = root_module_path
+                    exists = True
+                    valid = True
+            
+            if not exists:
+                issues.append(f"Module directory not found: {module_name}")
+                valid = False
+            elif not module_path.is_dir():
+                issues.append(f"Path is not a directory: {module_name}")
+                valid = False
+            else:
+                # Check for required files
+                if module_name == 'runtime':
+                    state_candidates = [
+                        module_path / 'state.json',
+                        self.kde_root / 'runtime' / 'state.json'
+                    ]
+                    if not any(c.exists() for c in state_candidates):
+                        issues.append("Missing runtime/state.json")
+                        valid = False
+                elif module_name == 'bootstrap':
+                    config_candidates = [
+                        module_path / 'config.yaml',
+                        self.kde_root / 'bootstrap' / 'config.yaml'
+                    ]
+                    if not any(c.exists() for c in config_candidates):
+                        issues.append("Missing bootstrap/config.yaml")
+                        valid = False
         
         checksum = None
         if module_path.exists():
@@ -158,12 +208,23 @@ class BootstrapStatusChecker:
         issues = []
         warnings = []
         
-        # Get state
-        state_file = self.kde_root / 'runtime' / 'state.json'
+        # Get state - check both locations for state.json
+        state_file = None
+        state_file_candidates = [
+            self.kde_root / 'runtime' / 'state.json',
+            self.modules_dir / 'runtime' / 'state.json',
+            self.kde_root / '.kde' / 'runtime' / 'state.json'
+        ]
+        
+        for candidate in state_file_candidates:
+            if candidate.exists():
+                state_file = candidate
+                break
+        
         state = "unknown"
         initialized = False
         
-        if state_file.exists():
+        if state_file:
             try:
                 with open(state_file) as f:
                     state_data = json.load(f)
@@ -180,7 +241,13 @@ class BootstrapStatusChecker:
         
         # Check for unexpected directories
         expected = set(self.get_module_list())
-        actual = set(d.name for d in self.modules_dir.iterdir() if d.is_dir() and not d.name.startswith('__'))
+        # Check both modules_dir and kde_root for actual directories
+        dirs_to_check = []
+        if self.modules_dir.exists():
+            dirs_to_check.extend(self.modules_dir.iterdir())
+        if self.kde_root.exists() and self.kde_root != self.modules_dir:
+            dirs_to_check.extend(self.kde_root.iterdir())
+        actual = set(d.name for d in dirs_to_check if d.is_dir() and not d.name.startswith('__') and not d.name.startswith('.'))
         unexpected = actual - expected
         if unexpected:
             warnings.append(f"Unexpected directories: {', '.join(unexpected)}")
