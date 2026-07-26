@@ -193,6 +193,7 @@ docs/
 - [Get started in 5 minutes](./getting-started/quick-start.md)
 - [Glossary of terms](./getting-started/terminology.md)
 - [How to contribute](./guides/contributing.md)
+- [Integrate KDE into your project](./guides/integration.md)
 
 ---
 
