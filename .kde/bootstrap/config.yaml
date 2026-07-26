@@ -1,0 +1,36 @@
+# KDE Runtime Bootstrap Configuration
+version: "1.0.0"
+runtime:
+  name: "KDE Research Runtime"
+  version: "1.0.0"
+  project: "KDE Research"
+  repository: "https://github.com/tamzrod/kde"
+  initialized: true
+  bootstrap_date: "2026-07-26"
+
+# Module list for kde repository:
+# - Core modules at root: engines, experts, knowledge, governance, seeds, runtime
+# - Bootstrap under .kde/: .kde (contains bootstrap, commands, capabilities, templates, verification)
+modules:
+  - engines
+  - experts
+  - knowledge
+  - governance
+  - seeds
+  - runtime
+  - .kde
+
+paths:
+  engines: "./engines"
+  experts: "./experts"
+  knowledge: "./knowledge"
+  governance: "./governance"
+  seeds: "./seeds"
+  runtime: "./runtime"
+  .kde: "./.kde"
+  verification: "./verification"
+
+settings:
+  strict_mode: true
+  auto_verify: true
+  preserve_history: true
