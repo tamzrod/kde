@@ -1,38 +1,35 @@
 # Getting Started
 
-**Purpose**: Prerequisites and setup
-**Audience**: New users
+---
+
+## The Simple Idea
+
+Starting KDE is like starting a research session. Before you begin investigating, you check that your tools are ready, your environment is set, and your governance is active.
+
+This is the pre-flight check.
 
 ---
 
-## Prerequisites
+## What You Need
 
-### Software Requirements
-
-| Requirement | Version | Purpose |
-|-------------|---------|---------|
-| Python | 3.10+ | Runtime execution |
-| Git | Latest | Version control |
-| Terminal | Any | Command interface |
-
-### Environment Requirements
-
-- Write access to working directory
-- Network access for Git operations
-- Sufficient disk space for repository
+| Requirement | Version | Why |
+|-------------|---------|-----|
+| Python | 3.10+ | Runs the runtime |
+| Git | Any recent | Manages knowledge base |
+| Terminal | Any | Interface to KDE |
 
 ---
 
 ## Installation
 
-### 1. Clone the Repository
+### Step 1: Get the Code
 
 ```bash
 git clone https://github.com/tamzrod/kde.git
 cd kde
 ```
 
-### 2. Verify Installation
+### Step 2: Verify Everything Works
 
 Run the pre-flight check:
 
@@ -40,7 +37,8 @@ Run the pre-flight check:
 python3 -m runtime.ecu
 ```
 
-Expected output:
+You should see:
+
 ```
 ■ CHECK 1: INITIALIZATION
   Status: ✅ READY
@@ -59,15 +57,13 @@ Expected output:
   Status: ✅ HEALTHY
 ```
 
-### 3. Initialize Session
-
-The first command in any session should be:
+### Step 3: Start Your Session
 
 ```
 start engine
 ```
 
-This initializes the KDE Runtime with all components.
+This initializes everything. You'll see confirmation when KDE is ready.
 
 ---
 
@@ -75,45 +71,31 @@ This initializes the KDE Runtime with all components.
 
 | Task | Command |
 |------|---------|
-| Start runtime | `start engine` |
+| Start | `start engine` |
 | Check status | `pre-flight check` |
 | Verify readiness | `mission ready` |
 | View state | `check state` |
 
 ---
 
-## First Steps
-
-Once installed:
-
-1. [Run your first investigation](first-investigation.md)
-2. Review [Core Concepts](../5-core-concepts/engines-and-seeds.md)
-3. Explore [How It Works](../6-how-it-works/processes.md)
-
----
-
-## Troubleshooting
+## Common Issues
 
 ### Import Errors
-
-If you encounter import errors:
 
 ```bash
 export PYTHONPATH=/path/to/kde:$PYTHONPATH
 ```
 
-### Runtime Not Ready
+### Not Ready
 
-If runtime shows not ready:
-
-1. Check Python version: `python3 --version`
-2. Verify repository integrity: `git status`
-3. Try restarting: `start engine`
+1. Check Python: `python3 --version`
+2. Check repo: `git status`
+3. Restart: `start engine`
 
 ---
 
-## See Also
+## What Comes Next
 
-- [First Investigation](first-investigation.md) - Run your first investigation
-- [Core Concepts](../5-core-concepts/engines-and-seeds.md) - Understand KDE components
-- [Commands](../9-reference/commands.md) - Full command reference
+With KDE running, you're ready to investigate.
+
+**[Run Your First Investigation](first-investigation.md)** — See KDE in action

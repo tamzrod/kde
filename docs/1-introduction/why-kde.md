@@ -1,59 +1,78 @@
 # Why KDE?
 
-**Purpose**: The problems KDE solves
-**Audience**: Evaluators, first-time readers
+---
+
+## The Problem
+
+Knowledge work has a productivity problem.
+
+Not in producing content—AI can generate text faster than ever. The problem is producing *valid* knowledge. Knowledge that you can trust. Knowledge that explains reality. Knowledge that persists.
+
+Consider what happens in typical organizations:
+
+- A team lead declares a technical direction
+- Nobody challenges it because seniority
+- Six months later, the direction is wrong
+- Nobody remembers why it was chosen
+
+The knowledge was created. It wasn't *validated*. And when it failed, the organization lost more than time—they lost trust in their own processes.
 
 ---
 
-## The Knowledge Work Problem
+## Real-World Observation
 
-Modern knowledge work faces critical challenges:
+Two doctors see the same patient. Doctor A prescribes based on experience. Doctor B runs tests, reviews literature, and explains the reasoning.
 
-| Challenge | Description | Impact |
-|-----------|-------------|--------|
-| **Validation Gap** | Claims go unexamined | False knowledge propagates |
-| **Evidence Loss** | Reasoning not documented | Institutional memory fades |
-| **Autonomy Risk** | AI operates without oversight | Unchecked conclusions |
-| **Fragmentation** | Knowledge scattered | Duplication, contradiction |
+Doctor B's patient recovers faster—not because the prescription was different, but because the *understanding* was deeper. When the next patient arrives with similar symptoms, Doctor B knows why the treatment works.
+
+Experience without understanding is fragile. Understanding earned through evidence is robust.
 
 ---
 
 ## What KDE Addresses
 
-### 1. Systematic Reasoning
+### Validation Gap
 
-KDE provides engines that structure reasoning:
+Most knowledge work produces claims, not validated conclusions.
 
-- Hypothesis formation
-- Evidence collection
-- Inference validation
-- Conclusion testing
+KDE closes this gap: every significant claim must be supported by evidence, evaluated by reasoning, and approved by humans.
 
-### 2. Evidence Preservation
+### Evidence Loss
 
-Every KDE investigation documents:
+Organizations forget why they made decisions. KDE preserves the reasoning, not just the conclusion.
 
-- Source materials
-- Logical chains
-- Assumptions made
-- Confidence levels
+When knowledge is questioned, KDE can trace it back: "Why do we believe this?" becomes answerable.
 
-### 3. Human Oversight
+### Autonomy Risk
 
-KDE embeds human authority:
+AI can generate confident text about anything. Confident text isn't accurate text.
 
-- Authorization before action
-- Approval for conclusions
-- Promotion of knowledge
-- Governance of changes
+KDE treats AI as an investigation assistant, not an authority. Humans govern the conclusions.
 
-### 4. Knowledge Cultivation
+### Fragmentation
 
-KDE treats knowledge as a growing system:
+Knowledge lives in scattered documents, conversations, and memories. KDE cultivates a unified knowledge base where discoveries build on each other.
 
-- Discovery → Validation → Promotion → Application
-- Continuous improvement
-- Traceable evolution
+---
+
+## The Enduring Principle
+
+KDE addresses these problems through one commitment: **evidence before conclusions**.
+
+This isn't about bureaucracy. It's about producing knowledge that survives scrutiny, that persists through personnel changes, that earns trust rather than demanding it.
+
+---
+
+## When KDE Works Best
+
+KDE is worth the investment when:
+
+- **Decisions have consequences** — Wrong conclusions are expensive
+- **Knowledge must persist** — People leave, knowledge should remain
+- **AI is involved** — Human oversight prevents autonomous errors
+- **Systems thinking matters** — Understanding why beats knowing what
+
+KDE is not always necessary. For simple facts, ask a search engine. For complex understanding, use KDE.
 
 ---
 
@@ -62,25 +81,14 @@ KDE treats knowledge as a growing system:
 | Approach | Validation | Evidence | Oversight | Evolution |
 |----------|------------|----------|-----------|-----------|
 | **Ad-hoc** | None | Lost | None | None |
-| **Traditional Research** | Peer review | Documented | Initial only | Slow |
-| **AI-Assisted** | Variable | Partial | Absent | None |
+| **Traditional** | Peer review | Documented | Initial only | Slow |
+| **AI-assisted** | Variable | Partial | Absent | None |
 | **KDE** | Systematic | Complete | Embedded | Continuous |
 
 ---
 
-## When KDE Works Best
+## The Next Step
 
-KDE is particularly valuable when:
+If you recognize these problems in your own work, the next section will show you how KDE approaches solving them.
 
-- Decisions require evidence-based reasoning
-- Knowledge must be preserved for future use
-- AI assistance requires human oversight
-- Systematic investigation beats intuition
-
----
-
-## See Also
-
-- [What is KDE](what-is-kde.md) - Core concepts
-- [Vision](vision.md) - Long-term purpose
-- [Core Concepts](../5-core-concepts/engines-and-seeds.md) - How KDE works
+**[What is KDE](what-is-kde.md)** — Understanding the methodology

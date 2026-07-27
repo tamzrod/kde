@@ -1,70 +1,74 @@
 # First Investigation
 
-**Purpose**: Run your first KDE investigation
-**Audience**: New users
+---
+
+## The Simple Idea
+
+Running an investigation is like flying a plane. You don't just take off—you check systems, verify readiness, and follow a checklist.
+
+KDE's commands are this checklist. Each one verifies something before you proceed.
 
 ---
 
-## Overview
+## Real-World Observation
 
-This guide walks through running a complete KDE investigation.
+A pilot doesn't guess whether the engines are ready. They check. They don't assume the fuel is full. They verify. The pre-flight check isn't optional—it's how you know you're ready.
 
----
-
-## Step 1: Start the Engine
-
-Every session begins with:
-
-```
-start engine
-```
-
-This initializes:
-- Engine selection
-- Seed loading
-- Runtime configuration
-- Policy verification
+KDE's investigation workflow is the same. Before each step, you verify.
 
 ---
 
-## Step 2: Run Pre-Flight Check
+## The Investigation Flow
 
-Verify system readiness:
-
-```
-pre-flight check
-```
-
-Review the five checks:
-1. **Initialization** - Runtime ready
-2. **Engine Registry** - Engines available
-3. **Seed Registry** - Seeds loaded
-4. **Policy Layer** - Rules active
-5. **System Health** - All checks pass
-
----
-
-## Step 3: Verify Mission Ready
-
-Confirm operational status:
-
-```
-mission ready
-```
-
-Expected: System confirms readiness for investigation.
-
----
-
-## Step 4: Define Your Investigation
-
-A KDE investigation follows this structure:
+Every KDE investigation follows this structure:
 
 ```
 PROPOSED → APPROVED → IN_PROGRESS → REVIEW → COMPLETE
 ```
 
-### Investigation Template
+Think of it as: "Can we do this?" → "Yes, proceed." → "Do it." → "Did you do it right?" → "Done."
+
+---
+
+## Step 1: Start the Engine
+
+```
+start engine
+```
+
+This initializes everything: engine, seeds, runtime, policies.
+
+---
+
+## Step 2: Pre-Flight Check
+
+```
+pre-flight check
+```
+
+Verifies five things:
+
+1. **Initialization** — Runtime ready
+2. **Engine Registry** — Engines available
+3. **Seed Registry** — Seeds loaded
+4. **Policy Layer** — Rules active
+5. **System Health** — All systems go
+
+---
+
+## Step 3: Confirm Mission Ready
+
+```
+mission ready
+```
+
+System confirms you're ready to investigate.
+
+---
+
+## Step 4: Define Your Investigation
+
+A complete investigation looks like this:
 
 ```markdown
 # [Title]
@@ -74,30 +78,19 @@ PROPOSED → APPROVED → IN_PROGRESS → REVIEW → COMPLETE
 **Engine**: KDE-ENGINE-XXX
 **Seed**: SEED-XXX
 
----
-
 ## Objective
-
 What are you investigating?
 
 ## Scope
-
 What does this cover?
 
-## Methodology
-
-How will you investigate?
-
 ## Evidence
-
 What did you find?
 
 ## Conclusions
-
 What can you conclude?
 
 ## Next Steps
-
 What should happen next?
 ```
 
@@ -105,108 +98,69 @@ What should happen next?
 
 ## Step 5: Document Evidence
 
-Evidence must be:
+Mark everything clearly:
 
-| Type | Description | Example |
-|------|-------------|---------|
-| **Fact** | Directly observable | "Source X states Y" |
+| Type | Meaning | Example |
+|------|---------|---------|
+| **Evidence** | Verified fact | "Source X states Y" |
 | **Inference** | Derived from facts | "This suggests Z" |
-| **Hypothesis** | Beyond current evidence | "It may be that..." |
+| **Hypothesis** | Beyond evidence | "It may be that..." |
 
-Always mark evidence type clearly.
-
----
-
-## Step 6: Submit for Review
-
-When investigation is complete:
-
-1. Document all evidence
-2. Distinguish fact from inference
-3. Acknowledge limitations
-4. Submit for human review
+Always mark evidence type.
 
 ---
 
-## Step 7: Await Human Approval
+## Step 6: Human Approval
 
 KDE requires human approval at key points:
 
-- Investigation proposed
-- Investigation approved
-- Conclusions accepted
-- Knowledge promoted
+- Proposed → Approved
+- In Progress → Review
+- Reviewed → Complete
+
+This isn't bureaucracy. It's independence. The investigator doesn't approve their own work.
 
 ---
 
-## Understanding Output
+## Investigation States
 
-### Investigation Status
-
-| Status | Meaning |
-|--------|---------|
+| State | Meaning |
+|-------|---------|
 | PROPOSED | Awaiting approval |
 | APPROVED | Authorized to proceed |
-| IN_PROGRESS | Active investigation |
+| IN_PROGRESS | Active work |
 | REVIEW | Awaiting human review |
 | COMPLETE | Investigation finished |
-
-### Evidence Marking
-
-| Marking | Meaning |
-|---------|---------|
-| **[EVIDENCE]** | Verified fact |
-| **[INFERENCE]** | Conclusion from facts |
-| **[HYPOTHESIS]** | Speculation |
 
 ---
 
 ## Common Patterns
 
-### Pattern 1: Research Investigation
-
-```
+### Research Investigation
 1. Define question
 2. Gather evidence
 3. Analyze patterns
 4. Draw conclusions
 5. Document limitations
-```
 
-### Pattern 2: System Investigation
-
-```
-1. Define system boundaries
+### System Investigation
+1. Define boundaries
 2. Map components
 3. Identify relationships
 4. Analyze behavior
 5. Document findings
-```
 
-### Pattern 3: Process Investigation
-
-```
+### Process Investigation
 1. Define process
 2. Identify inputs/outputs
 3. Map steps
 4. Find bottlenecks
 5. Recommend improvements
-```
 
 ---
 
-## Next Steps
+## What Comes Next
 
-After your first investigation:
+You've seen how KDE runs an investigation. Next, learn what makes it work.
 
-- Review [Core Concepts](../5-core-concepts/engines-and-seeds.md)
-- Study [How It Works](../6-how-it-works/processes.md)
-- Explore [Guides](../7-guides/guides.md)
-
----
-
-## See Also
-
-- [Getting Started](index.md) - Setup guide
-- [Next Steps](next-steps.md) - Where to go from here
-- [Processes](../6-how-it-works/processes.md) - Investigation workflow
+**[Core Concepts](../5-core-concepts/engines-and-seeds.md)** — The components that enable investigations

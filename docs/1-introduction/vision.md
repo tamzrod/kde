@@ -1,17 +1,41 @@
 # Vision
 
-**Purpose**: KDE's long-term purpose and aspirations
-**Audience**: Evaluators, contributors
-
 ---
 
-## The Vision
+## The Enduring Principle
 
 > **KDE enables organizations to cultivate knowledge systematically, preserving institutional wisdom across time and personnel.**
 
+This isn't just a goal. It's a commitment to a specific kind of knowledge work—one where understanding is earned, not assumed.
+
 ---
 
-## What We Aspire To
+## What Success Looks Like
+
+A world where knowledge is reliable:
+
+- When someone says "we believe X because Y," you can verify Y
+- When someone asks "why do we do it this way?", the answer exists
+- When experts leave, their understanding remains
+- When new evidence arrives, conclusions update rather than calcify
+
+This world doesn't exist yet. KDE is building toward it.
+
+---
+
+## Real-World Observation
+
+Consider how buildings preserve engineering knowledge. When an architect solves a structural problem, the solution is documented: calculations, materials, load tests. Future architects can learn from it, improve on it, or recognize when conditions have changed.
+
+Now consider how most organizations preserve knowledge. A senior engineer says "we do it this way." The explanation is in their head. When they leave, the explanation leaves with them.
+
+Engineering knowledge is cumulative. Most organizational knowledge is not.
+
+KDE aspires to make organizational knowledge as cumulative as engineering knowledge.
+
+---
+
+## Four Aspirations
 
 ### 1. Knowledge That Endures
 
@@ -51,38 +75,27 @@ Knowledge grows through:
 
 ---
 
-## The Journey Ahead
+## Where We Are
 
 KDE has evolved through six generations:
 
-| Generation | Focus | Capability |
-|------------|-------|------------|
-| 1 | Foundation | Structure established |
-| 2 | Framework | Governance defined |
-| 3 | Execution | Scale achieved |
-| 4 | Validation | Quality measured |
-| 5 | Adversarial | Security tested |
-| 6 | Meta-Analysis | Self-reflection enabled |
+| Generation | What We Learned |
+|------------|-----------------|
+| 1. Foundation | Structure matters |
+| 2. Framework | Governance prevents chaos |
+| 3. Execution | Scale changes everything |
+| 4. Validation | Quality must be measured |
+| 5. Adversarial | Security can't be assumed |
+| 6. Meta-Analysis | Reflection improves methodology |
 
 The journey continues.
 
 ---
 
-## What Success Looks Like
+## What You Can Do
 
-A successful KDE implementation means:
+If this vision resonates, you can contribute:
 
-| Metric | Indicator |
-|--------|-----------|
-| **Traceability** | Any knowledge can be traced to evidence |
-| **Governance** | No unauthorized changes |
-| **Preservation** | Institutional memory intact |
-| **Evolution** | Knowledge grows over time |
-
----
-
-## See Also
-
-- [What is KDE](what-is-kde.md) - Core concepts
-- [History](../3-history/history.md) - How we got here
-- [Contributing](../10-contributing/contributing.md) - How to participate
+- **[Contributing](../10-contributing/contributing.md)** — How to participate
+- **[History](../3-history/history.md)** — How we got here
+- **[Philosophy](../2-foundations/philosophy.md)** — The principles that guide us

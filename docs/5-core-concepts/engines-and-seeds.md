@@ -1,18 +1,25 @@
 # Engines and Seeds
 
-**Purpose**: KDE's reasoning components
-**Audience**: All readers
+---
+
+## The Simple Idea
+
+KDE uses two complementary systems for reasoning:
+
+- **Engines** — How you investigate
+- **Seeds** — What guides your investigation
+
+Think of it as: the engine is the vehicle, the seed is the map. The engine determines how you travel. The seed determines where you're going.
 
 ---
 
-## Overview
+## Real-World Observation
 
-KDE uses two complementary components for reasoning:
+A researcher and a detective both solve mysteries. But they use different methods.
 
-- **Engines**: Methodologies for conducting investigations
-- **Seeds**: Foundational principles that guide reasoning
+The researcher systematically tests hypotheses. The detective follows clues where they lead. Same goal—understanding what happened. Different methodologies.
 
-Engines and Seeds work together. Engines provide the methodology; Seeds provide the principles.
+KDE supports both. Engines are different methodologies for investigation.
 
 ---
 
@@ -20,33 +27,48 @@ Engines and Seeds work together. Engines provide the methodology; Seeds provide 
 
 ### What is an Engine?
 
-An Engine is a reasoning methodology implementation. It defines how investigations are conducted.
+An Engine is a reasoning methodology. It defines how investigations are conducted.
 
-### Engine Properties
-
-| Property | Description |
-|----------|-------------|
-| **ID** | Unique identifier (e.g., KDE-ENGINE-001) |
-| **Codename** | Human-readable name (Alpha, Beta, Gamma, Delta) |
-| **Status** | Active, Historical, or Experimental |
-| **Capabilities** | Reasoning, Analysis, Synthesis, etc. |
+Each Engine has:
+- **ID** — Unique identifier (e.g., KDE-ENGINE-001)
+- **Codename** — Human-readable name
+- **Status** — Active, Historical, or Experimental
+- **Capabilities** — What it does well
 
 ### Available Engines
 
-| ID | Codename | Status | Purpose |
-|----|----------|--------|---------|
-| KDE-ENGINE-001 | Alpha | Historical | Pattern discovery |
-| KDE-ENGINE-002 | Beta | Active | Contextual knowledge |
-| KDE-ENGINE-003 | Gamma | Active | Causal discovery |
-| KDE-ENGINE-004 | Delta | Active | Bootstrap + Context |
+| ID | Codename | Purpose |
+|----|----------|---------|
+| KDE-ENGINE-001 | Alpha | Pattern discovery |
+| KDE-ENGINE-002 | Beta | Contextual knowledge |
+| KDE-ENGINE-003 | Gamma | Causal discovery |
+| KDE-ENGINE-004 | Delta | Bootstrap + Context |
 
-### Engine Selection
+### Engine Strengths
 
-KDE automatically selects the appropriate Engine based on:
+**Alpha (Pattern Discovery)**
+- Finds relationships in data
+- Identifies themes
+- Surfaces anomalies
+- *Best for: Initial exploration*
 
-- Problem characteristics
-- Required capabilities
-- Human-specified preferences
+**Beta (Contextual Knowledge)**
+- Interprets nuance
+- Considers circumstances
+- Provides depth
+- *Best for: Understanding significance*
+
+**Gamma (Causal Discovery)**
+- Identifies root causes
+- Traces dependencies
+- Predicts outcomes
+- *Best for: Finding why things happen*
+
+**Delta (Bootstrap + Context)**
+- Systematic approach
+- Bootstrapped validation
+- Context awareness
+- *Best for: Comprehensive investigation*
 
 ---
 
@@ -54,146 +76,75 @@ KDE automatically selects the appropriate Engine based on:
 
 ### What is a Seed?
 
-A Seed contains immutable foundational principles that guide all reasoning.
+A Seed contains immutable principles that guide all reasoning.
+
+Seeds are foundational. They're not changed.
 
 ### Seed Properties
 
-| Property | Description |
-|----------|-------------|
-| **ID** | Unique identifier (e.g., SEED-001) |
-| **Codename** | Thematic name (Genesis, Evolution) |
-| **Status** | Frozen or Active |
-| **Principles** | Core operational rules |
+- **ID** — Unique identifier (e.g., SEED-001)
+- **Codename** — Thematic name
+- **Status** — Frozen or Active
+- **Principles** — Core rules
 
 ### Available Seeds
 
-| ID | Codename | Status | Purpose |
-|----|----------|--------|---------|
-| SEED-001 | Genesis | Frozen | Scientific loop, evidence model |
-| SEED-002 | Evolution | Frozen | Reasoning, validation |
+| ID | Codename | Purpose |
+|----|----------|---------|
+| SEED-001 | Genesis | Scientific loop, evidence model |
+| SEED-002 | Evolution | Reasoning, validation |
 
-### Seed Immutability
+### The Immutability Rule
 
-Seeds are frozen once created. They represent foundational truths that should not change.
+> Seeds shall never be modified after creation.
 
-> **Rule**: Seeds shall never be modified after creation.
+Once frozen, a Seed represents foundational truth. Changing it would undermine everything built on it.
+
+---
+
+## The Scientific Loop
+
+Every Engine follows the same pattern:
+
+```
+OBSERVE → HYPOTHESIZE → PREDICT → TEST → ANALYZE → ITERATE?
+```
+
+1. **Observe** — Gather data
+2. **Hypothesize** — Form hypothesis
+3. **Predict** — Predict outcomes
+4. **Test** — Validate hypothesis
+5. **Analyze** — Interpret results
+6. **Iterate?** — Continue or conclude
+
+This isn't KDE's invention. It's how science has worked for centuries.
 
 ---
 
 ## How They Work Together
 
 ```
-     ┌─────────┐
-     │  Human  │
-     │ Request │
-     └────┬────┘
-          │
-          ▼
-     ┌─────────┐
-     │   ECU   │ Orchestrates
-     └────┬────┘
-          │
-    ┌─────┴─────┐
-    ▼           ▼
-┌───────┐  ┌───────┐
-│Engine │  │ Seed  │
-│   ↕   │  │   ↕   │
-│Method │  │Princi│
-└───────┘  └───────┘
-    │           │
-    └─────┬─────┘
-          │
-          ▼
-     ┌─────────┐
-     │Investi- │ Result
-     │ gation  │
-     └─────────┘
+Human Request
+      ↓
+    ECU (Orchestrates)
+      ↓
+   ┌─────────┐
+   │ Engine  │ ← Method (how to investigate)
+   └────┬────┘
+        │
+   ┌────┴────┐
+   │  Seed   │ ← Principles (what guides investigation)
+   └────┬────┘
+        ↓
+  Investigation Result
 ```
 
----
-
-## Engine Characteristics
-
-### Pattern Discovery (Alpha)
-
-**Focus**: Identifying recurring patterns in data
-
-**Strengths**:
-- Finds relationships
-- Identifies themes
-- Surfaces anomalies
-
-**Best for**: Initial exploration
-
-### Contextual Knowledge (Beta)
-
-**Focus**: Understanding meaning within context
-
-**Strengths**:
-- Interprets nuance
-- Considers circumstances
-- Provides depth
-
-**Best for**: Understanding significance
-
-### Causal Discovery (Gamma)
-
-**Focus**: Understanding cause and effect
-
-**Strengths**:
-- Identifies root causes
-- Traces dependencies
-- Predicts outcomes
-
-**Best for**: Finding why things happen
-
-### Bootstrap + Context (Delta)
-
-**Focus**: Methodological rigor with context
-
-**Strengths**:
-- Systematic approach
-- Bootstrapped validation
-- Context awareness
-
-**Best for**: Comprehensive investigation
-
----
-
-## Scientific Loop
-
-All Engines follow the scientific loop:
-
-```
-    ┌─────────────┐
-    │  OBSERVE    │ ← Gather data
-    └──────┬──────┘
-           │
-    ┌──────▼──────┐
-    │ HYPOTHESIZE │ ← Form hypothesis
-    └──────┬──────┘
-           │
-    ┌──────▼──────┐
-    │   PREDICT    │ ← Predict outcomes
-    └──────┬──────┘
-           │
-    ┌──────▼──────┐
-    │    TEST      │ ← Validate hypothesis
-    └──────┬──────┘
-           │
-    ┌──────▼──────┐
-    │   ANALYZE   │ ← Interpret results
-    └──────┬──────┘
-           │
-    ┌──────▼──────┐
-    │  ITERATE?   │ ← Continue or conclude
-    └─────────────┘
-```
+The ECU coordinates. The Engine provides methodology. The Seed provides principles.
 
 ---
 
 ## See Also
 
-- [ECU](ecu.md) - Orchestration
-- [Laboratory](laboratory.md) - Investigation workspace
-- [Processes](../6-how-it-works/processes.md) - Investigation workflow
+- [ECU](ecu.md) — The orchestrator
+- [Laboratory](laboratory.md) — Where investigations happen
+- [Processes](../6-how-it-works/processes.md) — How investigations flow

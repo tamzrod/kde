@@ -1,33 +1,42 @@
 # Evidence
 
-**Purpose**: KDE's evidence standards and practices
-**Audience**: All readers
+---
+
+## The Simple Idea
+
+Evidence is the foundation of KDE. Every claim must be supported. Every piece of evidence must be clearly marked.
+
+This isn't bureaucracy. It's how you know what's true.
 
 ---
 
-## Overview
+## Real-World Observation
 
-Evidence is the foundation of KDE. Every claim must be supported by evidence. Every piece of evidence must be clearly identified.
+A courtroom has rules for evidence. A prosecutor can't just say "he did it." They must present evidence—witness testimony, physical objects, documentation.
+
+The evidence rules aren't obstacles. They're how the system distinguishes truth from accusation.
+
+KDE applies the same discipline to knowledge work.
 
 ---
 
-## Evidence Types
+## The Three Types
 
 KDE distinguishes three types of claims:
 
-| Type | Definition | Example |
-|------|------------|---------|
-| **Evidence** | Directly observable or documented facts | "According to Source X..." |
-| **Inference** | Conclusions logically derived from evidence | "This suggests that..." |
-| **Hypothesis** | Speculation beyond current evidence | "It may be that..." |
+| Type | Meaning | Example |
+|------|---------|---------|
+| **Evidence** | Verified fact | "According to Source X..." |
+| **Inference** | Conclusion from facts | "This suggests that..." |
+| **Hypothesis** | Speculation | "It may be that..." |
+
+The types are not equal. Evidence is strongest. Hypothesis is weakest.
 
 ---
 
-## Evidence Marking
+## How to Mark Evidence
 
-### In Text
-
-Use clear markers:
+In text:
 
 ```
 [Evidence] Source X states that Y is true.
@@ -35,9 +44,7 @@ Use clear markers:
 [Hypothesis] It may be that W explains Y.
 ```
 
-### In Documents
-
-Include evidence sections:
+In documents:
 
 ```markdown
 ## Evidence
@@ -57,33 +64,10 @@ Include evidence sections:
 
 ## Evidence Standards
 
-### Source Quality
+Every piece of evidence must include:
 
-| Quality | Description |
-|---------|-------------|
-| **Primary** | Original documents, direct observations |
-| **Secondary** | Analysis of primary sources |
-| **Tertiary** | Compilation of sources |
-
-Prefer primary sources when available.
-
-### Citation Format
-
-For every piece of evidence:
-
-```markdown
-> **Source**: [Document name](link or reference)
-> **Type**: [Primary/Secondary/Tertiary]
-> **Relevance**: [Why this evidence matters]
-> **Evidence**: [Quote or summary]
-```
-
-### Completeness
-
-Evidence must include:
-
-| Element | Description |
-|---------|-------------|
+| Element | Meaning |
+|---------|---------|
 | **Origin** | Where evidence came from |
 | **Content** | What evidence says |
 | **Relevance** | Why evidence matters |
@@ -91,63 +75,39 @@ Evidence must include:
 
 ---
 
-## Bootstrap Gates as Evidence
+## Source Quality
 
-Bootstrap gates verify system state:
+| Quality | Meaning |
+|---------|---------|
+| **Primary** | Original documents, direct observations |
+| **Secondary** | Analysis of primary sources |
+| **Tertiary** | Compilation of sources |
 
-| Gate | Evidence Type | What it Shows |
-|------|---------------|----------------|
-| **B1** | Configuration | Runtime ready |
-| **B2** | History | No violations |
-| **B3** | Environment | Dependencies available |
-
----
-
-## Inference Standards
-
-Inferences must:
-
-| Requirement | Description |
-|-------------|-------------|
-| **Traceable** | Link to supporting evidence |
-| **Logical** | Follow from evidence |
-| **Acknowledged** | Clearly marked as inference |
-| **Testable** | Can be validated |
-
-### Inference Markers
-
-```
-[Inference] This suggests that...
-[Inference] Therefore...
-[Inference] This implies...
-```
+Prefer primary sources when available.
 
 ---
 
-## Hypothesis Standards
+## Common Errors
 
-Hypotheses must:
+### Claim Without Evidence
+❌ "X is true."
+✅ "[Evidence] According to Source Y, X is true."
 
-| Requirement | Description |
-|-------------|-------------|
-| **Labeled** | Clearly marked as hypothesis |
-| **Testable** | Can be validated |
-| **Scoped** | Limited to evidence |
-| **Temporary** | Subject to revision |
+### Inference Without Traceability
+❌ "This proves X."
+✅ "[Inference] Evidence 1 and 2 suggest X."
 
-### Hypothesis Markers
+### Hypothesis as Fact
+❌ "X is definitely Y."
+✅ "[Hypothesis] X may be Y."
 
-```
-[Hypothesis] It may be that...
-[Hypothesis] Perhaps...
-[Hypothesis] This might explain...
-```
+### Unmarked Speculation
+❌ "Probably X means Y."
+✅ "[Inference] X likely means Y based on..."
 
 ---
 
-## Evidence Collection
-
-### Collection Process
+## Evidence Collection Process
 
 ```
 1. Identify claim to support
@@ -159,57 +119,24 @@ Hypotheses must:
 7. Document gaps
 ```
 
-### Evaluation Checklist
-
-| Check | Question |
-|-------|----------|
-| Relevance | Does evidence support claim? |
-| Credibility | Is source trustworthy? |
-| Sufficiency | Is there enough evidence? |
-| Consistency | Does evidence align with other evidence? |
-| Freshness | Is source current enough? |
-
 ---
 
-## Common Errors
+## Evaluation Checklist
 
-### Error 1: Claim Without Evidence
+Before accepting evidence, check:
 
-❌ **Wrong**: "X is true."
-✅ **Right**: "[Evidence] According to Source Y, X is true."
-
-### Error 2: Inference Without Traceability
-
-❌ **Wrong**: "This proves X."
-✅ **Right**: "[Inference] Evidence 1 and 2 suggest X."
-
-### Error 3: Hypothesis as Fact
-
-❌ **Wrong**: "X is definitely Y."
-✅ **Right**: "[Hypothesis] X may be Y."
-
-### Error 4: Unmarked Speculation
-
-❌ **Wrong**: "Probably X means Y."
-✅ **Right**: "[Inference] X likely means Y based on..."
-
----
-
-## Evidence Preservation
-
-Evidence must be:
-
-| Requirement | Description |
-|-------------|-------------|
-| **Accessible** | Can be retrieved later |
-| **Verifiable** | Can be checked |
-| **Complete** | Includes all needed context |
-| **Organized** | Stored logically |
+| Question | What It Means |
+|----------|---------------|
+| **Relevance** | Does it support the claim? |
+| **Credibility** | Is the source trustworthy? |
+| **Sufficiency** | Is there enough evidence? |
+| **Consistency** | Does it align with other evidence? |
+| **Freshness** | Is the source current enough? |
 
 ---
 
 ## See Also
 
-- [Processes](processes.md) - Investigation workflow
-- [Philosophy](../2-foundations/philosophy.md) - Core principles
-- [Laboratory](../5-core-concepts/laboratory.md) - Investigation workspace
+- [Processes](processes.md) — How investigations work
+- [Philosophy](../2-foundations/philosophy.md) — The principles
+- [Laboratory](../5-core-concepts/laboratory.md) — Where evidence is collected

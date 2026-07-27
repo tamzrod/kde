@@ -1,83 +1,89 @@
 # Next Steps
 
-**Purpose**: Where to go after your first investigation
-**Audience**: New users ready to deepen understanding
+---
+
+## The Simple Idea
+
+You've run your first investigation. Now you understand how KDE works. But "how" is different from "why."
+
+The next steps help you understand why KDE is designed the way it is—and how to use it effectively.
 
 ---
 
-## Learning Path
+## Recommended Reading Order
 
-After running your first investigation, continue with:
+If you're new to KDE:
 
-### 1. Understand the Foundations
+```
+1. What is KDE?          (What is this thing?)
+2. Why KDE?              (What problem does it solve?)
+3. Vision                (Where is this going?)
+4. Philosophy            (What principles govern it?)
+5. First Investigation   (See it in action)
+6. Core Concepts         (How does it work internally?)
+7. Processes             (The investigation workflow)
+8. Guides                (Common tasks)
+```
+
+---
+
+## Deep Dive by Topic
+
+### Understanding the Foundations
 
 | Document | What You'll Learn |
 |----------|-------------------|
-| [Philosophy](../2-foundations/philosophy.md) | Core principles |
-| [Engineering Principles](../2-foundations/engineering-principles.md) | Applied discipline |
-| [Inspirations](../2-foundations/inspirations.md) | Conceptual sources |
+| [Philosophy](../2-foundations/philosophy.md) | The immutable principles |
+| [Engineering Principles](../2-foundations/engineering-principles.md) | How principles are applied |
+| [Inspirations](../2-foundations/inspirations.md) | Where ideas came from |
 
-### 2. Master the Core Concepts
+### Mastering the Components
 
 | Document | What You'll Learn |
 |----------|-------------------|
 | [Engines and Seeds](../5-core-concepts/engines-and-seeds.md) | Reasoning methodology |
-| [ECU](../5-core-concepts/ecu.md) | Orchestration |
+| [ECU](../5-core-concepts/ecu.md) | Orchestration system |
 | [Laboratory](../5-core-concepts/laboratory.md) | Investigation workspace |
 | [Knowledge](../5-core-concepts/knowledge.md) | Knowledge lifecycle |
 
-### 3. Learn How It Works
+### Learning the Workflow
 
 | Document | What You'll Learn |
 |----------|-------------------|
 | [Processes](../6-how-it-works/processes.md) | Investigation workflow |
 | [Evidence](../6-how-it-works/evidence.md) | Evidence standards |
 
-### 4. Practice with Guides
-
-| Document | What You'll Learn |
-|----------|-------------------|
-| [Guides](../7-guides/guides.md) | Common tasks |
-
 ---
 
-## Recommended Reading Order
+## Practice Ideas
 
-```
-1. what-is-kde.md
-2. why-kde.md
-3. vision.md
-4. philosophy.md
-5. history.md
-6. first-investigation.md (hands-on)
-7. engines-and-seeds.md
-8. processes.md
-9. guides.md
-```
-
----
-
-## Investigation Ideas
-
-Practice with these investigation types:
+Practice KDE with investigations of increasing complexity:
 
 ### Beginner
-
 - Document a concept you want to understand
 - Analyze a process you use regularly
 - Research a question you have
 
 ### Intermediate
-
 - Compare two approaches to a problem
 - Map relationships between concepts
 - Identify gaps in current understanding
 
 ### Advanced
-
 - Design a new methodology component
 - Analyze KDE's own evolution
-- Propose improvements to KDE
+- Propose improvements
+
+---
+
+## Reference Materials
+
+| Need | Resource |
+|------|---------|
+| Command reference | [Commands](../9-reference/commands.md) |
+| Terminology | [Glossary](../9-reference/glossary.md) |
+| Architecture | [Architecture](../8-architecture/architecture.md) |
+| Contributing | [Contributing](../10-contributing/contributing.md) |
 
 ---
 
@@ -86,24 +92,15 @@ Practice with these investigation types:
 When you're ready to contribute:
 
 1. Review [Contributing](../10-contributing/contributing.md)
-2. Understand [Governance Rules](../10-contributing/contributing.md#governance)
-3. Follow [Investigation Standards](../10-contributing/contributing.md#standards)
+2. Understand governance rules
+3. Follow investigation standards
+
+Every contribution goes through the same investigation process. Quality over quantity.
 
 ---
 
-## Getting Help
+## The Journey Ahead
 
-| Need | Resource |
-|------|----------|
-| Command reference | [Commands](../9-reference/commands.md) |
-| Terminology | [Glossary](../9-reference/glossary.md) |
-| Architecture | [Architecture](../8-architecture/architecture.md) |
-| Governance | [Contributing](../10-contributing/contributing.md) |
+KDE is a methodology that grows with use. Each investigation adds to the knowledge base. Each lesson improves the process.
 
----
-
-## See Also
-
-- [Getting Started](index.md) - Prerequisites and setup
-- [First Investigation](first-investigation.md) - Hands-on guide
-- [Core Concepts](../5-core-concepts/engines-and-seeds.md) - Deeper understanding
+You don't just use KDE. You cultivate it.

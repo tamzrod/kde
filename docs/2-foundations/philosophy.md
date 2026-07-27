@@ -1,95 +1,96 @@
 # Philosophy
 
-**Purpose**: Core principles governing KDE
-**Audience**: All readers
+---
+
+## The Simple Idea
+
+Some decisions should never be delegated.
+
+When AI generates content, humans must govern conclusions. Not because AI is untrustworthy, but because self-governance creates conflict of interest. The investigator should not be the judge.
+
+This is the foundation of KDE's philosophy.
 
 ---
 
-## Five Core Principles
+## Real-World Observation
 
-These principles govern how KDE operates. They are immutable.
+Consider peer review in academic publishing. A researcher submits a paper. Other researchers evaluate it. The author does not approve their own work.
 
-### Principle 1: No Auto-Continuation
+Why? Because self-approval is biased. The author believes their work is valid—their entire reputation depends on it. Independent review catches errors that author-review misses.
+
+KDE applies this principle to AI-generated knowledge. The AI that investigates does not approve what it finds.
+
+---
+
+## The Five Immutable Principles
+
+These principles govern KDE. They are not suggestions.
+
+### 1. No Auto-Continuation
 
 **AI must never begin the next research session without explicit human authorization.**
 
-After completing a research session, AI must stop and wait for human approval to proceed.
+After completing a session, AI stops and waits. Humans decide whether to continue.
 
-**Rationale**: KDE requires explicit human review before another research session begins.
+### 2. No Self-Approval
 
----
+**AI must never approve its own work.**
 
-### Principle 2: No Self-Approval
+Only humans can set the APPROVED state. AI cannot transition a document from REVIEW to APPROVED.
 
-**AI must never approve its own work. Only humans can set APPROVED state.**
+### 3. No Self-Promotion
 
-AI cannot transition a document from REVIEW to APPROVED.
+**AI must never promote knowledge.**
 
-**Rationale**: Self-approval creates conflict of interest. Quality control requires independent review.
+Only humans can set the PROMOTED state. AI cannot move a document from VALIDATED to PROMOTED.
 
----
+### 4. Distinguish Evidence, Inference, and Hypothesis
 
-### Principle 3: No Self-Promotion
+**AI must clearly mark what is fact vs. conclusion vs. speculation.**
 
-**AI must never promote knowledge. Only humans can set PROMOTED state.**
+| Term | Meaning |
+|------|---------|
+| **Evidence** | Documented facts from verified sources |
+| **Inference** | Conclusions drawn from evidence |
+| **Hypothesis** | Speculation beyond what evidence supports |
 
-AI cannot transition a document from VALIDATED to PROMOTED.
-
-**Rationale**: Promotion to production makes a definition official. Only human judgment can make this decision.
-
----
-
-### Principle 4: Distinguish Evidence, Inference, and Hypothesis
-
-**AI must clearly mark what is documented fact vs. conclusion vs. speculation.**
-
-| Term | Meaning | Example |
-|------|---------|---------|
-| **Evidence** | Documented facts from sources | "According to X..." |
-| **Inference** | Conclusions drawn from evidence | "This suggests that..." |
-| **Hypothesis** | Speculation beyond evidence | "It may be that..." |
-
-**Rationale**: Readers must know what is established fact vs. interpretation vs. speculation.
-
----
-
-### Principle 5: Evidence-Based Changes
+### 5. Evidence-Based Changes
 
 **All claims, including methodology changes, must be justified by evidence.**
 
-**Rationale**: KDE is an evidence-based project. Even governance changes must be justified, not merely asserted.
+Even governance changes require justification. Nothing is accepted on assertion alone.
 
 ---
 
-## Evidence Standards
+## Why These Principles Matter
 
-Every document must clearly distinguish:
+### Preventing Capture
 
-```
-Evidence (Facts) → Inference (Conclusions) → Hypothesis (Speculation)
-```
+When investigators can approve their own conclusions, quality degrades. True or false, the conclusion is "approved." Independent review prevents this.
 
-| Type | Source | Marking |
-|------|--------|---------|
-| Evidence | Verified sources | Direct quotes, data |
-| Inference | Logical derivation | "This suggests..." |
-| Hypothesis | Beyond evidence | "It may be that..." |
+### Preserving Trust
 
----
+Knowledge that KDE produces is trustworthy because humans have reviewed it. Not because AI is infallible—because humans have verified.
 
-## Compliance
+### Enabling Error Correction
 
-These principles are enforced by:
-
-1. **Repository structure** - Governance contains this document
-2. **State machine** - Transitions require human input
-3. **Document format** - Headers include state field
-4. **Human review** - Required at key transitions
+When knowledge is clearly marked as evidence vs. inference vs. hypothesis, errors can be identified and corrected. Speculation labeled as fact is dangerous. Fact labeled as speculation wastes effort.
 
 ---
 
-## See Also
+## How Principles Are Enforced
 
-- [Engineering Principles](engineering-principles.md) - Applied philosophy
-- [Inspirations](inspirations.md) - Conceptual foundations
-- [History](../3-history/history.md) - How principles evolved
+| Enforcement | Mechanism |
+|-------------|-----------|
+| **Repository structure** | Governance directory contains this document |
+| **State machine** | Transitions require human authorization |
+| **Document format** | Headers include state and evidence type |
+| **Human review** | Required at every governance transition |
+
+---
+
+## The Next Step
+
+These principles guide everything KDE does. Understanding them prepares you for how the system actually works.
+
+**[Engineering Principles](engineering-principles.md)** — How principles are applied

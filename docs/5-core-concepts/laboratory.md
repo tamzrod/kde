@@ -1,17 +1,28 @@
 # Laboratory
 
-**Purpose**: KDE's systematic investigation workspace
-**Audience**: All readers
+---
+
+## The Simple Idea
+
+A laboratory is where scientists do science. It has the tools, the protocols, the space for systematic inquiry.
+
+KDE's Laboratory is the same. It's where investigations happen—the structured environment for systematic inquiry.
 
 ---
 
-## Overview
+## Real-World Observation
 
-The Laboratory is where investigations happen. It provides the structured environment for systematic inquiry.
+Scientific labs don't just have beakers and Bunsen burners. They have protocols. Safety rules. Documentation standards. Equipment logs.
+
+A chemist can't just mix chemicals and see what happens. They follow procedures, document observations, and reproduce results.
+
+The lab isn't the science. It's the environment that makes science possible.
+
+KDE's Laboratory is the same. It's not the investigation—it's the environment that makes investigation possible.
 
 ---
 
-## Laboratory Structure
+## The Structure
 
 ```
 laboratory/
@@ -22,9 +33,11 @@ laboratory/
 └── bootstrap.md       # Session entry point
 ```
 
+Each investigation lives here. Each experiment is recorded. Each question is tracked.
+
 ---
 
-## Investigation Lifecycle
+## The Investigation Lifecycle
 
 Every investigation follows this lifecycle:
 
@@ -42,19 +55,46 @@ PROPOSED → APPROVED → IN_PROGRESS → REVIEW → COMPLETE
 | **REVIEW** | Awaiting human review |
 | **COMPLETE** | Investigation finished |
 
+Notice: every transition requires human action. This isn't bureaucracy—it's independence.
+
 ---
 
-## Investigation Structure
+## The Scientific Loop
 
-Each investigation contains:
+Every investigation follows the scientific loop:
 
-| File | Purpose |
-|------|---------|
-| `INVESTIGATION.md` | Main investigation document |
-| `EVIDENCE.md` | Supporting evidence |
-| `*.md` | Additional analysis files |
+```
+OBSERVE → HYPOTHESIZE → PREDICT → TEST → ANALYZE → ITERATE?
+```
 
-### Investigation Template
+1. **Observe** — Gather data
+2. **Hypothesize** — Form a testable idea
+3. **Predict** — What should we see if true?
+4. **Test** — Check the prediction
+5. **Analyze** — What did we learn?
+6. **Iterate?** — Continue or conclude?
+
+This isn't KDE's invention. It's how systematic inquiry works.
+
+---
+
+## Bootstrap Gates
+
+Before starting investigation, KDE verifies readiness:
+
+| Gate | Checks |
+|------|--------|
+| **B1** | Runtime state, experiments directory, rules |
+| **B2** | Git log, git status |
+| **B3** | Environment (Python, dependencies) |
+
+These aren't optional. They're how you know you're ready.
+
+---
+
+## Investigation Template
+
+Every investigation follows this structure:
 
 ```markdown
 # Investigation Title
@@ -63,114 +103,47 @@ Each investigation contains:
 **Date**: YYYY-MM-DD
 **Engine**: KDE-ENGINE-XXX
 **Seed**: SEED-XXX
-**Status**: [STATUS]
-
----
 
 ## Objective
-
 What are you investigating?
 
 ## Scope
-
-What does this investigation cover?
-
-## Methodology
-
-How will you investigate?
+What does this cover?
 
 ## Evidence
-
 What did you find?
 
-## Analysis
-
-What does the evidence mean?
-
 ## Conclusions
-
 What can you conclude?
 
 ## Limitations
-
 What are the limitations?
 
 ## Next Steps
-
 What should happen next?
 ```
 
 ---
 
-## Scientific Loop
-
-The Laboratory uses the scientific loop:
-
-```
-    ┌─────────────┐
-    │  OBSERVE    │ Gather data and facts
-    └──────┬──────┘
-           ↓
-    ┌─────────────┐
-    │ HYPOTHESIZE │ Form educated guess
-    └──────┬──────┘
-           ↓
-    ┌─────────────┐
-    │   PREDICT    │ Predict outcomes
-    └──────┬──────┘
-           ↓
-    ┌─────────────┐
-    │    TEST     │ Test hypothesis
-    └──────┬──────┘
-           ↓
-    ┌─────────────┐
-    │   ANALYZE   │ Interpret results
-    └──────┬──────┘
-           ↓
-    ┌─────────────┐
-    │  ITERATE?   │ Continue or conclude
-    └─────────────┘
-```
-
----
-
-## Bootstrap Gates
-
-Before starting investigation, verify:
-
-| Gate | Check |
-|------|-------|
-| **B1** | Runtime state, experiments directory, rules |
-| **B2** | Git log, git status |
-| **B3** | Environment (Python, dependencies) |
-
----
-
 ## Quality Standards
 
-### Investigation Quality
-
 Every investigation must:
-
-- Have clear objective
+- Have a clear objective
 - Follow systematic methodology
 - Document all evidence
 - Trace reasoning
 - Acknowledge limitations
 
-### Evidence Quality
-
-Evidence must be:
-
-- **Sourced** - Origin identified
-- **Verifiable** - Can be checked
-- **Relevant** - Supports claims
-- **Sufficient** - Adequate for conclusions
+Every piece of evidence must be:
+- **Sourced** — Origin identified
+- **Verifiable** — Can be checked
+- **Relevant** — Supports claims
+- **Sufficient** — Adequate for conclusions
 
 ---
 
 ## See Also
 
-- [Processes](../6-how-it-works/processes.md) - Investigation workflow
-- [Evidence](../6-how-it-works/evidence.md) - Evidence standards
-- [Knowledge](knowledge.md) - Knowledge lifecycle
+- [Processes](../6-how-it-works/processes.md) — How investigations flow
+- [Evidence](../6-how-it-works/evidence.md) — Evidence standards
+- [Knowledge](knowledge.md) — The product of investigation

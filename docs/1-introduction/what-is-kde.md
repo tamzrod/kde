@@ -1,75 +1,98 @@
 # What is KDE?
 
-**Purpose**: Introduction to Knowledge Discovery Engine
-**Audience**: First-time readers
+---
+
+## The Simple Idea
+
+There is a better way to find answers.
+
+Most knowledge work looks like this: someone forms an opinion, others nod, and the opinion becomes "knowledge." Months later, the opinion turns out to be wrong. Nobody remembers why it was believed in the first place.
+
+KDE is a different approach. It treats knowledge discovery the way engineering treats building—systematically, with verification at every step.
 
 ---
 
-## Overview
+## Real-World Observation
 
-KDE (Knowledge Discovery Engine) is an evidence-based research methodology that combines systematic investigation with AI-assisted reasoning.
+A doctor and a researcher both face a puzzling symptom. The doctor asks "What usually works for this?" and prescribes. The researcher asks "Why does this happen?" and designs a study.
 
-The fundamental question KDE addresses:
+The doctor solves today's problem. The researcher prevents tomorrow's.
 
-> **"What must we understand before we can define Knowledge Discovery Engine?"**
-
-This is a research-first initiative. We do not know what KDE will become. The methodology helps us find out.
+KDE is for people who want to be researchers about their own work—not just solving problems, but understanding why the problems exist.
 
 ---
 
-## Core Components
+## The Enduring Principle
 
-KDE consists of five foundational components:
+KDE (Knowledge Discovery Engine) is an evidence-based methodology for systematic investigation.
 
-| Component | Purpose |
-|-----------|---------|
-| **Seeds** | Immutable foundational principles |
-| **Engines** | Reasoning methodology implementations |
-| **Laboratory** | Systematic investigation workspace |
-| **Knowledge** | Validated definitions and discoveries |
-| **Governance** | Rules ensuring quality and oversight |
+The core insight is simple: **knowledge earned through evidence persists; knowledge assumed through authority fades.**
+
+This means:
+- Every claim must be supported
+- Every conclusion must distinguish fact from inference
+- Every investigation must be traceable
+- Every advancement requires human approval
 
 ---
 
-## The Scientific Foundation
+## What KDE Actually Does
 
-KDE applies rigorous scientific principles to knowledge work:
+### Systematic Reasoning
+
+When you need to understand something—not just have an opinion about it—KDE provides a structured approach:
 
 ```
 Observe → Hypothesize → Predict → Test → Analyze → Iterate
 ```
 
-Every claim must be supported by evidence. Every conclusion must distinguish fact from inference from speculation.
+This isn't bureaucracy. It's the method that turned natural philosophy into science.
+
+### Evidence Preservation
+
+KDE documents not just conclusions, but the reasoning behind them:
+
+- What you started investigating
+- What you found
+- What you concluded
+- What you're still uncertain about
+
+This creates institutional memory that survives personnel changes.
+
+### Human Authority
+
+AI assists. Humans authorize.
+
+KDE doesn't let AI make decisions—it lets AI investigate while humans govern. Every significant step requires human approval.
 
 ---
 
-## Why KDE Exists
+## The Five Components
 
-Traditional approaches to knowledge work suffer from:
+KDE has five parts that work together:
 
-| Problem | KDE Solution |
-|---------|--------------|
-| Undisciplined reasoning | Engine-based methodology |
-| Unvalidated claims | Evidence-based validation |
-| Unchecked AI autonomy | Human governance oversight |
-| Lost institutional memory | Systematic documentation |
-
----
-
-## Key Principles
-
-KDE operates under five core principles:
-
-1. **No Auto-Continuation** - Explicit human authorization required
-2. **No Self-Approval** - Humans approve all work
-3. **No Self-Promotion** - Humans promote knowledge
-4. **Distinguish Evidence** - Clear fact/inference/speculation
-5. **Evidence-Based Changes** - All claims justified
+| Component | What It Does |
+|-----------|--------------|
+| **Seeds** | Immutable principles that guide investigation |
+| **Engines** | Structured approaches for reasoning |
+| **Laboratory** | The workspace where investigations happen |
+| **Knowledge** | Validated discoveries ready for use |
+| **Governance** | Rules that ensure quality and oversight |
 
 ---
 
-## See Also
+## What KDE Is Not
 
-- [Why KDE](why-kde.md) - The problems KDE solves
-- [Vision](vision.md) - Long-term purpose
-- [Philosophy](../2-foundations/philosophy.md) - Core principles
+KDE is not a database you query. It is not a chatbot you ask. It is not a report generator.
+
+KDE is a methodology—how you think through problems systematically, how you turn evidence into understanding.
+
+---
+
+## How to Learn More
+
+The documentation is organized to help you discover KDE progressively:
+
+- **[Why KDE](why-kde.md)** — The problems KDE solves
+- **[Vision](vision.md)** — What we're building toward
+- **[Foundations](../2-foundations/philosophy.md)** — The principles that guide everything

@@ -1,128 +1,113 @@
 # ECU
 
-**Purpose**: Execution Control Unit - KDE's orchestration system
-**Audience**: Practitioners, contributors
+---
+
+## The Simple Idea
+
+In aviation, the pilot flies the plane—but the autopilot ensures the plane can fly safely. It monitors systems, enforces protocols, and prevents dangerous states.
+
+KDE has the same architecture. The Engine investigates. The ECU (Execution Control Unit) ensures the investigation can proceed safely.
 
 ---
 
-## Overview
+## Real-World Observation
 
-The ECU (Execution Control Unit) orchestrates all KDE runtime operations. It does not conduct investigations itself—that is the Engine's role. The ECU ensures investigations can proceed correctly.
+A modern aircraft has thousands of sensors. The pilot can't monitor all of them simultaneously. The autopilot does—it watches for problems, applies corrections, and alerts the pilot when attention is needed.
 
----
+The pilot makes decisions. The autopilot ensures decisions can be executed.
 
-## ECU Responsibilities
-
-| Responsibility | Description |
-|----------------|-------------|
-| **Engine Selection** | Choose appropriate Engine for task |
-| **Seed Management** | Maintain and load Seeds |
-| **Capability Resolution** | Match requests to capabilities |
-| **Policy Enforcement** | Apply governance rules |
-| **Result Aggregation** | Combine multi-Engine outputs |
+KDE's ECU is the autopilot. The Engine makes decisions. The ECU ensures those decisions are safe.
 
 ---
 
-## ECU Components
+## What the ECU Does
+
+The ECU orchestrates KDE operations. It does not investigate—that's the Engine's job. The ECU ensures investigations can proceed correctly.
+
+| Responsibility | What It Means |
+|----------------|---------------|
+| **Engine Selection** | Chooses the right Engine for the task |
+| **Seed Management** | Maintains and loads foundational principles |
+| **Policy Enforcement** | Applies governance rules |
+| **Capability Resolution** | Matches requests to available capabilities |
+| **Result Aggregation** | Combines multi-Engine outputs |
+
+---
+
+## The Components
 
 ```
 ECU
 ├── Engine Registry        # Discovers available Engines
 ├── Seed Registry         # Maintains Seeds
 ├── Capability Resolver   # Matches requests to capabilities
-├── Execution Planner     # Creates execution pipelines
-├── Policy Layer          # Enforces governance rules
-├── Consensus Manager     # Coordinates multi-Engine work
-└── Result Aggregator     # Combines outputs
+├── Execution Planner    # Creates execution pipelines
+├── Policy Layer        # Enforces governance rules
+├── Consensus Manager    # Coordinates multi-Engine work
+└── Result Aggregator   # Combines outputs
 ```
 
 ---
 
-## Engine Registry
+## The Pre-Flight Check
 
-Automatically discovers available Engines:
-
-- Parses Engine specifications
-- Extracts capabilities
-- Tracks status (Active, Historical, Experimental)
-- Supports dynamic loading
-
----
-
-## Seed Registry
-
-Maintains foundational Seeds:
-
-- Loads frozen Seeds at startup
-- Verifies Seed integrity
-- Provides Seed capabilities to Engine
-- Ensures immutability
-
----
-
-## Capability Resolver
-
-Matches requests to Engine capabilities:
+Before any investigation, the ECU verifies system readiness:
 
 ```
-User Request
-    ↓
-Required Capabilities
-    ↓
-Matching Engines (by capability)
-    ↓
-Engine Ranking (by confidence)
-    ↓
-Seed Selection (by compatibility)
-    ↓
-Execution Plan
+■ CHECK 1: INITIALIZATION
+  Status: ✅ READY
+
+■ CHECK 2: ENGINE REGISTRY
+  Engines: [N] total | Active
+
+■ CHECK 3: SEED REGISTRY
+  Seeds: [N] registered
+
+■ CHECK 4: POLICY LAYER
+  Rules: [N]
+  Active Violations: 0
+
+■ CHECK 5: SYSTEM HEALTH
+  Status: ✅ HEALTHY
 ```
 
----
-
-## Policy Layer
-
-Enforces governance rules:
-
-| Rule | Severity | Action |
-|------|----------|--------|
-| engine_must_be_registered | Error | Block |
-| engine_must_have_specification | Error | Block |
-| seed_must_be_registered | Error | Block |
-| execution_plan_must_be_valid | Error | Block |
-| no_unofficial_assets | Error | Block |
+This isn't optional. It's how you know you're safe to proceed.
 
 ---
 
-## Execution Planner
+## Policy Enforcement
 
-Creates execution pipelines:
+The ECU enforces governance rules:
 
-| Mode | Description |
+| Rule | What It Prevents |
+|------|-----------------|
+| engine_must_be_registered | Unverified engines |
+| engine_must_have_specification | Undefined capabilities |
+| seed_must_be_registered | Unverified principles |
+| execution_plan_must_be_valid | Invalid execution |
+| no_unofficial_assets | Untrusted components |
+
+Violations block execution. Not warnings—blocks.
+
+---
+
+## Execution Modes
+
+The ECU can run investigations in different modes:
+
+| Mode | When to Use |
 |------|-------------|
-| **SINGLE** | Single Engine execution |
-| **SEQUENTIAL** | Multiple Engines in order |
+| **SINGLE** | One Engine is sufficient |
+| **SEQUENTIAL** | Multiple Engines, one after another |
 | **PARALLEL** | Multiple Engines simultaneously |
-| **CONSENSUS** | Multi-Engine with agreement |
-| **SEED_ASSISTED** | Seed-enhanced execution |
-
----
-
-## Consensus Manager
-
-Coordinates multi-Engine work:
-
-| Strategy | Description |
-|----------|-------------|
-| **SINGLE** | First valid result wins |
-| **MAJORITY** | >50% agreement required |
-| **UNANIMOUS** | All Engines must agree |
-| **WEIGHTED** | Weighted by Engine priority |
-| **ADVERSARIAL** | Adversarial evaluation |
+| **CONSENSUS** | Multiple Engines must agree |
+| **ADVERSARIAL** | Engines challenge each other |
 
 ---
 
 ## State Machine
+
+The ECU follows a strict state machine:
 
 ```
 UNINITIALIZED
@@ -134,35 +119,12 @@ READY
 ERROR
 ```
 
----
-
-## Using the ECU
-
-### Initialize
-
-```python
-from runtime.ecu import create_ecu
-
-ecu = create_ecu('/path/to/kde')
-```
-
-### Get State
-
-```python
-state = ecu.get_runtime_state()
-```
-
-### Run Pre-Flight
-
-```python
-# From command line
-pre-flight check
-```
+You can't investigate if the ECU isn't ready. This is intentional.
 
 ---
 
 ## See Also
 
-- [Engines and Seeds](engines-and-seeds.md) - Reasoning components
-- [Laboratory](laboratory.md) - Investigation workspace
-- [Architecture](../8-architecture/models.md) - Technical details
+- [Engines and Seeds](engines-and-seeds.md) — What the ECU coordinates
+- [Laboratory](laboratory.md) — Where investigations happen
+- [Architecture](../8-architecture/models.md) — Technical details

@@ -1,26 +1,35 @@
 # Knowledge
 
-**Purpose**: KDE's knowledge lifecycle and governance
-**Audience**: All readers
+---
+
+## The Simple Idea
+
+Knowledge in KDE is not assumed—it is cultivated.
+
+Every piece of knowledge must earn its place. Through evidence. Through validation. Through human approval.
+
+This is the difference between "we think" and "we know."
 
 ---
 
-## Overview
+## Real-World Observation
 
-Knowledge in KDE is not assumed—it is cultivated. Every piece of knowledge must earn its place through evidence, validation, and human approval.
+A rumor spreads through an organization. Everyone repeats it. Eventually, someone checks—and discovers it was never true.
+
+Now contrast that with peer-reviewed research. Before an idea becomes accepted science, it must survive scrutiny. Other researchers try to disprove it. Only ideas that survive get accepted.
+
+KDE treats knowledge the way science treats research. Knowledge must earn trust.
 
 ---
 
-## Knowledge Lifecycle
+## The Knowledge Lifecycle
 
 ```
 Discovery → Investigation → Validation → Approval → Promotion → Application
-    ↓            ↓              ↓            ↓           ↓           ↓
-  [Gap]      [Evidence]     [Testing]    [Human]     [Official]  [Used]
 ```
 
-| Stage | Description | Authority |
-|-------|-------------|-----------|
+| Stage | What Happens | Authority |
+|-------|--------------|-----------|
 | **Discovery** | Gap identified | Engine |
 | **Investigation** | Evidence gathered | Engine + Seed |
 | **Validation** | Testing complete | Laboratory |
@@ -30,9 +39,9 @@ Discovery → Investigation → Validation → Approval → Promotion → Applic
 
 ---
 
-## Document State Machine
+## Document States
 
-Documents transition through states:
+Every document follows this lifecycle:
 
 ```
 DRAFT → REVIEW → APPROVED → VALIDATED → PROMOTED
@@ -48,20 +57,41 @@ DRAFT → REVIEW → APPROVED → VALIDATED → PROMOTED
 | **VALIDATED** | Passed validation | Laboratory |
 | **PROMOTED** | In /knowledge/ | Human |
 
+Notice: humans govern the critical transitions. AI drafts. Humans approve.
+
 ---
 
-## Governance
+## What Makes Knowledge Valid?
 
-### Governance Principles
+Knowledge is promoted when it meets:
 
-| Principle | Description |
-|-----------|-------------|
-| **Human Authority** | Humans make final decisions |
-| **Evidence Requirement** | All claims need evidence |
-| **Traceability** | All decisions documented |
-| **Immutability** | Approved knowledge preserved |
+| Criterion | Meaning |
+|-----------|---------|
+| **Evidence** | Supported by documented evidence |
+| **Validation** | Tested and confirmed |
+| **Traceability** | Complete reasoning chain |
+| **Clarity** | Clearly stated |
+| **Utility** | Useful for future work |
 
-### Governance Bodies
+---
+
+## Why Knowledge Gets Rejected
+
+| Reason | Meaning |
+|--------|---------|
+| **Insufficient Evidence** | Claims not supported |
+| **Invalid Reasoning** | Logic flawed |
+| **Unclear** | Ambiguous or vague |
+| **Contradictory** | Conflicts with existing knowledge |
+| **Premature** | Not sufficiently tested |
+
+Rejection isn't failure. It's feedback.
+
+---
+
+## Knowledge Governance
+
+Four bodies govern knowledge:
 
 | Body | Role |
 |------|------|
@@ -72,61 +102,23 @@ DRAFT → REVIEW → APPROVED → VALIDATED → PROMOTED
 
 ---
 
-## Knowledge Structure
+## How Knowledge Evolves
 
-```
-knowledge/
-├── foundational/      # Core definitions
-├── domain/           # Domain-specific knowledge
-├── patterns/         # Recurring patterns
-└── lessons/          # Lessons learned
-```
+Knowledge isn't frozen—it's cultivated:
 
----
+| Change | When |
+|--------|------|
+| **Refinement** | Better understanding emerges |
+| **Extension** | New evidence extends knowledge |
+| **Deprecation** | Knowledge becomes outdated |
+| **Replacement** | Superior alternative found |
 
-## Knowledge Criteria
-
-Knowledge is promoted when it meets:
-
-| Criterion | Description |
-|-----------|-------------|
-| **Evidence** | Supported by documented evidence |
-| **Validation** | Tested and confirmed |
-| **Traceability** | Complete reasoning chain |
-| **Clarity** | Clearly stated and understood |
-| **Utility** | Useful for future work |
-
----
-
-## Knowledge Rejection
-
-Knowledge may be rejected when:
-
-| Reason | Description |
-|--------|-------------|
-| **Insufficient Evidence** | Claims not supported |
-| **Invalid Reasoning** | Logic flawed |
-| **Unclear** | Ambiguous or vague |
-| **Contradictory** | Conflicts with existing knowledge |
-| **Premature** | Not sufficiently tested |
-
----
-
-## Knowledge Evolution
-
-Approved knowledge may evolve:
-
-| Change Type | Trigger | Authority |
-|-------------|---------|-----------|
-| **Refinement** | Better understanding | Human |
-| **Extension** | New evidence | Human |
-| **Deprecation** | Outdated | Human |
-| **Replacement** | Superior alternative | Human |
+All changes require human approval.
 
 ---
 
 ## See Also
 
-- [Laboratory](laboratory.md) - Investigation workspace
-- [Processes](../6-how-it-works/processes.md) - Investigation workflow
-- [Evidence](../6-how-it-works/evidence.md) - Evidence standards
+- [Laboratory](laboratory.md) — Where knowledge is investigated
+- [Processes](../6-how-it-works/processes.md) — How investigations flow
+- [Evidence](../6-how-it-works/evidence.md) — What makes evidence valid
