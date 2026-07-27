@@ -1,8 +1,5 @@
 # Glossary
 
-**Purpose**: KDE terminology reference
-**Audience**: All readers
-
 ---
 
 ## A
@@ -193,38 +190,7 @@ The process of testing and verifying claims before promotion.
 
 ---
 
-## Index
-
-| Term | Section |
-|------|---------|
-| AI | A |
-| Approval | A |
-| Bootstrap | B |
-| Capability | C |
-| Consensus | C |
-| ECU | E |
-| Engine | E |
-| Evidence | E |
-| Experiment | E |
-| Governance | G |
-| Human Authority | H |
-| Inference | I |
-| Investigation | I |
-| KDE | K |
-| Knowledge | K |
-| Laboratory | L |
-| Policy Layer | P |
-| Principle | P |
-| Promotion | P |
-| Runtime | R |
-| Scientific Loop | S |
-| Seed | S |
-| Traceability | T |
-| Validation | V |
-
----
-
 ## See Also
 
-- [Commands](commands.md) - Command reference
-- [Philosophy](../2-foundations/philosophy.md) - Core principles
+- [Commands](commands.md) — Command reference
+- [Philosophy](../2-foundations/philosophy.md) — Core principles

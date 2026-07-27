@@ -1,13 +1,14 @@
 # Architecture
 
-**Purpose**: KDE's repository and directory structure
-**Audience**: Contributors, developers
+---
+
+## The Simple Idea
+
+KDE has five directories. Each serves a purpose. Together, they enable systematic investigation.
 
 ---
 
-## Repository Overview
-
-KDE uses a five-directory canonical structure:
+## The Five Directories
 
 ```
 kde/
@@ -20,23 +21,17 @@ kde/
 
 ---
 
-## Directory Organization
+## What Each Directory Does
 
 ### /seeds/
 
-Immutable foundational principles.
+Immutable foundational principles. Once created, never modified.
 
 ```
 seeds/
 ├── seed-001/       # Genesis (frozen)
-│   ├── principles/
-│   └── specifications/
-└── seed-002/       # Evolution (frozen)
-    ├── principles/
-    └── specifications/
+├── seed-002/       # Evolution (frozen)
 ```
-
-**Rule**: Seeds are never modified after creation.
 
 ### /engines/
 
@@ -48,12 +43,11 @@ engines/
 ├── beta/          # KDE-ENGINE-002 (active)
 ├── gamma/         # KDE-ENGINE-003 (active)
 ├── delta/         # KDE-ENGINE-004 (active)
-└── current.md     # Active engine reference
 ```
 
 ### /laboratory/
 
-Scientific investigation workspace.
+Where investigations happen.
 
 ```
 laboratory/
@@ -91,100 +85,53 @@ governance/
 
 ---
 
-## File Naming Conventions
+## How They Connect
 
-### Investigation Files
+```
+Human Request
+      │
+      ▼
+  Bootstrap
+      │
+      ▼
+     ECU ◄── Governance
+      │
+      ▼
+  Engine + Seed
+      │
+      ▼
+  Laboratory
+      │
+      ▼
+   Knowledge
+```
+
+---
+
+## File Naming
 
 | Pattern | Example | Purpose |
 |---------|---------|---------|
 | `INV-XXX/` | `INV-001/` | Investigation directory |
-| `INVESTIGATION.md` | | Main document |
-| `EVIDENCE.md` | | Supporting evidence |
-
-### Experiment Files
-
-| Pattern | Example | Purpose |
-|---------|---------|---------|
 | `LAB-XXX/` | `LAB-001/` | Experiment directory |
-| `experiment.md` | | Experiment specification |
-| `results.md` | | Experiment results |
-
-### Knowledge Files
-
-| Pattern | Example | Purpose |
-|---------|---------|---------|
-| `DOMAIN-XXX.md` | `DOMAIN-001.md` | Domain definition |
-| `PATTERN-XXX.md` | `PATTERN-001.md` | Pattern description |
-
-### Governance Files
-
-| Pattern | Example | Purpose |
-|---------|---------|---------|
-| `PROPOSAL-XXX.md` | `PROPOSAL-001.md` | Change proposal |
-| `POLICY-XXX.md` | `POLICY-001.md` | Policy document |
-| `PATCH-XXX/` | `PATCH-001/` | Patch directory |
+| `DOMAIN-XXX.md` | | Domain definition |
+| `PATTERN-XXX.md` | | Pattern description |
+| `PROPOSAL-XXX.md` | | Change proposal |
 
 ---
 
 ## Key Entry Points
 
-### Session Entry
-
-```
-laboratory/BOOTSTRAP.md
-```
-
-This is the canonical entry point for every session.
-
-### Core Principles
-
-```
-seeds/seed-001/principles/5-principles.md
-```
-
-The five core principles that govern KDE.
-
-### Runtime
-
-```
-runtime/ecu/
-```
-
-The ECU implementation for orchestration.
-
----
-
-## Component Relationships
-
-```
-     Human
-       │
-       ▼
-  ┌─────────┐
-  │ Bootstrap│
-  └────┬────┘
-       │
-       ▼
-  ┌─────────┐
-  │   ECU   │◄──── Governance
-  └────┬────┘
-       │
-  ┌────┴────┐
-  │         │
-  ▼         ▼
-Engine    Seed
-  │
-  ▼
-Laboratory
-  │
-  ▼
-Knowledge
-```
+| Entry | Location | Purpose |
+|-------|----------|---------|
+| Session | `laboratory/BOOTSTRAP.md` | Start here |
+| Principles | `seeds/seed-001/principles/5-principles.md` | Core rules |
+| Runtime | `runtime/ecu/` | ECU implementation |
 
 ---
 
 ## See Also
 
-- [Models](models.md) - Engine, Seed, ECU models
-- [Contributing](../10-contributing/contributing.md) - How to contribute
-- [Reference](../9-reference/commands.md) - Command reference
+- [Models](models.md) — Technical details
+- [Contributing](../10-contributing/contributing.md) — How to contribute
+- [Commands](../9-reference/commands.md) — Reference

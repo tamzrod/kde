@@ -1,7 +1,10 @@
 # Models
 
-**Purpose**: Technical models for Engine, Seed, and ECU
-**Audience**: Contributors, developers
+---
+
+## The Simple Idea
+
+These are the technical specifications for KDE's components. Engine, Seed, and ECU each have a defined structure.
 
 ---
 
@@ -65,7 +68,7 @@ seed/
     └── lifecycle.md
 ```
 
-### Principles Structure
+### Principles Template
 
 ```markdown
 # Core Principles
@@ -100,31 +103,6 @@ runtime/ecu/
 ├── consensus/          # Consensus coordination
 ├── aggregator/         # Result aggregation
 └── bootstrap/          # Bootstrap integration
-```
-
-### ECU Data Models
-
-```python
-@dataclass
-class ExecutionRequest:
-    request_id: str
-    description: str
-    required_capabilities: List[CapabilityType]
-
-@dataclass
-class ExecutionPlan:
-    mode: ExecutionMode
-    engines: List[EngineID]
-    seed: SeedID
-    steps: List[ExecutionStep]
-
-@dataclass
-class ExecutionResult:
-    request_id: str
-    plan: ExecutionPlan
-    results: List[EngineResult]
-    aggregated: AggregatedResult
-    consensus: Optional[ConsensusResult]
 ```
 
 ### Capability Types
@@ -185,9 +163,46 @@ COMPLETE
 
 ---
 
+## Data Models
+
+### ExecutionRequest
+
+```python
+@dataclass
+class ExecutionRequest:
+    request_id: str
+    description: str
+    required_capabilities: List[CapabilityType]
+```
+
+### ExecutionPlan
+
+```python
+@dataclass
+class ExecutionPlan:
+    mode: ExecutionMode
+    engines: List[EngineID]
+    seed: SeedID
+    steps: List[ExecutionStep]
+```
+
+### ExecutionResult
+
+```python
+@dataclass
+class ExecutionResult:
+    request_id: str
+    plan: ExecutionPlan
+    results: List[EngineResult]
+    aggregated: AggregatedResult
+    consensus: Optional[ConsensusResult]
+```
+
+---
+
 ## Registry Models
 
-### Engine Registry
+### EngineInfo
 
 ```python
 @dataclass
@@ -200,7 +215,7 @@ class EngineInfo:
     specification_path: str
 ```
 
-### Seed Registry
+### SeedInfo
 
 ```python
 @dataclass
@@ -217,6 +232,6 @@ class SeedInfo:
 
 ## See Also
 
-- [Architecture](architecture.md) - Repository structure
-- [ECU](../5-core-concepts/ecu.md) - ECU overview
-- [Engines and Seeds](../5-core-concepts/engines-and-seeds.md) - Component overview
+- [Architecture](architecture.md) — Repository structure
+- [ECU](../5-core-concepts/ecu.md) — ECU overview
+- [Engines and Seeds](../5-core-concepts/engines-and-seeds.md) — Component overview

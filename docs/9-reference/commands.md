@@ -1,8 +1,5 @@
 # Commands
 
-**Purpose**: Complete command and alias reference
-**Audience**: All users
-
 ---
 
 ## Command Categories
@@ -22,14 +19,11 @@
 
 Initialize KDE runtime.
 
-**Alias**: `initialize kde`, `init kde`, `run`
-
-**Usage**:
-```
+```bash
 start engine
 ```
 
-**Output**: Runtime initialization confirmation
+**Aliases**: `initialize kde`, `init kde`, `run`
 
 ---
 
@@ -37,14 +31,18 @@ start engine
 
 Verify system readiness.
 
-**Alias**: `systems check`, `health`, `check`, `go`
-
-**Usage**:
-```
+```bash
 pre-flight check
 ```
 
-**Output**: Five-point system check
+**Aliases**: `systems check`, `health`, `check`, `go`
+
+Checks five things:
+1. Initialization
+2. Engine Registry
+3. Seed Registry
+4. Policy Layer
+5. System Health
 
 ---
 
@@ -52,14 +50,11 @@ pre-flight check
 
 Confirm operational status.
 
-**Alias**: `go for launch`
-
-**Usage**:
-```
+```bash
 mission ready
 ```
 
-**Output**: Mission ready confirmation
+**Aliases**: `go for launch`
 
 ---
 
@@ -67,39 +62,11 @@ mission ready
 
 View current runtime state.
 
-**Alias**: `status report`
-
-**Usage**:
-```
+```bash
 check state
 ```
 
-**Output**: Current state information
-
----
-
-## Alias Reference
-
-### Canonical Commands
-
-| Command | Description |
-|---------|-------------|
-| `start engine` | Initialize runtime |
-| `pre-flight check` | Verify readiness |
-| `mission ready` | Confirm status |
-| `check state` | View state |
-| `bootstrap` | Bootstrap session |
-| `run demo` | Run demo sequence |
-
-### Alias Categories
-
-| Category | Commands |
-|----------|----------|
-| **canonical** | Primary authoritative commands |
-| **operational** | Mission-oriented workflow |
-| **professional** | Engineering terminology |
-| **friendly** | New user-friendly commands |
-| **deprecated** | Backward compatibility |
+**Aliases**: `status report`
 
 ---
 
@@ -109,8 +76,7 @@ check state
 
 Run bootstrap gates.
 
-**Usage**:
-```
+```bash
 bootstrap
 ```
 
@@ -120,8 +86,7 @@ bootstrap
 
 Begin new investigation.
 
-**Usage**:
-```
+```bash
 run investigation
 ```
 
@@ -131,8 +96,7 @@ run investigation
 
 View investigation status.
 
-**Usage**:
-```
+```bash
 check investigation [id]
 ```
 
@@ -153,7 +117,7 @@ runtime:
 
 ### Engine Selection
 
-Automatic or manual:
+Automatic (default) or manual:
 
 ```yaml
 # Automatic (default)
@@ -176,8 +140,21 @@ engine: KDE-ENGINE-003
 
 ---
 
+## Quick Reference
+
+| Command | Aliases | Purpose |
+|---------|---------|---------|
+| `start engine` | init, run | Initialize runtime |
+| `pre-flight check` | check, go | Verify readiness |
+| `mission ready` | go for launch | Confirm status |
+| `check state` | status report | View state |
+| `bootstrap` | | Run bootstrap |
+| `run demo` | | Run demo |
+
+---
+
 ## See Also
 
-- [Glossary](glossary.md) - Terminology
-- [Guides](../7-guides/guides.md) - Usage guides
-- [ECU](../5-core-concepts/ecu.md) - Runtime details
+- [Glossary](glossary.md) — Terminology
+- [Guides](../7-guides/guides.md) — Usage guides
+- [ECU](../5-core-concepts/ecu.md) — Runtime details

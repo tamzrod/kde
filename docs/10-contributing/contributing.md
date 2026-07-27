@@ -1,19 +1,16 @@
 # Contributing
 
-**Purpose**: How to contribute to KDE
-**Audience**: Contributors, developers
-
 ---
 
-## Overview
+## The Simple Idea
 
 KDE welcomes contributions that improve the methodology, documentation, or tooling. All contributions require human approval.
 
+This isn't gatekeeping. It's quality control. Every change goes through the same investigation process.
+
 ---
 
-## Chapter 1: How to Contribute
-
-### Contribution Types
+## What You Can Contribute
 
 | Type | Description | Process |
 |------|-------------|---------|
@@ -22,28 +19,32 @@ KDE welcomes contributions that improve the methodology, documentation, or tooli
 | **Experiment** | Test methodology | Run experiment |
 | **Governance** | Change rules | Raise proposal |
 
-### Process
+---
 
-1. **Propose** your contribution
-2. **Develop** under guidance
-3. **Document** thoroughly
-4. **Submit** for review
-5. **Await** human approval
-6. **Implement** when approved
+## The Contribution Process
+
+```
+1. Propose your contribution
+2. Develop under guidance
+3. Document thoroughly
+4. Submit for review
+5. Await human approval
+6. Implement when approved
+```
 
 ---
 
-## Chapter 2: Governance Rules
+## What You Cannot Change
 
-### What You Cannot Change
-
-| Item | Rule | Rationale |
-|------|------|-----------|
+| Item | Rule | Why |
+|------|------|-----|
 | Seeds | Never modify | Immutable foundation |
 | Core Principles | Never modify | Governance foundation |
 | Human Authority | Never remove | Non-negotiable oversight |
 
-### What Requires Approval
+---
+
+## What Requires Approval
 
 | Action | Required |
 |--------|----------|
@@ -53,7 +54,9 @@ KDE welcomes contributions that improve the methodology, documentation, or tooli
 | New Engine | Architecture approval |
 | New Seed | Governance approval |
 
-### What You Can Do Freely
+---
+
+## What You Can Do Freely
 
 | Action | Required |
 |--------|----------|
@@ -64,9 +67,7 @@ KDE welcomes contributions that improve the methodology, documentation, or tooli
 
 ---
 
-## Chapter 3: Investigation Standards
-
-### Quality Requirements
+## Investigation Standards
 
 Every investigation must have:
 
@@ -77,7 +78,7 @@ Every investigation must have:
 - [ ] Traceable reasoning
 - [ ] Acknowledged limitations
 
-### Evidence Standards
+### Evidence Marking
 
 | Type | Marking | Requirement |
 |------|---------|-------------|
@@ -85,37 +86,9 @@ Every investigation must have:
 | Inference | `[Inference]` | Evidence link required |
 | Hypothesis | `[Hypothesis]` | Labeled as speculation |
 
-### Document Structure
-
-```markdown
-# Investigation Title
-
-**ID**: INV-XXX
-**Date**: YYYY-MM-DD
-**Status**: [STATUS]
-
-## Objective
-[What you're investigating]
-
-## Scope
-[What you cover]
-
-## Evidence
-[Documented facts]
-
-## Analysis
-[Inferences from evidence]
-
-## Conclusions
-[What you conclude]
-
-## Limitations
-[What you couldn't cover]
-```
-
 ---
 
-## Chapter 4: Creating New Engines
+## Creating New Engines
 
 ### Requirements
 
@@ -128,38 +101,18 @@ Every investigation must have:
 
 ### Process
 
+```
 1. Create engine directory
 2. Write specification
 3. Implement methodology
 4. Add to registry
 5. Validate functionality
 6. Submit for review
-
-### Engine Template
-
-```markdown
-# Engine Specification
-
-**Engine ID**: KDE-ENGINE-XXX
-**Codename**: [Name]
-**Status**: [Active/Experimental]
-
-## Purpose
-[What this engine does]
-
-## Capabilities
-- [List capabilities]
-
-## Methodology
-[How it works]
-
-## Validation
-[How to test]
 ```
 
 ---
 
-## Chapter 5: Creating New Seeds
+## Creating New Seeds
 
 ### Requirements
 
@@ -172,39 +125,18 @@ Every investigation must have:
 
 ### Process
 
+```
 1. Define principles
 2. Document rationale
 3. Propose to governance
 4. Human reviews
 5. Human approves
 6. Seed is frozen
-
-### Seed Template
-
-```markdown
-# Seed Specification
-
-**Seed ID**: SEED-XXX
-**Codename**: [Name]
-**Status**: [Frozen/Active]
-
-## Principles
-
-### Principle 1
-[Description]
-**Rationale**: [Why]
-
-### Principle 2
-[Description]
-**Rationale**: [Why]
-
-## Immutability
-[Statement of immutability]
 ```
 
 ---
 
-## Chapter 6: Raising Proposals
+## Raising Proposals
 
 ### Proposal Types
 
@@ -248,17 +180,19 @@ Every investigation must have:
 
 ### Submission Process
 
+```
 1. Draft proposal
 2. Gather supporting evidence
 3. Submit for review
 4. Address feedback
 5. Await approval
 6. Implement when approved
+```
 
 ---
 
 ## See Also
 
-- [Governance](../5-core-concepts/knowledge.md) - Knowledge governance
-- [Processes](../6-how-it-works/processes.md) - Workflow details
-- [Architecture](../8-architecture/architecture.md) - Repository structure
+- [Knowledge](../5-core-concepts/knowledge.md) — Knowledge governance
+- [Processes](../6-how-it-works/processes.md) — Workflow details
+- [Architecture](../8-architecture/architecture.md) — Repository structure

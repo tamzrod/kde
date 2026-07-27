@@ -1,8 +1,5 @@
 # History
 
-**Purpose**: KDE's evolution and lessons learned
-**Audience**: All readers
-
 ---
 
 ## The Beginning
@@ -92,55 +89,55 @@ KDE learned from itself:
 
 ---
 
-## Major Discoveries
+## What We Learned
 
-### Discovery 1: Evidence Distinction Matters
+### Evidence Distinction Matters
 
 Early KDE learned that distinguishing evidence from inference from speculation was essential. This became Principle 4.
 
-### Discovery 2: Human Oversight Prevents Drift
+### Human Oversight Prevents Drift
 
 AI systems naturally drift toward conclusions without justification. KDE's human-authorization principle prevents this.
 
-### Discovery 3: Systematic is Better Than Ad-hoc
+### Systematic Beats Ad-hoc
 
 Ad-hoc approaches to knowledge work lose information and context. Systematic approaches preserve both.
 
-### Discovery 4: Governance Enables Scale
+### Governance Enables Scale
 
 Without governance, knowledge work becomes inconsistent. Governance ensures quality across scale.
 
-### Discovery 5: Self-Analysis Reveals Patterns
+### Self-Analysis Reveals Patterns
 
 Meta-analysis—studying how KDE works—revealed patterns invisible to individual investigations.
 
 ---
 
-## Lessons Learned
+## Core Lessons
 
-### Lesson 1: Start Simple
+### Start Simple
 
 Early complexity created confusion. Simplicity principles emerged from this.
 
-### Lesson 2: Document Everything
+### Document Everything
 
 Lost evidence taught KDE to preserve everything. Documentation is insurance against forgetting.
 
-### Lesson 3: Human Authority is Non-Negotiable
+### Human Authority is Non-Negotiable
 
 Attempts to reduce human involvement led to drift. Human oversight is foundational.
 
-### Lesson 4: Evidence Beats Intuition
+### Evidence Beats Intuition
 
 Contradictions between intuition and evidence consistently favored evidence. Trust the data.
 
-### Lesson 5: Evolution is Gradual
+### Evolution is Gradual
 
 Grand transformations failed. Cumulative small improvements succeeded. Growth takes time.
 
 ---
 
-## Where KDE is Now
+## Where We Are Now
 
 Today, KDE provides:
 
@@ -170,6 +167,6 @@ We are still finding out.
 
 ## See Also
 
-- [What is KDE](../1-introduction/what-is-kde.md) - Core concepts
-- [Vision](../1-introduction/vision.md) - Future direction
-- [Philosophy](../2-foundations/philosophy.md) - Core principles
+- [What is KDE](../1-introduction/what-is-kde.md) — Core concepts
+- [Vision](../1-introduction/vision.md) — Future direction
+- [Philosophy](../2-foundations/philosophy.md) — Core principles
