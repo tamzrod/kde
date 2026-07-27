@@ -1,9 +1,10 @@
 # Investigation Template
 
 **File**: INV.md
-**Version**: 1.0.0
-**Date**: 2026-07-26
-**Source**: KDE-INV-052
+**Version**: 2.0.0
+**Date**: 2026-07-27
+**Source**: INV-AUDIT-REVIEW-001
+**Change**: Added Seed version stamping for reproducibility
 
 ---
 
@@ -35,13 +36,15 @@ authority: "KDE Runtime (DNP3 Library)"
 status: IN_PROGRESS
 created: "YYYY-MM-DD"
 execution_agent: "OpenHands Agent"
-engine: KDE-ENGINE-004 (Delta)
+engine: KDE-ENGINE-004 (Delta) v0.1.0
+seed: SEED-001 (Genesis) v1.0.0
 ---
 
 # [Investigation Title]
 
 **Investigation ID**: KDE-INV-XXX
-**Engine**: KDE-ENGINE-004 (Delta)
+**Engine**: KDE-ENGINE-004 (Delta) v0.1.0
+**Seed**: SEED-001 (Genesis) v1.0.0
 **Title**: [Investigation Title]
 **Status**: IN_PROGRESS
 **Date**: YYYY-MM-DD

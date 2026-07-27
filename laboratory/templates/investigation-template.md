@@ -1,15 +1,44 @@
 # Investigation Template
 
-**Template Version**: 2.0.0
-**Date**: 2026-07-24
+**Template Version**: 3.0.0
+**Date**: 2026-07-27
 **Architecture**: Architecture C
-**Source**: INV-TEMPORAL-PROVENANCE (Human Approved)
+**Source**: INV-AUDIT-REVIEW-001 (INVESTIGATION VERSION STAMPING)
+**Change**: Added Engine/Seed version stamping for reproducibility
 
 ---
 
 ## Purpose
 
 This template defines the structure for Investigations in Architecture C. Investigations own the scientific purpose (WHY), while Experiments own the execution (HOW).
+
+---
+
+## Version Stamping (NEW in v3.0.0)
+
+Every investigation MUST record the environment used to conduct it. This enables exact reproduction of investigations.
+
+### Required Version Fields
+
+| Field | Description | Example |
+|-------|-------------|---------|
+| `Engine ID` | Engine used for investigation | KDE-ENGINE-002 |
+| `Engine Version` | Exact engine version | 0.1.0 |
+| `Seed ID` | Seed used for investigation | SEED-001 |
+| `Seed Version` | Exact seed version | 1.0.0 |
+| `Runtime Version` | Runtime configuration hash | abc123 |
+
+### Why Version Stamping Matters
+
+[Evidence] Without version stamping:
+- Cannot reproduce exact investigation conditions
+- Cannot verify if results depend on specific engine/seed versions
+- Cannot trace knowledge provenance back to specific methodology versions
+
+[Evidence] With version stamping:
+- Exact reproduction is possible
+- Results can be attributed to specific methodology versions
+- Knowledge provenance can be traced
 
 ---
 
@@ -56,18 +85,19 @@ investigations/
 **Date**: YYYY-MM-DDTHH:MM:SSZ
 **Status**: ACTIVE|COMPLETE|PROMOTED
 **Author**: [Author Name]
+**Engine**: KDE-ENGINE-XXX (vX.Y.Z)
+**Seed**: SEED-XXX (vX.Y.Z)
 
 #### Content
 
 ```markdown
 # Investigation: INV-XXX
 
-**ID**: INV-XXX
-**Title**: [Investigation Title]
-**Version**: 1.0.0
+**Investigation ID**: INV-XXX
 **Date**: YYYY-MM-DDTHH:MM:SSZ
 **Status**: ACTIVE
-**Author**: [Author Name]
+**Engine**: KDE-ENGINE-XXX (vX.Y.Z)
+**Seed**: SEED-XXX (vX.Y.Z)
 
 ---
 
@@ -231,7 +261,7 @@ Experiments are linked via the `links/` directory.
 
 ---
 
-## Metadata Standard
+## Metadata Standard (v3.0.0)
 
 Every investigation artifact SHALL contain:
 
@@ -244,8 +274,13 @@ Every investigation artifact SHALL contain:
 | ID | INV-XXX | YES | Investigation identifier |
 | Version | X.Y.Z | YES | Document version |
 | Status | ACTIVE\|COMPLETE\|PROMOTED | YES | Current status |
+| **Engine** | KDE-ENGINE-XXX (vX.Y.Z) | YES | Engine used (NEW v3.0.0) |
+| **Seed** | SEED-XXX (vX.Y.Z) | YES | Seed used (NEW v3.0.0) |
+| **Runtime Config** | Hash | RECOMMENDED | Runtime configuration hash |
 
 **Timestamp Format**: All timestamps MUST use ISO-8601 UTC with Z suffix.
+
+**Version Stamping Note**: Engine and Seed versions are REQUIRED for reproducibility. See Version Stamping section above.
 
 ---
 
