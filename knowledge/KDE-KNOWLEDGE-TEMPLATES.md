@@ -2,16 +2,17 @@
 
 **Document ID**: KDE-KNOWLEDGE-TEMPLATES-001
 **Title**: Knowledge Document Templates
-**Version**: 1.0.0
+**Version**: 2.0.0
 **Status**: APPROVED
 **Confidence**: HIGH
 **Class**: ARCHITECTURE
 **Author**: KDE Governance
-**Authority**: LAB-024 Arbitration Verdict
-**Effective Date**: 2026-07-21
-**Source Investigation**: LAB-024
+**Authority**: LAB-024 Arbitration Verdict, INV-AUDIT-REVIEW-001
+**Effective Date**: 2026-07-27
+**Source Investigation**: LAB-024, INV-AUDIT-REVIEW-001
 **Approved By**: KDE Governance
-**Promoted**: 2026-07-21
+**Promoted**: 2026-07-27
+**Change**: Added Investigation Provenance (Engine/Seed) to all templates per INV-AUDIT-REVIEW-001
 
 ---
 
@@ -161,12 +162,43 @@ Establish philosophical/epistemological foundations for KDE concepts.
 
 ## Provenance
 
-| Source | Reference | Date |
-|--------|-----------|------|
-| Investigation | INV-XXX | YYYY-MM-DD |
-| Evidence | EV-XXX | YYYY-MM-DD |
-| Validation | [Validator] | YYYY-MM-DD |
-| Promotion | [Approver] | YYYY-MM-DD |
+### Investigation Provenance (NEW)
+
+| Field | Value | Description |
+|-------|-------|-------------|
+| Investigation | INV-XXX | Investigation that produced this knowledge |
+| Engine | KDE-ENGINE-XXX (vX.Y.Z) | Engine used (v3.0.0+ template) |
+| Seed | SEED-XXX (vX.Y.Z) | Seed used (v3.0.0+ template) |
+| Investigation Date | YYYY-MM-DD | When investigation was conducted |
+
+### Evidence Provenance
+
+| Source | Reference | Date | Evidence ID |
+|--------|-----------|------|-------------|
+| Investigation | INV-XXX | YYYY-MM-DD | - |
+| Evidence | EV-XXX | YYYY-MM-DD | EV-XXX |
+| External Source | [Source] | YYYY-MM-DD | - |
+
+### Validation Provenance
+
+| Stage | Validator | Date | Notes |
+|-------|-----------|------|-------|
+| Candidate | [Name] | YYYY-MM-DD | [Notes] |
+| Validated | [Name] | YYYY-MM-DD | [Notes] |
+| Promoted | [Name] | YYYY-MM-DD | [Notes] |
+
+### Knowledge Dependencies
+
+| Knowledge ID | Relationship | Version |
+|--------------|--------------|---------|
+| KDE-XXX | Depends on | v1.0.0 |
+| KDE-YYY | Related to | v2.0.0 |
+
+**Why Provenance Matters**: Provenance enables:
+- Tracing knowledge back to source investigations
+- Verifying knowledge was derived from correct methodology
+- Understanding knowledge dependencies
+- Reproducing knowledge derivation if needed
 ```
 
 ---
@@ -281,12 +313,36 @@ Define KDE system architecture and specifications.
 
 ## Provenance
 
-| Source | Reference | Date |
-|--------|-----------|------|
-| Investigation | INV-XXX | YYYY-MM-DD |
-| Evidence | EV-XXX | YYYY-MM-DD |
-| Validation | [Validator] | YYYY-MM-DD |
-| Promotion | [Approver] | YYYY-MM-DD |
+### Investigation Provenance (v2.0.0)
+
+| Field | Value | Description |
+|-------|-------|-------------|
+| Investigation | INV-XXX | Investigation that produced this knowledge |
+| Engine | KDE-ENGINE-XXX (vX.Y.Z) | Engine used |
+| Seed | SEED-XXX (vX.Y.Z) | Seed used |
+| Investigation Date | YYYY-MM-DD | When investigation was conducted |
+
+### Evidence Provenance
+
+| Source | Reference | Date | Evidence ID |
+|--------|-----------|------|-------------|
+| Investigation | INV-XXX | YYYY-MM-DD | - |
+| Evidence | EV-XXX | YYYY-MM-DD | EV-XXX |
+
+### Validation Provenance
+
+| Stage | Validator | Date | Notes |
+|-------|-----------|------|-------|
+| Candidate | [Name] | YYYY-MM-DD | [Notes] |
+| Validated | [Name] | YYYY-MM-DD | [Notes] |
+| Promoted | [Name] | YYYY-MM-DD | [Notes] |
+
+### Knowledge Dependencies
+
+| Knowledge ID | Relationship | Version |
+|--------------|--------------|---------|
+| KDE-XXX | Depends on | v1.0.0 |
+| KDE-YYY | Related to | v2.0.0 |
 
 ---
 
@@ -320,6 +376,8 @@ Document engineering practice within a specific domain.
 **Updated**: YYYY-MM-DDTHH:MM:SSZ
 **Reviewed**: YYYY-MM-DD
 **Source Investigation**: INV-XXX
+**Source Engine**: KDE-ENGINE-XXX (vX.Y.Z) (NEW)
+**Source Seed**: SEED-XXX (vX.Y.Z) (NEW)
 **Evidence**:
   - EV-XXX
 **Approver**: [Name] (required for PROMOTED)
@@ -453,6 +511,8 @@ Define rules, processes, and policies.
 **Updated**: YYYY-MM-DDTHH:MM:SSZ
 **Reviewed**: YYYY-MM-DD
 **Source Investigation**: INV-XXX
+**Source Engine**: KDE-ENGINE-XXX (vX.Y.Z) (NEW)
+**Source Seed**: SEED-XXX (vX.Y.Z) (NEW)
 **Evidence**:
   - EV-XXX
 **Approver**: [Name] (required for PROMOTED)
@@ -572,6 +632,8 @@ Document reasoning and decision-making.
 **Updated**: YYYY-MM-DDTHH:MM:SSZ
 **Reviewed**: YYYY-MM-DD
 **Source Investigation**: INV-XXX
+**Source Engine**: KDE-ENGINE-XXX (vX.Y.Z) (NEW)
+**Source Seed**: SEED-XXX (vX.Y.Z) (NEW)
 **Evidence**:
   - EV-XXX
 **Approver**: [Name] (required for PROMOTED)
@@ -707,10 +769,12 @@ Document reasoning and decision-making.
 
 | Version | Date | Changes | Authority |
 |---------|------|---------|-----------|
+| 2.0.0 | 2026-07-27 | Added Investigation Provenance (Engine/Seed) | INV-AUDIT-REVIEW-001 |
 | 1.0.0 | 2026-07-21 | Initial templates | LAB-024 Verdict |
 
 ---
 
 **Document Status**: APPROVED
-**Authority**: LAB-024 Arbitration
+**Authority**: LAB-024 Arbitration, INV-AUDIT-REVIEW-001
 **Compliance**: MANDATORY
+**Change Note**: Templates now require Engine and Seed provenance for reproducibility.
