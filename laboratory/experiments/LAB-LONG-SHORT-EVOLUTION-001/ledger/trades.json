@@ -1,0 +1,1694 @@
+[
+  {
+    "trade_id": "T-00001",
+    "direction": "LONG",
+    "entry_price": 88984.0,
+    "exit_price": 89573.09,
+    "exit_reason": "take_profit",
+    "pnl": 1.6550447271419482,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00002",
+    "direction": "SHORT",
+    "entry_price": 88528.79,
+    "exit_price": 89561.03,
+    "exit_reason": "stop_loss",
+    "pnl": -2.9149839278273353,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00003",
+    "direction": "LONG",
+    "entry_price": 89561.03,
+    "exit_price": 88496.59,
+    "exit_reason": "stop_loss",
+    "pnl": -2.9719553884728445,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00004",
+    "direction": "SHORT",
+    "entry_price": 88603.64,
+    "exit_price": 89878.72,
+    "exit_reason": "stop_loss",
+    "pnl": -3.23338017927306,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00005",
+    "direction": "LONG",
+    "entry_price": 89315.2,
+    "exit_price": 90000.0,
+    "exit_reason": "take_profit",
+    "pnl": 1.9159192401827636,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00006",
+    "direction": "LONG",
+    "entry_price": 90190.0,
+    "exit_price": 89034.76,
+    "exit_reason": "stop_loss",
+    "pnl": -3.2016623688589516,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00007",
+    "direction": "SHORT",
+    "entry_price": 89506.07,
+    "exit_price": 88957.73,
+    "exit_reason": "take_profit",
+    "pnl": 1.2367080367912584,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00008",
+    "direction": "LONG",
+    "entry_price": 89352.11,
+    "exit_price": 89927.15,
+    "exit_reason": "take_profit",
+    "pnl": 1.6074354065455119,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00009",
+    "direction": "LONG",
+    "entry_price": 90500.0,
+    "exit_price": 89336.8,
+    "exit_reason": "stop_loss",
+    "pnl": -3.2110145274744655,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00010",
+    "direction": "SHORT",
+    "entry_price": 89474.41,
+    "exit_price": 90498.75,
+    "exit_reason": "stop_loss",
+    "pnl": -2.0811576910127303,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00011",
+    "direction": "LONG",
+    "entry_price": 90703.82,
+    "exit_price": 89637.93,
+    "exit_reason": "stop_loss",
+    "pnl": -2.933599993048531,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00012",
+    "direction": "LONG",
+    "entry_price": 90357.47,
+    "exit_price": 89390.18,
+    "exit_reason": "stop_loss",
+    "pnl": -2.6705964550364425,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00013",
+    "direction": "LONG",
+    "entry_price": 90077.03,
+    "exit_price": 90547.58,
+    "exit_reason": "take_profit",
+    "pnl": 1.3023616763301058,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00014",
+    "direction": "LONG",
+    "entry_price": 91288.61,
+    "exit_price": 91999.99,
+    "exit_reason": "take_profit",
+    "pnl": 1.9430985672383023,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00015",
+    "direction": "LONG",
+    "entry_price": 93159.25,
+    "exit_price": 93811.06,
+    "exit_reason": "take_profit",
+    "pnl": 1.745140545551114,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00016",
+    "direction": "SHORT",
+    "entry_price": 92730.15,
+    "exit_price": 93811.06,
+    "exit_reason": "stop_loss",
+    "pnl": -1.9044491953610492,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00017",
+    "direction": "SHORT",
+    "entry_price": 92966.63,
+    "exit_price": 93954.68,
+    "exit_reason": "stop_loss",
+    "pnl": -1.5605716466184585,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00018",
+    "direction": "SHORT",
+    "entry_price": 93939.63,
+    "exit_price": 93333.33,
+    "exit_reason": "take_profit",
+    "pnl": 0.851826961381106,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00019",
+    "direction": "LONG",
+    "entry_price": 94451.23,
+    "exit_price": 92695.38,
+    "exit_reason": "stop_loss",
+    "pnl": -4.637922682099229,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00020",
+    "direction": "SHORT",
+    "entry_price": 92186.64,
+    "exit_price": 91570.29,
+    "exit_reason": "take_profit",
+    "pnl": 0.7946535866549902,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00021",
+    "direction": "LONG",
+    "entry_price": 91880.33,
+    "exit_price": 92446.23,
+    "exit_reason": "take_profit",
+    "pnl": 1.535019599936637,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00022",
+    "direction": "SHORT",
+    "entry_price": 93254.01,
+    "exit_price": 92724.36,
+    "exit_reason": "take_profit",
+    "pnl": 0.6079345851832083,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00023",
+    "direction": "SHORT",
+    "entry_price": 91599.8,
+    "exit_price": 90823.44,
+    "exit_reason": "take_profit",
+    "pnl": 0.8169066285967537,
+    "week": 1
+  },
+  {
+    "trade_id": "T-00024",
+    "direction": "SHORT",
+    "entry_price": 91599.8,
+    "exit_price": 90823.44,
+    "exit_reason": "take_profit",
+    "pnl": 0.7358269957318975,
+    "week": 2
+  },
+  {
+    "trade_id": "T-00025",
+    "direction": "LONG",
+    "entry_price": 91404.81,
+    "exit_price": 90164.34,
+    "exit_reason": "stop_loss",
+    "pnl": -3.383016870096327,
+    "week": 2
+  },
+  {
+    "trade_id": "T-00026",
+    "direction": "LONG",
+    "entry_price": 95633.48,
+    "exit_price": 96666.63,
+    "exit_reason": "take_profit",
+    "pnl": 2.69093004795599,
+    "week": 2
+  },
+  {
+    "trade_id": "T-00027",
+    "direction": "SHORT",
+    "entry_price": 92903.64,
+    "exit_price": 92248.62,
+    "exit_reason": "take_profit",
+    "pnl": 0.5513561441368414,
+    "week": 3
+  },
+  {
+    "trade_id": "T-00028",
+    "direction": "LONG",
+    "entry_price": 89554.06,
+    "exit_price": 90071.25,
+    "exit_reason": "take_profit",
+    "pnl": 1.4391455204273913,
+    "week": 3
+  },
+  {
+    "trade_id": "T-00029",
+    "direction": "LONG",
+    "entry_price": 89554.06,
+    "exit_price": 90071.25,
+    "exit_reason": "take_profit",
+    "pnl": 1.4394167558752695,
+    "week": 4
+  },
+  {
+    "trade_id": "T-00030",
+    "direction": "SHORT",
+    "entry_price": 86869.72,
+    "exit_price": 86261.11,
+    "exit_reason": "take_profit",
+    "pnl": 0.9551244670260249,
+    "week": 4
+  },
+  {
+    "trade_id": "T-00031",
+    "direction": "LONG",
+    "entry_price": 82376.68,
+    "exit_price": 81384.22,
+    "exit_reason": "stop_loss",
+    "pnl": -3.0033938383537215,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00032",
+    "direction": "SHORT",
+    "entry_price": 82154.87,
+    "exit_price": 81384.22,
+    "exit_reason": "take_profit",
+    "pnl": 0.5330611551545571,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00033",
+    "direction": "LONG",
+    "entry_price": 81601.89,
+    "exit_price": 80276.59,
+    "exit_reason": "stop_loss",
+    "pnl": -4.045876747426293,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00034",
+    "direction": "SHORT",
+    "entry_price": 80276.59,
+    "exit_price": 79378.0,
+    "exit_reason": "take_profit",
+    "pnl": 0.5730239537369775,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00035",
+    "direction": "SHORT",
+    "entry_price": 78885.76,
+    "exit_price": 78200.0,
+    "exit_reason": "take_profit",
+    "pnl": 0.40096645716755286,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00036",
+    "direction": "SHORT",
+    "entry_price": 75884.7,
+    "exit_price": 78781.06,
+    "exit_reason": "stop_loss",
+    "pnl": -1.5857934393877484,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00037",
+    "direction": "LONG",
+    "entry_price": 77515.41,
+    "exit_price": 79196.84,
+    "exit_reason": "take_profit",
+    "pnl": 5.398753323533461,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00038",
+    "direction": "SHORT",
+    "entry_price": 76591.84,
+    "exit_price": 76141.91,
+    "exit_reason": "take_profit",
+    "pnl": 0.2187047224680323,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00039",
+    "direction": "SHORT",
+    "entry_price": 75833.83,
+    "exit_price": 76958.55,
+    "exit_reason": "stop_loss",
+    "pnl": -0.497227270998285,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00040",
+    "direction": "SHORT",
+    "entry_price": 75448.7,
+    "exit_price": 74951.2,
+    "exit_reason": "take_profit",
+    "pnl": 0.1986060037338608,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00041",
+    "direction": "LONG",
+    "entry_price": 75915.38,
+    "exit_price": 76316.57,
+    "exit_reason": "take_profit",
+    "pnl": 1.3165882835945604,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00042",
+    "direction": "LONG",
+    "entry_price": 76464.37,
+    "exit_price": 77384.11,
+    "exit_reason": "take_profit",
+    "pnl": 2.997138569736424,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00043",
+    "direction": "LONG",
+    "entry_price": 78417.71,
+    "exit_price": 78882.22,
+    "exit_reason": "take_profit",
+    "pnl": 1.4767236224256084,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00044",
+    "direction": "LONG",
+    "entry_price": 77908.83,
+    "exit_price": 76496.3,
+    "exit_reason": "stop_loss",
+    "pnl": -4.520790371381362,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00045",
+    "direction": "SHORT",
+    "entry_price": 74823.3,
+    "exit_price": 74338.47,
+    "exit_reason": "take_profit",
+    "pnl": 0.17575844139634633,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00046",
+    "direction": "LONG",
+    "entry_price": 74024.4,
+    "exit_price": 74527.8,
+    "exit_reason": "take_profit",
+    "pnl": 1.6939661636195613,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00047",
+    "direction": "LONG",
+    "entry_price": 74541.2,
+    "exit_price": 73279.86,
+    "exit_reason": "stop_loss",
+    "pnl": -4.216055166480832,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00048",
+    "direction": "LONG",
+    "entry_price": 73093.04,
+    "exit_price": 73707.95,
+    "exit_reason": "take_profit",
+    "pnl": 2.0940899287327346,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00049",
+    "direction": "SHORT",
+    "entry_price": 72880.98,
+    "exit_price": 73707.95,
+    "exit_reason": "stop_loss",
+    "pnl": -0.27716993717359006,
+    "week": 5
+  },
+  {
+    "trade_id": "T-00050",
+    "direction": "LONG",
+    "entry_price": 74541.2,
+    "exit_price": 73279.86,
+    "exit_reason": "stop_loss",
+    "pnl": -4.213418820239576,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00051",
+    "direction": "LONG",
+    "entry_price": 73093.04,
+    "exit_price": 73707.95,
+    "exit_reason": "take_profit",
+    "pnl": 2.0927804709826656,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00052",
+    "direction": "SHORT",
+    "entry_price": 72880.98,
+    "exit_price": 73707.95,
+    "exit_reason": "stop_loss",
+    "pnl": -0.24911056847004995,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00053",
+    "direction": "SHORT",
+    "entry_price": 72291.42,
+    "exit_price": 71631.43,
+    "exit_reason": "take_profit",
+    "pnl": 0.18014127437842065,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00054",
+    "direction": "SHORT",
+    "entry_price": 70300.35,
+    "exit_price": 69763.9,
+    "exit_reason": "take_profit",
+    "pnl": 0.13563420872523643,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00055",
+    "direction": "LONG",
+    "entry_price": 69622.96,
+    "exit_price": 70187.94,
+    "exit_reason": "take_profit",
+    "pnl": 2.0193322405688274,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00056",
+    "direction": "LONG",
+    "entry_price": 70646.26,
+    "exit_price": 69725.96,
+    "exit_reason": "stop_loss",
+    "pnl": -3.2426495950663665,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00057",
+    "direction": "LONG",
+    "entry_price": 67274.25,
+    "exit_price": 67765.29,
+    "exit_reason": "take_profit",
+    "pnl": 1.8155225035084512,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00058",
+    "direction": "SHORT",
+    "entry_price": 67208.93,
+    "exit_price": 68066.44,
+    "exit_reason": "stop_loss",
+    "pnl": -0.2042547823230763,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00059",
+    "direction": "LONG",
+    "entry_price": 68066.44,
+    "exit_price": 67059.81,
+    "exit_reason": "stop_loss",
+    "pnl": -3.6794707671838043,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00060",
+    "direction": "SHORT",
+    "entry_price": 66552.96,
+    "exit_price": 67609.88,
+    "exit_reason": "stop_loss",
+    "pnl": -0.22846123570092583,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00061",
+    "direction": "LONG",
+    "entry_price": 67609.88,
+    "exit_price": 66666.0,
+    "exit_reason": "stop_loss",
+    "pnl": -3.4704895769715316,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00062",
+    "direction": "SHORT",
+    "entry_price": 66666.0,
+    "exit_price": 66000.0,
+    "exit_reason": "take_profit",
+    "pnl": 0.12910242112343254,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00063",
+    "direction": "LONG",
+    "entry_price": 66035.78,
+    "exit_price": 66442.85,
+    "exit_reason": "take_profit",
+    "pnl": 1.531184394011692,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00064",
+    "direction": "SHORT",
+    "entry_price": 64500.0,
+    "exit_price": 63814.89,
+    "exit_reason": "take_profit",
+    "pnl": 0.12366348978646387,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00065",
+    "direction": "LONG",
+    "entry_price": 64023.64,
+    "exit_price": 62922.26,
+    "exit_reason": "stop_loss",
+    "pnl": -4.273904543530544,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00066",
+    "direction": "LONG",
+    "entry_price": 63654.56,
+    "exit_price": 64441.14,
+    "exit_reason": "take_profit",
+    "pnl": 3.067076195592977,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00067",
+    "direction": "LONG",
+    "entry_price": 64052.95,
+    "exit_price": 62833.88,
+    "exit_reason": "stop_loss",
+    "pnl": -4.726343337418619,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00068",
+    "direction": "LONG",
+    "entry_price": 63971.97,
+    "exit_price": 64793.7,
+    "exit_reason": "take_profit",
+    "pnl": 3.1865346231261507,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00069",
+    "direction": "SHORT",
+    "entry_price": 63387.15,
+    "exit_price": 62494.68,
+    "exit_reason": "take_profit",
+    "pnl": 0.14768627162491998,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00070",
+    "direction": "SHORT",
+    "entry_price": 62363.16,
+    "exit_price": 61785.72,
+    "exit_reason": "take_profit",
+    "pnl": 0.08753868663838062,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00071",
+    "direction": "LONG",
+    "entry_price": 62110.31,
+    "exit_price": 61400.0,
+    "exit_reason": "stop_loss",
+    "pnl": -2.8385634925915295,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00072",
+    "direction": "SHORT",
+    "entry_price": 61400.0,
+    "exit_price": 60719.59,
+    "exit_reason": "take_profit",
+    "pnl": 0.09437667969819814,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00073",
+    "direction": "LONG",
+    "entry_price": 60783.88,
+    "exit_price": 61193.93,
+    "exit_reason": "take_profit",
+    "pnl": 1.6732898010252875,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00074",
+    "direction": "LONG",
+    "entry_price": 62345.67,
+    "exit_price": 63172.5,
+    "exit_reason": "take_profit",
+    "pnl": 3.290300746584018,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00075",
+    "direction": "SHORT",
+    "entry_price": 62562.76,
+    "exit_price": 63233.22,
+    "exit_reason": "stop_loss",
+    "pnl": -0.08223341794669158,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00076",
+    "direction": "LONG",
+    "entry_price": 63400.73,
+    "exit_price": 63971.97,
+    "exit_reason": "take_profit",
+    "pnl": 2.2366303507128706,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00077",
+    "direction": "SHORT",
+    "entry_price": 66458.52,
+    "exit_price": 65947.0,
+    "exit_reason": "take_profit",
+    "pnl": 0.05308597771272452,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00078",
+    "direction": "LONG",
+    "entry_price": 67896.0,
+    "exit_price": 68246.35,
+    "exit_reason": "take_profit",
+    "pnl": 1.2813854616372378,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00079",
+    "direction": "LONG",
+    "entry_price": 67780.93,
+    "exit_price": 68381.6,
+    "exit_reason": "take_profit",
+    "pnl": 2.200993608636614,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00080",
+    "direction": "LONG",
+    "entry_price": 71975.54,
+    "exit_price": 70767.07,
+    "exit_reason": "stop_loss",
+    "pnl": -4.171479287809399,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00081",
+    "direction": "SHORT",
+    "entry_price": 70767.07,
+    "exit_price": 70385.64,
+    "exit_reason": "take_profit",
+    "pnl": 0.03348245009872362,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00082",
+    "direction": "LONG",
+    "entry_price": 68811.12,
+    "exit_price": 67084.73,
+    "exit_reason": "stop_loss",
+    "pnl": -6.227469198473447,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00083",
+    "direction": "SHORT",
+    "entry_price": 66300.01,
+    "exit_price": 65863.27,
+    "exit_reason": "take_profit",
+    "pnl": 0.03684659805019801,
+    "week": 6
+  },
+  {
+    "trade_id": "T-00084",
+    "direction": "LONG",
+    "entry_price": 68811.12,
+    "exit_price": 67084.73,
+    "exit_reason": "stop_loss",
+    "pnl": -6.21904226997001,
+    "week": 7
+  },
+  {
+    "trade_id": "T-00085",
+    "direction": "SHORT",
+    "entry_price": 66300.01,
+    "exit_price": 65863.27,
+    "exit_reason": "take_profit",
+    "pnl": 0.03318253778898652,
+    "week": 7
+  },
+  {
+    "trade_id": "T-00086",
+    "direction": "SHORT",
+    "entry_price": 65600.03,
+    "exit_price": 65238.96,
+    "exit_reason": "take_profit",
+    "pnl": 0.024968921884073694,
+    "week": 7
+  },
+  {
+    "trade_id": "T-00087",
+    "direction": "LONG",
+    "entry_price": 67766.3,
+    "exit_price": 68170.74,
+    "exit_reason": "take_profit",
+    "pnl": 1.4773910772733179,
+    "week": 7
+  },
+  {
+    "trade_id": "T-00088",
+    "direction": "LONG",
+    "entry_price": 69426.41,
+    "exit_price": 69875.52,
+    "exit_reason": "take_profit",
+    "pnl": 1.6016557972746408,
+    "week": 7
+  },
+  {
+    "trade_id": "T-00089",
+    "direction": "SHORT",
+    "entry_price": 68569.43,
+    "exit_price": 68120.0,
+    "exit_reason": "take_profit",
+    "pnl": 0.02677342152436566,
+    "week": 7
+  },
+  {
+    "trade_id": "T-00090",
+    "direction": "SHORT",
+    "entry_price": 67708.95,
+    "exit_price": 68548.07,
+    "exit_reason": "stop_loss",
+    "pnl": -0.045589093910916485,
+    "week": 7
+  },
+  {
+    "trade_id": "T-00091",
+    "direction": "SHORT",
+    "entry_price": 67522.99,
+    "exit_price": 67006.15,
+    "exit_reason": "take_profit",
+    "pnl": 0.025303632298597143,
+    "week": 7
+  },
+  {
+    "trade_id": "T-00092",
+    "direction": "SHORT",
+    "entry_price": 67207.02,
+    "exit_price": 66803.4,
+    "exit_reason": "take_profit",
+    "pnl": 0.01788134291099499,
+    "week": 7
+  },
+  {
+    "trade_id": "T-00093",
+    "direction": "SHORT",
+    "entry_price": 67207.02,
+    "exit_price": 66803.4,
+    "exit_reason": "take_profit",
+    "pnl": 0.016102164714792873,
+    "week": 8
+  },
+  {
+    "trade_id": "T-00094",
+    "direction": "SHORT",
+    "entry_price": 67654.71,
+    "exit_price": 67200.0,
+    "exit_reason": "take_profit",
+    "pnl": 0.0162273210083652,
+    "week": 8
+  },
+  {
+    "trade_id": "T-00095",
+    "direction": "LONG",
+    "entry_price": 68000.0,
+    "exit_price": 66342.03,
+    "exit_reason": "stop_loss",
+    "pnl": -6.038176694690795,
+    "week": 8
+  },
+  {
+    "trade_id": "T-00096",
+    "direction": "SHORT",
+    "entry_price": 64749.76,
+    "exit_price": 64407.84,
+    "exit_reason": "take_profit",
+    "pnl": 0.011481942111507385,
+    "week": 8
+  },
+  {
+    "trade_id": "T-00097",
+    "direction": "LONG",
+    "entry_price": 63817.69,
+    "exit_price": 64246.6,
+    "exit_reason": "take_profit",
+    "pnl": 1.6622273743987022,
+    "week": 8
+  },
+  {
+    "trade_id": "T-00098",
+    "direction": "SHORT",
+    "entry_price": 63619.77,
+    "exit_price": 64435.81,
+    "exit_reason": "stop_loss",
+    "pnl": -0.02511293735043821,
+    "week": 8
+  },
+  {
+    "trade_id": "T-00099",
+    "direction": "SHORT",
+    "entry_price": 62560.77,
+    "exit_price": 63232.73,
+    "exit_reason": "stop_loss",
+    "pnl": -0.01889704817734383,
+    "week": 8
+  },
+  {
+    "trade_id": "T-00100",
+    "direction": "LONG",
+    "entry_price": 64825.0,
+    "exit_price": 65790.63,
+    "exit_reason": "take_profit",
+    "pnl": 3.6849866348353353,
+    "week": 8
+  },
+  {
+    "trade_id": "T-00101",
+    "direction": "LONG",
+    "entry_price": 66310.29,
+    "exit_price": 65402.43,
+    "exit_reason": "stop_loss",
+    "pnl": -3.389106883296098,
+    "week": 8
+  },
+  {
+    "trade_id": "T-00102",
+    "direction": "LONG",
+    "entry_price": 69944.89,
+    "exit_price": 68780.14,
+    "exit_reason": "stop_loss",
+    "pnl": -4.118921118873117,
+    "week": 8
+  },
+  {
+    "trade_id": "T-00103",
+    "direction": "LONG",
+    "entry_price": 69944.89,
+    "exit_price": 68780.14,
+    "exit_reason": "stop_loss",
+    "pnl": -4.115083160997287,
+    "week": 9
+  },
+  {
+    "trade_id": "T-00104",
+    "direction": "SHORT",
+    "entry_price": 67416.72,
+    "exit_price": 67000.8,
+    "exit_reason": "take_profit",
+    "pnl": 0.009755962951152665,
+    "week": 9
+  },
+  {
+    "trade_id": "T-00105",
+    "direction": "SHORT",
+    "entry_price": 66666.0,
+    "exit_price": 67343.02,
+    "exit_reason": "stop_loss",
+    "pnl": -0.014461624899473315,
+    "week": 9
+  },
+  {
+    "trade_id": "T-00106",
+    "direction": "SHORT",
+    "entry_price": 65002.04,
+    "exit_price": 65784.56,
+    "exit_reason": "stop_loss",
+    "pnl": -0.015409625312412372,
+    "week": 9
+  },
+  {
+    "trade_id": "T-00107",
+    "direction": "LONG",
+    "entry_price": 66966.83,
+    "exit_price": 65925.0,
+    "exit_reason": "stop_loss",
+    "pnl": -3.840910147916389,
+    "week": 9
+  },
+  {
+    "trade_id": "T-00108",
+    "direction": "LONG",
+    "entry_price": 66417.69,
+    "exit_price": 65683.1,
+    "exit_reason": "stop_loss",
+    "pnl": -2.728206200358881,
+    "week": 9
+  },
+  {
+    "trade_id": "T-00109",
+    "direction": "LONG",
+    "entry_price": 66334.0,
+    "exit_price": 65177.49,
+    "exit_reason": "stop_loss",
+    "pnl": -4.297795059907564,
+    "week": 9
+  },
+  {
+    "trade_id": "T-00110",
+    "direction": "SHORT",
+    "entry_price": 65315.64,
+    "exit_price": 66024.83,
+    "exit_reason": "stop_loss",
+    "pnl": -0.012490551986736003,
+    "week": 9
+  },
+  {
+    "trade_id": "T-00111",
+    "direction": "SHORT",
+    "entry_price": 66159.2,
+    "exit_price": 66841.46,
+    "exit_reason": "stop_loss",
+    "pnl": -0.010662659671524738,
+    "week": 9
+  },
+  {
+    "trade_id": "T-00112",
+    "direction": "LONG",
+    "entry_price": 72151.75,
+    "exit_price": 72788.4,
+    "exit_reason": "take_profit",
+    "pnl": 2.173024017769343,
+    "week": 9
+  },
+  {
+    "trade_id": "T-00113",
+    "direction": "LONG",
+    "entry_price": 72151.75,
+    "exit_price": 72788.4,
+    "exit_reason": "take_profit",
+    "pnl": 2.1737644691886246,
+    "week": 10
+  },
+  {
+    "trade_id": "T-00114",
+    "direction": "SHORT",
+    "entry_price": 69464.85,
+    "exit_price": 68925.3,
+    "exit_reason": "take_profit",
+    "pnl": 0.007218858271153166,
+    "week": 10
+  },
+  {
+    "trade_id": "T-00115",
+    "direction": "SHORT",
+    "entry_price": 66005.07,
+    "exit_price": 67312.25,
+    "exit_reason": "stop_loss",
+    "pnl": -0.016577885887458482,
+    "week": 10
+  },
+  {
+    "trade_id": "T-00116",
+    "direction": "LONG",
+    "entry_price": 69828.39,
+    "exit_price": 70361.3,
+    "exit_reason": "take_profit",
+    "pnl": 1.8807384864558894,
+    "week": 10
+  },
+  {
+    "trade_id": "T-00117",
+    "direction": "LONG",
+    "entry_price": 70759.19,
+    "exit_price": 71286.02,
+    "exit_reason": "take_profit",
+    "pnl": 1.8353391292748895,
+    "week": 10
+  },
+  {
+    "trade_id": "T-00118",
+    "direction": "LONG",
+    "entry_price": 70759.19,
+    "exit_price": 71286.02,
+    "exit_reason": "take_profit",
+    "pnl": 1.8358381532048105,
+    "week": 11
+  },
+  {
+    "trade_id": "T-00119",
+    "direction": "LONG",
+    "entry_price": 73036.33,
+    "exit_price": 73584.24,
+    "exit_reason": "take_profit",
+    "pnl": 1.8502699630674446,
+    "week": 11
+  },
+  {
+    "trade_id": "T-00120",
+    "direction": "SHORT",
+    "entry_price": 74005.63,
+    "exit_price": 73500.0,
+    "exit_reason": "take_profit",
+    "pnl": 0.005135421347044246,
+    "week": 11
+  },
+  {
+    "trade_id": "T-00121",
+    "direction": "LONG",
+    "entry_price": 75723.7,
+    "exit_price": 74937.71,
+    "exit_reason": "stop_loss",
+    "pnl": -2.5607624976075707,
+    "week": 11
+  },
+  {
+    "trade_id": "T-00122",
+    "direction": "SHORT",
+    "entry_price": 67652.32,
+    "exit_price": 68604.7,
+    "exit_reason": "stop_loss",
+    "pnl": -0.009529269333560336,
+    "week": 12
+  },
+  {
+    "trade_id": "T-00123",
+    "direction": "LONG",
+    "entry_price": 69758.99,
+    "exit_price": 70926.13,
+    "exit_reason": "take_profit",
+    "pnl": 4.125135287299005,
+    "week": 12
+  },
+  {
+    "trade_id": "T-00124",
+    "direction": "LONG",
+    "entry_price": 71200.0,
+    "exit_price": 70327.59,
+    "exit_reason": "stop_loss",
+    "pnl": -3.0232597894518047,
+    "week": 12
+  },
+  {
+    "trade_id": "T-00125",
+    "direction": "LONG",
+    "entry_price": 71735.77,
+    "exit_price": 70476.72,
+    "exit_reason": "stop_loss",
+    "pnl": -8.438323520859726,
+    "week": 13
+  },
+  {
+    "trade_id": "T-00126",
+    "direction": "LONG",
+    "entry_price": 69240.0,
+    "exit_price": 67720.75,
+    "exit_reason": "stop_loss",
+    "pnl": -5.399701769631721,
+    "week": 13
+  },
+  {
+    "trade_id": "T-00127",
+    "direction": "SHORT",
+    "entry_price": 66949.07,
+    "exit_price": 66454.19,
+    "exit_reason": "take_profit",
+    "pnl": 0.004495741955905492,
+    "week": 13
+  },
+  {
+    "trade_id": "T-00128",
+    "direction": "LONG",
+    "entry_price": 66419.31,
+    "exit_price": 65600.01,
+    "exit_reason": "stop_loss",
+    "pnl": -3.0319808890282562,
+    "week": 13
+  },
+  {
+    "trade_id": "T-00129",
+    "direction": "SHORT",
+    "entry_price": 65834.01,
+    "exit_price": 65123.45,
+    "exit_reason": "take_profit",
+    "pnl": 0.005912177806644346,
+    "week": 13
+  },
+  {
+    "trade_id": "T-00130",
+    "direction": "LONG",
+    "entry_price": 66239.22,
+    "exit_price": 66901.98,
+    "exit_reason": "take_profit",
+    "pnl": 2.457580847661818,
+    "week": 13
+  },
+  {
+    "trade_id": "T-00131",
+    "direction": "LONG",
+    "entry_price": 68719.2,
+    "exit_price": 67800.0,
+    "exit_reason": "stop_loss",
+    "pnl": -6.409080358536208,
+    "week": 14
+  },
+  {
+    "trade_id": "T-00132",
+    "direction": "LONG",
+    "entry_price": 69519.97,
+    "exit_price": 69894.13,
+    "exit_reason": "take_profit",
+    "pnl": 1.3204960691251326,
+    "week": 14
+  },
+  {
+    "trade_id": "T-00133",
+    "direction": "LONG",
+    "entry_price": 68967.37,
+    "exit_price": 69408.43,
+    "exit_reason": "take_profit",
+    "pnl": 1.5693386013122919,
+    "week": 14
+  },
+  {
+    "trade_id": "T-00134",
+    "direction": "LONG",
+    "entry_price": 70837.48,
+    "exit_price": 71276.06,
+    "exit_reason": "take_profit",
+    "pnl": 1.5196503011508151,
+    "week": 14
+  },
+  {
+    "trade_id": "T-00135",
+    "direction": "LONG",
+    "entry_price": 72215.04,
+    "exit_price": 72590.0,
+    "exit_reason": "take_profit",
+    "pnl": 1.274694449791326,
+    "week": 15
+  },
+  {
+    "trade_id": "T-00136",
+    "direction": "LONG",
+    "entry_price": 72979.07,
+    "exit_price": 72154.03,
+    "exit_reason": "stop_loss",
+    "pnl": -2.7758416735849867,
+    "week": 15
+  },
+  {
+    "trade_id": "T-00137",
+    "direction": "SHORT",
+    "entry_price": 72266.08,
+    "exit_price": 71547.7,
+    "exit_reason": "take_profit",
+    "pnl": 0.004906048742861805,
+    "week": 15
+  },
+  {
+    "trade_id": "T-00138",
+    "direction": "SHORT",
+    "entry_price": 70956.01,
+    "exit_price": 70547.17,
+    "exit_reason": "take_profit",
+    "pnl": 0.0025618298849889747,
+    "week": 15
+  },
+  {
+    "trade_id": "T-00139",
+    "direction": "LONG",
+    "entry_price": 74370.93,
+    "exit_price": 74961.0,
+    "exit_reason": "take_profit",
+    "pnl": 1.9468368849619084,
+    "week": 15
+  },
+  {
+    "trade_id": "T-00140",
+    "direction": "LONG",
+    "entry_price": 76925.97,
+    "exit_price": 76006.56,
+    "exit_reason": "stop_loss",
+    "pnl": -2.9335544392328803,
+    "week": 16
+  },
+  {
+    "trade_id": "T-00141",
+    "direction": "LONG",
+    "entry_price": 78500.0,
+    "exit_price": 79234.72,
+    "exit_reason": "take_profit",
+    "pnl": 2.295658631735189,
+    "week": 17
+  },
+  {
+    "trade_id": "T-00142",
+    "direction": "SHORT",
+    "entry_price": 74916.16,
+    "exit_price": 76046.95,
+    "exit_reason": "stop_loss",
+    "pnl": -0.00604317146463409,
+    "week": 17
+  },
+  {
+    "trade_id": "T-00143",
+    "direction": "SHORT",
+    "entry_price": 74916.16,
+    "exit_price": 76046.95,
+    "exit_reason": "stop_loss",
+    "pnl": -0.005429123832999289,
+    "week": 18
+  },
+  {
+    "trade_id": "T-00144",
+    "direction": "LONG",
+    "entry_price": 79143.3,
+    "exit_price": 79737.45,
+    "exit_reason": "take_profit",
+    "pnl": 1.8420296913918897,
+    "week": 18
+  },
+  {
+    "trade_id": "T-00145",
+    "direction": "SHORT",
+    "entry_price": 77195.45,
+    "exit_price": 76608.0,
+    "exit_reason": "take_profit",
+    "pnl": 0.0024590498487562407,
+    "week": 20
+  },
+  {
+    "trade_id": "T-00146",
+    "direction": "LONG",
+    "entry_price": 77170.73,
+    "exit_price": 77589.38,
+    "exit_reason": "take_profit",
+    "pnl": 1.3314736498667343,
+    "week": 20
+  },
+  {
+    "trade_id": "T-00147",
+    "direction": "LONG",
+    "entry_price": 76700.76,
+    "exit_price": 77121.86,
+    "exit_reason": "take_profit",
+    "pnl": 1.3477021203933575,
+    "week": 20
+  },
+  {
+    "trade_id": "T-00148",
+    "direction": "LONG",
+    "entry_price": 77750.1,
+    "exit_price": 76832.83,
+    "exit_reason": "stop_loss",
+    "pnl": -5.648117314722529,
+    "week": 21
+  },
+  {
+    "trade_id": "T-00149",
+    "direction": "SHORT",
+    "entry_price": 76166.67,
+    "exit_price": 75719.28,
+    "exit_reason": "take_profit",
+    "pnl": 0.0017095073328016951,
+    "week": 21
+  },
+  {
+    "trade_id": "T-00150",
+    "direction": "SHORT",
+    "entry_price": 74320.0,
+    "exit_price": 75779.87,
+    "exit_reason": "stop_loss",
+    "pnl": -0.0051479689751262455,
+    "week": 21
+  },
+  {
+    "trade_id": "T-00151",
+    "direction": "SHORT",
+    "entry_price": 72769.33,
+    "exit_price": 73716.51,
+    "exit_reason": "stop_loss",
+    "pnl": -0.003063065916483039,
+    "week": 22
+  },
+  {
+    "trade_id": "T-00152",
+    "direction": "LONG",
+    "entry_price": 61988.55,
+    "exit_price": 62499.89,
+    "exit_reason": "take_profit",
+    "pnl": 2.022544875745324,
+    "week": 23
+  },
+  {
+    "trade_id": "T-00153",
+    "direction": "LONG",
+    "entry_price": 63466.37,
+    "exit_price": 63890.66,
+    "exit_reason": "take_profit",
+    "pnl": 1.6396626639348195,
+    "week": 23
+  },
+  {
+    "trade_id": "T-00154",
+    "direction": "LONG",
+    "entry_price": 60448.01,
+    "exit_price": 61080.27,
+    "exit_reason": "take_profit",
+    "pnl": 2.5659645499143218,
+    "week": 23
+  },
+  {
+    "trade_id": "T-00155",
+    "direction": "LONG",
+    "entry_price": 61459.88,
+    "exit_price": 60598.01,
+    "exit_reason": "stop_loss",
+    "pnl": -3.4416796231012188,
+    "week": 23
+  },
+  {
+    "trade_id": "T-00156",
+    "direction": "SHORT",
+    "entry_price": 59293.39,
+    "exit_price": 60300.0,
+    "exit_reason": "stop_loss",
+    "pnl": -0.003589983695771609,
+    "week": 23
+  },
+  {
+    "trade_id": "T-00157",
+    "direction": "LONG",
+    "entry_price": 60300.0,
+    "exit_price": 60898.1,
+    "exit_reason": "take_profit",
+    "pnl": 2.4323669772025984,
+    "week": 23
+  },
+  {
+    "trade_id": "T-00158",
+    "direction": "LONG",
+    "entry_price": 60712.09,
+    "exit_price": 61243.67,
+    "exit_reason": "take_profit",
+    "pnl": 2.1480172339371184,
+    "week": 23
+  },
+  {
+    "trade_id": "T-00159",
+    "direction": "LONG",
+    "entry_price": 62630.21,
+    "exit_price": 63717.66,
+    "exit_reason": "take_profit",
+    "pnl": 4.261046037166566,
+    "week": 23
+  },
+  {
+    "trade_id": "T-00160",
+    "direction": "SHORT",
+    "entry_price": 63393.77,
+    "exit_price": 62939.17,
+    "exit_reason": "take_profit",
+    "pnl": 0.0013620533918558679,
+    "week": 23
+  },
+  {
+    "trade_id": "T-00161",
+    "direction": "SHORT",
+    "entry_price": 60926.12,
+    "exit_price": 61666.1,
+    "exit_reason": "stop_loss",
+    "pnl": -0.0020776295083240483,
+    "week": 23
+  },
+  {
+    "trade_id": "T-00162",
+    "direction": "LONG",
+    "entry_price": 64914.34,
+    "exit_price": 65311.33,
+    "exit_reason": "take_profit",
+    "pnl": 1.501975391269509,
+    "week": 24
+  },
+  {
+    "trade_id": "T-00163",
+    "direction": "SHORT",
+    "entry_price": 65533.7,
+    "exit_price": 64904.17,
+    "exit_reason": "take_profit",
+    "pnl": 0.001476762999097952,
+    "week": 24
+  },
+  {
+    "trade_id": "T-00164",
+    "direction": "SHORT",
+    "entry_price": 65533.7,
+    "exit_price": 64904.17,
+    "exit_reason": "take_profit",
+    "pnl": 0.0013303583406501429,
+    "week": 25
+  },
+  {
+    "trade_id": "T-00165",
+    "direction": "LONG",
+    "entry_price": 64030.06,
+    "exit_price": 64354.73,
+    "exit_reason": "take_profit",
+    "pnl": 1.2455792797896512,
+    "week": 25
+  },
+  {
+    "trade_id": "T-00166",
+    "direction": "SHORT",
+    "entry_price": 59668.17,
+    "exit_price": 59199.7,
+    "exit_reason": "take_profit",
+    "pnl": 0.0009795210986116062,
+    "week": 25
+  },
+  {
+    "trade_id": "T-00167",
+    "direction": "SHORT",
+    "entry_price": 59668.17,
+    "exit_price": 59199.7,
+    "exit_reason": "take_profit",
+    "pnl": 0.0008822404681267371,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00168",
+    "direction": "LONG",
+    "entry_price": 61514.37,
+    "exit_price": 60715.12,
+    "exit_reason": "stop_loss",
+    "pnl": -3.192168068925096,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00169",
+    "direction": "LONG",
+    "entry_price": 59716.69,
+    "exit_price": 58846.98,
+    "exit_reason": "stop_loss",
+    "pnl": -3.5754689789817453,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00170",
+    "direction": "SHORT",
+    "entry_price": 59386.29,
+    "exit_price": 58846.98,
+    "exit_reason": "take_profit",
+    "pnl": 0.0009191224347510009,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00171",
+    "direction": "LONG",
+    "entry_price": 58618.97,
+    "exit_price": 58961.77,
+    "exit_reason": "take_profit",
+    "pnl": 1.4344895689178685,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00172",
+    "direction": "LONG",
+    "entry_price": 59768.57,
+    "exit_price": 58862.77,
+    "exit_reason": "stop_loss",
+    "pnl": -3.718241873907978,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00173",
+    "direction": "SHORT",
+    "entry_price": 58862.77,
+    "exit_price": 59628.88,
+    "exit_reason": "stop_loss",
+    "pnl": -0.0011865991816079834,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00174",
+    "direction": "LONG",
+    "entry_price": 59561.74,
+    "exit_price": 60245.17,
+    "exit_reason": "take_profit",
+    "pnl": 2.812758847194871,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00175",
+    "direction": "LONG",
+    "entry_price": 59287.71,
+    "exit_price": 59656.25,
+    "exit_reason": "take_profit",
+    "pnl": 1.5245133330393819,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00176",
+    "direction": "SHORT",
+    "entry_price": 59053.77,
+    "exit_price": 59656.25,
+    "exit_reason": "stop_loss",
+    "pnl": -0.000835822351569385,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00177",
+    "direction": "LONG",
+    "entry_price": 61150.0,
+    "exit_price": 60492.03,
+    "exit_reason": "stop_loss",
+    "pnl": -2.639443135800535,
+    "week": 26
+  },
+  {
+    "trade_id": "T-00178",
+    "direction": "LONG",
+    "entry_price": 61150.0,
+    "exit_price": 60492.03,
+    "exit_reason": "stop_loss",
+    "pnl": -2.637760599724353,
+    "week": 27
+  },
+  {
+    "trade_id": "T-00179",
+    "direction": "LONG",
+    "entry_price": 62336.91,
+    "exit_price": 62768.75,
+    "exit_reason": "take_profit",
+    "pnl": 1.6971741531386477,
+    "week": 27
+  },
+  {
+    "trade_id": "T-00180",
+    "direction": "LONG",
+    "entry_price": 63290.27,
+    "exit_price": 63745.53,
+    "exit_reason": "take_profit",
+    "pnl": 1.762699147368003,
+    "week": 27
+  },
+  {
+    "trade_id": "T-00181",
+    "direction": "LONG",
+    "entry_price": 64412.47,
+    "exit_price": 63432.66,
+    "exit_reason": "stop_loss",
+    "pnl": -3.728551631682414,
+    "week": 27
+  },
+  {
+    "trade_id": "T-00182",
+    "direction": "SHORT",
+    "entry_price": 62865.66,
+    "exit_price": 63595.58,
+    "exit_reason": "stop_loss",
+    "pnl": -0.0008550315145949573,
+    "week": 27
+  },
+  {
+    "trade_id": "T-00183",
+    "direction": "LONG",
+    "entry_price": 62623.36,
+    "exit_price": 61898.07,
+    "exit_reason": "stop_loss",
+    "pnl": -2.836416466128488,
+    "week": 28
+  },
+  {
+    "trade_id": "T-00184",
+    "direction": "LONG",
+    "entry_price": 63844.0,
+    "exit_price": 64269.84,
+    "exit_reason": "take_profit",
+    "pnl": 1.6323987929353263,
+    "week": 28
+  },
+  {
+    "trade_id": "T-00185",
+    "direction": "SHORT",
+    "entry_price": 63850.0,
+    "exit_price": 63457.79,
+    "exit_reason": "take_profit",
+    "pnl": 0.00040654756858617955,
+    "week": 28
+  },
+  {
+    "trade_id": "T-00186",
+    "direction": "LONG",
+    "entry_price": 63503.14,
+    "exit_price": 64066.62,
+    "exit_reason": "take_profit",
+    "pnl": 2.172123218049828,
+    "week": 28
+  },
+  {
+    "trade_id": "T-00187",
+    "direction": "LONG",
+    "entry_price": 64925.0,
+    "exit_price": 65324.48,
+    "exit_reason": "take_profit",
+    "pnl": 1.50672247914231,
+    "week": 28
+  },
+  {
+    "trade_id": "T-00188",
+    "direction": "SHORT",
+    "entry_price": 66110.02,
+    "exit_price": 65706.62,
+    "exit_reason": "take_profit",
+    "pnl": 0.00036367459078140375,
+    "week": 29
+  }
+]

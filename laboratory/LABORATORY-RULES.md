@@ -400,6 +400,7 @@ Before beginning any Experiment or Investigation, verify:
 |---------|------|---------|-----------|
 | 1.0.0 | 2026-07-20 | Initial production release | SEED-001 |
 | 1.1.0 | 2026-07-23 | Added Rule 6 (Experiment ID Permanence) and Rule 7 (Historical Experiment Protection) | Human Review, LAB-040 |
+| 1.2.0 | 2026-07-24 | Added timestamp standard reference | INV-TEMPORAL-PROVENANCE |
 
 ---
 
@@ -412,6 +413,12 @@ Before beginning any Experiment or Investigation, verify:
 | [`/governance/runtime/defaults.yaml`](/workspace/project/kde/governance/runtime/defaults.yaml) | Runtime default configuration |
 | [`/governance/runtime/RUNTIME-STARTUP.md`](/workspace/project/kde/governance/runtime/RUNTIME-STARTUP.md) | Runtime startup sequence |
 | [`/governance/runtime/SESSION-OVERRIDE.md`](/workspace/project/kde/governance/runtime/SESSION-OVERRIDE.md) | Session override behavior |
+
+### Timestamp Standard
+
+| Document | Purpose |
+|----------|---------|
+| [`/governance/TIMESTAMP-STANDARD.md`](/workspace/project/kde/governance/TIMESTAMP-STANDARD.md) | Canonical timestamp format |
 
 ### Laboratory
 

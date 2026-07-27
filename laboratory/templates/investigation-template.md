@@ -1,14 +1,30 @@
 # Investigation Template
 
-**Template Version**: 1.0.0
-**Date**: 2026-07-20
+**Template Version**: 2.0.0
+**Date**: 2026-07-24
 **Architecture**: Architecture C
+**Source**: INV-TEMPORAL-PROVENANCE (Human Approved)
 
 ---
 
 ## Purpose
 
 This template defines the structure for Investigations in Architecture C. Investigations own the scientific purpose (WHY), while Experiments own the execution (HOW).
+
+---
+
+## Timestamp Standard
+
+All investigation artifacts SHALL use ISO-8601 UTC timestamps:
+
+| Field | Format | Description |
+|-------|--------|-------------|
+| `created` | YYYY-MM-DDTHH:MM:SSZ | When document first created |
+| `modified` | YYYY-MM-DDTHH:MM:SSZ | When document last changed |
+| `completed` | YYYY-MM-DDTHH:MM:SSZ | When investigation finished |
+| `approved` | YYYY-MM-DDTHH:MM:SSZ | Human approval timestamp |
+
+**Example**: `2026-07-24T12:00:00Z`
 
 ---
 
@@ -219,13 +235,17 @@ Experiments are linked via the `links/` directory.
 
 Every investigation artifact SHALL contain:
 
-| Field | Format | Example |
-|-------|--------|---------|
-| ID | INV-XXX | INV-001 |
-| Version | X.Y.Z | 1.0.0 |
-| Date | ISO-8601 | 2026-07-20T12:00:00Z |
-| Status | ACTIVE\|COMPLETE\|PROMOTED | ACTIVE |
-| Author | Name | KDE Governance |
+| Field | Format | Required | Description |
+|-------|--------|----------|-------------|
+| `created` | YYYY-MM-DDTHH:MM:SSZ | YES | Document creation time |
+| `modified` | YYYY-MM-DDTHH:MM:SSZ | YES | Last modification time |
+| `completed` | YYYY-MM-DDTHH:MM:SSZ | RECOMMENDED | Investigation completion |
+| `approved` | YYYY-MM-DDTHH:MM:SSZ | FOR CONCLUSION | Human approval |
+| ID | INV-XXX | YES | Investigation identifier |
+| Version | X.Y.Z | YES | Document version |
+| Status | ACTIVE\|COMPLETE\|PROMOTED | YES | Current status |
+
+**Timestamp Format**: All timestamps MUST use ISO-8601 UTC with Z suffix.
 
 ---
 

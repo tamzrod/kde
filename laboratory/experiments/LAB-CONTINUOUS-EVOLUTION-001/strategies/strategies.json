@@ -1,0 +1,107 @@
+{
+  "strategies": [
+    {
+      "strategy_id": "S-001",
+      "name": "Fat Tail Fade",
+      "creation_week": 1,
+      "mechanisms": ["M-001"],
+      "entry_logic": "Enter when candle range exceeds 2x the average true range",
+      "stop_loss": "2x entry candle range",
+      "take_profit": "1x entry candle range",
+      "position_sizing": {
+        "method": "Evidence-Weighted",
+        "confidence_weight": 0.95,
+        "volatility_adjustment": true,
+        "base_size": 0.02
+      },
+      "evidence": {
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0,
+        "mean_return": 0.0,
+        "profit_factor": 0.0
+      },
+      "grade": {
+        "current": 0.0,
+        "history": []
+      },
+      "allocation": {
+        "current": 0.0,
+        "max": 0.20,
+        "min": 0.0
+      },
+      "status": "active"
+    },
+    {
+      "strategy_id": "S-002",
+      "name": "Weekend Gap Fade",
+      "creation_week": 1,
+      "mechanisms": ["M-003"],
+      "entry_logic": "If Friday close to Monday open gap >1%, fade the gap",
+      "stop_loss": "Gap size + 0.5%",
+      "take_profit": "Gap size - 0.5%",
+      "position_sizing": {
+        "method": "Evidence-Weighted",
+        "confidence_weight": 0.85,
+        "gap_size_adjustment": true,
+        "base_size": 0.03
+      },
+      "evidence": {
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0,
+        "mean_return": 0.0,
+        "profit_factor": 0.0
+      },
+      "grade": {
+        "current": 0.0,
+        "history": []
+      },
+      "allocation": {
+        "current": 0.0,
+        "max": 0.15,
+        "min": 0.0
+      },
+      "status": "active"
+    },
+    {
+      "strategy_id": "S-003",
+      "name": "Volatility Breakout",
+      "creation_week": 1,
+      "mechanisms": ["M-005"],
+      "entry_logic": "Enter when volatility exceeds 2x the 20-period average",
+      "stop_loss": "1.5x ATR",
+      "take_profit": "2x ATR",
+      "position_sizing": {
+        "method": "Volatility-Adjusted",
+        "confidence_weight": 0.70,
+        "volatility_scaling": true,
+        "base_size": 0.025
+      },
+      "evidence": {
+        "trades": 0,
+        "wins": 0,
+        "losses": 0,
+        "win_rate": 0.0,
+        "mean_return": 0.0,
+        "profit_factor": 0.0
+      },
+      "grade": {
+        "current": 0.0,
+        "history": []
+      },
+      "allocation": {
+        "current": 0.0,
+        "max": 0.25,
+        "min": 0.0
+      },
+      "status": "active"
+    }
+  ],
+  "total_strategies": 3,
+  "active_strategies": 3,
+  "dormant_strategies": 0,
+  "retired_strategies": 0
+}

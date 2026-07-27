@@ -1,10 +1,31 @@
 # Run Record: LAB-XXX / RUN-XXX
 
+**Template Version**: 2.0.0
+**Date**: 2026-07-24
+**Source**: INV-TEMPORAL-PROVENANCE (Human Approved)
+
+---
+
+## Timestamp Standard
+
+All run records SHALL use ISO-8601 UTC timestamps:
+
+| Field | Format | Description |
+|-------|--------|-------------|
+| `executed` | YYYY-MM-DDTHH:MM:SSZ | When run was executed |
+| `duration_seconds` | INTEGER | Execution duration in seconds |
+
+**Example**: `2026-07-24T12:00:00Z`
+
+---
+
+## Run Header
+
 **Experiment ID**: LAB-XXX
 **Run ID**: RUN-XXX
-**Date**: YYYY-MM-DD HH:MM:SS
+**executed**: YYYY-MM-DDTHH:MM:SSZ
+**duration_seconds**: [INTEGER]
 **Executor**: [Name or system identifier]
-**Duration**: [HH:MM:SS]
 **Reproducibility Run**: [YES | NO]
 **Methodology Version**: 2.2
 
@@ -125,9 +146,12 @@
 
 ## Metadata
 
-| Field | Value |
-|-------|-------|
-| Run ID | RUN-XXX |
-| Experiment ID | LAB-XXX |
-| Date | YYYY-MM-DD HH:MM:SS |
-| Methodology Version | 2.2 |
+| Field | Format | Required | Description |
+|-------|--------|----------|-------------|
+| Run ID | RUN-XXX | YES | Run identifier |
+| Experiment ID | LAB-XXX | YES | Parent experiment |
+| `executed` | YYYY-MM-DDTHH:MM:SSZ | YES | Run execution time |
+| `duration_seconds` | INTEGER | RECOMMENDED | Execution duration |
+| Methodology Version | 2.2 | YES | Template version |
+
+**Timestamp Format**: All timestamps MUST use ISO-8601 UTC with Z suffix.

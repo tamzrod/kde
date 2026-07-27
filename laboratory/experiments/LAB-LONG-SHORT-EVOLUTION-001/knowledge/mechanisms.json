@@ -1,0 +1,40 @@
+{
+  "mechanisms": [
+    {
+      "mechanism_id": "L-001",
+      "name": "Long Momentum Continuation",
+      "direction": "LONG",
+      "discovery_week": 1,
+      "type": "directional",
+      "confidence": 0.55,
+      "status": "active"
+    },
+    {
+      "mechanism_id": "S-001",
+      "name": "Short Momentum Continuation",
+      "direction": "SHORT",
+      "discovery_week": 1,
+      "type": "directional",
+      "confidence": 0.55,
+      "status": "active"
+    },
+    {
+      "mechanism_id": "SH-001",
+      "name": "Fat Tails Distribution",
+      "direction": "SHARED",
+      "discovery_week": 1,
+      "type": "structural",
+      "confidence": 0.95,
+      "status": "active"
+    },
+    {
+      "mechanism_id": "SH-002",
+      "name": "Volatility Regime Persistence",
+      "direction": "SHARED",
+      "discovery_week": 1,
+      "type": "behavioral",
+      "confidence": 0.6,
+      "status": "active"
+    }
+  ]
+}
