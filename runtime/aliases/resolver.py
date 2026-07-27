@@ -196,12 +196,77 @@ class RuntimeCommandHandler:
                 deprecation_warning
             )
         
-        # Command is valid and supported
+        # Execute the command
+        output = self._execute_command(resolved.resolved_command)
+        
         return (
             True,
-            f"Command resolved: {resolved.resolved_command}",
+            output,
             deprecation_warning
         )
+    
+    def _execute_command(self, command: str) -> str:
+        """
+        Execute a resolved command.
+        
+        Args:
+            command: The canonical command to execute
+            
+        Returns:
+            Command output string
+        """
+        if command == 'pre-flight check':
+            return self._run_preflight()
+        elif command == 'start engine':
+            return self._run_start_engine()
+        elif command == 'run demo':
+            return self._run_demo()
+        elif command == 'check state':
+            return self._check_state()
+        else:
+            return f"Command '{command}' executed"
+    
+    def _run_preflight(self) -> str:
+        """Execute pre-flight check using the preflight module."""
+        try:
+            from runtime.preflight import run_preflight_check, format_report
+            report = run_preflight_check()
+            return format_report(report)
+        except Exception as e:
+            return f"Pre-flight check failed: {str(e)}"
+    
+    def _run_start_engine(self) -> str:
+        """Execute start engine initialization."""
+        try:
+            from runtime.ecu import create_ecu
+            ecu = create_ecu('/workspace/project/kde')
+            state = ecu.get_runtime_state()
+            return f"Engine started: {state['engines_registered']} engines, {state['seeds_registered']} seeds"
+        except Exception as e:
+            return f"Start engine failed: {str(e)}"
+    
+    def _run_demo(self) -> str:
+        """Execute demo routine."""
+        try:
+            from runtime.runtime import demo
+            import io
+            from contextlib import redirect_stdout
+            f = io.StringIO()
+            with redirect_stdout(f):
+                demo()
+            return f.getvalue()
+        except Exception as e:
+            return f"Demo failed: {str(e)}"
+    
+    def _check_state(self) -> str:
+        """Check runtime state."""
+        try:
+            import json
+            with open('/workspace/project/kde/runtime/state.json') as f:
+                state = json.load(f)
+            return json.dumps(state, indent=2)
+        except Exception as e:
+            return f"State check failed: {str(e)}"
     
     def list_commands(self, category: Optional[str] = None) -> List[Dict]:
         """

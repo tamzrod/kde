@@ -8,11 +8,9 @@
 
 This file provides the canonical procedure for starting the KDE Runtime engine.
 
-> **Quick Command Reference**: To start the engine, run the Python initialization procedure below or use the `start-engine.md` as a reference for the complete workflow.
-
 ---
 
-## Quick Start
+## Bootstrap Sequence
 
 When you say "start engine", "start runtime", or similar commands, follow this procedure:
 
@@ -28,37 +26,73 @@ Before any work, acknowledge the Five Core Principles from `/seeds/seed-001/prin
 | **Distinguish Evidence** | Mark fact vs. conclusion vs. speculation |
 | **Evidence-Based Changes** | All claims must be justified |
 
-### Step 2: Initialize Dependencies
+### Step 2: Load Alias Registry
 
-Ensure Python dependencies are installed:
+The alias system is automatically loaded during initialization:
+
+```python
+from runtime.aliases import get_registry
+registry = get_registry()
+registry.load()
+```
+
+### Step 3: Initialize Dependencies
+
+Dependencies are installed automatically if needed:
 
 ```bash
 pip install pyyaml
 ```
 
-### Step 3: Initialize KDE Runtime
+### Step 4: Initialize KDE Runtime ECU
 
 ```python
 import sys
-import os
-
-# Setup paths
 sys.path.insert(0, '/workspace/project/kde')
-os.chdir('/workspace/project/kde')
 
-# Import and initialize
 from runtime.ecu import create_ecu
 
 ecu = create_ecu('/workspace/project/kde')
 ```
 
-### Step 4: Verify Initialization
+### Step 5: Run Pre-Flight Check
+
+After initialization, run the pre-flight check to verify readiness:
 
 ```python
-runtime_state = ecu.get_runtime_state()
-print(f"Initialized: {runtime_state['initialized']}")
-print(f"Engines: {runtime_state['engines_registered']}")
-print(f"Seeds: {runtime_state['seeds_registered']}")
+from runtime.preflight import run_preflight_check, format_report
+
+report = run_preflight_check()
+print(format_report(report))
+```
+
+---
+
+## Alias System
+
+The KDE Runtime includes an alias system for human-friendly commands:
+
+### Canonical Commands
+
+| Command | Description |
+|---------|-------------|
+| `start engine` | Initialize KDE Runtime ECU |
+| `pre-flight check` | Verify runtime readiness |
+| `mission ready` | Session readiness confirmation |
+| `check state` | Read runtime state |
+| `run demo` | Execute demonstration routine |
+| `bootstrap` | Canonical entry point |
+
+### Alias Resolution
+
+All aliases resolve to canonical commands:
+
+```
+'start-runtime' → 'start engine'
+'init kde' → 'start engine'
+'systems check' → 'pre-flight check'
+'health' → 'pre-flight check'
+'go' → 'pre-flight check'
 ```
 
 ---
