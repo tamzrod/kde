@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grafana Repository Investigation | LAB-039</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+    
+    :root {
+      --bg-primary: #ffffff;
+      --bg-secondary: #f8f9fa;
+      --bg-tertiary: #f1f3f5;
+      --text-primary: #1a1a2e;
+      --text-secondary: #495057;
+      --text-muted: #868e96;
+      --accent-blue: #228be6;
+      --accent-blue-light: #e7f5ff;
+      --accent-green: #40c057;
+      --accent-green-light: #ebfbee;
+      --accent-orange: #fd7e14;
+      --accent-orange-light: #fff4e6;
+      --border: #dee2e6;
+      --code-bg: #f8f9fa;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08);
+      --shadow-lg: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-primary);
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    
+    /* Header */
+    .header {
+      margin-bottom: 64px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .header-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 16px;
+    }
+    
+    .header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+    }
+    
+    .header-meta {
+      display: flex;
+      gap: 32px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    /* Dashboard Grid */
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    
+    .stat-card {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 20px;
+      border: 1px solid var(--border);
+    }
+    
+    .stat-card.highlight {
+      background: var(--accent-green-light);
+      border-color: var(--accent-green);
+    }
+    
+    .stat-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    .stat-card.highlight .stat-value {
+      color: var(--accent-green);
+    }
+    
+    /* Issue Summary */
+    .issue-summary {
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 48px;
+      border: 1px solid var(--border);
+    }
+    
+    .issue-summary h2 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    
+    .issue-summary p {
+      font-size: 18px;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .badge.warning {
+      background: var(--accent-orange-light);
+      color: var(--accent-orange);
+    }
+    
+    /* Investigation Cards */
+    .card {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow);
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    
+    .card-number {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent-blue);
+      margin-bottom: 8px;
+    }
+    
+    .card-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    
+    .card-meta {
+      display: flex;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    .card-meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    
+    .card p {
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    
+    /* Code Blocks */
+    .code-block {
+      background: var(--code-bg);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: var(--bg-tertiary);
+      border-bottom: 1px solid var(--border);
+      font-size: 12px;
+    }
+    
+    .code-filename {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-secondary);
+    }
+    
+    .code-line-highlight {
+      color: var(--accent-orange);
+      font-weight: 600;
+    }
+    
+    .code-content {
+      padding: 16px;
+      overflow-x: auto;
+    }
+    
+    .code-content pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      margin: 0;
+    }
+    
+    /* Comparison Table */
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 24px;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .comparison-table th {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      background: var(--bg-secondary);
+    }
+    
+    .comparison-table td {
+      font-size: 14px;
+    }
+    
+    .check {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+    
+    .cross {
+      color: #fa5252;
+      font-weight: 600;
+    }
+    
+    /* Architecture Flow */
+    .flow {
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      line-height: 1.8;
+      color: var(--text-secondary);
+    }
+    
+    .flow-arrow {
+      color: var(--accent-blue);
+    }
+    
+    /* Next Steps */
+    .next-steps {
+      background: var(--accent-blue-light);
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid var(--accent-blue);
+    }
+    
+    .next-steps h3 {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-blue);
+      margin-bottom: 16px;
+    }
+    
+    .next-steps ol {
+      list-style: none;
+      counter-reset: steps;
+    }
+    
+    .next-steps li {
+      counter-increment: steps;
+      padding: 8px 0;
+      padding-left: 32px;
+      position: relative;
+      font-size: 14px;
+      color: var(--text-primary);
+    }
+    
+    .next-steps li::before {
+      content: counter(steps);
+      position: absolute;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      background: var(--accent-blue);
+      color: white;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Footer */
+    .footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .header-meta {
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .card {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="header-label">KDE Laboratory</div>
+      <h1>Grafana Repository Investigation</h1>
+      <div class="header-meta">
+        <span>LAB-039</span>
+        <span>July 2026</span>
+        <span>Third-Party Repository Capability Validation</span>
+      </div>
+    </header>
+    
+    <!-- Dashboard -->
+    <div class="dashboard">
+      <div class="stat-card">
+        <div class="stat-label">Repository</div>
+        <div class="stat-value">grafana/grafana</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Issue</div>
+        <div class="stat-value">#13027</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Age</div>
+        <div class="stat-value">7+ years</div>
+      </div>
+      <div class="stat-card highlight">
+        <div class="stat-label">Status</div>
+        <div class="stat-value">Root Cause Found</div>
+      </div>
+    </div>
+    
+    <!-- Issue Summary -->
+    <div class="issue-summary">
+      <h2>Issue Summary</h2>
+      <p>Log axis "auto" limits don't work on histogram panel. Y-axis max stuck at 100 regardless of actual data values.</p>
+      <span class="badge warning">Confirmed affected: v4.6.3 → current</span>
+    </div>
+    
+    <!-- Card 01 -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Finding 01</div>
+          <h2 class="card-title">Histogram Y-Axis Ignores User Configuration</h2>
+        </div>
+        <div class="card-meta">
+          <span>Severity: Medium</span>
+          <span>Confidence: High</span>
+        </div>
+      </div>
+      
+      <p>The histogram panel hardcodes Y-axis scale to Linear, completely ignoring user-configured log scale settings.</p>
+      
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-filename">Histogram.tsx:149-156</span>
+        </div>
+        <div class="code-content">
+          <pre>builder.addScale({
+  scaleKey: 'y',
+  isTime: false,
+  distribution: <span class="code-line-highlight">ScaleDistribution.Linear</span>,  // HARDCODED
+  orientation: ScaleOrientation.Vertical,
+  direction: ScaleDirection.Up,
+  softMin: 0,
+});</pre>
+        </div>
+      </div>
+      
+      <p><strong>Impact:</strong> Users cannot use log scale effectively on histogram Y-axis. Manual Y-max workaround available but defeats auto-scaling purpose.</p>
+    </div>
+    
+    <!-- Card 02 -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Finding 02</div>
+          <h2 class="card-title">Scale Builder Fallback Triggers Incorrectly</h2>
+        </div>
+        <div class="card-meta">
+          <span>Severity: Low</span>
+          <span>Confidence: Medium</span>
+        </div>
+      </div>
+      
+      <p>Fallback logic sets Y-max to 100 when range calculation produces invalid values for log scale data.</p>
+      
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-filename">UPlotScaleBuilder.ts:259-263</span>
+        </div>
+        <div class="code-content">
+          <pre>if (minMax[0]! >= minMax[1]!) {
+  minMax[0] = scale.distr === Log ? 1 : 0;
+  minMax[1] = <span class="code-line-highlight">100</span>;  // Explains the 1k stuck max
+}</pre>
+        </div>
+      </div>
+      
+      <div class="flow">
+        User selects log Y-axis
+        <span class="flow-arrow">→</span>
+        Scale hardcoded to Linear
+        <span class="flow-arrow">→</span>
+        Auto-range fails for log data
+        <span class="flow-arrow">→</span>
+        Fallback: [1, 100]
+      </div>
+    </div>
+    
+    <!-- Architecture Comparison -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Comparison</div>
+          <h2 class="card-title">X-Axis vs Y-Axis Implementation</h2>
+        </div>
+      </div>
+      
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>X-Axis</th>
+            <th>Y-Axis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Distribution</td>
+            <td>Configurable</td>
+            <td><span class="cross">✗ Hardcoded Linear</span></td>
+          </tr>
+          <tr>
+            <td>Log Support</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Auto-scaling</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+          <tr>
+            <td>Custom Range</td>
+            <td><span class="check">✓</span></td>
+            <td><span class="cross">✗</span></td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <p>The X-axis already supports log scale properly—the Y-axis simply wasn't updated to match.</p>
+    </div>
+    
+    <!-- Proposed Fix -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Solution</div>
+          <h2 class="card-title">Proposed Fix</h2>
+        </div>
+      </div>
+      
+      <div class="code-block">
+        <div class="code-header">
+          <span class="code-filename">Histogram.tsx</span>
+        </div>
+        <div class="code-content">
+          <pre>// Read scale distribution from field config
+const yScaleDistribution = 
+  firstFieldConfig.scaleDistribution?.type ?? ScaleDistribution.Linear;
+
+builder.addScale({
+  scaleKey: 'y',
+  isTime: false,
+  distribution: yScaleDistribution,
+  log: yScaleDistribution === ScaleDistribution.Log ? 2 : undefined,
+  orientation: ScaleOrientation.Vertical,
+  direction: ScaleDirection.Up,
+  softMin: yScaleDistribution === ScaleDistribution.Log ? null : 0,
+});</pre>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Files Requiring Changes -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-number">Action Items</div>
+          <h2 class="card-title">Files Requiring Changes</h2>
+        </div>
+      </div>
+      
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Change Required</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>Histogram.tsx</code></td>
+            <td>Read scale distribution from field config</td>
+          </tr>
+          <tr>
+            <td><code>UPlotScaleBuilder.ts</code></td>
+            <td>Review fallback logic for edge cases</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Next Steps -->
+    <div class="next-steps">
+      <h3>Next Steps</h3>
+      <ol>
+        <li>Authorize implementation</li>
+        <li>Modify Y-axis scale configuration</li>
+        <li>Add unit tests for log scale</li>
+        <li>Verify backward compatibility</li>
+        <li>Submit PR to Grafana</li>
+      </ol>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Report generated by KDE Runtime Engine (LAB-039/040)</p>
+      <p>July 2026</p>
+    </footer>
+    
+  </div>
+</body>
+</html>
