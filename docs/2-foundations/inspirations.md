@@ -23,6 +23,10 @@ There is a simple idea at the heart of scientific inquiry: knowledge must be ear
 
 This principle did not emerge from a single discovery. It crystallized gradually over centuries, through the work of thinkers who learned that conclusions reached without evidence were fragile, that intuitions—even brilliant ones—could mislead, and that the only reliable path to understanding ran through systematic doubt.
 
+### Real-World Observation
+
+Two people disagree about the best route to work. One insists that Route A is faster because it has fewer traffic lights. The other checks Google Maps data for the past month and discovers that Route B is actually faster during rush hour. The first person relied on assumption; the second person relied on evidence. Both traveled the same roads for years. Only one knew what they were talking about.
+
 ### The Historical Problem
 
 Before this principle took hold, knowledge rested on authority. The ancient Greeks debated the nature of reality through pure reasoning. Medieval scholars accepted Aristotle because Aristotle said so. New observations that contradicted established doctrine were dismissed or ignored.
@@ -63,6 +67,10 @@ The principle emerged not from theory but from hard experience. Early manufactur
 
 The solution was to design quality from the start. If inspection revealed problems, the problem was not the worker or the product; it was the process that allowed defects to occur. Fix the process, and defects would not arise. This shift—from inspecting quality into products to designing quality into processes—transformed manufacturing.
 
+### Real-World Observation
+
+Building a house. You can inspect the foundation when it's done and discover it's cracked. Or you can design the foundation correctly from the start, specify the right mix of concrete, and install proper drainage. One approach hopes for quality; the other builds it in.
+
 ### The Historical Problem
 
 Before this principle took hold, quality meant checking work after it was done. Workers built; inspectors checked. Defective products were discarded or reworked. The assumption was that quality could be added through vigilance.
@@ -100,6 +108,10 @@ The failures that KDE anticipates are not mechanical—they are epistemic. Concl
 There is a discipline that transformed aviation from one of the most dangerous professions to one of the safest: the commitment to verify before execution. This principle—verify before execution—seems simple, but its implications are profound. It means that no matter how experienced the operator, no matter how routine the task, certain checks must be performed before action is taken.
 
 The principle emerged not from theory but from catastrophe. Early aviation was deadly. Pilots died not from bad luck but from preventable errors—fuel exhaustion, landing gear failures, structural failures that pre-flight checks would have revealed. The solution was not better pilots but better procedures. The checklist was born.
+
+### Real-World Observation
+
+A traveler checks their bags before leaving for the airport. Inside, they find the passport they almost forgot. They check again and find the charging cable for their laptop. By the time they arrive, they have everything they need—not because they were particularly organized, but because they verified before leaving. Another traveler rushes out and discovers at the gate that their passport is still on the kitchen counter.
 
 ### The Historical Problem
 
@@ -179,6 +191,10 @@ There is a discipline that distinguishes superficial fixes from lasting solution
 
 The principle emerged from engineering and manufacturing, where surface fixes created endless cycles of recurrence. A machine breaks; it is repaired. It breaks again. It is repaired again. The problem is not the machine; it is something about how the machine is maintained, operated, or designed. Until that underlying condition is addressed, the breakdowns will continue.
 
+### Real-World Observation
+
+A person takes painkillers every week for recurring headaches. The painkillers work—until the next headache arrives. Eventually, they visit a doctor who discovers the headaches are caused by poor sleep posture. The painkillers treated the symptom; the new pillow treats the cause. One approach offers temporary relief; the other offers lasting solution.
+
 ### The Historical Problem
 
 Before this principle took hold, problem-solving meant symptom removal. Something breaks—repair it. Something fails—replace it. Something goes wrong—fix it. This approach worked, sort of. Problems were addressed. Work resumed.
@@ -221,6 +237,10 @@ There is a mechanism that has produced complexity from simplicity over billions 
 
 The principle emerged from biology, where it explains how life diversifies and persists. Within any population, individuals vary. Some variations improve survival and reproduction. Those individuals pass their traits to offspring. Over generations, beneficial traits become more common. Over vast time, this process produces new species.
 
+### Real-World Observation
+
+Two people want to become physically fit. One attempts a radical transformation: two-hour workouts, extreme diet, complete lifestyle overhaul. They last three weeks before reverting to old habits. The other commits to a fifteen-minute walk every day. A year later, they have missed perhaps a dozen walks. The radical transformation was dramatic; the daily habit was persistent. One inspired enthusiasm; the other produced results.
+
 ### The Historical Problem
 
 Before this principle was understood, the diversity of life seemed to demand a designer. The eye, the wing, the human brain—these structures seemed too complex, too elegant, too purposeful to arise by chance. There must be an intelligence behind them, observers argued. Something must have designed them.
@@ -259,6 +279,10 @@ There is a metaphor that captures how knowledge truly develops: cultivation. Thi
 
 The metaphor comes from agriculture. The farmer does not transfer growth to the plant; the farmer creates conditions for growth. The soil must be prepared. The seeds must be planted. The growth must be nurtured. The harvest is not given; it is earned.
 
+### Real-World Observation
+
+Two people want to learn Spanish. One spends an evening with a phrasebook, memorizing common expressions. They can recite them the next day. Six months later, they have forgotten most of them. The other studies for thirty minutes every day, practices speaking with native speakers, and watches Spanish films. A year later, they can hold a conversation. One collected phrases; the other cultivated ability.
+
 ### The Historical Problem
 
 Before this metaphor took hold, learning meant acquisition. Students collected knowledge the way collectors collected stamps. The more you gathered, the more you knew. Knowledge was a quantity, a possession, a accumulation.
@@ -296,6 +320,10 @@ The distinction between information and understanding appears in KDE's evidence 
 There is a narrative structure that captures how we truly learn complex systems: arrival in a new world. This principle—understand the system before attempting mastery—seems obvious, but its implications are profound. It means that premature action precedes understanding, that challenges without context are not learning but trial-and-error, and that the journey from confusion to clarity is itself the education.
 
 The principle comes from a modern narrative genre: isekai. In these stories, ordinary people are transported to other worlds—fantasy realms, game worlds, parallel dimensions. To survive, they must learn how things work. They face challenges that test their understanding. They develop capabilities that allow them to progress. The narrative arc is fundamentally about learning.
+
+### Real-World Observation
+
+A person buys a new smartphone. One immediately starts pressing buttons, exploring menus, downloading apps—figuring out how it works through experimentation. Another reads the manual first, learns the basic interface, understands the underlying logic. A week later, the first person is still discovering features. The second person is already proficient. One learned by doing; the other learned before doing.
 
 ### The Historical Problem
 
