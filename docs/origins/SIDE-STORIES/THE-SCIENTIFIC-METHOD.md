@@ -1,153 +1,169 @@
 # SIDE STORY: THE SCIENTIFIC METHOD
 
-I was reading a book about the Scientific Method.
+I was debugging a system.
 
-Not for work. Not for any particular project. Just reading. The kind of thing you do when you're tired of your own thoughts and want to borrow someone else's.
+Not a small system. Not a simple one. Something that had grown over years—distributed across services, accumulated features, evolved through generations of requirements that no longer quite fit together.
 
-The book was explaining how scientists test ideas. Form a hypothesis. Design an experiment. Gather evidence. Revise or discard. Start again.
+The bug was real. I could see it in the logs, in the failing tests, in the reports from users who had stumbled into an edge case nobody had anticipated.
 
-I read this and felt something I couldn't quite name.
+But when I tried to fix it, I found something worse.
 
-Not recognition, exactly. Something stranger.
+The bug wasn't the problem. The bug was a symptom. Underneath it, there were assumptions—about how the system worked, about what users would do, about what the architecture could support. Assumptions made years ago by people who had since moved on. Assumptions embedded so deeply in the code that nobody remembered they were assumptions at all.
 
----
+I spent weeks untangling them. Not to fix the bug. To understand why the bug existed.
 
-I had been building software for years.
-
-The projects changed—web apps, APIs, distributed systems, knowledge management tools. The problems changed too. But something stayed constant: every project eventually faced the same question.
-
-Are we building the right thing?
-
-Not "are we building it right." That's an implementation question. Execution. Coding. The easy part, maybe.
-
-The harder question was direction. Are we solving the right problem? Does this architecture make sense? Will this approach scale to what we're actually trying to achieve?
-
-I don't remember when I first started asking these questions explicitly. They emerged naturally, the way important questions do—slowly, then all at once.
+And in that understanding, a question surfaced: how did we get here? How did a system that started sensible become this?
 
 ---
 
-The first time I really felt the problem, I was working on a system that had grown beyond anyone's understanding.
+I don't remember how many systems I've watched grow this way.
 
-The original design made sense. Small team, clear requirements, reasonable constraints. Then the team grew. The requirements changed. The constraints shifted. The system grew to meet demands it was never designed for.
+They start clean. The architecture makes sense. The patterns are clear. New developers can understand it, can find their way around, can make changes without breaking things they didn't know were connected.
 
-Nobody had made a bad decision, exactly. The system had evolved organically. Each change seemed reasonable in isolation. The problems only appeared when you looked at the whole.
+Then requirements change. Deadlines approach. Features get added in ways that seem reasonable at the time. The original architects move to other projects. The new people don't have the context, so they make decisions based on what they see—which is never the whole picture.
 
-We had built something that worked. It did what it was supposed to do. And it was still, fundamentally, wrong.
+Slowly, the system becomes a map of decisions nobody fully understands anymore.
 
-Not wrong in the code. Wrong in the architecture. Wrong in the assumptions we had made and forgotten we had made. Wrong in ways that felt inevitable in retrospect but invisible at the time.
+I've worked in this industry long enough to see the pattern repeat. In different companies, different teams, different technologies. Always the same arc: clarity to complexity to confusion.
 
-I spent months trying to fix it. Refactoring. Rewriting. Starting over.
-
-Each attempt revealed new problems. Each solution created new assumptions. The system was a moving target, and we were always behind it.
+I started asking a question I couldn't quite answer: why does this keep happening?
 
 ---
 
-That project taught me something, though I didn't know to call it that at the time.
+The question sat with me for years.
 
-Building software requires making assumptions. About users. About scale. About what the problem actually is. About what success looks like.
+I read about software architecture. Patterns emerged—layered systems, microservices, event-driven designs, domain-driven boundaries. The books explained how to structure software. How to organize code so that changes stay contained, so that understanding remains possible, so that complexity doesn't accumulate into chaos.
 
-Most of these assumptions are never written down. They live in the heads of the people who made them. They get lost when people leave. They become invisible through familiarity.
+I applied what I learned. Better abstractions. Clearer boundaries. Explicit contracts between components.
 
-And then the system grows, and some of those assumptions turn out to be wrong. Not obviously wrong. Not wrong in a way that fails tests or breaks builds. Wrong in a way that only becomes visible when you're deep in the complexity, trying to make the next change work.
+The systems improved. The complexity decreased, or at least stayed manageable.
 
-I started trying to make the assumptions explicit. Write them down. Test them before building.
+But the question remained: architecture explained how to structure software. It didn't explain how to discover the right structure.
 
-Not in any formal way. Just trying to remember: what do we actually believe about this system? What are we counting on? What would make us wrong?
+I could look at an existing system and identify where the architecture had gone wrong. But looking backward wasn't enough. I needed to look forward. To make decisions that would stay right as the system grew. To discover the structure that would remain coherent under change.
 
----
+How do you do that?
 
-Years passed. Projects accumulated.
+The books didn't say. The patterns didn't say. The methodologies didn't say.
 
-I started working with AI-assisted development. The tools were impressive—code written faster, refactoring automated, entire implementations generated from descriptions.
+They all assumed you knew what you were building.
 
-What surprised me was how little the tools changed the fundamental problem.
-
-I could generate implementations quickly. But I still had to know what to generate. I still had to understand the problem deeply enough to describe it. I still had to figure out which assumptions were right and which would turn out to be wrong.
-
-The tools made execution faster. They didn't make direction clearer.
-
-I found myself spending more time on the questions. What are we actually trying to solve? What would success look like? How would we know if we were wrong?
-
-The implementation was the easy part. The discovery was what mattered.
+I never did.
 
 ---
 
-At some point, I started running experiments.
+At some point, I started running tests.
 
-Not scientific experiments. Not formal ones. Just small tests to see if my assumptions were right.
+Not unit tests. Not integration tests. Tests of assumptions.
 
-If we built it this way, would users actually prefer it? If we changed this behavior, would the system feel more coherent? If we simplified this part, would complexity decrease elsewhere?
+If we design the user dashboard this way, will users actually find it useful? If we separate the billing module from the inventory module, will the boundary make sense six months from now? If we cache results at this layer, will the cache invalidation become a problem at scale?
 
-I would try things. Watch what happened. Revise based on evidence.
+I would try things. Small experiments. Changes that could be undone if they didn't work. Observations about what happened.
 
-This felt obvious to me. The way you test anything—you try, you observe, you adjust. The scientific method applied to software.
+Sometimes the experiments confirmed my assumptions. Sometimes they didn't. Either way, I learned something.
 
-But I didn't call it that. I didn't connect it to anything larger.
+I thought of this as just... engineering. The way you test anything. You make a hypothesis about what will work, you try it, you see what happens.
 
-It was just what you did when you weren't sure.
-
----
-
-I don't remember when I first read about the Scientific Method in a way that made me stop.
-
-The book was describing how scientists work. Form hypotheses. Design experiments. Gather evidence. Revise.
-
-And I thought: that's what I've been doing.
-
-Not metaphorically. Literally.
-
-Every time I tried to understand a system, I was forming hypotheses about how it worked. Every time I tested an assumption, I was running an experiment. Every time I revised based on what I learned, I was following the Scientific Method.
-
-I hadn't learned this in school. I hadn't been taught to apply science to software. I had just... done it. Naturally. The way you breathe.
-
-And then, reading a book, I realized that what I had been doing had a name. A history. A formal structure that people had developed over centuries.
-
-The Scientific Method wasn't new to me. But recognizing it was.
+I didn't connect it to anything else. It was just how I worked.
 
 ---
 
-There's a difference between practicing something and understanding what you're practicing.
+I don't remember the lesson.
 
-I had been doing science without knowing it. Running experiments without calling them experiments. Testing hypotheses without using that word.
+That's strange to say, but I don't. A classroom, maybe. A teacher talking about method. Words on a chalkboard—observe, hypothesize, experiment, conclude.
 
-The recognition didn't change what I did. It changed how I understood what I was doing.
+I remember the words existed. I don't remember what they meant, or why they mattered. School was a long time ago. Science classes felt irrelevant to whatever I thought I would do with my life.
 
-Now I could explain it. Teach it. Formalize it. Make it repeatable for other people, not just myself.
+I remember taking notes. I remember standardized tests. I remember the facts sliding in one ear and out the other.
 
-Now the patterns I had observed had a structure. A history. A vocabulary.
+What I don't remember is understanding why any of it mattered.
 
-I had been rediscovering the Scientific Method all along.
+The lesson was there. I was there. And then it was gone—replaced by programming languages, by frameworks, by the practical problems of building things that worked.
 
----
-
-I think about this often now.
-
-How many of our practices are just science without the name? How often do we solve a class of problems that has already been solved elsewhere, but we don't know to look?
-
-The Scientific Method wasn't new to software engineering. It was new to me, in the sense that I hadn't recognized it. But the method itself was old. Tested. Proven across domains far more demanding than software.
-
-I didn't need to invent a discovery methodology. I needed to recognize the one I was already using.
-
-And then, once I saw it, I could refine it. Improve it. Apply it more consistently.
-
-The realization wasn't "we should use science in software."
-
-The realization was "we've been using science. Now we know what to call it."
+The Scientific Method was something from a textbook. Something for scientists in laboratories. Not for me.
 
 ---
 
-The book about the Scientific Method is long finished. I don't remember most of it.
+Years passed. Problems accumulated.
 
-But I remember that feeling. The moment of recognition. The sense that something I had been doing independently had already been solved by someone else, centuries ago.
+I was building something complex again—a system for managing knowledge, for organizing findings, for keeping track of what worked and what didn't. The kind of system that needed to be flexible, because I didn't know exactly what it would need to do.
 
-Not because I was slow to learn. Because I had been learning all along. Just in a different form.
+I kept running into the same question: how do I know if this is right?
+
+Not "is the code correct" or "does it pass the tests." Those were implementation questions, and I knew how to answer them.
+
+The harder question was: do I understand the problem correctly? Are my assumptions about what users need actually correct? Will this design stay coherent as requirements change?
+
+I didn't know how to answer these questions. Not reliably. Not consistently.
+
+So I kept experimenting. Kept testing. Kept trying small things and watching what happened.
+
+And slowly, a pattern emerged.
+
+Observe. What is actually happening? Not what I expected, but what I see.
+
+Hypothesize. What might explain what I'm seeing? What might make it better?
+
+Experiment. Try the change. Design it so it can be undone.
+
+Evidence. Did it work? What did I learn?
+
+Revise. Update my understanding. Try again.
+
+The pattern was so familiar it felt obvious. The way you learn anything. The way you figure anything out.
+
+---
+
+I don't know when the words came back.
+
+But at some point, debugging that system, testing those assumptions, I heard them in my head:
+
+Observe. Hypothesize. Experiment. Evidence. Revise.
+
+The words from a classroom I barely remembered. The words I had never thought to connect to software engineering.
+
+I stopped.
+
+And I thought: that's it. That's what I've been doing.
+
+Not by accident. Not by intuition. But in the exact sequence that scientists had been using for centuries.
+
+I had forgotten the lesson. But I had kept practicing it.
+
+---
+
+The recognition didn't change what I did. It changed what I understood.
+
+I had been running experiments without calling them experiments. Testing hypotheses without using that word. Following the Scientific Method without knowing its name.
+
+The method wasn't new to me. But recognizing it was.
+
+Now I could see what I had been doing. Now I could teach it. Now I could make it explicit—not just for myself, but for anyone who needed a way to discover whether their assumptions were correct.
+
+Software architecture explains how to structure systems.
+
+The Scientific Method explains how to discover what should be built.
+
+I had both. I just hadn't known they were the same problem.
+
+---
+
+I think about the classroom sometimes. The lesson I forgot. The words that waited years to resurface.
+
+Maybe that's how it works. Maybe the things that matter most are the ones that hide in plain sight—present but unnoticed, practiced but unnamed.
+
+I didn't learn the Scientific Method from a textbook. I learned it from building things that didn't work, from assumptions that turned out wrong, from experiments that taught me what I actually knew.
+
+The textbook just gave me the words.
+
+And once I had the words, everything connected.
 
 Software architecture explains how to build systems.
 
 The Scientific Method explains how to discover what should be built.
 
-I had both. I just didn't know they were connected.
+The search for a universal engineering methodology—the search I had been conducting for years, through projects and failures and gradual understanding—that search had already been solved. Centuries ago. By people who asked the same questions I was asking.
 
-Now I do.
+I didn't need to invent a discovery process.
 
-And that connection became one of the foundations of everything I built after.
+I just needed to remember the one I already knew.
