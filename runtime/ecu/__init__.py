@@ -21,6 +21,12 @@ from .planner import ExecutionPlanner
 from .policy import PolicyLayer
 from .consensus import ConsensusManager
 from .aggregator import ResultAggregator
+from ..principles_enforcer import (
+    FivePrinciplesEnforcer, 
+    PrincipleViolationError, 
+    PrincipleType,
+    EnforcementResult
+)
 
 
 @dataclass
@@ -53,6 +59,7 @@ class RuntimeECU:
     The ECU is the runtime orchestration layer responsible for:
     - Capability Analysis
     - Runtime Policy Enforcement
+    - Five Core Principles Enforcement (SEED-001)
     - Engine Registry
     - Seed Registry
     - Capability Resolution
@@ -64,6 +71,13 @@ class RuntimeECU:
     
     The ECU SHALL NOT execute engineering reasoning.
     Reasoning belongs exclusively to Engines.
+    
+    FIVE CORE PRINCIPLES (ENFORCED):
+    1. No Auto-Continuation - Require human authorization
+    2. No Self-Approval - Block AI approval transitions
+    3. No Self-Promotion - Block AI promotion transitions
+    4. Distinguish Evidence - Classify content by evidence level
+    5. Evidence-Based Changes - Require evidence for claims
     """
     
     def __init__(self, kde_root: str):
@@ -90,6 +104,9 @@ class RuntimeECU:
         )
         self.consensus_manager = ConsensusManager()
         self.result_aggregator = ResultAggregator()
+        
+        # Five Core Principles Enforcer (SEED-001)
+        self.principles_enforcer = FivePrinciplesEnforcer(kde_root)
         
         # Execution history
         self._execution_history: List[ECUExecutionResult] = []
@@ -384,6 +401,157 @@ class RuntimeECU:
             }
             for r in history
         ]
+    
+    # =========================================================================
+    # FIVE CORE PRINCIPLES ENFORCEMENT (SEED-001)
+    # =========================================================================
+    
+    def require_authorization(self, session_id: str) -> EnforcementResult:
+        """
+        Require human authorization for session continuation.
+        
+        Enforces Principle 1: No Auto-Continuation.
+        
+        Args:
+            session_id: Unique session identifier
+            
+        Returns:
+            EnforcementResult with authorization status
+        """
+        return self.principles_enforcer.require_continuation_authorization(session_id)
+    
+    def authorize_session(
+        self, 
+        session_id: str, 
+        authorized_by: str = "human"
+    ) -> EnforcementResult:
+        """
+        Authorize a session checkpoint.
+        
+        Args:
+            session_id: Session to authorize
+            authorized_by: Who is authorizing (must be human)
+            
+        Returns:
+            EnforcementResult
+        """
+        return self.principles_enforcer.authorize_continuation(session_id, authorized_by)
+    
+    def check_state_transition(
+        self,
+        current_state: str,
+        new_state: str,
+        actor: str = "unknown"
+    ) -> EnforcementResult:
+        """
+        Check if a state transition is allowed.
+        
+        Enforces Principle 2: No Self-Approval.
+        
+        Args:
+            current_state: Current document state
+            new_state: Desired new state
+            actor: Who is making the transition
+            
+        Returns:
+            EnforcementResult
+        """
+        return self.principles_enforcer.check_state_transition(
+            current_state, new_state, actor
+        )
+    
+    def check_promotion(
+        self,
+        current_state: str,
+        new_state: str,
+        destination: str = "knowledge",
+        actor: str = "unknown"
+    ) -> EnforcementResult:
+        """
+        Check if a promotion is allowed.
+        
+        Enforces Principle 3: No Self-Promotion.
+        
+        Args:
+            current_state: Current state
+            new_state: Desired promotion state
+            destination: Where being promoted to
+            actor: Who is promoting
+            
+        Returns:
+            EnforcementResult
+        """
+        return self.principles_enforcer.check_promotion_transition(
+            current_state, new_state, destination, actor
+        )
+    
+    def check_content_evidence(self, content: str) -> EnforcementResult:
+        """
+        Check content for proper evidence distinction.
+        
+        Enforces Principle 4: Distinguish Evidence, Inference, and Hypothesis.
+        
+        Args:
+            content: Content to check
+            
+        Returns:
+            EnforcementResult with classification
+        """
+        return self.principles_enforcer.check_evidence_distinction(content)
+    
+    def check_claims_evidence(self, content: str) -> EnforcementResult:
+        """
+        Check claims in content for evidence backing.
+        
+        Enforces Principle 5: Evidence-Based Changes.
+        
+        Args:
+            content: Content to check
+            
+        Returns:
+            EnforcementResult
+        """
+        return self.principles_enforcer.check_claims(content)
+    
+    def enforce_principles(self, context: Dict[str, Any]) -> EnforcementResult:
+        """
+        Run all Five Core Principles enforcement checks.
+        
+        Args:
+            context: Context containing content, states, actor, session_id
+            
+        Returns:
+            Combined EnforcementResult
+        """
+        return self.principles_enforcer.enforce_all(context)
+    
+    def get_principles_status(self) -> Dict[str, Any]:
+        """
+        Get current Five Core Principles enforcement status.
+        
+        Returns:
+            Status dictionary
+        """
+        report = self.principles_enforcer.get_enforcement_report()
+        return {
+            "enforcer_active": True,
+            "seed_id": "SEED-001",
+            "seed_name": "Genesis",
+            "principles": [
+                {"id": 1, "name": "No Auto-Continuation", "enforced": True},
+                {"id": 2, "name": "No Self-Approval", "enforced": True},
+                {"id": 3, "name": "No Self-Promotion", "enforced": True},
+                {"id": 4, "name": "Distinguish Evidence", "enforced": True},
+                {"id": 5, "name": "Evidence-Based Changes", "enforced": True},
+            ],
+            "checkpoint_summary": {
+                "total": len(self.principles_enforcer.checkpoints),
+                "authorized": sum(
+                    1 for cp in self.principles_enforcer.checkpoints.values()
+                    if cp.status.value == "authorized"
+                )
+            }
+        }
 
 
 def create_ecu(kde_root: str) -> RuntimeECU:

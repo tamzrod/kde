@@ -6,7 +6,7 @@
 
 ## Purpose
 
-This file provides the canonical procedure for starting the KDE Runtime engine.
+This file provides the canonical procedure for starting the KDE Runtime engine with **active Five Core Principles enforcement**.
 
 ---
 
@@ -14,86 +14,43 @@ This file provides the canonical procedure for starting the KDE Runtime engine.
 
 When you say "start engine", "start runtime", or similar commands, follow this procedure:
 
-### Step 1: Acknowledge Laboratory Rules
+### Step 1: Acknowledge and Enforce Five Core Principles
 
 Before any work, acknowledge the Five Core Principles from `/seeds/seed-001/principles/5-principles.md`:
 
-| Rule | Description |
-|------|-------------|
-| **No Auto-Continuation** | Never begin next session without human authorization |
-| **No Self-Approval** | Never approve your own work |
-| **No Self-Promotion** | Never promote knowledge to production |
-| **Distinguish Evidence** | Mark fact vs. conclusion vs. speculation |
-| **Evidence-Based Changes** | All claims must be justified |
+| Rule | Description | Enforcement |
+|------|-------------|-------------|
+| **No Auto-Continuation** | Never begin next session without human authorization | Checkpoints block unauthorized continuation |
+| **No Self-Approval** | Never approve your own work | Blocks REVIEW → APPROVED for AI |
+| **No Self-Promotion** | Never promote knowledge to production | Blocks VALIDATED → PROMOTED for AI |
+| **Distinguish Evidence** | Mark fact vs. conclusion vs. speculation | Classifies content by evidence level |
+| **Evidence-Based Changes** | All claims must be justified | Requires evidence citations |
 
-### Step 2: Load Alias Registry
+### Step 2: Initialize Five Core Principles Enforcer
 
-The alias system is automatically loaded during initialization:
+The enforcer is automatically initialized with the ECU.
 
-```python
-from runtime.aliases import get_registry
-registry = get_registry()
-registry.load()
-```
+### Step 3: Run Pre-Flight Check
 
-### Step 3: Initialize Dependencies
-
-Dependencies are installed automatically if needed:
-
-```bash
-pip install pyyaml
-```
-
-### Step 4: Initialize KDE Runtime ECU
-
-```python
-import sys
-sys.path.insert(0, '/workspace/project/kde')
-
-from runtime.ecu import create_ecu
-
-ecu = create_ecu('/workspace/project/kde')
-```
-
-### Step 5: Run Pre-Flight Check
-
-After initialization, run the pre-flight check to verify readiness:
+Run the pre-flight check to verify readiness:
 
 ```python
 from runtime.preflight import run_preflight_check, format_report
-
 report = run_preflight_check()
 print(format_report(report))
 ```
 
 ---
 
-## Alias System
+## Five Core Principles Enforcement API
 
-The KDE Runtime includes an alias system for human-friendly commands:
+The runtime provides programmatic enforcement:
 
-### Canonical Commands
-
-| Command | Description |
-|---------|-------------|
-| `start engine` | Initialize KDE Runtime ECU |
-| `pre-flight check` | Verify runtime readiness |
-| `mission ready` | Session readiness confirmation |
-| `check state` | Read runtime state |
-| `run demo` | Execute demonstration routine |
-| `bootstrap` | Canonical entry point |
-
-### Alias Resolution
-
-All aliases resolve to canonical commands:
-
-```
-'start-runtime' → 'start engine'
-'init kde' → 'start engine'
-'systems check' → 'pre-flight check'
-'health' → 'pre-flight check'
-'go' → 'pre-flight check'
-```
+- `ecu.check_state_transition()` - Blocks AI self-approval
+- `ecu.check_promotion()` - Blocks AI self-promotion
+- `ecu.check_content_evidence()` - Classifies content by evidence level
+- `ecu.require_authorization()` - Requires human authorization for sessions
+- `ecu.check_claims_evidence()` - Validates evidence for claims
 
 ---
 
@@ -104,27 +61,11 @@ All aliases resolve to canonical commands:
 | **Engine** | KDE-ENGINE-002 (Beta) | 0.1.0 | Active |
 | **Seed** | SEED-001 (Genesis) | 1.0.0 | FROZEN |
 | **Architecture** | Architecture C | 1.0.0 | Production |
-
----
-
-## Common Commands
-
-| Command | Procedure |
-|---------|-----------|
-| `start engine` | Initialize KDE Runtime |
-| `run demo` | Execute `python3 -c "from runtime.runtime import demo; demo()"` |
-| `check state` | Read `/runtime/state.json` |
-
----
-
-## Detailed Procedure
-
-For the full initialization procedure, see:
-- [`laboratory/BOOTSTRAP.md`](./laboratory/BOOTSTRAP.md) - Canonical entry point
-- [`laboratory/LABORATORY-RULES.md`](./laboratory/LABORATORY-RULES.md) - Runtime initialization
+| **Principles Enforcer** | SEED-001 | 1.0.0 | ACTIVE |
 
 ---
 
 **Document Status**: APPROVED  
 **Source**: INV-054  
-**Approved**: 2026-07-27
+**Approved**: 2026-07-27  
+**Updated**: 2026-07-28 - Added active enforcement module
