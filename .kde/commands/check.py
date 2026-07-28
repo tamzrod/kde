@@ -129,46 +129,57 @@ def check_ecu_enforcing() -> CheckResult:
         return CheckResult(
             name="ECU Enforcement",
             passed=False,
-            details="ECU not found",
-            severity="WARNING"
+            details="ECU directory not found",
+            severity="ERROR"
+        )
+    
+    if not (ecu_dir / "__init__.py").exists():
+        return CheckResult(
+            name="ECU Enforcement",
+            passed=False,
+            details="ECU __init__.py not found",
+            severity="ERROR"
         )
     
     try:
-        import importlib.util
-        ecu_file = ecu_dir / "__init__.py"
-        if not ecu_file.exists():
-            return CheckResult(
-                name="ECU Enforcement",
-                passed=False,
-                details="ECU module not found",
-                severity="WARNING"
-            )
+        import sys
+        sys.path.insert(0, str(repo_root))
+        from runtime.ecu import create_ecu
         
-        spec = importlib.util.spec_from_file_location("ecu", ecu_file)
-        ecu_module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(ecu_module)
+        ecu = create_ecu(str(repo_root))
         
-        ecu = ecu_module.create_ecu(str(repo_root))
+        # Check ECU state
+        state = getattr(ecu, 'state', None)
+        if state and hasattr(state, 'initialized'):
+            initialized = state.initialized
+            engines = getattr(state, 'engines_registered', 0)
+            seeds = getattr(state, 'seeds_registered', 0)
+            
+            if initialized:
+                return CheckResult(
+                    name="ECU Enforcement",
+                    passed=True,
+                    details=f"Initialized, {engines} engines, {seeds} seeds"
+                )
+            else:
+                return CheckResult(
+                    name="ECU Enforcement",
+                    passed=False,
+                    details="ECU not initialized",
+                    severity="ERROR"
+                )
         
-        # Check if ECU has enforcing capability
-        if hasattr(ecu, 'enforcing') and ecu.enforcing:
-            return CheckResult(
-                name="ECU Enforcement",
-                passed=True,
-                details="Evidence markers enforcing"
-            )
-        else:
-            return CheckResult(
-                name="ECU Enforcement",
-                passed=True,
-                details="ECU available"
-            )
-    except Exception as e:
         return CheckResult(
             name="ECU Enforcement",
             passed=True,
-            details="ECU check skipped",
-            severity="WARNING"
+            details="ECU available"
+        )
+    except Exception as e:
+        return CheckResult(
+            name="ECU Enforcement",
+            passed=False,
+            details=f"Error: {str(e)[:60]}",
+            severity="ERROR"
         )
 
 
