@@ -381,6 +381,140 @@ def verify_investigation_quality(inv_path: Path) -> List[VerificationCheck]:
 
 
 # =============================================================================
+# Authenticity Verification
+# =============================================================================
+
+def verify_execution_mode(inv_path: Path) -> VerificationCheck:
+    """
+    Verify EXECUTION_MODE is declared in investigation header.
+    
+    Required by Laboratory Rule 8: Authenticity Enforcement
+    
+    Note: Grandfathered investigations (marked with KDE_RUNTIME_AUTHENTICITY HTML comment)
+    are exempt from this check.
+    """
+    readme = inv_path / "README.md"
+    if not readme.exists():
+        return VerificationCheck(
+            check_id="authenticity",
+            check_type="integrity",
+            name="EXECUTION_MODE declaration",
+            passed=False,
+            details="Missing: README.md",
+            severity="ERROR"
+        )
+    
+    try:
+        content = readme.read_text()
+        
+        # Check for grandfathered marker
+        if "KDE_RUNTIME_AUTHENTICITY:" in content:
+            # Grandfathered investigation - exempt from Rule 8
+            return VerificationCheck(
+                check_id="authenticity",
+                check_type="integrity",
+                name="EXECUTION_MODE declaration",
+                passed=True,
+                details="Grandfathered investigation (pre-Rule 8)"
+            )
+        
+        # Check for EXECUTION_MODE
+        if "EXECUTION_MODE:" not in content:
+            return VerificationCheck(
+                check_id="authenticity",
+                check_type="integrity",
+                name="EXECUTION_MODE declaration",
+                passed=False,
+                details="Missing EXECUTION_MODE in header",
+                severity="ERROR"
+            )
+        
+        # Validate value
+        valid_modes = ["KDE_RUNTIME", "GENERIC_AI", "HYBRID"]
+        mode_found = False
+        for mode in valid_modes:
+            if f"EXECUTION_MODE: {mode}" in content:
+                mode_found = True
+                return VerificationCheck(
+                    check_id="authenticity",
+                    check_type="integrity",
+                    name="EXECUTION_MODE declaration",
+                    passed=True,
+                    details=f"Valid mode: {mode}"
+                )
+        
+        if not mode_found:
+            return VerificationCheck(
+                check_id="authenticity",
+                check_type="integrity",
+                name="EXECUTION_MODE value",
+                passed=False,
+                details="Invalid EXECUTION_MODE value",
+                severity="ERROR"
+            )
+        
+    except Exception as e:
+        return VerificationCheck(
+            check_id="authenticity",
+            check_type="integrity",
+            name="EXECUTION_MODE check",
+            passed=False,
+            details=f"Error reading file: {str(e)}",
+            severity="ERROR"
+        )
+
+
+def verify_authenticity_score(inv_path: Path) -> List[VerificationCheck]:
+    """
+    Verify AUTHENTICITY_SCORE is declared if GENERIC_AI or HYBRID mode.
+    
+    Required by Laboratory Rule 8: Authenticity Enforcement
+    """
+    checks = []
+    readme = inv_path / "README.md"
+    if not readme.exists():
+        return checks
+    
+    try:
+        content = readme.read_text()
+        
+        # Only required for GENERIC_AI or HYBRID
+        is_generic = "EXECUTION_MODE: GENERIC_AI" in content
+        is_hybrid = "EXECUTION_MODE: HYBRID" in content
+        
+        if is_generic or is_hybrid:
+            if "AUTHENTICITY_SCORE:" not in content:
+                checks.append(VerificationCheck(
+                    check_id="authenticity",
+                    check_type="integrity",
+                    name="AUTHENTICITY_SCORE declaration",
+                    passed=False,
+                    details="Missing AUTHENTICITY_SCORE for GENERIC_AI/HYBRID",
+                    severity="WARNING"
+                ))
+            else:
+                checks.append(VerificationCheck(
+                    check_id="authenticity",
+                    check_type="integrity",
+                    name="AUTHENTICITY_SCORE declaration",
+                    passed=True,
+                    details="AUTHENTICITY_SCORE declared"
+                ))
+        
+    except Exception as e:
+        checks.append(VerificationCheck(
+            check_id="authenticity",
+            check_type="integrity",
+            name="AUTHENTICITY_SCORE check",
+            passed=False,
+            details=f"Error: {str(e)}",
+            severity="WARNING"
+        ))
+    
+    return checks
+
+
+# =============================================================================
 # Main Verification
 # =============================================================================
 
@@ -407,6 +541,9 @@ def verify_all() -> VerificationResult:
                 if inv.is_dir():
                     result.checks.extend(verify_investigation_structure(inv))
                     result.checks.extend(verify_investigation_quality(inv))
+                    # Authenticity checks (Rule 8)
+                    result.checks.append(verify_execution_mode(inv))
+                    result.checks.extend(verify_authenticity_score(inv))
         
         experiments_dir = lab_dir / "experiments"
         if experiments_dir.exists():
