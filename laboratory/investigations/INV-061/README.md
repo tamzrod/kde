@@ -1,3 +1,4 @@
+<!-- KDE_RUNTIME_AUTHENTICITY: GENERIC_AI_WITH_KDE_FORMAT -->
 # INV-061: Skills Layer Disposition - Keep or Discard?
 
 **Status**: INVESTIGATION  

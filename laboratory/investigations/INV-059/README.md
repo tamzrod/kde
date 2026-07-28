@@ -1,3 +1,4 @@
+<!-- KDE_RUNTIME_AUTHENTICITY: GENERIC_AI_WITH_KDE_FORMAT -->
 # INV-059: Runtime Operations - Skills Layer or Expert Layer?
 
 **Status**: INVESTIGATION  

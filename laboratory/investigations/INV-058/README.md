@@ -1,3 +1,4 @@
+<!-- KDE_RUNTIME_AUTHENTICITY: GENERIC_AI_WITH_KDE_FORMAT -->
 # INV-058: Skills Layer vs Expert Layer - Architectural Analysis
 
 **Status**: INVESTIGATION  

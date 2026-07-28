@@ -1,3 +1,4 @@
+<!-- KDE_RUNTIME_AUTHENTICITY: GENERIC_AI_WITH_KDE_FORMAT -->
 # INV-069: KDE Capability Injection Point Investigation
 
 **Status**: INVESTIGATION  

@@ -1,3 +1,4 @@
+<!-- KDE_RUNTIME_AUTHENTICITY: GENERIC_AI_WITH_KDE_FORMAT -->
 # INV-057: Caveman Adoption - Layer Selection and Impact Analysis
 
 **Status**: INVESTIGATION  

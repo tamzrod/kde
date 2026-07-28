@@ -1,3 +1,4 @@
+<!-- KDE_RUNTIME_AUTHENTICITY: GENERIC_AI_WITH_KDE_FORMAT -->
 # INV-063: Context Reduction Techniques - Engineering Principles Analysis
 
 **Status**: INVESTIGATION  

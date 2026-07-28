@@ -1,3 +1,4 @@
+<!-- KDE_RUNTIME_AUTHENTICITY: GENERIC_AI_WITH_KDE_FORMAT -->
 # INV-055: Caveman - Claude Code Token Reduction Toolkit
 
 **Status**: INVESTIGATION  

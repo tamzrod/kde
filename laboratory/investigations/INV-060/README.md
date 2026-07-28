@@ -1,3 +1,4 @@
+<!-- KDE_RUNTIME_AUTHENTICITY: GENERIC_AI_WITH_KDE_FORMAT -->
 # INV-060: Critical Evaluation of the Skills Layer Architecture
 
 **Status**: INVESTIGATION  

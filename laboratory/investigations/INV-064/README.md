@@ -1,3 +1,4 @@
+<!-- KDE_RUNTIME_AUTHENTICITY: GENERIC_AI_WITH_KDE_FORMAT -->
 # INV-064: ENZO Architecture - Engineering Principles Analysis
 
 **Status**: INVESTIGATION  
