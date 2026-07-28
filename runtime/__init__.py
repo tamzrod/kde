@@ -11,6 +11,7 @@ Components:
 - Runtime Instrumentation
 - Decision Attribution
 - Runtime ECU (Execution Control Unit)
+- File Boundary Guard (active enforcement)
 """
 
 __version__ = "1.0.0"
@@ -22,6 +23,20 @@ from .ecu.bootstrap import ECUBootstrap, bootstrap_ecu
 from .ecu.models import (
     EngineStatus, EngineStability, SeedStatus, CapabilityType,
     ExecutionMode, ConsensusStrategy, PolicyViolation
+)
+
+# File Boundary Guard exports
+from .file_boundary_guard import (
+    FileBoundaryGuard,
+    FileOperation,
+    BoundaryCheckResult,
+    ViolationSeverity,
+    create_guard
+)
+from .violation_handler import (
+    ViolationHandler,
+    ViolationRecord,
+    create_handler
 )
 
 __all__ = [
@@ -40,4 +55,14 @@ __all__ = [
     'ExecutionMode',
     'ConsensusStrategy',
     'PolicyViolation',
+    # File Boundary Guard
+    'FileBoundaryGuard',
+    'FileOperation',
+    'BoundaryCheckResult',
+    'ViolationSeverity',
+    'create_guard',
+    # Violation Handler
+    'ViolationHandler',
+    'ViolationRecord',
+    'create_handler',
 ]
