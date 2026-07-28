@@ -27,6 +27,12 @@ from ..principles_enforcer import (
     PrincipleType,
     EnforcementResult
 )
+from ..file_boundary_guard import (
+    FileBoundaryGuard,
+    BoundaryCheckResult,
+    ViolationSeverity,
+    create_guard
+)
 
 
 @dataclass
@@ -108,8 +114,49 @@ class RuntimeECU:
         # Five Core Principles Enforcer (SEED-001)
         self.principles_enforcer = FivePrinciplesEnforcer(kde_root)
         
+        # File Boundary Guard - Active enforcement of file boundaries
+        self.file_boundary_guard = create_guard(kde_root)
+        
         # Execution history
         self._execution_history: List[ECUExecutionResult] = []
+    
+    def check_file_operation(self, operation: str, path: str) -> BoundaryCheckResult:
+        """
+        Check a file operation against boundary rules.
+        
+        Args:
+            operation: The operation type (create, write, delete, etc.)
+            path: The file path to check
+            
+        Returns:
+            BoundaryCheckResult with violation details
+        """
+        return self.file_boundary_guard.check_operation(operation, path)
+    
+    def is_file_allowed(self, operation: str, path: str) -> tuple[bool, str]:
+        """
+        Quick check if a file operation is allowed.
+        
+        Args:
+            operation: The operation type
+            path: The file path
+            
+        Returns:
+            Tuple of (allowed, reason)
+        """
+        return self.file_boundary_guard.is_allowed(path, operation)
+    
+    def format_violation_message(self, result: BoundaryCheckResult) -> str:
+        """
+        Format a violation message for user presentation.
+        
+        Args:
+            result: The boundary check result
+            
+        Returns:
+            Formatted violation message
+        """
+        return self.file_boundary_guard.format_violation_message(result)
     
     def initialize(self) -> ECUInitializationResult:
         """
