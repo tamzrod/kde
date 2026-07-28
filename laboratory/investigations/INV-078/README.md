@@ -378,28 +378,6 @@ See visual diagram above.
 
 ---
 
-## Conclusions
-
-### Key Findings
-
-1. **Current investigations produce 1 artifact** (README.md)
-2. **SOP-001 requires 6 documents minimum**
-3. **Template v3.0.0 requires multiple files**
-4. **No rule mandates single document**
-5. **Gap: Governance requirements vs actual output**
-
-### Recommendations
-
-| # | Recommendation | Priority |
-|---|----------------|----------|
-| REC-001 | Adopt Investigation Folder model | HIGH |
-| REC-002 | Produce Execution Provenance | HIGH |
-| REC-003 | Produce Evidence Manifest | HIGH |
-| REC-004 | Produce Bootstrap Report | MEDIUM |
-| REC-005 | Produce Artifact Manifest | MEDIUM |
-
----
-
 ## Evidence
 
 [EVIDENCE: Bootstrap - `python3 .kde/bootstrap/gates.py`]
@@ -408,6 +386,94 @@ See visual diagram above.
 [EVIDENCE: Template v3.0.0 - laboratory/templates/investigation-template.md]
 [EVIDENCE: Runtime state - .kde/runtime/state.json]
 [EVIDENCE: Rule 8 - LABORATORY-RULES.md v1.3.0]
+
+---
+
+## Conclusions
+
+### Key Findings
+
+1. **Current investigations produce 1 artifact** (README.md)
+2. **SOP-001 requires 6 documents minimum**
+3. **Template v3.0.0 requires multiple files**
+4. **No KDE rule mandates single document**
+5. **Governance requirements are not being met**
+
+### Root Cause
+
+Investigations are following the observed pattern (single file) rather than the documented requirements (multiple files). This is a compliance gap, not a design gap.
+
+### Impact
+
+| Impact Area | Effect |
+|-------------|--------|
+| Replayability | Cannot verify investigation conditions |
+| Auditability | Missing evidence trail |
+| Governance | SOP requirements unmet |
+| Runtime Authenticity | Cannot prove execution |
+
+---
+
+## Recommendations
+
+*Read the conclusions above before reviewing recommendations.*
+
+| # | Recommendation | Priority | Rationale |
+|---|----------------|----------|-----------|
+| REC-001 | Adopt Investigation Folder model | **HIGH** | SOP-001 requires multiple documents |
+| REC-002 | Produce Execution Provenance artifact | **HIGH** | Rule 8 requires authenticity proof |
+| REC-003 | Produce Evidence Manifest artifact | **HIGH** | Audit trail requirement |
+| REC-004 | Produce Bootstrap Report artifact | MEDIUM | Authority demonstration |
+| REC-005 | Produce Artifact Manifest artifact | MEDIUM | Index completeness |
+
+### REC-001: Investigation Folder Model
+
+**Change from**:
+```
+INV-XXX/
+└── README.md
+```
+
+**Change to**:
+```
+INV-XXX/
+├── README.md                    # Investigation Report
+├── EXECUTION-PROVENANCE.md     # Runtime proof
+├── BOOTSTRAP-REPORT.md         # Bootstrap results
+├── ECU-REPORT.md               # Compliance validation
+├── EVIDENCE-MANIFEST.md        # Source citations
+└── ARTIFACT-MANIFEST.md        # Artifact index
+```
+
+### REC-002: Execution Provenance Artifact
+
+**Producer**: ECU  
+**Purpose**: Prove runtime executed with verified authority  
+**Content**: Bootstrap results, ECU validation, mode declaration
+
+### REC-003: Evidence Manifest Artifact
+
+**Producer**: ECU  
+**Purpose**: Provide audit trail of all cited sources  
+**Content**: List of all [EVIDENCE: ...] citations with verification
+
+### REC-004: Bootstrap Report Artifact
+
+**Producer**: Bootstrap  
+**Purpose**: Document initialization conditions  
+**Content**: Gate results, module status, runtime version
+
+### REC-005: Artifact Manifest Artifact
+
+**Producer**: Runtime  
+**Purpose**: Index all artifacts produced by investigation  
+**Content**: List of all files with timestamps and purposes
+
+---
+
+## Implementation Note
+
+**Human review completed.** These recommendations are ready for approval and implementation.
 
 ---
 
