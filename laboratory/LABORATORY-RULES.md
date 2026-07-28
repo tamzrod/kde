@@ -394,6 +394,66 @@ Before beginning any Experiment or Investigation, verify:
 
 ---
 
+### Rule 8: Authenticity Enforcement
+
+**Statement**: AI agents must not claim KDE authority without verified KDE Runtime execution.
+
+**Definitions**:
+
+| Term | Definition |
+|------|------------|
+| **KDE_RUNTIME** | KDE Runtime actually executed with verified Bootstrap, Seed, and Engine |
+| **GENERIC_AI** | Generic AI reasoning with KDE investigation format only |
+| **HYBRID** | Combination of KDE Runtime and external reasoning |
+
+**Implementation**:
+
+#### Header Requirement
+
+All investigations must include:
+
+```yaml
+---
+EXECUTION_MODE: [KDE_RUNTIME | GENERIC_AI | HYBRID]
+AUTHENTICITY_SCORE: [0-100%]
+RUNTIME_AUTHORITY: [Verified | Unverified]
+BOOTSTRAP_VERIFIED: [YES | NO]
+---
+```
+
+#### KDE_RUNTIME Requirements
+
+Investigations claiming `EXECUTION_MODE: KDE_RUNTIME` must provide:
+
+| Requirement | Evidence |
+|-------------|----------|
+| Bootstrap executed | Log from `.kde/bootstrap/gates.py` |
+| Seed loaded | Verification in investigation |
+| Engine executed | Evidence of Engine participation |
+| Runtime active | Execution logs |
+
+#### GENERIC_AI Requirements
+
+Investigations with `EXECUTION_MODE: GENERIC_AI`:
+
+| Requirement | Implementation |
+|-------------|----------------|
+| Label conclusions | Prefix with "Generic AI reasoning" |
+| Disclose score | AUTHENTICITY_SCORE in header |
+| No KDE authority | Cannot claim Runtime execution |
+
+**Prohibited Actions**:
+
+| Prohibition | Rationale |
+|-------------|-----------|
+| Claim KDE authority without verification | False authority claim |
+| Use KDE: prefix without Runtime | Violates Rule 2 |
+| Self-verify authenticity | Requires external validation |
+
+**Authority**: Rule 2 (No Self-Approval) - claiming authority without verification is self-approval
+
+---
+
 ## Revision History
 
 | Version | Date | Changes | Authority |
@@ -401,6 +461,7 @@ Before beginning any Experiment or Investigation, verify:
 | 1.0.0 | 2026-07-20 | Initial production release | SEED-001 |
 | 1.1.0 | 2026-07-23 | Added Rule 6 (Experiment ID Permanence) and Rule 7 (Historical Experiment Protection) | Human Review, LAB-040 |
 | 1.2.0 | 2026-07-24 | Added timestamp standard reference | INV-TEMPORAL-PROVENANCE |
+| 1.3.0 | 2026-07-28 | Added Rule 8 (Authenticity Enforcement) | Human Review, INV-074 |
 
 ---
 

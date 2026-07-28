@@ -3,6 +3,8 @@
   "initialized_at": "2026-07-26T00:00:00Z",
   "version": "1.0.0",
   "project": "KDE Research",
+  "project_type": "python",
+  "project_type_detected": true,
   "modules": {
     "engines": "loaded",
     "experts": "loaded",

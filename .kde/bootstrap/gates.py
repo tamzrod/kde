@@ -24,7 +24,7 @@ Gate B3: Environment Verification Gate
 Usage:
     from .kde.bootstrap.gates import verify_all_gates, GateResult
     
-    result = verify_all_gates(project_type="go")
+    result = verify_all_gates()
     if result.passed:
         print("All gates passed")
     else:
@@ -88,6 +88,60 @@ def get_repo_root() -> Path:
     # Otherwise, assume we're at repo root or below
     return Path.cwd()
 
+
+
+def detect_project_type(repo_root: Path = None) -> str:
+    """
+    Auto-detect project type from repository structure.
+    
+    Checks for project markers in order of specificity:
+    1. go.mod -> "go"
+    2. pyproject.toml or requirements.txt -> "python"
+    3. package.json -> "javascript"
+    4. Cargo.toml -> "rust"
+    5. pom.xml or build.gradle -> "java"
+    
+    Args:
+        repo_root: Repository root path (defaults to get_repo_root())
+        
+    Returns:
+        Detected project type string or "unknown"
+    """
+    if repo_root is None:
+        repo_root = get_repo_root()
+    
+    # Go
+    if (repo_root / "go.mod").exists():
+        return "go"
+    
+    # Python (pyproject.toml takes precedence)
+    if (repo_root / "pyproject.toml").exists():
+        return "python"
+    if (repo_root / "requirements.txt").exists():
+        return "python"
+    
+    # JavaScript/Node.js
+    if (repo_root / "package.json").exists():
+        return "javascript"
+    
+    # Rust
+    if (repo_root / "Cargo.toml").exists():
+        return "rust"
+    
+    # Java (Maven)
+    if (repo_root / "pom.xml").exists():
+        return "java"
+    
+    # Java (Gradle)
+    if (repo_root / "build.gradle").exists():
+        return "java"
+    
+    # Fallback: check for Python files in repository
+    if any(repo_root.rglob("*.py")):
+        return "python"
+
+    # Unknown
+    return "unknown"
 
 # =============================================================================
 # GATE B1: Bootstrap-First Gate
@@ -590,7 +644,7 @@ def check_python_runtime(auto_install: bool = True) -> GateCheck:
         )
 
 
-def verify_bootstrap_gate_b3(project_type: str = "go", quick: bool = False) -> List[GateCheck]:
+def verify_bootstrap_gate_b3(project_type: str = None, quick: bool = False) -> List[GateCheck]:
     """
     Verify Gate B3: Environment Verification Gate.
     
@@ -607,10 +661,14 @@ def verify_bootstrap_gate_b3(project_type: str = "go", quick: bool = False) -> L
     checks = []
     
     # Check Python runtime (always needed for KDE)
+
+    # Auto-detect project type if not specified
+    if project_type is None:
+        project_type = detect_project_type()
     checks.append(check_python_runtime())
     
     # Check Go toolchain for Go projects
-    if project_type.lower() == "go":
+    if project_type == "go":
         checks.append(check_go_toolchain())
         # Skip slow dependency check in quick mode (go mod verify takes ~2s)
         if not quick:
@@ -630,7 +688,7 @@ def verify_bootstrap_gate_b3(project_type: str = "go", quick: bool = False) -> L
 # Main Gate Verification
 # =============================================================================
 
-def verify_all_gates(project_type: str = "go", quick: bool = False) -> GateResult:
+def verify_all_gates(project_type: str = None, quick: bool = False) -> GateResult:
     """
     Verify all bootstrap gates and return comprehensive result.
     
@@ -641,6 +699,11 @@ def verify_all_gates(project_type: str = "go", quick: bool = False) -> GateResul
     Returns:
         GateResult with all check results
     """
+
+    # Auto-detect project type if not specified
+    if project_type is None:
+        project_type = detect_project_type()
+        print(f"[INFO] Auto-detected project type: {project_type}")
     result = GateResult(
         timestamp=datetime.now().isoformat(),
         project_type=project_type
@@ -740,7 +803,7 @@ def export_gate_result(result: GateResult, path: Path) -> None:
 # REC-001: Agent Framework Integration
 # =============================================================================
 
-def verify_before_operation(project_type: str = "go", strict: bool = True) -> GateResult:
+def verify_before_operation(project_type: str = None, strict: bool = True) -> GateResult:
     """
     REC-001: Agent Framework Integration
     
@@ -807,9 +870,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="KDE Bootstrap Gate Verification")
     parser.add_argument(
         "--project-type",
-        choices=["go", "python", "other"],
-        default="go",
-        help="Type of project being investigated"
+        choices=["auto", "go", "python", "javascript", "rust", "java", "other"],
+        default="auto",
+        help="Type of project. Use 'auto' to auto-detect from repository structure."
     )
     parser.add_argument(
         "--export",
@@ -845,7 +908,9 @@ if __name__ == "__main__":
     quick_mode = args.quick
     strict_mode = args.strict
     
-    result = verify_all_gates(args.project_type, quick=quick_mode)
+    # Handle auto-detect: pass None to trigger auto-detection
+    project_type = args.project_type if args.project_type != "auto" else None
+    result = verify_all_gates(project_type, quick=quick_mode)
     
     if args.json:
         output = {
