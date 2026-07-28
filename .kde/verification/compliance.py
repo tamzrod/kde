@@ -13,9 +13,29 @@ Verification Types:
 import os
 import json
 from pathlib import Path
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Any
 from datetime import datetime
+
+# =============================================================================
+# Global Configuration
+# =============================================================================
+
+# REC-002: Gradual Warning System
+# When _strict_mode=False, missing EXECUTION_MODE generates WARNING instead of ERROR
+# This allows learning without blocking, preparing for KDE v2.0
+_strict_mode = False
+
+
+def set_strict_mode(value: bool) -> None:
+    """Set strict mode for verification (REC-002)."""
+    global _strict_mode
+    _strict_mode = value
+
+
+def get_strict_mode() -> bool:
+    """Get current strict mode setting."""
+    return _strict_mode
 
 
 @dataclass
@@ -420,13 +440,17 @@ def verify_execution_mode(inv_path: Path) -> VerificationCheck:
         
         # Check for EXECUTION_MODE
         if "EXECUTION_MODE:" not in content:
+            # REC-002: Gradual Warning System
+            # In non-strict mode, missing EXECUTION_MODE is a WARNING (not ERROR)
+            # This allows learning without blocking, preparing for KDE v2.0
+            severity = "ERROR" if _strict_mode else "WARNING"
             return VerificationCheck(
                 check_id="authenticity",
                 check_type="integrity",
                 name="EXECUTION_MODE declaration",
                 passed=False,
-                details="Missing EXECUTION_MODE in header",
-                severity="ERROR"
+                details="Missing EXECUTION_MODE in header (recommended for KDE v2.0)" if not _strict_mode else "Missing EXECUTION_MODE in header",
+                severity=severity
             )
         
         # Validate value
@@ -599,8 +623,14 @@ if __name__ == "__main__":
     
     parser = argparse.ArgumentParser(description="KDE Verification")
     parser.add_argument("--json", action="store_true", help="Output as JSON")
+    # REC-002: Gradual Warning System - strict mode treats warnings as errors
+    parser.add_argument("--strict", action="store_true", 
+                        help="Strict mode: treat all warnings as errors (required for KDE v2.0)")
     
     args = parser.parse_args()
+    
+    # REC-002: Apply strict mode setting
+    set_strict_mode(args.strict)
     
     result = verify_all()
     

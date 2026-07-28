@@ -62,6 +62,7 @@ class ConsensusStrategy(Enum):
 
 class PolicyViolation(Enum):
     """Policy violation types."""
+    # Engine/Seed violations
     UNAUTHORIZED_ENGINE = "unauthorized_engine"
     PLACEHOLDER_ENGINE = "placeholder_engine"
     UNOFFICIAL_ASSET = "unofficial_asset"
@@ -71,6 +72,13 @@ class PolicyViolation(Enum):
     MISSING_CAPABILITIES = "missing_capabilities"
     ENGINE_NOT_FOUND = "engine_not_found"
     SEED_NOT_FOUND = "seed_not_found"
+    
+    # Laboratory rule violations
+    DUPLICATE_ARTIFACT_ID = "duplicate_artifact_id"
+    INVALID_NAMING_CONVENTION = "invalid_naming_convention"
+    INVALID_ARTIFACT_DIRECTORY = "invalid_artifact_directory"
+    PRE_CREATION_CHECK_FAILED = "pre_creation_check_failed"
+    LABORATORY_RULES_VIOLATION = "laboratory_rules_violation"
 
 
 @dataclass
