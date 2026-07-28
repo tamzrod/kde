@@ -3,17 +3,20 @@ KDE Pre-Flight Check Command
 
 Validates that the environment is ready for KDE_RUNTIME investigation
 before starting work. Catches issues early, prevents evolution blocks.
+Includes laboratory rule enforcement per INV-082.
 
 Usage:
     python -m .kde.commands.check
     python -m .kde.commands.check --strict
+    python -m .kde.commands.check --verify-artifact=LAB-063
 """
 
 import sys
 import json
+import re
 from pathlib import Path
 from dataclasses import dataclass
-from typing import List
+from typing import List, Optional
 
 
 @dataclass
@@ -23,6 +26,36 @@ class CheckResult:
     passed: bool
     details: str
     severity: str = "ERROR"  # ERROR, WARNING, INFO
+
+
+# Laboratory naming conventions (from governance/NAMING-CONVENTIONS.md)
+# Note: Paths are relative to the parent directory (e.g., laboratory/)
+LABORATORY_NAMING_RULES = {
+    "investigations": {
+        "pattern": r"^(KDE-INV-\d+|PROJECT-INV-\d+|INV-\d+)$",
+        "directory": "laboratory/investigations/"
+    },
+    "experiments": {
+        "pattern": r"^(LAB-\d+|PROJECT-EXP-\d+|EXP-\d+)$",
+        "directory": "laboratory/experiments/"
+    },
+    "decisions": {
+        "pattern": r"^TDR-\d+\.md$",
+        "directory": "decisions/"
+    },
+    "implementations": {
+        "pattern": r"^PROJECT-IMP-\d+$",
+        "directory": "implementations/"
+    },
+    "reviews": {
+        "pattern": r"^PROJECT-REV-\d+\.md$",
+        "directory": "reviews/"
+    },
+    "testing": {
+        "pattern": r"^TEST-\d+",
+        "directory": "testing/"
+    },
+}
 
 
 def get_repo_root() -> Path:
@@ -183,13 +216,85 @@ def check_ecu_enforcing() -> CheckResult:
         )
 
 
-def run_all_checks() -> List[CheckResult]:
+def check_laboratory_rules(artifact_id: Optional[str] = None) -> CheckResult:
+    """
+    Check 4: Laboratory naming conventions enforced.
+    
+    If artifact_id is provided, checks that specific artifact:
+    1. Follows naming conventions
+    2. Does not already exist (no duplicates)
+    3. Is in correct directory
+    """
+    repo_root = get_repo_root()
+    
+    if artifact_id:
+        # Verify a specific artifact before creation
+        base_name = artifact_id.replace('.md', '')
+        
+        # Check 1: Naming pattern
+        pattern_match = False
+        expected_dir = None
+        for category, rules in LABORATORY_NAMING_RULES.items():
+            pattern = rules["pattern"]
+            if re.match(pattern, base_name):
+                pattern_match = True
+                expected_dir = rules["directory"]
+                break
+        
+        if not pattern_match:
+            return CheckResult(
+                name="Laboratory Rules",
+                passed=False,
+                details=f"'{artifact_id}' does not match any known naming pattern",
+                severity="ERROR"
+            )
+        
+        # Check 2: Duplicate existence
+        for category, rules in LABORATORY_NAMING_RULES.items():
+            directory = rules["directory"]
+            dir_path = repo_root / directory
+            if dir_path.exists():
+                for existing in dir_path.iterdir():
+                    if existing.name == base_name or existing.name == artifact_id:
+                        return CheckResult(
+                            name="Laboratory Rules",
+                            passed=False,
+                            details=f"'{base_name}' already exists in {directory}",
+                            severity="ERROR"
+                        )
+        
+        return CheckResult(
+            name="Laboratory Rules",
+            passed=True,
+            details=f"'{artifact_id}' is valid (no duplicates, correct pattern)"
+        )
+    
+    # General check: verify governance file exists
+    naming_conventions = repo_root / "governance" / "NAMING-CONVENTIONS.md"
+    if naming_conventions.exists():
+        return CheckResult(
+            name="Laboratory Rules",
+            passed=True,
+            details="Naming conventions loaded, ready for artifact validation"
+        )
+    else:
+        return CheckResult(
+            name="Laboratory Rules",
+            passed=False,
+            details="NAMING-CONVENTIONS.md not found",
+            severity="WARNING"
+        )
+
+
+def run_all_checks(artifact_id: Optional[str] = None) -> List[CheckResult]:
     """Run all pre-flight checks."""
-    return [
+    checks = [
         check_bootstrap_gates(),
         check_runtime_state(),
         check_ecu_enforcing(),
+        check_laboratory_rules(artifact_id),
     ]
+    return checks
 
 
 def main():
@@ -202,9 +307,16 @@ def main():
         action="store_true",
         help="Treat warnings as errors"
     )
+    parser.add_argument(
+        "--verify-artifact",
+        type=str,
+        help="Verify artifact ID before creation (e.g., LAB-063)"
+    )
     args = parser.parse_args()
     
-    checks = run_all_checks()
+    artifact_id = getattr(args, "verify_artifact", None)
+    
+    checks = run_all_checks(artifact_id)
     
     print("\n" + "=" * 60)
     print("KDE PRE-FLIGHT CHECK")

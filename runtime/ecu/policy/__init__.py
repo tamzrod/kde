@@ -2,17 +2,48 @@
 Policy Layer Module
 
 Runtime policy enforcement for ECU operations.
+Includes laboratory rule enforcement per INV-082.
 """
 
 import os
-from typing import List, Dict, Optional, Any, Set
+import re
+from typing import List, Dict, Optional, Any, Set, Tuple
 from dataclasses import dataclass, field
+from pathlib import Path
 
 from ..models import (
     PolicyViolation, PolicyViolationResult, ExecutionPlan,
     EngineMetadata, SeedMetadata
 )
 from ..registry import EngineRegistry, SeedRegistry
+
+
+# Laboratory naming conventions (from governance/NAMING-CONVENTIONS.md)
+# Note: Paths are relative to the parent directory (e.g., laboratory/)
+LABORATORY_NAMING_RULES = {
+    "investigations": {
+        "KDE-INV": {"directory": "laboratory/investigations/", "pattern": r"^KDE-INV-\d+$"},
+        "PROJECT-INV": {"directory": "laboratory/investigations/", "pattern": r"^PROJECT-INV-\d+$"},
+        "INV": {"directory": "laboratory/investigations/", "pattern": r"^INV-\d+$"},
+    },
+    "experiments": {
+        "LAB": {"directory": "laboratory/experiments/", "pattern": r"^LAB-\d+"},
+        "PROJECT-EXP": {"directory": "laboratory/experiments/", "pattern": r"^PROJECT-EXP-\d+$"},
+        "EXP": {"directory": "laboratory/experiments/", "pattern": r"^EXP-\d+$"},
+    },
+    "decisions": {
+        "TDR": {"directory": "decisions/", "pattern": r"^TDR-\d+\.md$"},
+    },
+    "implementations": {
+        "PROJECT-IMP": {"directory": "implementations/", "pattern": r"^PROJECT-IMP-\d+$"},
+    },
+    "reviews": {
+        "PROJECT-REV": {"directory": "reviews/", "pattern": r"^PROJECT-REV-\d+\.md$"},
+    },
+    "testing": {
+        "TEST": {"directory": "testing/", "pattern": r"^TEST-\d+"},
+    },
+}
 
 
 @dataclass
@@ -113,6 +144,25 @@ class PolicyLayer:
                 description="Selected engines must match required capabilities",
                 check_fn=self._check_engine_capabilities,
                 blocking=False
+            ),
+            # Laboratory rule enforcement
+            PolicyRule(
+                name="laboratory_naming_convention",
+                description="Laboratory artifacts must follow naming conventions",
+                check_fn=self._check_laboratory_naming,
+                blocking=True
+            ),
+            PolicyRule(
+                name="laboratory_no_duplicate_id",
+                description="Laboratory artifacts must not duplicate existing IDs",
+                check_fn=self._check_laboratory_no_duplicate,
+                blocking=True
+            ),
+            PolicyRule(
+                name="laboratory_directory_placement",
+                description="Laboratory artifacts must be in correct directories",
+                check_fn=self._check_laboratory_directory,
+                blocking=True
             ),
         ]
     
@@ -361,6 +411,134 @@ class PolicyLayer:
         """Check if engine capabilities match plan requirements."""
         # This is a warning-only check
         return {'violations': [], 'details': []}
+
+    def _check_laboratory_naming(
+        self, artifact_path: str = None
+    ) -> Dict[str, Any]:
+        """Check if artifact name follows naming conventions."""
+        if artifact_path is None:
+            return {'violations': [], 'details': []}  # Not applicable without path
+        
+        artifact_name = os.path.basename(artifact_path)
+        
+        for category, rules in LABORATORY_NAMING_RULES.items():
+            for prefix, config in rules.items():
+                pattern = config["pattern"]
+                if re.match(pattern, artifact_name):
+                    return {'violations': [], 'details': []}
+        
+        return {
+            'violations': [PolicyViolation.INVALID_NAMING_CONVENTION],
+            'details': [f"Artifact '{artifact_name}' does not match any known naming pattern"]
+        }
+
+    def _check_laboratory_no_duplicate(
+        self, artifact_path: str = None
+    ) -> Dict[str, Any]:
+        """Check if artifact ID already exists."""
+        if artifact_path is None:
+            return {'violations': [], 'details': []}
+        
+        kde_root = Path(self.kde_root)
+        
+        # Extract artifact name without extension
+        artifact_name = os.path.basename(artifact_path)
+        base_name = artifact_name.replace('.md', '')
+        
+        # Check all known directories for duplicates
+        for category, rules in LABORATORY_NAMING_RULES.items():
+            for prefix, config in rules.items():
+                directory = config["directory"]
+                dir_path = kde_root / directory
+                
+                if dir_path.exists():
+                    # Check for directory match
+                    for existing in dir_path.iterdir():
+                        if existing.name == base_name or existing.name == artifact_name:
+                            return {
+                                'violations': [PolicyViolation.DUPLICATE_ARTIFACT_ID],
+                                'details': [f"Artifact ID '{base_name}' already exists in {directory}"]
+                            }
+        
+        return {'violations': [], 'details': []}
+
+    def _check_laboratory_directory(
+        self, artifact_path: str = None
+    ) -> Dict[str, Any]:
+        """Check if artifact is in correct directory."""
+        if artifact_path is None:
+            return {'violations': [], 'details': []}
+        
+        artifact_name = os.path.basename(artifact_path)
+        kde_root = Path(self.kde_root)
+        
+        # Find expected directory based on naming pattern
+        expected_dir = None
+        for category, rules in LABORATORY_NAMING_RULES.items():
+            for prefix, config in rules.items():
+                pattern = config["pattern"]
+                if re.match(pattern, artifact_name):
+                    expected_dir = config["directory"]
+                    break
+            if expected_dir:
+                break
+        
+        if expected_dir:
+            actual_dir = os.path.dirname(artifact_path)
+            expected_full = str(kde_root / expected_dir)
+            
+            if not actual_dir.endswith(expected_dir.rstrip('/')):
+                return {
+                    'violations': [PolicyViolation.INVALID_ARTIFACT_DIRECTORY],
+                    'details': [f"Artifact should be in {expected_dir}, found in {actual_dir}"]
+                }
+        
+        return {'violations': [], 'details': []}
+
+    def validate_laboratory_artifact(
+        self, artifact_path: str
+    ) -> PolicyViolationResult:
+        """
+        Validate a laboratory artifact against all laboratory rules.
+
+        Args:
+            artifact_path: Path to the artifact (relative to kde_root)
+
+        Returns:
+            PolicyViolationResult
+        """
+        violations = []
+        details = []
+        
+        # Run all laboratory-specific checks
+        lab_rules = [
+            'laboratory_naming_convention',
+            'laboratory_no_duplicate_id', 
+            'laboratory_directory_placement'
+        ]
+        
+        for rule in self._rules:
+            if rule.name in lab_rules:
+                result = rule.check_fn(artifact_path)
+                if result:
+                    violations.extend(result.get('violations', []))
+                    details.extend(result.get('details', []))
+        
+        blocked = len(violations) > 0 and any(
+            r.blocking for r in self._rules 
+            if r.name in [v.value if hasattr(v, 'value') else str(v) for v in violations]
+        )
+        
+        self.total_checks += 1
+        if violations:
+            self.total_violations += 1
+        
+        return PolicyViolationResult(
+            violated=len(violations) > 0,
+            violations=violations,
+            details=details,
+            blocked=blocked
+        )
     
     def get_policy_summary(self) -> Dict[str, Any]:
         """
