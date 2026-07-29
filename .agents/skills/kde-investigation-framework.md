@@ -54,7 +54,21 @@ All investigation artifacts MUST include:
 
 ## Quick Start
 
-To initialize the KDE runtime and verify system readiness:
+### Auto-Initialization (Recommended)
+The KDE Runtime now auto-initializes when you import the bootstrap module:
+
+```bash
+python3 -c "import runtime.bootstrap"
+```
+
+This automatically:
+1. Checks and installs required dependencies (pyyaml, jsonschema)
+2. Detects the current execution mode (MD or FUSED)
+3. Initializes the ECU and engine registry
+4. Runs and displays the pre-flight check
+
+### Manual Pre-Flight Check
+To run the pre-flight check manually:
 
 ```bash
 python3 -c "

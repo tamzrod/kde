@@ -7,6 +7,7 @@ Includes Five Core Principles enforcement verification.
 """
 
 import sys
+import os
 from typing import Dict, List, Any, Tuple
 from dataclasses import dataclass
 from enum import Enum
@@ -15,6 +16,53 @@ sys.path.insert(0, '/workspace/project/kde')
 
 from runtime.ecu import create_ecu
 from runtime.principles_enforcer import FivePrinciplesEnforcer
+
+
+def get_kde_mode() -> Dict[str, str]:
+    """
+    Determine the current KDE execution mode.
+    
+    Mode sources (in priority order):
+    1. Environment variable KDE_MODE
+    2. MODE.md file in project root
+    3. Default to "MD" if not found
+    """
+    # Priority 1: Environment variable
+    env_mode = os.getenv('KDE_MODE', '').upper()
+    if env_mode in ('MD', 'FUSED'):
+        return {
+            'mode': env_mode,
+            'source': 'environment_variable',
+            'path': 'N/A (runtime optimized)'
+        }
+    
+    # Priority 2: MODE.md file
+    mode_file = '/workspace/project/kde/MODE.md'
+    if os.path.exists(mode_file):
+        try:
+            with open(mode_file, 'r') as f:
+                content = f.read()
+                if 'Current Mode: 2' in content or '**Current Mode: 2**' in content:
+                    return {
+                        'mode': 'FUSED',
+                        'source': 'MODE.md',
+                        'path': '/fused-runtime/'
+                    }
+                elif 'Current Mode: 1' in content or '**Current Mode: 1**' in content:
+                    return {
+                        'mode': 'MD',
+                        'source': 'MODE.md',
+                        'path': '/seeds/, /engines/, /governance/'
+                    }
+        except Exception:
+            pass
+    
+    # Default
+    return {
+        'mode': 'MD',
+        'source': 'default',
+        'path': '/seeds/, /engines/, /governance/'
+    }
 
 
 class ComponentHealth(Enum):
@@ -49,6 +97,7 @@ class PreflightReport:
     governance_status: Dict[str, Any]
     mission_status: MissionStatus
     initialized_at: str
+    kde_mode: Dict[str, str] = None
     auto_selection_status: Dict[str, Any] = None
 
 
@@ -260,6 +309,7 @@ def run_preflight_check() -> PreflightReport:
     governance = get_governance_status(ecu)
     mission = get_mission_status(runtime_health, ecu_health)
     auto_selection = get_auto_selection_status(ecu)
+    kde_mode = get_kde_mode()
     
     return PreflightReport(
         runtime_health=runtime_health,
@@ -268,6 +318,7 @@ def run_preflight_check() -> PreflightReport:
         governance_status=governance,
         mission_status=mission,
         initialized_at=state.get('last_initialization', 'Unknown'),
+        kde_mode=kde_mode,
         auto_selection_status=auto_selection
     )
 
@@ -303,6 +354,17 @@ def format_report(report: PreflightReport) -> str:
     lines.append(sep)
     lines.append("PRE-FLIGHT CHECK - KDE RUNTIME")
     lines.append(sep)
+    lines.append("")
+    
+    # Section 0: KDE Mode (NEW)
+    lines.append("■ KDE EXECUTION MODE")
+    lines.append(inner_sep)
+    
+    kde_mode = report.kde_mode or get_kde_mode()
+    mode_icon = "⚡" if kde_mode.get('mode') == 'FUSED' else "📄"
+    lines.append(f"  Current Mode        {mode_icon} {kde_mode.get('mode')}")
+    lines.append(f"  Source              {kde_mode.get('source')}")
+    lines.append(f"  Content Path        {kde_mode.get('path')}")
     lines.append("")
     
     # Section 1: Runtime Health
