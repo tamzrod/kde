@@ -1,6 +1,11 @@
 ---
 name: kde-investigation-framework
 type: repo
+triggers:
+  - investigation
+  - experiment
+  - start engine
+  - preflight check
 ---
 
 # KDE Investigation Framework
