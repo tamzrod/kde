@@ -1,0 +1,90 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.207868Z
+|validation_experiment_standards
+  |seed_id=SEED-002
+  |section=Validation (NEW)
+  |addresses=LESSON-008
+|purpose
+  |problem_addressed=LESSON-008 - "Experiment consistency varied"
+|standard_requirements
+  |required_experiment_structure
+    |required_fields
+      |table
+        ||['Field', 'Required']
+        ||['Experiment ID', 'YES']
+        ||['Title', 'YES']
+        ||['Date', 'YES']
+        ||['Engine', 'YES']
+        ||['Status', 'YES']
+        ||['Research Question', 'YES']
+        ||['Methodology', 'YES']
+        ||['Success Criteria', 'YES']
+        ||['Field', 'Required']
+        ||['Experiment ID', 'YES']
+        ||['Status', 'YES']
+        ||['Progress', 'YES']
+        ||['Deliverables', 'YES']
+        ||['Open Issues', 'YES']
+  |quality_gates
+    |gate_1_design_review
+      |items
+        ||Experiment design approved
+        ||Success criteria defined
+        ||Engine selected
+      |gate_2_execution_review
+        |items
+          ||Runs executed per methodology
+          ||Evidence collected per standards
+          ||Data integrity verified
+        |gate_3_analysis_review
+          |items
+            ||Results analyzed per methodology
+            ||Findings documented
+            ||Confidence assigned
+          |gate_4_conclusion_review
+            |items
+              ||Conclusions supported by evidence
+              ||Limitations acknowledged
+              ||Recommendations justified
+        |confidence_assignment_standards
+          |level_definitions
+            |table
+              ||['Level', 'Criteria', 'Evidence Required']
+            |decision_thresholds
+              |table
+                ||['Confidence', 'Action']
+                ||['≥80%', 'Trust for implementation']
+                ||['60-79%', 'Consider with monitoring']
+                ||['40-59%', 'Experimental, use caution']
+                ||['<40%', 'Requires validation']
+          |document_quality_standards
+            |evidence_quality
+              |table
+                ||['Criterion', 'Requirement']
+                ||['Traceability', 'Every claim traces to evidence']
+                ||['Verification', 'Evidence can be verified']
+                ||['Linkage', 'Evidence connected to experiments']
+                ||['Preservation', 'Evidence permanently stored']
+                ||['Integrity', 'Evidence unchanged after collection']
+              |conclusion_quality
+                |table
+                  ||['Criterion', 'Requirement']
+                  ||['Support', 'Conclusions backed by evidence']
+                  ||['Acknowledgment', 'Limitations stated']
+                  ||['Uncertainty', 'Confidence properly calibrated']
+                  ||['Alternatives', 'Alternative interpretations noted']
+            |reproducibility_requirements
+              |environment=What system/configuration used
+              |methodology=How experiment executed
+              |data=What data collected
+              |analysis=How results analyzed
+            |changes_from_seed-001
+              |table
+                ||['Aspect', 'Seed-001', 'Seed-002']
+            |lessons_addressed
+              |lesson-008="Experiment consistency varied"
+            |status=NEW IN SEED-002
+            |evidence=LESSON-008

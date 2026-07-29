@@ -1,0 +1,87 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.206883Z
+|reasoning_how_kde_thinks
+  |seed_id=SEED-002
+  |section=Reasoning
+|overview
+  |items
+    ||Scientific Learning Loop
+    ||Evidence Model
+    ||Knowledge Model
+    ||Confidence Model (enhanced)
+    ||Ambiguity Handling
+|components
+  |scientific_learning_loop
+    |status=Inherited from SEED-001
+    |evidence_model
+      |status=Inherited from SEED-001
+      |knowledge_model
+        |status=Inherited from SEED-001
+        |confidence_model_enhanced
+          |status=Enhanced in SEED-002 (addresses LESSON-010)
+          |ambiguity_handling
+            |status=Inherited from SEED-001
+        |scientific_learning_loop
+          |subsystem_responsibilities
+            |table
+              ||['Subsystem', 'Responsibility', 'Boundary']
+              ||['Research', 'Discovers', 'Does not implement']
+              ||['Knowledge', 'Stores', 'Does not create']
+              ||['Laboratory', 'Validates', 'Does not modify']
+              ||['Evidence', 'Informs', 'Does not decide']
+              ||['Governance', 'Approves', 'Does not experiment']
+        |evidence_model
+          |evidence_properties
+            |table
+              ||['Property', 'Description']
+              ||['Documented', 'Written and preserved']
+              ||['Factual', 'Observable or verifiable']
+              ||['Sourced', 'Traced to origin']
+              ||['Verifiable', 'Can be checked']
+              ||['Linkable', 'Connected to experiments']
+            |evidence_types
+              |table
+                ||['Type', 'Source', 'Weight']
+                ||['Observational', 'Laboratory', 'Highest']
+                ||['Research', 'Literature', 'Medium']
+                ||['Validation', 'Experiments', 'High']
+          |knowledge_model
+            |knowledge_states
+              |state_transitions
+                |table
+                  ||['Transition', 'Requires']
+                  ||['DRAFT → REVIEW', 'Research completion']
+                  ||['REVIEW → APPROVED', 'Governance approval']
+                  ||['APPROVED → VALIDATED', 'Experiment validation']
+                  ||['VALIDATED → PROMOTED', 'Human authorization']
+            |confidence_model_enhanced
+              |level_definitions
+                |table
+                  ||['Level', 'Range', 'Criteria']
+                |evidence_thresholds
+                  |table
+                    ||['Level', 'Evidence Required']
+                    ||['HIGH', '3+ consistent sources']
+                    ||['MEDIUM', '2+ sources, minor gaps']
+                    ||['LOW', '1+ source, significant gaps']
+                    ||['UNKNOWN', 'No evidence']
+                  |conflict_handling
+                |ambiguity_handling
+                  |principles
+                    |acknowledge=Never hide ambiguity
+                    |resolve=Attempt resolution when possible
+                    |preserve=When resolution not possible, document explicitly
+                    |documentation_requirements
+                      |table
+                        ||['Element', 'Required When']
+                        ||['Type', 'Ambiguity exists']
+                        ||['Source', 'What creates ambiguity']
+                        ||['Impact', 'How it affects validity']
+                        ||['Resolution', 'How handled']
+                  |immutability
+                  |inherited_from=SEED-001
+                  |status=VALIDATED
+                  |changes=Confidence Model enhanced (LESSON-010)

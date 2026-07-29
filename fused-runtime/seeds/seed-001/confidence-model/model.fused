@@ -1,0 +1,75 @@
+# FUSEDv1.0
+
+# name: model
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.203430Z
+|confidence_model
+  |seed_id=SEED-001
+  |source=Migrated from engine methodology documents
+  |status=FOUNDATIONAL
+|overview
+|what_is_confidence
+  |confidence_properties
+    |table
+      ||['Property', 'Description']
+|confidence_levels
+  |level_definitions
+    |table
+      ||['Level', 'Range', 'Description']
+    |level_criteria
+      |table
+        ||['Level', 'Evidence', 'Validation', 'Consistency']
+  |confidence_assignment
+    |assignment_process
+      |assignment_factors
+        |table
+          ||['Factor', 'Weight', 'Description']
+    |confidence_expression
+      |quantitative_format
+        |confidence=85% ± 5%
+        |table
+          ||['Component', 'Meaning']
+        |qualitative_format
+          |confidence=HIGH
+          |table
+            ||['Level', 'Interpretation']
+      |confidence_in_knowledge
+        |required_for_knowledge
+          |table
+            ||['Requirement', 'Description']
+          |example
+            |value=85%
+            |level=HIGH
+            |basis="Multiple peer-reviewed sources with consistent findings"
+        |confidence_uncertainty
+          |expressing_uncertainty
+            |table
+              ||['Format', 'Example']
+            |uncertainty_sources
+              |table
+                ||['Source', 'Description']
+          |confidence_decay
+            |over_time
+              |items
+                ||New evidence emerges
+                ||Additional validation occurs
+                ||Context expands
+              |confidence_evolution
+                |initial_confidence=60% (MEDIUM)
+                |updated_confidence=70% (MEDIUM)
+            |confidence_thresholds
+              |action_thresholds
+                |table
+                  ||['Confidence', 'Action']
+                |governance_thresholds
+                  |table
+                    ||['Threshold', 'Requirement']
+              |confidence_limitations
+                |known_limitations
+                  |table
+                    ||['Limitation', 'Description']
+              |immutability_note
+              |source=Engine methodology documents
+              |seed=SEED-001
+              |status=FOUNDATIONAL
+              |modifiable=NO

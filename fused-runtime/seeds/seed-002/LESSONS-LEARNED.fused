@@ -1,0 +1,211 @@
+# FUSEDv1.0
+
+# name: LESSONS-LEARNED
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.198879Z
+|lessons_learned_seed-001_seed-002
+  |parent_seed=SEED-001 (Genesis)
+  |child_seed=SEED-002
+  |date=2026-07-20
+  |status=COMPLETE
+|overview
+  |rule=If no lesson exists, no modification belongs in Seed-002.
+|lesson_summary
+  |table
+    ||['Lesson ID', 'Title', 'Priority', 'Evidence Source']
+    ||['LESSON-001', 'Engine contains reasoning DNA', 'CRITICAL', 'Engine evolution']
+    ||['LESSON-002', 'Boundaries became blurred', 'HIGH', 'Engine/Methodology mixing']
+    ||['LESSON-003', 'No migration-first approach', 'HIGH', 'Migration-001 itself']
+    ||['LESSON-004', 'Reasoning not versioned', 'HIGH', 'Seed-001 creation']
+    ||['LESSON-005', 'Single Responsibility degraded', 'MEDIUM', 'Experiment structures']
+    ||['LESSON-006', 'Evolution overwrote architecture', 'MEDIUM', 'Alpha→Beta→Gamma']
+    ||['LESSON-007', 'Coupling by growth', 'MEDIUM', 'Scientific loop']
+    ||['LESSON-008', 'Experiment consistency varied', 'MEDIUM', 'LAB-001 to LAB-019']
+    ||['LESSON-009', 'No clear boundary definition', 'LOW', 'System scope']
+    ||['LESSON-010', 'Confidence model incomplete', 'MEDIUM', 'LAB-011 experience']
+|detailed_lessons
+  |lesson-001
+    |title=Engine Contains KDE Reasoning DNA
+    |observation=The current Engine evolved into containing KDE's fundamental reasoning principles. The 5 Core Principles, Scientific Loop, and foundational models were embedded inside engine documentation.
+    |evidence=
+    |items
+      ||KDE-ENGINE-003 (Gamma) includes "Core Principles" section with 15 principles
+      ||Seed-001 was created by migrating content FROM engines TO seeds
+      ||Engine changelog documents principle additions
+      ||Engines cannot evolve independently because KDE reasoning is embedded
+      ||Immutability of reasoning was not enforced
+      ||Historical experiments became tied to specific engine versions
+    |impact=
+    |root_cause=The fundamental distinction between reasoning DNA (immutable) and methodology (evolvable) was not recognized.
+    |resolution=Separate immutable Seed from Engine implementation. Seed contains reasoning DNA; Engine consumes Seed and implements methodology.
+    |addresses=SEED-001 structure (Seed vs Engine separation)
+|lesson-002
+  |title=Architectural Boundaries Became Blurred
+  |observation=Knowledge, Engine, Laboratory, Methodology, and Governance gradually mixed responsibilities. It became unclear which component owned which decisions.
+  |evidence=
+  |items
+    ||Engine documentation included Laboratory rules
+    ||Laboratory README referenced Engine methodology
+    ||Governance documents contained implementation details
+    ||Small changes propagated into multiple unrelated components
+    ||Maintenance burden increased
+    ||Understanding KDE required reading multiple overlapping documents
+  |impact=
+  |root_cause=No explicit ownership boundaries were defined. Each component grew organically.
+  |resolution=Define explicit ownership boundaries. Each component has one clear owner and defined responsibilities.
+  |addresses=SEED-002 BOUNDARIES section
+|lesson-003
+  |title=No Migration-First Approach
+  |observation=Simple architectural improvements frequently caused cascading modifications. There was no standard process for evolving the repository structure.
+  |evidence=
+  |items
+    ||Migration-001 was ad-hoc
+    ||No migration templates existed
+    ||Breaking changes were discovered after implementation
+    ||High maintenance cost
+    ||Risk of breaking existing experiments
+    ||No standard evolution path
+  |impact=
+  |root_cause=The architecture did not anticipate its own evolution.
+  |resolution=Adopt Migration-First architecture. Every structural change follows a documented migration process.
+  |addresses=SEED-002 EVOLUTION section with migration guidelines
+|lesson-004
+  |title=Reasoning DNA Was Not Versioned
+  |observation=Only engines were versioned. The reasoning foundation itself had no lineage. It was impossible to trace why KDE reasoned in a particular way.
+  |evidence=
+  |items
+    ||Seed-001 creation required "reverse engineering" reasoning DNA from existing documents
+    ||No provenance for fundamental principles
+    ||Could not compare "why" between engine versions
+    ||Scientific reproducibility became difficult
+    ||No clear understanding of what changed between generations
+    ||Hard to justify architectural decisions
+  |impact=
+  |root_cause=Versioning focused on methodology (engines) rather than reasoning (seeds).
+  |resolution=Introduce immutable Seeds with explicit lineage. Each Seed documents what reasoning DNA it contains and why.
+  |addresses=SEED-002 provides Seed lineage documentation
+|lesson-005
+  |title=Single Responsibility Gradually Degraded
+  |observation=Several artifacts accumulated multiple responsibilities over time. Documents served multiple purposes without clear ownership.
+  |evidence=
+  |items
+    ||Laboratory README included governance protocols
+    ||Engine README contained both framework and implementation details
+    ||Knowledge documents mixed definition and methodology
+    ||Harder maintenance
+    ||Harder evolution
+    ||Unclear ownership
+    ||Propagation of changes
+  |impact=
+  |root_cause=No enforcement of single responsibility per artifact. Documents grew organically.
+  |resolution=Enforce Single Responsibility. One artifact, one purpose. Clear ownership.
+  |addresses=SEED-002 enforces clear document purpose
+|lesson-006
+  |title=Evolution Overwrote Previous Architecture
+  |observation=Architectural improvements replaced existing structure instead of preserving lineage. Historical KDE became difficult to reproduce.
+  |evidence=
+  |items
+    ||Alpha → Beta → Gamma transitions documented changes but did not preserve old structures
+    ||Engine versioning documented methodology but not reasoning
+    ||No snapshot of "what KDE was" at each generation
+    ||Historical experiments became opaque
+    ||Could not understand why old decisions were made
+    ||Lost institutional knowledge
+  |impact=
+  |root_cause=Evolution was additive (new replaces old) rather than generational (new inherits from old).
+  |resolution=Every Seed references its parent. Older Seeds remain immutable. New Seeds inherit and extend.
+  |addresses=SEED-002 PARENT-CHILD documentation
+|lesson-007
+  |title=Architecture Became Coupled by Growth
+  |observation=Responsibilities naturally drifted together as KDE expanded. Subsystems that should be independent became intertwined.
+  |evidence=
+  |items
+    ||Laboratory depended on specific Engine structures
+    ||Research referenced Laboratory implementation details
+    ||Scientific loop components were tightly coupled
+    ||Unexpected side effects from changes
+    ||Difficult to test individual components
+    ||Hard to evolve independently
+  |impact=
+  |root_cause=Growth was not guided by explicit boundary enforcement.
+  |resolution=Boundary-first architecture. Define interfaces first, implementations second.
+  |addresses=SEED-002 BOUNDARIES section with explicit interfaces
+|lesson-008
+  |title=Experiment Consistency Varied
+  |observation=Different experiments used different structures and standards. Comparing experiments or aggregating results became difficult.
+  |evidence=
+  |items
+    ||LAB-001 through LAB-019 show evolving standards
+    ||Some experiments have TRACKER.md, others don't
+    ||Run formats vary across experiments
+    ||No standard templates initially
+    ||Hard to compare experiments
+    ||Inconsistent evidence quality
+    ||Variable reproducibility
+  |impact=
+  |root_cause=No mandatory experiment standards defined at the reasoning level.
+  |resolution=Define experiment standards as part of reasoning DNA. Templates and requirements become immutable.
+  |addresses=SEED-002 includes experiment standards
+|lesson-009
+  |title=No Clear Boundary Definition
+  |observation=It was unclear what belonged inside KDE versus outside. The system scope was implicit rather than explicit.
+  |evidence=
+  |items
+    ||No document defined "what is KDE"
+    ||Boundary between KDE and external tools was unclear
+    ||Questions about what required KDE vs external approaches
+    ||Scope creep
+    ||Unclear responsibilities
+    ||Difficulty onboarding new contributors
+  |impact=
+  |root_cause=No explicit scope definition at the architectural level.
+  |resolution=Define clear system boundaries. What belongs inside KDE, what belongs outside.
+  |addresses=SEED-002 defines system scope and boundaries
+|lesson-010
+  |title=Confidence Model Incomplete
+  |observation=The confidence model worked but lacked granularity for complex scenarios. LAB-011 revealed gaps in expressing uncertainty.
+  |evidence=
+  |items
+    ||LAB-011 confidence: MEDIUM (but unclear what "medium" meant)
+    ||Multiple confidence bases (statistical, expert, heuristic) not well defined
+    ||No guidance for conflicting evidence
+    ||Inconsistent confidence assignment
+    ||Difficulty comparing across experiments
+    ||Ambiguous decision thresholds
+  |impact=
+  |root_cause=Confidence model defined concepts but not enough guidance for edge cases.
+  |resolution=Extend confidence model with more specific criteria, thresholds, and edge case handling.
+  |addresses=SEED-002 ENHANCED CONFIDENCE MODEL
+|design_objectives_mapping
+  |table
+    ||['Objective', 'Addresses Lesson(s)']
+    ||['OBJ-001: Explicit Seed-Engine Separation', 'LESSON-001']
+    ||['OBJ-002: Boundary-First Architecture', 'LESSON-002, LESSON-007']
+    ||['OBJ-003: Migration-First Evolution', 'LESSON-003']
+    ||['OBJ-004: Seed Lineage Documentation', 'LESSON-004, LESSON-006']
+    ||['OBJ-005: Single Responsibility Enforcement', 'LESSON-005']
+    ||['OBJ-006: Experiment Standards', 'LESSON-008']
+    ||['OBJ-007: Clear System Scope', 'LESSON-009']
+    ||['OBJ-008: Enhanced Confidence Model', 'LESSON-010']
+|what_changed_from_seed-001
+  |table
+    ||['Aspect', 'Seed-001', 'Seed-002', 'Reason']
+    ||['Boundary Definition', 'Implicit', 'Explicit', 'LESSON-002, LESSON-007']
+    ||['Migration Process', 'Ad-hoc', 'Standardized', 'LESSON-003']
+    ||['Lineage Documentation', 'Minimal', 'Comprehensive', 'LESSON-004, LESSON-006']
+    ||['Single Responsibility', 'Documented', 'Enforced', 'LESSON-005']
+    ||['Experiment Standards', 'Evolving', 'Defined', 'LESSON-008']
+    ||['System Scope', 'Implicit', 'Explicit', 'LESSON-009']
+    ||['Confidence Model', 'Basic', 'Enhanced', 'LESSON-010']
+|what_remained_from_seed-001
+  |table
+    ||['Component', 'Reason for Preservation']
+    ||['5 Core Principles', 'Still valid, fundamental']
+    ||['Scientific Loop', 'Core architecture still sound']
+    ||['Evidence Model', 'Working as intended']
+    ||['Knowledge Model', 'Still applicable']
+    ||['Ambiguity Handling', 'Still needed']
+|validation_evidence
+|status=COMPLETE
+|lessons_incorporated=10
+|lessons_addressed=10

@@ -1,0 +1,86 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.209018Z
+|architecture_kde_system_structure
+  |seed_id=SEED-002
+  |section=Architecture
+|system_overview
+|component_architecture
+|component_responsibilities
+  |seed
+    |owner=KDE (immutable)
+    |purpose=Contains reasoning DNA
+    |changes=NEVER
+    |table
+      ||['Contains', 'Does NOT Contain']
+      ||['Principles', 'Methodology']
+      ||['Models', 'Engine rules']
+      ||['Boundaries', 'Laboratory procedures']
+      ||['Evolution process', 'Knowledge content']
+    |engine
+      |owner=KDE (evolvable)
+      |purpose=Implements methodology
+      |changes=When methodology improves
+      |table
+        ||['Contains', 'Does NOT Contain']
+        ||['Methodology', 'Core principles']
+        ||['Pipeline', 'Reasoning models']
+        ||['Rules', 'Knowledge']
+        ||['Seed compatibility', 'Laboratory data']
+      |laboratory
+        |owner=KDE (active)
+        |purpose=Executes experiments
+        |changes=When execution needs improvement
+        |table
+          ||['Contains', 'Does NOT Contain']
+          ||['Experiments', 'Reasoning']
+          ||['Runs', 'Methodology definition']
+          ||['Evidence', 'Knowledge definitions']
+          ||['Templates', 'Governance decisions']
+        |knowledge
+          |owner=KDE (passive)
+          |purpose=Stores validated knowledge
+          |changes=When new knowledge discovered
+          |table
+            ||['Contains', 'Does NOT Contain']
+            ||['Definitions', 'Reasoning DNA']
+            ||['Contexts', 'Methodology']
+            ||['Boundaries', 'Experiments']
+            ||['Versions', 'Governance']
+      |communication_flow
+        |seed_engine
+          |engine_laboratory
+            |laboratory_knowledge
+              |knowledge_governance
+                |governance_research
+              |directory_structure
+              |boundary_compliance
+                |seed_boundaries
+                  |items
+                    ||Seed contains only reasoning DNA
+                    ||Seed references compatible engines
+                    ||Seed never modified after freeze
+                  |engine_boundaries
+                    |items
+                      ||Engine implements methodology
+                      ||Engine consumes seed
+                      ||Engine evolves independently
+                    |laboratory_boundaries
+                      |items
+                        ||Laboratory executes experiments
+                        ||Laboratory follows engine methodology
+                        ||Laboratory produces evidence
+                      |knowledge_boundaries
+                        |items
+                          ||Knowledge stores validated definitions
+                          ||Knowledge does not create knowledge
+                          ||Knowledge evolves through validation
+                    |evolution_path
+                    |related_documents
+                      |items
+                        ||[boundaries/README.md](../boundaries/README.md) — Explicit ownership
+                        ||[evolution/README.md](../evolution/README.md) — Change process
+                    |inherited_from=SEED-001
+                    |changes=Added boundary compliance requirements

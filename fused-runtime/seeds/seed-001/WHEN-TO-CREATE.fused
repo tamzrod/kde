@@ -1,0 +1,67 @@
+# FUSEDv1.0
+
+# name: WHEN-TO-CREATE
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.201728Z
+|when_to_create_a_new_seed
+  |seed_id=SEED-001
+  |version=1.0.0
+|overview
+|creation_criteria
+  |create_new_seed_when
+    |table
+      ||['Criterion', 'Description', 'Example']
+    |do_not_create_new_seed_when
+      |table
+        ||['Scenario', 'Action', 'Reason']
+        ||['Engine improvement', 'Update Engine', 'Methodology evolves']
+        ||['New experiment', 'Run in Laboratory', 'Execution context']
+        ||['New knowledge', 'Add to Knowledge', 'Discovered, not foundational']
+        ||['Process improvement', 'Update Laboratory', 'Execution layer']
+        ||['Tool update', 'Update tooling', 'Implementation detail']
+  |decision_tree
+  |seed_creation_process
+    |step_1_identify_reasoning_change
+      |items
+        ||Which principles are affected?
+        ||Which models are modified?
+        ||Which concepts are added/removed?
+      |step_2_assess_scope
+        |seed-level=Fundamental reasoning change
+        |engine-level=Methodology improvement
+        |laboratory-level=Execution improvement
+        |step_3_create_new_seed
+          |step_4_update_engine_compatibility
+        |examples
+          |example_1_new_evidence_model
+            |change=KDE introduces quantitative evidence standards
+            |decision=CREATE NEW SEED
+            |reason=Evidence model is foundational reasoning DNA
+            |example_2_new_validation_pipeline
+              |change=Add new validation stage to experiment pipeline
+              |decision=UPDATE ENGINE
+              |reason=Pipeline is methodology, not reasoning DNA
+              |example_3_new_experiment_type
+                |change=Add A/B testing capability
+                |decision=UPDATE LABORATORY
+                |reason=Execution context, not fundamental reasoning
+                |example_4_new_knowledge_format
+                  |change=Knowledge objects include new fields
+                  |decision=UPDATE ENGINE
+                  |reason=Knowledge model evolution, not core reasoning
+              |seed_evolution
+                |inherit_dont_modify
+                  |example_seed-002
+                |anti-patterns
+                  |do_not_create_new_seed_when
+                    |seed_creation_is_rare
+                      |items
+                        ||Engine improvements (Engine version bump)
+                        ||Process improvements (Laboratory update)
+                        ||Tool updates (Tooling changes)
+                  |related_documents
+                    |items
+                      ||[WHAT-IS-A-SEED.md](./WHAT-IS-A-SEED.md) — Seed definition
+                      ||[NEVER-MODIFY.md](./NEVER-MODIFY.md) — Immutability rules
+                      ||[seed.yaml](./seed.yaml) — Seed manifest
+                  |status=FOUNDATIONAL DEFINITION

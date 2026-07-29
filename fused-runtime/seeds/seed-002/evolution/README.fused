@@ -1,0 +1,102 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.206413Z
+|evolution_how_kde_changes
+  |seed_id=SEED-002
+  |section=Evolution (NEW)
+  |addresses=LESSON-003, LESSON-004, LESSON-006
+|purpose
+  |problems_addressed=
+  |items
+    ||LESSON-003: "No migration-first approach"
+    ||LESSON-004: "Reasoning not versioned"
+    ||LESSON-006: "Evolution overwrote previous architecture"
+|migration-first_principle
+|migration_requirements
+  |when_migration_document_required
+    |table
+      ||['Change Type', 'Requires MIGRATION-XXX.md']
+      ||['Structural reorganization', 'YES']
+      ||['New component creation', 'YES']
+      ||['Boundary changes', 'YES']
+      ||['Seed creation', 'YES']
+      ||['Engine version change', 'YES']
+      ||['Laboratory structure change', 'YES']
+    |when_migration_document_not_required
+      |table
+        ||['Change Type', 'Requires Document']
+        ||['Bug fixes', 'NO']
+        ||['Documentation improvements', 'NO']
+        ||['Knowledge content updates', 'NO']
+        ||['Experiment runs', 'NO']
+  |migration_document_structure
+    |migration-xxx_title
+      |overview
+        |changes
+          |compatibility
+            |rollback
+              |validation
+            |seed_evolution_process
+              |creating_new_seed_from_lessons
+                |what_belongs_in_migration_document
+                  |table
+                    ||['Section', 'Content']
+                    ||['Overview', 'What changed, why']
+                    ||['Changes', 'Specific modifications']
+                    ||['Compatibility', 'What still works']
+                    ||['Rollback', 'How to revert']
+                    ||['Validation', 'How to verify']
+              |lineage_documentation
+                |parent-child_relationship
+                  |table
+                    ||['Element', 'Required']
+                    ||['Parent Seed ID', 'YES']
+                    ||['What was inherited', 'YES']
+                    ||['What changed', 'YES']
+                    ||['Why it changed', 'YES']
+                    ||['What compatibility preserved', 'YES']
+                  |example
+                    |lineage
+                      |from_seed-001_genesis
+                        |inherited=
+                        |items
+                          ||5 Core Principles (still valid)
+                          ||Scientific Learning Loop (sound architecture)
+                          ||Evidence Model (working as intended)
+                          ||Boundary definitions (LESSON-002)
+                          ||Migration guidelines (LESSON-003)
+                          ||Lineage documentation (LESSON-004)
+                          ||LESSON-002: Boundaries became blurred
+                          ||LESSON-003: No migration-first approach
+                          ||LESSON-004: Reasoning not versioned
+                          ||All engines compatible with SEED-002
+                          ||All experiments remain valid
+                        |changed=
+                        |why_changed=
+                        |preserved_compatibility=
+                    |compatibility_matrix
+                      |seed_compatibility
+                        |table
+                          ||['Seed', 'Engines Compatible', 'Experiments Valid']
+                          ||['SEED-001', 'KDE-001, KDE-002, KDE-003', 'LAB-001 to LAB-019']
+                          ||['SEED-002', 'KDE-001, KDE-002, KDE-003', 'All future']
+                        |engine_compatibility
+                          |table
+                            ||['Engine', 'Compatible Seeds']
+                            ||['KDE-ENGINE-001', 'SEED-001, SEED-002']
+                            ||['KDE-ENGINE-002', 'SEED-001, SEED-002']
+                            ||['KDE-ENGINE-003', 'SEED-001, SEED-002']
+                      |rollback_path
+                        |rollback
+                          |verification=[How to confirm rollback]
+                      |changes_from_seed-001
+                        |table
+                          ||['Aspect', 'Seed-001', 'Seed-002']
+                      |lessons_addressed
+                        |lesson-003="No migration-first approach"
+                        |lesson-004="Reasoning not versioned"
+                        |lesson-006="Evolution overwrote previous architecture"
+                      |status=NEW IN SEED-002
+                      |evidence=LESSON-003, LESSON-004, LESSON-006

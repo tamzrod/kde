@@ -1,0 +1,195 @@
+# FUSEDv1.0
+
+# name: DESIGN-OBJECTIVES
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.199605Z
+|design_objectives_seed-002
+  |parent_seed=SEED-001
+  |child_seed=SEED-002
+  |date=2026-07-20
+|overview
+|objective_summary
+  |table
+    ||['ID', 'Objective', 'Solves', 'Priority']
+    ||['OBJ-001', 'Explicit Seed-Engine Separation', 'LESSON-001', 'CRITICAL']
+    ||['OBJ-002', 'Boundary-First Architecture', 'LESSON-002, LESSON-007', 'HIGH']
+    ||['OBJ-003', 'Migration-First Evolution', 'LESSON-003', 'HIGH']
+    ||['OBJ-004', 'Seed Lineage Documentation', 'LESSON-004, LESSON-006', 'HIGH']
+    ||['OBJ-005', 'Single Responsibility Enforcement', 'LESSON-005', 'MEDIUM']
+    ||['OBJ-006', 'Experiment Standards', 'LESSON-008', 'MEDIUM']
+    ||['OBJ-007', 'Clear System Scope', 'LESSON-009', 'LOW']
+    ||['OBJ-008', 'Enhanced Confidence Model', 'LESSON-010', 'MEDIUM']
+|obj-001_explicit_seed-engine_separation
+  |priority=CRITICAL
+  |solves=LESSON-001
+  |objective
+    |what_this_means
+      |seed_contains=Reasoning DNA (principles, models, foundations)
+      |engine_contains=Methodology implementation (pipeline, rules, processes)
+      |seed_never_contains=Engine-specific implementation
+      |engine_must_reference=Compatible Seed(s)
+      |implementation
+        |items
+          ||Clear ownership in document headers
+          ||Explicit "Seed contains" vs "Engine contains" sections
+          ||Compatibility declarations in Engine metadata
+        |evidence_of_success
+          |items
+            ||Can identify any content as Seed-owned or Engine-owned
+            ||No ambiguity about what belongs where
+            ||Clear dependency chain: Seed → Engine → Laboratory
+      |obj-002_boundary-first_architecture
+        |priority=HIGH
+        |solves=LESSON-002, LESSON-007
+        |objective
+          |what_this_means
+            |boundary_definition_first=Define what belongs where BEFORE implementation
+            |one_owner_per_component=No shared ownership
+            |explicit_interfaces=Components communicate through defined interfaces only
+            |no_cross-ownership=Engine owns methodology; Seed owns reasoning; etc.
+            |implementation
+              |items
+                ||BOUNDARIES.md section in every seed
+                ||Interface definitions between components
+                ||Ownership matrix documenting who owns what
+              |evidence_of_success
+                |items
+                  ||Can trace any decision to one owner
+                  ||No overlapping responsibilities
+                  ||Changes only affect owned components
+            |obj-003_migration-first_evolution
+              |priority=HIGH
+              |solves=LESSON-003
+              |objective
+                |what_this_means
+                  |migration_documents=Every structural change has a MIGRATION-XXX.md
+                  |rollback_path=Each migration defines how to revert
+                  |compatibility_matrix=What works with what
+                  |gradual_transitions=Old and new can coexist
+                  |implementation
+                    |items
+                      ||Migration template and guidelines
+                      ||Compatibility documentation standards
+                      ||Version coordination process
+                    |evidence_of_success
+                      |items
+                        ||Structural changes are planned, not reactive
+                        ||Can always determine migration state
+                        ||No surprise breaking changes
+                  |obj-004_seed_lineage_documentation
+                    |priority=HIGH
+                    |solves=LESSON-004, LESSON-006
+                    |objective
+                      |what_this_means
+                        |parent_reference=Each Seed references its parent
+                        |change_log=What changed from parent and why
+                        |inheritance_map=What was inherited unchanged
+                        |preservation=Old Seeds remain readable and understandable
+                        |implementation
+                          |items
+                            ||PARENT-CHILD.md in every seed
+                            ||Provenance section in seed.yaml
+                            ||Change rationale documentation
+                          |evidence_of_success
+                            |items
+                              ||Can understand why any decision was made
+                              ||Can trace evolution of reasoning
+                              ||Historical seeds are self-documenting
+                        |obj-005_single_responsibility_enforcement
+                          |priority=MEDIUM
+                          |solves=LESSON-005
+                          |objective
+                            |what_this_means
+                              |document_purpose=Every document has one clear purpose
+                              |no_mixed_content=Principles don't contain methodology
+                              |clear_ownership=One component owns each artifact
+                              |reference_over_copy=Reuse rather than duplicate
+                              |implementation
+                                |items
+                                  ||Document purpose declarations
+                                  ||Cross-reference rather than copy content
+                                  ||Ownership annotations
+                                |evidence_of_success
+                                  |items
+                                    ||Each document has one reason to exist
+                                    ||No duplicate content
+                                    ||Clear responsibility assignment
+                              |obj-006_experiment_standards
+                                |priority=MEDIUM
+                                |solves=LESSON-008
+                                |objective
+                                  |what_this_means
+                                    |required_structure=Every experiment follows standard layout
+                                    |mandatory_fields=TRACKER.md, evidence/, runs/, etc.
+                                    |template_enforcement=Use provided templates
+                                    |quality_gates=Standards are part of validation
+                                    |implementation
+                                      |items
+                                        ||Experiment template in seed
+                                        ||Required document structure
+                                        ||Quality checklist
+                                      |evidence_of_success
+                                        |items
+                                          ||All experiments have consistent structure
+                                          ||Easy to compare experiments
+                                          ||Reproducibility improved
+                                    |obj-007_clear_system_scope
+                                      |priority=LOW
+                                      |solves=LESSON-009
+                                      |objective
+                                        |what_this_means
+                                          |system_boundary=Clear definition of KDE scope
+                                          |external_interface=How KDE interacts with outside
+                                          |responsibility_assignment=What KDE owns vs external
+                                          |implementation
+                                            |items
+                                              ||SCOPE.md defining system boundary
+                                              ||External dependency documentation
+                                              ||Interface guidelines
+                                            |evidence_of_success
+                                              |items
+                                                ||Clear scope definition
+                                                ||Onboarding improved
+                                                ||Scope creep prevented
+                                          |obj-008_enhanced_confidence_model
+                                            |priority=MEDIUM
+                                            |solves=LESSON-010
+                                            |objective
+                                              |what_this_means
+                                                |specific_thresholds=Clear HIGH/MEDIUM/LOW definitions
+                                                |evidence_requirements=What evidence needed for each level
+                                                |conflict_handling=How to handle conflicting evidence
+                                                |decision_guidance=How to use confidence in decisions
+                                                |implementation
+                                                  |items
+                                                    ||Confidence level criteria
+                                                    ||Evidence thresholds
+                                                    ||Conflict resolution guidelines
+                                                  |evidence_of_success
+                                                    |items
+                                                      ||Consistent confidence assignment
+                                                      ||Clear decision thresholds
+                                                      ||Reduced ambiguity
+                                                |objective_dependency_graph
+                                                  |obj-001=Seed-Engine Separation (CRITICAL)
+                                                  |obj-002=Boundary-First Architecture (HIGH)
+                                                  |obj-003=Migration-First Evolution (HIGH)
+                                                  |obj-004=Seed Lineage Documentation (HIGH)
+                                                  |obj-005=Single Responsibility (MEDIUM)
+                                                  |obj-006=Experiment Standards (MEDIUM)
+                                                  |obj-007=Clear System Scope (LOW)
+                                                  |obj-008=Enhanced Confidence (MEDIUM)
+                                                |success_criteria
+                                                  |table
+                                                    ||['Objective', 'Success Criteria']
+                                                    ||['OBJ-001', '100% of content can be assigned to Seed or Engine']
+                                                    ||['OBJ-002', 'Every component has one owner, no overlaps']
+                                                    ||['OBJ-003', 'Every structural change has migration documentation']
+                                                    ||['OBJ-004', 'Every Seed references parent with change log']
+                                                    ||['OBJ-005', 'No document has multiple mixed purposes']
+                                                    ||['OBJ-006', '100% of experiments follow standards']
+                                                    ||['OBJ-007', 'Scope is documented and enforceable']
+                                                    ||['OBJ-008', 'Confidence assignments are consistent across experiments']
+                                                |status=COMPLETE
+                                                |objectives=8
+                                                |all_evidence-based=YES

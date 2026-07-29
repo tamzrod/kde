@@ -1,0 +1,78 @@
+# FUSEDv1.0
+
+# name: WHAT-IS-A-SEED
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.198393Z
+|what_is_a_seed
+  |seed_id=SEED-002
+  |version=1.0.0
+  |parent=SEED-001
+|definition
+|seed_lifecycle
+|what_makes_seed-002_different_from_seed-001
+  |evidence
+    |items
+      ||Specific lesson from KDE development
+      ||Observable impact on KDE operation
+      ||Clear root cause identification
+      ||Defined resolution approach
+    |prohibited
+      |items
+        ||No speculative improvements
+        ||No architectural changes based on opinion
+        ||No modifications without lesson documentation
+  |what_a_seed_is
+    |table
+      ||['Property', 'Description']
+  |what_a_seed_is_not
+    |table
+      ||['Not This', 'Reason']
+  |seed_hierarchy
+  |seed_contents
+    |from_parent_inherited
+      |items
+        ||Core principles that remain sound
+        ||Models that work as intended
+        ||Foundations that don't need change
+      |new_evolved
+        |items
+          ||Solutions to identified problems
+          ||Enhanced clarity
+          ||New requirements discovered through experience
+    |why_seeds_exist
+      |problem_seeds_solve
+        |table
+          ||['Problem', 'Solution']
+          ||['Reasoning embedded in Engine', 'Separate immutable Seed']
+          ||['Historical context lost', 'Seeds preserve lineage']
+          ||["Can't compare generations", 'Each Seed documents changes']
+          ||['Evolution loses history', 'New Seeds inherit from previous']
+        |benefits
+          |table
+            ||['Benefit', 'Description']
+      |seed_vs_engine_vs_laboratory
+        |table
+          ||['Aspect', 'Seed', 'Engine', 'Laboratory']
+      |creating_new_seeds
+        |when_to_create
+          |when_not_to_create
+            |items
+              ||No lessons were learned
+              ||Only methodology changed (use Engine version)
+              ||Only process changed (update Laboratory)
+            |process
+          |lineage_documentation
+            |items
+              ||What was inherited from parent
+              ||What changed and why
+              ||What compatibility is preserved
+              ||Understanding why decisions were made
+              ||Tracing evolution of reasoning
+              ||Comparing generations
+          |related_documents
+            |items
+              ||[seed.yaml](./seed.yaml) — Machine-readable manifest
+              ||[LESSONS-LEARNED.md](./LESSONS-LEARNED.md) — Lessons from SEED-001
+              ||[DESIGN-OBJECTIVES.md](./DESIGN-OBJECTIVES.md) — Objectives for SEED-002
+          |status=DEFINITION
+          |version=1.0.0

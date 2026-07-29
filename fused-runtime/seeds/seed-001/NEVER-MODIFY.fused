@@ -1,0 +1,88 @@
+# FUSEDv1.0
+
+# name: NEVER-MODIFY
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.201301Z
+|what_must_never_be_modified_in_a_seed
+  |seed_id=SEED-001
+  |version=1.0.0
+  |status=FROZEN
+|immutability_rule
+|absolute_prohibitions
+  |never_modify
+    |table
+      ||['Element', 'Reason']
+|rationale
+  |why_seeds_are_immutable
+|what_happens_if_you_need_to_change
+  |if_core_reasoning_changes
+    |if_methodology_changes
+      |if_process_changes
+    |migration_path
+      |when_seed-level_change_needed
+    |forbidden_actions
+      |within_a_frozen_seed
+        |never=
+        |items
+          ||[ ] Modify principles
+          ||[ ] Change loop structure
+          ||[ ] Update evidence model
+          ||[ ] Modify knowledge definition
+          ||[ ] Alter confidence methodology
+          ||[ ] Change ambiguity handling
+          ||[ ] Edit seed.yaml status
+          ||[ ] Remove seed contents
+          ||[ ] Add new reasoning elements
+          ||[ ] Clarify ambiguous language
+          ||[ ] Fix errors
+          ||[ ] Update examples
+          ||[ ] Improve documentation
+          ||[ ] Update formatting
+        |rationale
+          |items
+            ||They change historical context
+            ||They invalidate old provenance
+            ||They break reproducibility guarantees
+      |what_can_be_done
+        |outside_frozen_seeds
+          |items
+            ||[x] Create new Seed
+            ||[x] Update Engine
+            ||[x] Update Laboratory
+            ||[x] Update Knowledge
+            ||[x] Update Governance
+            ||[x] Update Research
+            ||[x] Update any subsystem
+          |within_frozen_seeds
+            |items
+              ||[x] Read
+              ||[x] Reference
+              ||[x] Copy (to new Seed)
+        |enforcement
+          |technical
+            |items
+              ||Seed status marked FROZEN
+              ||No write permissions on seed files
+              ||Version control protection
+            |process
+              |items
+                ||Governance approval required for any exception
+                ||Exception means new Seed creation
+              |culture
+                |items
+                  ||Seeds are sacred
+                  ||Immutable reasoning enables trust
+                  ||Evolution through new Seeds, not modification
+            |exceptions
+              |there_are_no_exceptions
+                |items
+                  ||Creating a new Seed
+                  ||Never modifying an existing one
+            |related_documents
+              |items
+                ||[WHAT-IS-A-SEED.md](./WHAT-IS-A-SEED.md) — Seed definition
+                ||[WHEN-TO-CREATE.md](./WHEN-TO-CREATE.md) — Creation guidelines
+                ||[seed.yaml](./seed.yaml) — Seed manifest
+            |status=FROZEN
+            |modifiable=NO
+            |exception=NONE

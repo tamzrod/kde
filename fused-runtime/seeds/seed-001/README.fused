@@ -1,0 +1,57 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.202132Z
+|seed-001_kde_genesis_seed
+  |seed_id=SEED-001
+  |name=KDE Genesis Seed
+  |version=1.0.0
+  |status=FROZEN
+  |created=2026-07-20
+|overview
+  |what_is_a_seed
+    |why_seeds
+      |reproducibility=Experiments remain valid in their original reasoning context
+      |provenance=Clear lineage from reasoning to experiment to knowledge
+      |evolution=New Seeds inherit from previous ones without modifying them
+      |immutability=Historical reasoning is never changed
+  |seed_status
+    |table
+      ||['Status', 'Meaning']
+  |seed_contents
+    |directory_structure
+  |core_components
+    |1_five_core_principles
+      |source=Migrated from `/governance/PRINCIPLES.md`
+      |2_scientific_learning_loop
+        |source=Migrated from `/laboratory/scientific-loop.md`
+        |3_evidence_model
+          |source=Migrated from `/knowledge/002-what-is-evidence.md`
+          |4_knowledge_model
+            |source=Migrated from `/knowledge/001-what-is-knowledge.md`
+            |5_confidence_model
+              |source=Migrated from engine methodology documents
+              |6_ambiguity_handling
+                |source=Migrated from `/knowledge/003-what-is-ambiguity.md`
+            |compatible_engines
+              |table
+                ||['Engine ID', 'Version', 'Compatible']
+                ||['KDE-ENGINE-001', '0.1.0', 'YES']
+                ||['KDE-ENGINE-002', '0.1.0', 'YES']
+                ||['KDE-ENGINE-003', '0.1.0', 'YES']
+            |immutability_rules
+            |provenance
+              |items
+                ||`/governance/PRINCIPLES.md`
+                ||`/laboratory/scientific-loop.md`
+                ||`/knowledge/001-what-is-knowledge.md`
+                ||`/knowledge/002-what-is-evidence.md`
+                ||`/knowledge/003-what-is-ambiguity.md`
+            |related_documents
+              |items
+                ||[../README.md](../README.md) — Seeds overview
+                ||[../engines/](../engines/) — Engine implementations
+                ||[seed.yaml](./seed.yaml) — Machine-readable manifest
+            |status=FROZEN
+            |modifiable=NO

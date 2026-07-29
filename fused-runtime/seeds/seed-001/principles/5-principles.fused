@@ -1,0 +1,62 @@
+# FUSEDv1.0
+
+# name: 5-principles
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.204476Z
+|the_five_core_principles
+  |seed_id=SEED-001
+  |source=Migrated from /governance/PRINCIPLES.md
+  |status=FOUNDATIONAL
+|overview
+|the_five_principles
+  |principle_1_no_auto-continuation
+    |rationale=AI automatically continuing to the next session is undesirable. KDE requires explicit human review before another research session begins.
+    |implementation=
+    |items
+      ||After producing Working Definition, AI outputs: "Research session complete. Awaiting human review."
+      ||AI does not begin next session until human says "proceed"
+|principle_2_no_self-approval
+  |rationale=Self-approval creates conflict of interest. Quality control requires independent review.
+  |implementation=
+  |items
+    ||AI submits for review but does not approve
+    ||Only human input can set APPROVED state
+|principle_3_no_self-promotion
+  |rationale=Promotion to /knowledge/ makes a definition "official." Only human judgment can make this decision.
+  |implementation=
+  |items
+    ||AI documents validation results
+    ||Only human input can set PROMOTED state
+|principle_4_distinguish_evidence_inference_and_hypothesis
+  |table
+    ||['Term', 'Meaning', 'Example']
+  |rationale=Readers must know what is established fact vs. interpretation vs. speculation.
+  |implementation=
+  |items
+    ||Evidence sections contain only documented facts with citations
+    ||Analysis sections draw inferences, marked as such
+    ||Speculation is labeled as hypothesis
+|principle_5_evidence-based_changes
+  |rationale=KDE is an evidence-based project. Even governance changes must be justified, not merely asserted.
+  |implementation=
+  |items
+    ||Proposals cite evidence for recommendations
+    ||Alternative options are acknowledged
+    ||Uncertainty is documented
+|derived_practices
+  |table
+    ||['Practice', 'Follows From']
+    ||['Document uncertainty when evidence is incomplete', 'Principle 4']
+    ||['Note alternative interpretations when evidence is ambiguous', 'Principle 4']
+    ||['State "evidence insufficient" when conclusions cannot be supported', 'Principle 4']
+    ||['Preserve original work when revisions are made', 'Principle 2']
+    ||['Never skip modification requests from reviewers', 'Principle 1']
+    ||['Wait for human authorization before proceeding', 'Principle 1']
+    ||['Do not approve own work', 'Principle 2']
+    ||['Do not promote own conclusions', 'Principle 3']
+|compliance
+|immutability_note
+|source=/governance/PRINCIPLES.md
+|seed=SEED-001
+|status=FOUNDATIONAL
+|modifiable=NO

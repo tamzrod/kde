@@ -1,0 +1,55 @@
+# FUSEDv1.0
+
+# name: WHAT-IS-A-SEED
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.200894Z
+|what_is_a_seed
+  |seed_id=SEED-001
+  |version=1.0.0
+|definition
+  |seed_properties
+    |table
+      ||['Property', 'Description']
+|what_a_seed_is
+  |a_seed_is
+    |the_reasoning_dna=Core principles that define KDE's thinking
+    |immutable=Frozen at creation, never changed
+    |versioned=Each generation has a unique version
+    |complete=Contains all fundamental reasoning elements
+    |foundational=The base layer upon which engines build
+    |a_seed_is_not
+      |table
+        ||['Not This', 'Reason']
+  |seed_hierarchy
+  |seed_contents
+    |1_core_principles
+      |items
+        ||No Auto-Continuation
+        ||No Self-Approval
+        ||No Self-Promotion
+        ||Evidence-Inference-Hypothesis distinction
+        ||Evidence-Based Changes
+      |2_scientific_learning_loop
+        |items
+          ||Research → Knowledge → Laboratory → Evidence → Governance → Research
+        |3_foundational_models
+          |items
+            ||Evidence Model: What counts as evidence
+            ||Knowledge Model: What constitutes knowledge
+            ||Confidence Model: How confidence is assigned
+            ||Ambiguity Model: How uncertainty is handled
+      |why_seeds_exist
+        |problem_seeds_solve
+          |benefits
+            |table
+              ||['Benefit', 'Description']
+        |seed_lifecycle
+        |seed_vs_engine_comparison
+          |table
+            ||['Aspect', 'Seed', 'Engine']
+        |related_documents
+          |items
+            ||[WHEN-TO-CREATE.md](./WHEN-TO-CREATE.md) — When to create new Seeds
+            ||[NEVER-MODIFY.md](./NEVER-MODIFY.md) — Immutability rules
+            ||[seed.yaml](./seed.yaml) — Seed manifest
+        |status=FOUNDATIONAL DEFINITION

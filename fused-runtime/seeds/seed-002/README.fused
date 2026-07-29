@@ -1,0 +1,82 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.200370Z
+|seed-002_kde_evolution_seed
+  |seed_id=SEED-002
+  |name=KDE Evolution Seed
+  |version=1.0.0
+  |parent=SEED-001 (Genesis)
+  |status=FROZEN
+  |created=2026-07-20
+|overview
+  |what_makes_seed-002_different
+|seed_lineage
+|quick_reference
+  |what_is_a_seed
+    |why_seeds
+      |reproducibility=Experiments valid in original context
+      |provenance=Clear lineage from reasoning to results
+      |evolution=New Seeds inherit from previous
+      |immutability=Historical reasoning never changed
+      |what_changed_from_seed-001
+        |table
+          ||['Change', 'Lessons Addressed']
+          ||['Explicit boundaries', 'LESSON-002, LESSON-007']
+          ||['Migration-first evolution', 'LESSON-003']
+          ||['Comprehensive lineage', 'LESSON-004, LESSON-006']
+          ||['Single responsibility', 'LESSON-005']
+          ||['Experiment standards', 'LESSON-008']
+          ||['System scope', 'LESSON-009']
+          ||['Enhanced confidence', 'LESSON-010']
+    |directory_structure
+    |lessons_learned
+      |table
+        ||['Lesson', 'Title', 'Priority']
+        ||['LESSON-001', 'Engine contains reasoning DNA', 'CRITICAL']
+        ||['LESSON-002', 'Boundaries became blurred', 'HIGH']
+        ||['LESSON-003', 'No migration-first approach', 'HIGH']
+        ||['LESSON-004', 'Reasoning not versioned', 'HIGH']
+        ||['LESSON-005', 'Single Responsibility degraded', 'MEDIUM']
+        ||['LESSON-006', 'Evolution overwrote architecture', 'MEDIUM']
+        ||['LESSON-007', 'Coupling by growth', 'MEDIUM']
+        ||['LESSON-008', 'Experiment consistency varied', 'MEDIUM']
+        ||['LESSON-009', 'No clear boundary definition', 'LOW']
+        ||['LESSON-010', 'Confidence model incomplete', 'MEDIUM']
+    |design_objectives
+      |table
+        ||['Objective', 'Solves']
+        ||['OBJ-001', 'LESSON-001']
+        ||['OBJ-002', 'LESSON-002, LESSON-007']
+        ||['OBJ-003', 'LESSON-003']
+        ||['OBJ-004', 'LESSON-004, LESSON-006']
+        ||['OBJ-005', 'LESSON-005']
+        ||['OBJ-006', 'LESSON-008']
+        ||['OBJ-007', 'LESSON-009']
+        ||['OBJ-008', 'LESSON-010']
+    |validation_question
+      |expected_answer
+        |what_changed
+          |items
+            ||Boundary definitions → LESSON-002, LESSON-007
+            ||Migration guidelines → LESSON-003
+            ||Lineage docs → LESSON-004, LESSON-006
+            ||etc.
+      |compatible_engines
+        |table
+          ||['Engine ID', 'Compatible']
+          ||['KDE-ENGINE-001', 'YES']
+          ||['KDE-ENGINE-002', 'YES']
+          ||['KDE-ENGINE-003', 'YES']
+      |immutability
+      |related_documents
+        |items
+          ||[seed.yaml](./seed.yaml) — Machine-readable manifest
+          ||[LESSONS-LEARNED.md](./LESSONS-LEARNED.md) — 10 lessons documented
+          ||[DESIGN-OBJECTIVES.md](./DESIGN-OBJECTIVES.md) — 8 objectives documented
+          ||[WHAT-IS-A-SEED.md](./WHAT-IS-A-SEED.md) — Seed definition
+      |status=FROZEN
+      |modifiable=NO
+      |parent=SEED-001 (Genesis)
+      |purpose=Documented evolution from experience

@@ -1,0 +1,65 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.208638Z
+|philosophy_why_kde_exists
+  |seed_id=SEED-002
+  |section=Philosophy
+|why_kde_exists
+  |the_problem
+    |loss=Experience leaves when people do
+    |decay=Best practices become outdated
+    |inconsistency=Different teams do different things
+    |invisibility=We don't know what we know
+    |the_solution
+  |core_philosophy
+    |evidence_over_intuition
+      |items
+        ||Experimental results
+        ||Observable evidence
+        ||Reproducible findings
+      |evolution_over_perfection
+        |items
+          ||Uncertainty exists
+          ||Knowledge can be wrong
+          ||Improvement is always possible
+        |transparency_over_authority
+          |items
+            ||Documented evidence
+            ||Traceable conclusions
+            ||Open reasoning
+      |what_kde_believes
+        |about_knowledge
+          |table
+            ||['Belief', 'Implication']
+            ||['Knowledge requires evidence', 'Nothing is accepted without proof']
+            ||['Knowledge has context', '"When" matters as much as "What"']
+            ||['Knowledge has boundaries', 'Every claim has limits']
+            ||['Knowledge evolves', "Today's truth may be tomorrow's lesson"]
+          |about_learning
+            |table
+              ||['Belief', 'Implication']
+              ||['Learning requires experiments', 'Beliefs must be tested']
+              ||['Learning requires failure', 'Mistakes are data']
+              ||['Learning requires iteration', 'First attempts are rarely best']
+            |about_evolution
+              |table
+                ||['Belief', 'Implication']
+                ||['Evolution requires lessons', 'Change must be justified']
+                ||['Evolution requires lineage', 'Historical context must be preserved']
+                ||['Evolution requires immutability', 'Past reasoning must not change']
+          |what_kde_does_not_believe
+            |misconceptions_kde_rejects
+              |table
+                ||['Rejection', 'Reason']
+                ||['"We\'ve always done it this way"', 'Authority is not evidence']
+                ||['"Experts know best"', 'Expertise requires evidence']
+                ||['"It\'s obviously true"', 'Intuition is not proof']
+                ||['"If it works, don\'t fix it"', 'Evolution requires improvement']
+          |the_kde_contract
+            |kde_promises
+              |kde_requires
+            |summary
+            |inherited_from=SEED-001
+            |changes=None (philosophy remains valid)

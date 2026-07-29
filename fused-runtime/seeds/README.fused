@@ -1,0 +1,40 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.197001Z
+|kde_seeds_directory
+  |directory=`seeds/`
+  |purpose=Contains immutable Seeds representing KDE reasoning generations
+|canonical_architecture
+|what_is_a_seed
+  |items
+    ||The fundamental DNA of how KDE discovers knowledge
+    ||Core principles that govern AI behavior
+    ||The scientific methodology backbone
+    ||Evidence and confidence models
+    ||Knowledge synthesis processes
+  |seed_characteristics
+    |table
+      ||['Characteristic', 'Description']
+|seed_vs_engine
+  |hierarchy
+    |table
+      ||['Layer', 'Purpose', 'Changes?']
+|available_seeds
+  |table
+    ||['Seed ID', 'Version', 'Codename', 'Status', 'Parent']
+    ||['SEED-001', '1.0.0', 'Genesis', 'FROZEN', 'вҖ”']
+    ||['SEED-002', '1.0.0', 'Evolution', 'FROZEN', 'SEED-001']
+|seed_lineage
+|seed_creation_rule
+  |rules
+|seed_contents
+|seed_selection
+|related_documents
+|items
+  ||[engines/](../engines/) — Engine implementations
+  ||[laboratory/](../laboratory/) — Scientific workflow
+  ||[governance/](../governance/) — Repository governance
+  ||[knowledge/](../knowledge/) — Validated knowledge
+|status=ARCHITECTURAL FOUNDATION

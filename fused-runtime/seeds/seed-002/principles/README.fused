@@ -1,0 +1,41 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.208289Z
+|principles_core_rules
+  |seed_id=SEED-002
+  |section=Principles
+|overview
+|the_five_principles
+  |1_no_auto-continuation
+    |rationale=KDE requires explicit human review before another research session begins.
+    |implementation=After producing Working Definition, AI outputs: "Research session complete. Awaiting human review."
+|2_no_self-approval
+  |rationale=Self-approval creates conflict of interest.
+  |implementation=AI submits for review but does not approve.
+|3_no_self-promotion
+  |rationale=Only human judgment can make knowledge official.
+  |implementation=AI documents validation results; humans promote.
+|4_distinguish_evidence_inference_hypothesis
+  |table
+    ||['Term', 'Meaning', 'Example']
+    ||['Evidence', 'Documented facts', '"According to..."']
+    ||['Inference', 'Conclusions from evidence', '"This suggests..."']
+    ||['Hypothesis', 'Speculation', '"It may be that..."']
+|5_evidence-based_changes
+  |rationale=KDE is evidence-based. Even governance changes must be justified.
+|derived_practices
+  |table
+    ||['Practice', 'Follows From']
+    ||['Document uncertainty when evidence incomplete', 'Principle 4']
+    ||['Note alternative interpretations when evidence ambiguous', 'Principle 4']
+    ||['Preserve original work when revisions made', 'Principle 2']
+    ||['Wait for human authorization before proceeding', 'Principle 1']
+    ||['Do not approve own work', 'Principle 2']
+    ||['Do not promote own conclusions', 'Principle 3']
+|enforcement
+|immutability
+|inherited_from=SEED-001
+|status=VALIDATED
+|changes=None

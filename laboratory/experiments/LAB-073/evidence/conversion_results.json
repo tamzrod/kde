@@ -1,0 +1,556 @@
+{
+  "timestamp": "2026-07-29T23:00:33.253605Z",
+  "stats": {
+    "files_processed": 90,
+    "files_converted": 90,
+    "bytes_saved": 204871,
+    "errors": [],
+    "success_rate": 100.0
+  },
+  "seed_results": [
+    {
+      "file": "seeds/README.md",
+      "original_size": 6799,
+      "fused_size": 1200,
+      "status": "success"
+    },
+    {
+      "file": "seeds/evolution/SEED-003-PROPOSAL.md",
+      "original_size": 5197,
+      "fused_size": 4110,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/WHAT-IS-A-SEED.md",
+      "original_size": 7180,
+      "fused_size": 2617,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/LESSONS-LEARNED.md",
+      "original_size": 11128,
+      "fused_size": 10902,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/DESIGN-OBJECTIVES.md",
+      "original_size": 8156,
+      "fused_size": 11793,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/README.md",
+      "original_size": 6911,
+      "fused_size": 3143,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-001/WHAT-IS-A-SEED.md",
+      "original_size": 7987,
+      "fused_size": 1812,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-001/NEVER-MODIFY.md",
+      "original_size": 5176,
+      "fused_size": 2845,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-001/WHEN-TO-CREATE.md",
+      "original_size": 6660,
+      "fused_size": 2865,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-001/README.md",
+      "original_size": 3581,
+      "fused_size": 2179,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-003/README.md",
+      "original_size": 3134,
+      "fused_size": 2744,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-001/knowledge-model/model.md",
+      "original_size": 7875,
+      "fused_size": 2131,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-001/confidence-model/model.md",
+      "original_size": 5258,
+      "fused_size": 2268,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-001/ambiguity/handling.md",
+      "original_size": 5961,
+      "fused_size": 3500,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-001/principles/5-principles.md",
+      "original_size": 4082,
+      "fused_size": 2593,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-001/evidence-model/model.md",
+      "original_size": 4534,
+      "fused_size": 2593,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-001/scientific-loop/loop.md",
+      "original_size": 11571,
+      "fused_size": 3267,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/boundaries/README.md",
+      "original_size": 4970,
+      "fused_size": 2194,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/evolution/README.md",
+      "original_size": 4042,
+      "fused_size": 4472,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/reasoning/README.md",
+      "original_size": 4028,
+      "fused_size": 3551,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/lessons/lessons-summary.md",
+      "original_size": 5955,
+      "fused_size": 6023,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/validation/README.md",
+      "original_size": 3689,
+      "fused_size": 3327,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/principles/README.md",
+      "original_size": 2411,
+      "fused_size": 1637,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/philosophy/README.md",
+      "original_size": 3270,
+      "fused_size": 2571,
+      "status": "success"
+    },
+    {
+      "file": "seeds/seed-002/architecture/README.md",
+      "original_size": 7342,
+      "fused_size": 3280,
+      "status": "success"
+    }
+  ],
+  "engine_results": [
+    {
+      "file": "engines/future-engines.md",
+      "original_size": 10890,
+      "fused_size": 11478,
+      "status": "success"
+    },
+    {
+      "file": "engines/alpha-vs-beta.md",
+      "original_size": 9279,
+      "fused_size": 5290,
+      "status": "success"
+    },
+    {
+      "file": "engines/README.md",
+      "original_size": 6170,
+      "fused_size": 2695,
+      "status": "success"
+    },
+    {
+      "file": "engines/interface.md",
+      "original_size": 11973,
+      "fused_size": 10912,
+      "status": "success"
+    },
+    {
+      "file": "engines/current.md",
+      "original_size": 9451,
+      "fused_size": 7738,
+      "status": "success"
+    },
+    {
+      "file": "engines/gamma/changes.md",
+      "original_size": 6246,
+      "fused_size": 2777,
+      "status": "success"
+    },
+    {
+      "file": "engines/gamma/specification.md",
+      "original_size": 5608,
+      "fused_size": 4380,
+      "status": "success"
+    },
+    {
+      "file": "engines/gamma/methodology.md",
+      "original_size": 13448,
+      "fused_size": 10623,
+      "status": "success"
+    },
+    {
+      "file": "engines/gamma/SELF-REVIEW.md",
+      "original_size": 10765,
+      "fused_size": 12307,
+      "status": "success"
+    },
+    {
+      "file": "engines/gamma/knowledge-model.md",
+      "original_size": 14214,
+      "fused_size": 12731,
+      "status": "success"
+    },
+    {
+      "file": "engines/gamma/pipeline.md",
+      "original_size": 17243,
+      "fused_size": 18530,
+      "status": "success"
+    },
+    {
+      "file": "engines/gamma/README.md",
+      "original_size": 6150,
+      "fused_size": 3409,
+      "status": "success"
+    },
+    {
+      "file": "engines/gamma/provenance.md",
+      "original_size": 6307,
+      "fused_size": 5262,
+      "status": "success"
+    },
+    {
+      "file": "engines/alpha/changes.md",
+      "original_size": 2875,
+      "fused_size": 1100,
+      "status": "success"
+    },
+    {
+      "file": "engines/alpha/specification.md",
+      "original_size": 4770,
+      "fused_size": 3483,
+      "status": "success"
+    },
+    {
+      "file": "engines/alpha/methodology.md",
+      "original_size": 5761,
+      "fused_size": 4380,
+      "status": "success"
+    },
+    {
+      "file": "engines/alpha/provenance.md",
+      "original_size": 6956,
+      "fused_size": 3378,
+      "status": "success"
+    },
+    {
+      "file": "engines/beta/changes.md",
+      "original_size": 4059,
+      "fused_size": 1738,
+      "status": "success"
+    },
+    {
+      "file": "engines/beta/specification.md",
+      "original_size": 6642,
+      "fused_size": 4095,
+      "status": "success"
+    },
+    {
+      "file": "engines/beta/methodology.md",
+      "original_size": 10681,
+      "fused_size": 6518,
+      "status": "success"
+    },
+    {
+      "file": "engines/beta/knowledge-model.md",
+      "original_size": 12631,
+      "fused_size": 11572,
+      "status": "success"
+    },
+    {
+      "file": "engines/beta/pipeline.md",
+      "original_size": 25716,
+      "fused_size": 10821,
+      "status": "success"
+    },
+    {
+      "file": "engines/beta/provenance.md",
+      "original_size": 5410,
+      "fused_size": 5022,
+      "status": "success"
+    },
+    {
+      "file": "engines/delta/SUMMARY.md",
+      "original_size": 5123,
+      "fused_size": 5068,
+      "status": "success"
+    },
+    {
+      "file": "engines/delta/changes.md",
+      "original_size": 2979,
+      "fused_size": 1840,
+      "status": "success"
+    },
+    {
+      "file": "engines/delta/specification.md",
+      "original_size": 10237,
+      "fused_size": 6912,
+      "status": "success"
+    },
+    {
+      "file": "engines/delta/methodology.md",
+      "original_size": 7429,
+      "fused_size": 4120,
+      "status": "success"
+    },
+    {
+      "file": "engines/delta/knowledge-model.md",
+      "original_size": 5144,
+      "fused_size": 4063,
+      "status": "success"
+    },
+    {
+      "file": "engines/delta/pipeline.md",
+      "original_size": 15821,
+      "fused_size": 4651,
+      "status": "success"
+    },
+    {
+      "file": "engines/delta/README.md",
+      "original_size": 3882,
+      "fused_size": 2627,
+      "status": "success"
+    },
+    {
+      "file": "engines/delta/provenance.md",
+      "original_size": 5923,
+      "fused_size": 6384,
+      "status": "success"
+    },
+    {
+      "file": "engines/epsilon/SPEC.md",
+      "original_size": 4504,
+      "fused_size": 3174,
+      "status": "success"
+    }
+  ],
+  "gov_results": [
+    {
+      "file": "governance/SOP-COMPLEXITY-BUDGET.md",
+      "original_size": 5768,
+      "fused_size": 5222,
+      "status": "success"
+    },
+    {
+      "file": "governance/ARTIFACT-PROTECTION.md",
+      "original_size": 6755,
+      "fused_size": 6133,
+      "status": "success"
+    },
+    {
+      "file": "governance/INVESTIGATION-CLOSURE-SOP.md",
+      "original_size": 9035,
+      "fused_size": 6116,
+      "status": "success"
+    },
+    {
+      "file": "governance/REC-001-APPROVAL.md",
+      "original_size": 6613,
+      "fused_size": 7466,
+      "status": "success"
+    },
+    {
+      "file": "governance/LABORATORY-SOP.md",
+      "original_size": 39742,
+      "fused_size": 24772,
+      "status": "success"
+    },
+    {
+      "file": "governance/ENGINE-VERSIONING.md",
+      "original_size": 7012,
+      "fused_size": 5814,
+      "status": "success"
+    },
+    {
+      "file": "governance/KDE-GOVERNANCE-DEPENDENCY-TRACKING.md",
+      "original_size": 11642,
+      "fused_size": 9803,
+      "status": "success"
+    },
+    {
+      "file": "governance/ENV-001.md",
+      "original_size": 4549,
+      "fused_size": 4661,
+      "status": "success"
+    },
+    {
+      "file": "governance/MIGRATION-GUIDE.md",
+      "original_size": 4454,
+      "fused_size": 3506,
+      "status": "success"
+    },
+    {
+      "file": "governance/NUMBERING-INVESTIGATION.md",
+      "original_size": 4091,
+      "fused_size": 4362,
+      "status": "success"
+    },
+    {
+      "file": "governance/ARCHIVE-SOP.md",
+      "original_size": 11260,
+      "fused_size": 5658,
+      "status": "success"
+    },
+    {
+      "file": "governance/TIMESTAMP-STANDARD.md",
+      "original_size": 6991,
+      "fused_size": 6561,
+      "status": "success"
+    },
+    {
+      "file": "governance/VERSION.md",
+      "original_size": 1890,
+      "fused_size": 1267,
+      "status": "success"
+    },
+    {
+      "file": "governance/NAMING-CONVENTIONS.md",
+      "original_size": 3582,
+      "fused_size": 3543,
+      "status": "success"
+    },
+    {
+      "file": "governance/DEP-001.md",
+      "original_size": 3687,
+      "fused_size": 2533,
+      "status": "success"
+    },
+    {
+      "file": "governance/FUTURE-EXPERIMENT-GUIDELINES.md",
+      "original_size": 5806,
+      "fused_size": 5965,
+      "status": "success"
+    },
+    {
+      "file": "governance/LESSONS-LEARNED-SOP.md",
+      "original_size": 8343,
+      "fused_size": 8394,
+      "status": "success"
+    },
+    {
+      "file": "governance/PATTERN-INTEGRATION-SOP.md",
+      "original_size": 10644,
+      "fused_size": 8490,
+      "status": "success"
+    },
+    {
+      "file": "governance/GOVERNANCE-HIERARCHY.md",
+      "original_size": 11728,
+      "fused_size": 5775,
+      "status": "success"
+    },
+    {
+      "file": "governance/README.md",
+      "original_size": 2828,
+      "fused_size": 1678,
+      "status": "success"
+    },
+    {
+      "file": "governance/KDE-GOVERNANCE-STATE-VOCABULARY.md",
+      "original_size": 7532,
+      "fused_size": 6984,
+      "status": "success"
+    },
+    {
+      "file": "governance/KDE-GOVERNANCE-META-VALIDATION.md",
+      "original_size": 15582,
+      "fused_size": 15305,
+      "status": "success"
+    },
+    {
+      "file": "governance/AUTHORITY-DEFINITIONS.md",
+      "original_size": 7819,
+      "fused_size": 6676,
+      "status": "success"
+    },
+    {
+      "file": "governance/STATE-MACHINE.md",
+      "original_size": 3325,
+      "fused_size": 816,
+      "status": "success"
+    },
+    {
+      "file": "governance/runtime/SESSION-TEMPLATE.md",
+      "original_size": 3945,
+      "fused_size": 3274,
+      "status": "success"
+    },
+    {
+      "file": "governance/runtime/MIGRATION-NOTES.md",
+      "original_size": 6241,
+      "fused_size": 6120,
+      "status": "success"
+    },
+    {
+      "file": "governance/runtime/SESSION-OVERRIDE.md",
+      "original_size": 7371,
+      "fused_size": 6552,
+      "status": "success"
+    },
+    {
+      "file": "governance/runtime/ENGINE-SELECTION.md",
+      "original_size": 19888,
+      "fused_size": 9643,
+      "status": "success"
+    },
+    {
+      "file": "governance/runtime/README.md",
+      "original_size": 1817,
+      "fused_size": 1676,
+      "status": "success"
+    },
+    {
+      "file": "governance/runtime/RUNTIME-STARTUP.md",
+      "original_size": 11687,
+      "fused_size": 6228,
+      "status": "success"
+    },
+    {
+      "file": "governance/promotions/PROMOTION-2026-07-22-DELTA.md",
+      "original_size": 3543,
+      "fused_size": 3279,
+      "status": "success"
+    },
+    {
+      "file": "governance/runtime/PATCH-001/WORKSPACE-RESOLVER.md",
+      "original_size": 23843,
+      "fused_size": 12667,
+      "status": "success"
+    },
+    {
+      "file": "governance/runtime/PATCH-001/index.md",
+      "original_size": 1565,
+      "fused_size": 1257,
+      "status": "success"
+    }
+  ]
+}

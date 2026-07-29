@@ -1,0 +1,64 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.202534Z
+|seed-003_bootstrap_validation
+  |seed_id=SEED-003
+  |codename=Bootstrap
+  |version=1.0.0
+  |status=ACTIVE
+  |parent=SEED-002 (Evolution)
+  |created=2026-07-26
+  |approved=2026-07-26
+|overview
+  |core_principles
+    |principle_1_bootstrap-first_verification
+      |rule=Always run bootstrap gates before investigation work.
+      |principle_2_pre-existence_validation
+        |rule=Check git log and confirm issue persistence.
+        |principle_3_capability-aware_commitment
+          |rule=Verify toolchain availability before promising test execution.
+          |principle_4_evidence-traceable_reasoning
+            |rule=Document evidence sources in all findings.
+            |principle_5_confidence-calibrated_claims
+              |rule=Lower confidence when constraints prevent full verification.
+          |bootstrap_gates
+            |table
+              ||['Gate', 'Name', 'Purpose']
+              ||['B1', 'Bootstrap-First', 'Verify runtime state']
+              ||['B2', 'Pre-Existence', 'Check git log for fixes']
+              ||['B3', 'Environment', 'Verify toolchain']
+            |see=`.kde/bootstrap/gates.py`
+          |scientific_loop_enhancement
+            |phase_0=Bootstrap Verification (NEW)
+            |phase_1-6=SEED-002 scientific loop
+            |phase_7=Validation Enhancement
+          |implementation
+            |table
+              ||['Component', 'Status', 'Evidence']
+              ||['gates.py', 'Implemented', '.kde/bootstrap/gates.py']
+              ||['B1 Gate', 'Implemented', 'Runtime verification']
+              ||['B2 Gate', 'Implemented', 'Git log check']
+              ||['B3 Gate', 'Implemented', 'Environment check']
+              ||['DEP-001', 'Implemented', 'Dependency policy']
+              ||['ENV-001', 'Implemented', 'Environment policy']
+          |lessons_learned
+            |table
+              ||['Source', 'Lesson']
+              ||['SEED-002', 'No bootstrap enforcement']
+              ||['KDE-INV-051', 'V1: No experiment entry']
+              ||['KDE-INV-051', 'V2: Pre-existence check skipped']
+              ||['KDE-INV-051', 'V3: Environment verification omitted']
+          |related_artifacts
+            |table
+              ||['Artifact', 'Relationship']
+              ||['SEED-002', 'Parent seed']
+              ||['gates.py', 'Implementation']
+              ||['DEP-001.md', 'Dependency policy']
+              ||['ENV-001.md', 'Environment policy']
+              ||['KDE-INV-051', 'Violation analysis']
+              ||['KDE-INV-052', 'Recommendation source']
+          |seed_status=ACTIVE
+          |source=KDE-INV-052 REC-006
+          |frozen=Never (Bootstrap enforcement required)

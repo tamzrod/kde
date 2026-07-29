@@ -1,0 +1,82 @@
+# FUSEDv1.0
+
+# name: loop
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.205383Z
+|the_scientific_learning_loop
+  |seed_id=SEED-001
+  |source=Migrated from /laboratory/scientific-loop.md
+  |status=FOUNDATIONAL
+|overview
+|the_loop
+|subsystem_responsibilities
+  |research
+    |table
+      ||['Responsibility', 'Description']
+    |authority=Creates knowledge definitions
+    |boundary=Does not implement experiments
+    |knowledge
+      |table
+        ||['Responsibility', 'Description']
+      |authority=Acts as source of truth
+      |boundary=Does not create or modify itself
+      |laboratory
+        |table
+          ||['Responsibility', 'Description']
+        |authority=Reports findings; recommends research
+        |boundary=Does not modify knowledge
+        |evidence
+          |table
+            ||['Responsibility', 'Description']
+          |authority=Informs decisions through evidence
+          |boundary=Does not make decisions
+          |governance
+            |table
+              ||['Responsibility', 'Description']
+            |authority=Approves knowledge modifications
+            |boundary=Does not conduct research or experiments
+        |ownership_boundaries
+          |clear_separation
+            |table
+              ||['Boundary', 'Left Side', 'Right Side']
+            |what_each_subsystem_cannot_do
+              |table
+                ||['Subsystem', 'Cannot']
+                ||['Research', 'Modify approved knowledge']
+                ||['Knowledge', 'Create or discover knowledge']
+                ||['Laboratory', 'Edit knowledge artifacts']
+                ||['Evidence', 'Make decisions']
+                ||['Governance', 'Conduct experiments']
+          |loop_flow
+            |step_1_knowledge_creation
+              |step_2_knowledge_testing
+                |step_3_evidence_accumulation
+                  |step_4_governance_review
+                    |step_5_gap_investigation
+                  |loop_characteristics
+                    |closed_loop
+                      |items
+                        ||Tested through experiments
+                        ||Validated through evidence
+                        ||Improved through governance
+                        ||Extended through research
+                      |self-correcting
+                        |evidence-driven
+                          |items
+                            ||Research findings
+                            ||Experimental results
+                            ||Verification data
+                            ||Reproducibility records
+                      |quality_gates
+                        |table
+                          ||['Gate', 'Check', 'Actor']
+                          ||['1', 'Research methodology complete', 'Research']
+                          ||['2', 'Knowledge definition approved', 'Governance']
+                          ||['3', 'Experiment design reviewed', 'Laboratory']
+                          ||['4', 'Evidence verified', 'Laboratory']
+                          ||['5', 'Recommendation justified', 'Governance']
+                      |immutability_note
+                      |source=/laboratory/scientific-loop.md
+                      |seed=SEED-001
+                      |status=FOUNDATIONAL
+                      |modifiable=NO

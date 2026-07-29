@@ -1,0 +1,57 @@
+# FUSEDv1.0
+
+# name: README
+# type: markdown
+# timestamp: 2026-07-29T23:00:33.205995Z
+|boundaries_explicit_ownership
+  |seed_id=SEED-002
+  |section=Boundaries (NEW)
+  |addresses=LESSON-002, LESSON-007
+|purpose
+  |problem_addressed=LESSON-002 - "Architectural boundaries became blurred"
+|boundary_principle
+|kde_ownership_matrix
+  |table
+    ||['Component', 'Owner', 'Contains', 'Does NOT Contain']
+|what_belongs_to_each_component
+  |seed_immutable
+    |engine_evolving
+      |laboratory_active
+        |knowledge_passive
+          |governance_oversight
+        |interface_rules
+          |table
+            ||['From', 'To', 'Interface']
+            ||['Seed', 'Engine', 'Compatibility declaration']
+            ||['Engine', 'Laboratory', 'Experiment methodology']
+            ||['Laboratory', 'Knowledge', 'Validation results']
+            ||['Knowledge', 'Governance', 'Knowledge status']
+            ||['Governance', 'Laboratory', 'Gap identification']
+        |cross-boundary_prevention
+          |seed_cannot_reference
+            |items
+              ||Engine-specific implementation
+              ||Laboratory procedures
+              ||Knowledge content
+            |engine_cannot_reference
+              |items
+                ||Seed internal structure
+                ||Laboratory experiment data
+                ||Knowledge definitions
+              |laboratory_cannot_reference
+                |items
+                  ||Seed reasoning implementation
+                  ||Engine specific rules
+                  ||Governance decisions
+            |boundary_enforcement
+              |document_structure=Each component has explicit directory ownership
+              |cross-reference_prohibition=Documents must not import from other components
+              |interface_documentation=Communication through documented interfaces only
+            |changes_from_seed-001
+              |table
+                ||['Aspect', 'Seed-001', 'Seed-002']
+            |lessons_addressed
+              |lesson-002="Architectural boundaries became blurred"
+              |lesson-007="Architecture became coupled by growth"
+            |status=NEW IN SEED-002
+            |evidence=LESSON-002, LESSON-007
