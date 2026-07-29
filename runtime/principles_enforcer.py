@@ -659,6 +659,178 @@ class FivePrinciplesEnforcer:
             }
         )
     
+    # =========================================================================
+    # EXPERIMENT AUTHORIZATION (INV-RUNTIME-GAPS Mitigation)
+    # =========================================================================
+    
+    # States that require human authorization for experiments
+    EXPERIMENT_APPROVED_STATES = {"COMPLETE", "APPROVED", "PROMOTED"}
+    
+    def check_experiment_transition(
+        self,
+        experiment_id: str,
+        from_state: str,
+        to_state: str,
+        actor: str
+    ) -> EnforcementResult:
+        """
+        Validate experiment state transitions.
+        
+        Enforces that experiments can only reach COMPLETE/APPROVED/PROMOTED
+        states with human authorization, not AI self-completion.
+        
+        This is the 6th Principle (extends SEED-001):
+        "No Auto-Completion - Never mark experiments complete without human review"
+        
+        Args:
+            experiment_id: The experiment being transitioned
+            from_state: Current experiment state
+            to_state: Desired new state
+            actor: Who is performing the transition ('human', 'ai', 'system')
+            
+        Returns:
+            EnforcementResult with authorization status
+        """
+        violations = []
+        warnings = []
+        blocked = False
+        
+        # Check if this transition requires human authorization
+        requires_human = to_state in self.EXPERIMENT_APPROVED_STATES
+        
+        if requires_human:
+            if actor.lower() != "human":
+                violations.append(PrincipleViolation(
+                    principle=PrincipleType.NO_AUTO_CONTINUATION,  # Reuse principle
+                    description=f"Experiment '{experiment_id}' requires HUMAN authorization to transition from {from_state} to {to_state}",
+                    severity="error",
+                    blocked=True,
+                    location=f"experiment:{experiment_id}",
+                    suggestion='Say "authorized" or have human approve the transition'
+                ))
+                blocked = True
+            else:
+                warnings.append(f"Human authorization confirmed for {experiment_id} {from_state}→{to_state}")
+        
+        return EnforcementResult(
+            passed=not blocked,
+            violations=violations,
+            warnings=warnings,
+            metadata={
+                "experiment_id": experiment_id,
+                "from_state": from_state,
+                "to_state": to_state,
+                "actor": actor,
+                "requires_human": requires_human
+            }
+        )
+    
+    def require_experiment_checkpoint(
+        self,
+        experiment_id: str,
+        checkpoint_type: str = "completion"
+    ) -> EnforcementResult:
+        """
+        Require a checkpoint before experiment can proceed.
+        
+        Creates a checkpoint that must be authorized by human before
+        the experiment can be marked complete or approved.
+        
+        Args:
+            experiment_id: The experiment requiring checkpoint
+            checkpoint_type: Type of checkpoint ('completion', 'approval', 'promotion')
+            
+        Returns:
+            EnforcementResult with checkpoint requirement
+        """
+        checkpoint_id = f"EXP-{experiment_id}-{checkpoint_type}"
+        
+        checkpoint = SessionCheckpoint(
+            checkpoint_id=checkpoint_id,
+            description=f"Experiment '{experiment_id}' requires human authorization for {checkpoint_type}",
+            status=ContinuationStatus.REQUIRED,
+            created_at=datetime.now()
+        )
+        self.checkpoints[checkpoint_id] = checkpoint
+        
+        return EnforcementResult(
+            passed=False,
+            violations=[
+                PrincipleViolation(
+                    principle=PrincipleType.NO_AUTO_CONTINUATION,
+                    description=f"Checkpoint required for experiment '{experiment_id}' {checkpoint_type}",
+                    severity="error",
+                    blocked=True,
+                    location=f"experiment:{experiment_id}",
+                    suggestion=f"Human must authorize checkpoint '{checkpoint_id}' to proceed"
+                )
+            ],
+            warnings=[],
+            metadata={
+                "checkpoint_id": checkpoint_id,
+                "experiment_id": experiment_id,
+                "checkpoint_type": checkpoint_type,
+                "status": "REQUIRED"
+            }
+        )
+    
+    def authorize_experiment_checkpoint(
+        self,
+        checkpoint_id: str,
+        authorized_by: str
+    ) -> EnforcementResult:
+        """
+        Authorize an experiment checkpoint.
+        
+        Args:
+            checkpoint_id: The checkpoint to authorize
+            authorized_by: Who is authorizing (must be 'human')
+            
+        Returns:
+            EnforcementResult with authorization status
+        """
+        if checkpoint_id not in self.checkpoints:
+            return EnforcementResult(
+                passed=False,
+                violations=[
+                    PrincipleViolation(
+                        principle=PrincipleType.NO_AUTO_CONTINUATION,
+                        description=f"Checkpoint '{checkpoint_id}' not found",
+                        severity="error",
+                        blocked=True
+                    )
+                ]
+            )
+        
+        if authorized_by.lower() != "human":
+            return EnforcementResult(
+                passed=False,
+                violations=[
+                    PrincipleViolation(
+                        principle=PrincipleType.NO_AUTO_CONTINUATION,
+                        description="Only human authorization is permitted for experiment checkpoints",
+                        severity="error",
+                        blocked=True
+                    )
+                ]
+            )
+        
+        checkpoint = self.checkpoints[checkpoint_id]
+        checkpoint.status = ContinuationStatus.AUTHORIZED
+        checkpoint.authorized_by = authorized_by
+        checkpoint.authorized_at = datetime.now()
+        
+        return EnforcementResult(
+            passed=True,
+            violations=[],
+            warnings=[f"Checkpoint '{checkpoint_id}' authorized by {authorized_by}"],
+            metadata={
+                "checkpoint_id": checkpoint_id,
+                "authorized_by": authorized_by,
+                "authorized_at": checkpoint.authorized_at.isoformat()
+            }
+        )
+    
     def get_enforcement_report(self) -> str:
         """Generate a human-readable enforcement report."""
         lines = []

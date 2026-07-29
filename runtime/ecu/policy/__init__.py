@@ -164,6 +164,31 @@ class PolicyLayer:
                 check_fn=self._check_laboratory_directory,
                 blocking=True
             ),
+            # INV-RUNTIME-GAPS Mitigation: Dependency and State Verification Rules
+            PolicyRule(
+                name="runtime_dependencies_available",
+                description="All required Python dependencies must be installed",
+                check_fn=self._check_runtime_dependencies,
+                blocking=True
+            ),
+            PolicyRule(
+                name="runtime_state_verified",
+                description="Runtime state must be verified before initialization",
+                check_fn=self._check_runtime_state_verified,
+                blocking=True
+            ),
+            PolicyRule(
+                name="experiment_engine_valid",
+                description="Experiment must reference a registered engine",
+                check_fn=self._check_experiment_engine_valid,
+                blocking=True
+            ),
+            PolicyRule(
+                name="experiment_seed_valid",
+                description="Experiment must reference a registered seed",
+                check_fn=self._check_experiment_seed_valid,
+                blocking=True
+            ),
         ]
     
     def validate_engine(self, engine: EngineMetadata) -> PolicyViolationResult:
@@ -492,6 +517,113 @@ class PolicyLayer:
                     'violations': [PolicyViolation.INVALID_ARTIFACT_DIRECTORY],
                     'details': [f"Artifact should be in {expected_dir}, found in {actual_dir}"]
                 }
+        
+        return {'violations': [], 'details': []}
+
+    # =========================================================================
+    # INV-RUNTIME-GAPS MITIGATION: Dependency and State Verification
+    # =========================================================================
+    
+    def _check_runtime_dependencies(self, context: Any = None) -> Dict[str, Any]:
+        """
+        Check if all required Python dependencies are available.
+        
+        This is the FIRST policy check - if dependencies are missing,
+        nothing else can run.
+        """
+        try:
+            # Try to import the dependency checker
+            from ..dependency_checker import DependencyChecker
+            checker = DependencyChecker()
+            result = checker.check_all()
+            
+            if not result.all_passed:
+                return {
+                    'violations': [PolicyViolation.MISSING_DEPENDENCY],
+                    'details': [f"Missing packages: {', '.join(result.missing_packages)}"]
+                }
+            
+            return {'violations': [], 'details': []}
+            
+        except ImportError:
+            # If dependency checker can't be imported, check core imports directly
+            try:
+                import yaml
+                return {'violations': [], 'details': []}
+            except ImportError:
+                return {
+                    'violations': [PolicyViolation.MISSING_DEPENDENCY],
+                    'details': ['PyYAML (yaml) is required but not installed']
+                }
+    
+    def _check_runtime_state_verified(self, context: Any = None) -> Dict[str, Any]:
+        """
+        Check if runtime state has been verified.
+        
+        This ensures claimed state matches actual conditions.
+        """
+        try:
+            from ...state_verifier import RuntimeStateVerifier
+            verifier = RuntimeStateVerifier(self.kde_root)
+            report = verifier.verify_all()
+            
+            if not report.can_initialize:
+                return {
+                    'violations': [PolicyViolation.INVALID_STATE],
+                    'details': report.blocking_issues
+                }
+            
+            return {'violations': [], 'details': []}
+            
+        except ImportError:
+            # If state verifier not available, skip this check
+            return {'violations': [], 'details': []}
+    
+    def _check_experiment_engine_valid(self, context: Any = None) -> Dict[str, Any]:
+        """
+        Check if experiment references a valid registered engine.
+        
+        This prevents experiments from claiming fake engine IDs.
+        Context should contain 'engine_id' for the experiment.
+        """
+        if context is None or not hasattr(context, 'engine_id'):
+            # No engine ID provided, skip check
+            return {'violations': [], 'details': []}
+        
+        engine_id = getattr(context, 'engine_id', None)
+        if not engine_id:
+            return {'violations': [], 'details': []}
+        
+        engine = self.engine_registry.get_engine(engine_id)
+        if not engine:
+            return {
+                'violations': [PolicyViolation.ENGINE_NOT_FOUND],
+                'details': [f"Engine '{engine_id}' not found in registry"]
+            }
+        
+        return {'violations': [], 'details': []}
+    
+    def _check_experiment_seed_valid(self, context: Any = None) -> Dict[str, Any]:
+        """
+        Check if experiment references a valid registered seed.
+        
+        This prevents experiments from claiming fake seed IDs.
+        Context should contain 'seed_id' for the experiment.
+        """
+        if context is None or not hasattr(context, 'seed_id'):
+            # No seed ID provided, skip check
+            return {'violations': [], 'details': []}
+        
+        seed_id = getattr(context, 'seed_id', None)
+        if not seed_id:
+            return {'violations': [], 'details': []}
+        
+        seed = self.seed_registry.get_seed(seed_id)
+        if not seed:
+            return {
+                'violations': [PolicyViolation.SEED_NOT_FOUND],
+                'details': [f"Seed '{seed_id}' not found in registry"]
+            }
         
         return {'violations': [], 'details': []}
 

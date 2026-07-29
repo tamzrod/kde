@@ -79,6 +79,11 @@ class PolicyViolation(Enum):
     INVALID_ARTIFACT_DIRECTORY = "invalid_artifact_directory"
     PRE_CREATION_CHECK_FAILED = "pre_creation_check_failed"
     LABORATORY_RULES_VIOLATION = "laboratory_rules_violation"
+    
+    # INV-RUNTIME-GAPS Mitigation: Runtime verification violations
+    MISSING_DEPENDENCY = "missing_dependency"
+    INVALID_STATE = "invalid_state"
+    EXPERIMENT_NOT_VALIDATED = "experiment_not_validated"
 
 
 @dataclass
