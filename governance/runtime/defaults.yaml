@@ -25,9 +25,9 @@ The separation of scientific lifecycle (Engine status) from operational configur
 | Field | Value | Description |
 |-------|-------|-------------|
 | **default_engine** | KDE-ENGINE-002 | Engine loaded at Runtime startup |
-| **default_seed** | SEED-001 | Seed loaded at Runtime startup |
-| **last_updated** | 2026-07-24 | Configuration last modified date |
-| **updated_by** | Human (INV-EVOLUTION-001) | Authority who made the change |
+| **default_seed** | SEED-003 | Seed loaded at Runtime startup |
+| **last_updated** | 2026-07-28 | Configuration last modified date |
+| **updated_by** | Human (INV-088) | Authority who made the change |
 
 ---
 
@@ -51,10 +51,10 @@ The separation of scientific lifecycle (Engine status) from operational configur
 
 | Field | Value |
 |-------|-------|
-| **Seed ID** | SEED-001 |
-| **Codename** | Genesis |
+| **Seed ID** | SEED-003 |
+| **Codename** | Bootstrap Validation |
 | **Version** | 1.0.0 |
-| **Status** | FROZEN |
+| **Status** | ACTIVE |
 | **Default** | YES |
 
 ---

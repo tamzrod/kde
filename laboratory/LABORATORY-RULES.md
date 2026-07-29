@@ -454,6 +454,49 @@ Investigations with `EXECUTION_MODE: GENERIC_AI`:
 
 ---
 
+---
+
+### Rule 9: Investigation Identifier Naming
+
+**Statement**: Investigation folder names must follow the `INV-XXX` pattern using simple sequential numbers, not descriptive names.
+
+**Definition**: Investigation identifiers follow the pattern `INV-XXX` where XXX is a simple sequential number (e.g., INV-001, INV-002, INV-086).
+
+**Prohibited Naming Patterns**:
+
+| Prohibited | Rationale |
+|------------|-----------|
+| `INV-ARCH-MONO-MICRO-001` | Descriptive names not allowed |
+| `INV-feature-name` | Contains implementation details |
+| `INV-topic-description` | Contains topic keywords |
+| `INV-alpha-beta` | Descriptive suffixes prohibited |
+
+**Correct Naming Examples**:
+
+| Correct | Explanation |
+|---------|-------------|
+| `INV-001` | Simple sequential number |
+| `INV-086` | Next available number |
+| `INV-100` | Any sequential number |
+
+**Folder Structure Inside Investigation**:
+
+Inside the `INV-XXX` folder, any folder/file structure is allowed for organizing investigation documents:
+
+```
+INV-001/
+├── investigation.md
+├── subfolder/
+│   └── document.md
+└── any-structure/
+```
+
+**Rationale**: Following the same pattern as Rule 6 (Experiment Identifier Permanence), investigation identifiers are historical markers and should not encode meaning in the ID itself. The ID should be a simple pointer to a record.
+
+**Authority**: Derived from Rule 6 pattern applied to investigations
+
+---
+
 ## Revision History
 
 | Version | Date | Changes | Authority |
@@ -462,6 +505,7 @@ Investigations with `EXECUTION_MODE: GENERIC_AI`:
 | 1.1.0 | 2026-07-23 | Added Rule 6 (Experiment ID Permanence) and Rule 7 (Historical Experiment Protection) | Human Review, LAB-040 |
 | 1.2.0 | 2026-07-24 | Added timestamp standard reference | INV-TEMPORAL-PROVENANCE |
 | 1.3.0 | 2026-07-28 | Added Rule 8 (Authenticity Enforcement) | Human Review, INV-074 |
+| 1.4.0 | 2026-07-28 | Added Rule 9 (Investigation Identifier Naming) | Human Review, INV-INCIDENT-001 |
 
 ---
 
