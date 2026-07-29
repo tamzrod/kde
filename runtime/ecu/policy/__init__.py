@@ -412,9 +412,12 @@ class PolicyLayer:
         self, plan: ExecutionPlan
     ) -> Dict[str, Any]:
         """Check for unofficial assets in plan."""
-        # Check for engine directories outside of official engines/
+        from ..registry import get_mode_paths
+        
+        # Check for engine directories outside of official path (mode-aware)
         unofficial_paths = []
-        official_engines_dir = os.path.join(self.kde_root, "engines")
+        engines_dir, _, _ = get_mode_paths(self.kde_root)
+        official_engines_dir = engines_dir
         
         for step in plan.steps:
             if step.engine and step.engine.directory:

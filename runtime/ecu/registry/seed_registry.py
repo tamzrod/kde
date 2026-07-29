@@ -20,7 +20,7 @@ class SeedRegistry:
     Runtime registry for KDE seeds with automatic discovery.
     
     Responsibilities:
-    - Discover seeds from the seeds/ directory
+    - Discover seeds from the seeds/ directory (MODE 1) or fused-runtime/seeds/ (MODE 2)
     - Parse seed specifications and metadata
     - Maintain seed registry
     - Support capability queries
@@ -33,8 +33,11 @@ class SeedRegistry:
         Args:
             kde_root: Root path to the KDE runtime directory
         """
+        from . import get_mode_paths
+        
         self.kde_root = kde_root
-        self.seeds_dir = os.path.join(kde_root, "seeds")
+        _, seeds_path, _ = get_mode_paths(kde_root)
+        self.seeds_dir = seeds_path
         self.seeds: Dict[str, SeedMetadata] = {}
         self._discovery_complete = False
     

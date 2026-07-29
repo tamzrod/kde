@@ -49,7 +49,25 @@ class PreflightReport:
     governance_status: Dict[str, Any]
     mission_status: MissionStatus
     initialized_at: str
+    current_mode: Dict[str, str] = None
     auto_selection_status: Dict[str, Any] = None
+
+
+def get_current_mode() -> Dict[str, str]:
+    """Read the current mode from MODE.md using centralized registry module."""
+    from runtime.ecu.registry import get_mode_info
+    
+    info = get_mode_info()
+    return {
+        "mode": info.get("mode", "UNKNOWN"),
+        "format": info.get("format", "Unknown"),
+        "status": info.get("status", "UNKNOWN"),
+        "location": info.get("engines_path", info.get("seeds_path", "N/A")),
+        "use_case": info.get("use_case", "N/A"),
+        "engines_path": info.get("engines_path", "N/A"),
+        "seeds_path": info.get("seeds_path", "N/A"),
+        "governance_path": info.get("governance_path", "N/A")
+    }
 
 
 def get_runtime_health(state: Dict) -> ComponentHealth:
@@ -260,6 +278,7 @@ def run_preflight_check() -> PreflightReport:
     governance = get_governance_status(ecu)
     mission = get_mission_status(runtime_health, ecu_health)
     auto_selection = get_auto_selection_status(ecu)
+    mode = get_current_mode()
     
     return PreflightReport(
         runtime_health=runtime_health,
@@ -268,6 +287,7 @@ def run_preflight_check() -> PreflightReport:
         governance_status=governance,
         mission_status=mission,
         initialized_at=state.get('last_initialization', 'Unknown'),
+        current_mode=mode,
         auto_selection_status=auto_selection
     )
 
@@ -295,6 +315,7 @@ def format_mission_icon(status: MissionStatus) -> str:
 
 def format_report(report: PreflightReport) -> str:
     """Format the pre-flight report for display."""
+    import os
     lines = []
     sep = "=" * 78
     inner_sep = "-" * 78
@@ -323,6 +344,25 @@ def format_report(report: PreflightReport) -> str:
     lines.append(f"  Engine Registry     {format_health_icon(ComponentHealth.READY)} {eng.get('total_engines', 0)} engines ({eng.get('active', 0)} active, {eng.get('historical', 0)} historical)")
     lines.append(f"  Seed Registry       {format_health_icon(ComponentHealth.READY)} {seed.get('total_seeds', 0)} seeds registered")
     lines.append(f"  Initialized At      {report.initialized_at[:19]}")
+    
+    # Display current mode with wiring verification
+    if report.current_mode:
+        mode = report.current_mode
+        mode_icon = "✅" if mode.get('status') == 'ACTIVE' else "⚠️"
+        lines.append(f"  Current Mode        {mode_icon} {mode.get('mode')} ({mode.get('format')})")
+        lines.append(f"  Use Case            {mode.get('use_case', 'N/A')}")
+        lines.append(f"  Engines Path        {mode.get('engines_path', 'N/A')}")
+        lines.append(f"  Seeds Path          {mode.get('seeds_path', 'N/A')}")
+        lines.append(f"  Governance Path    {mode.get('governance_path', 'N/A')}")
+        
+        # Verify actual paths being used
+        from runtime.ecu.registry import get_mode_paths
+        engines_dir, seeds_dir, governance_dir = get_mode_paths('/workspace/project/kde')
+        actual_icon = "✅" if os.path.exists(engines_dir) else "❌"
+        lines.append(f"  Actual Engines Dir  {actual_icon} {engines_dir}")
+        seeds_icon = "✅" if os.path.exists(seeds_dir) else "❌"
+        lines.append(f"  Actual Seeds Dir    {seeds_icon} {seeds_dir}")
+    
     lines.append("")
     
     # Section 2: ECU Component Status

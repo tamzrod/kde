@@ -21,7 +21,7 @@ class EngineRegistry:
     Runtime registry for KDE engines with automatic discovery.
     
     Responsibilities:
-    - Discover engines from the engines/ directory
+    - Discover engines from the engines/ directory (MODE 1) or fused-runtime/engines/ (MODE 2)
     - Parse engine specifications and metadata
     - Maintain engine registry
     - Support capability queries
@@ -34,10 +34,43 @@ class EngineRegistry:
         Args:
             kde_root: Root path to the KDE runtime directory
         """
+        from . import get_mode_paths, get_kde_mode
+        
         self.kde_root = kde_root
-        self.engines_dir = os.path.join(kde_root, "engines")
+        engines_path, _, _ = get_mode_paths(kde_root)
+        self.engines_dir = engines_path
+        self.mode = get_kde_mode()
         self.engines: Dict[str, EngineMetadata] = {}
         self._discovery_complete = False
+    
+    def _get_spec_path(self, engine_path: str, directory: str) -> Optional[str]:
+        """Get the correct specification file path based on mode."""
+        if self.mode == 2:
+            # FUSED mode: look for .fused files
+            paths = [
+                os.path.join(engine_path, "specification.fused"),
+                os.path.join(engine_path, "SPEC.fused"),
+            ]
+        else:
+            # Markdown mode: look for .md files
+            paths = [
+                os.path.join(engine_path, "specification.md"),
+                os.path.join(engine_path, "SPEC.md"),
+            ]
+        
+        for path in paths:
+            if os.path.exists(path):
+                return path
+        return None
+    
+    def _get_methodology_path(self, engine_path: str) -> Optional[str]:
+        """Get the correct methodology file path based on mode."""
+        if self.mode == 2:
+            methodology_path = os.path.join(engine_path, "methodology.fused")
+        else:
+            methodology_path = os.path.join(engine_path, "methodology.md")
+        
+        return methodology_path if os.path.exists(methodology_path) else None
     
     def discover(self) -> List[EngineMetadata]:
         """
@@ -81,27 +114,17 @@ class EngineRegistry:
         Returns:
             EngineMetadata if valid engine found, None otherwise
         """
-        # Look for specification files
-        spec_path = os.path.join(engine_path, "specification.md")
-        spec_alt_path = os.path.join(engine_path, "SPEC.md")  # Alternative naming
+        # Look for specification files (mode-aware)
+        spec_path = self._get_spec_path(engine_path, directory)
         manifest_path = os.path.join(engine_path, "manifest.yaml")
         
         metadata = None
         
-        if os.path.exists(spec_path):
+        if spec_path:
             # Parse specification
             metadata = self._parse_specification(spec_path)
             if metadata:
                 metadata.specification_path = spec_path
-                
-                # Look for manifest.yaml for additional metadata
-                if os.path.exists(manifest_path):
-                    self._parse_manifest(metadata, manifest_path)
-        elif os.path.exists(spec_alt_path):
-            # Parse from SPEC.md
-            metadata = self._parse_specification(spec_alt_path)
-            if metadata:
-                metadata.specification_path = spec_alt_path
                 
                 # Look for manifest.yaml for additional metadata
                 if os.path.exists(manifest_path):
@@ -116,9 +139,9 @@ class EngineRegistry:
         # Set directory
         metadata.directory = directory
         
-        # Look for methodology
-        methodology_path = os.path.join(engine_path, "methodology.md")
-        if os.path.exists(methodology_path):
+        # Look for methodology (mode-aware)
+        methodology_path = self._get_methodology_path(engine_path)
+        if methodology_path:
             metadata.methodology_path = methodology_path
         
         # Extract capabilities from metadata
@@ -128,10 +151,10 @@ class EngineRegistry:
     
     def _parse_specification(self, spec_path: str) -> Optional[EngineMetadata]:
         """
-        Parse an engine specification.md file.
+        Parse an engine specification file (supports .md and .fused formats).
         
         Args:
-            spec_path: Path to specification.md
+            spec_path: Path to specification file
         
         Returns:
             EngineMetadata parsed from specification
@@ -140,29 +163,54 @@ class EngineRegistry:
             with open(spec_path, 'r') as f:
                 content = f.read()
             
-            # Extract engine ID
-            engine_id_match = re.search(r'\*\*Engine ID\*\*:\s*(\S+)', content)
-            if not engine_id_match:
+            # Check format
+            is_fused = spec_path.endswith('.fused')
+            
+            if is_fused:
+                # FUSED format: |engine_id=KDE-ENGINE-001
+                engine_id = None
+                version = "0.0.0"
+                codename = None
+                status_str = "active"
+                
+                for line in content.split('\n'):
+                    line = line.strip()
+                    if line.startswith('|engine_id='):
+                        engine_id = line.split('=', 1)[1].strip()
+                    elif line.startswith('|version='):
+                        version = line.split('=', 1)[1].strip()
+                    elif line.startswith('|codename='):
+                        codename = line.split('=', 1)[1].strip()
+                    elif '|status=' in line:
+                        status_str = line.split('|status=', 1)[1].strip().split('|')[0].strip()
+            else:
+                # Markdown format: **Engine ID:** value
+                engine_id_match = re.search(r'\*\*Engine ID\*\*:\s*(\S+)', content)
+                if not engine_id_match:
+                    return None
+                engine_id = engine_id_match.group(1)
+                
+                version_match = re.search(r'\*\*Version\*\*:\s*(\S+)', content)
+                version = version_match.group(1) if version_match else "0.0.0"
+                
+                codename_match = re.search(r'\*\*Codename\*\*:\s*(\S+)', content)
+                codename = codename_match.group(1) if codename_match else engine_id
+                
+                status_match = re.search(r'\*\*Status\*\*:\s*(\S+)', content)
+                status_str = status_match.group(1).lower() if status_match else "active"
+            
+            if not engine_id:
                 return None
-            engine_id = engine_id_match.group(1)
             
-            # Extract version
-            version_match = re.search(r'\*\*Version\*\*:\s*(\S+)', content)
-            version = version_match.group(1) if version_match else "0.0.0"
+            if not codename:
+                codename = engine_id
             
-            # Extract codename
-            codename_match = re.search(r'\*\*Codename\*\*:\s*(\S+)', content)
-            codename = codename_match.group(1) if codename_match else engine_id
-            
-            # Extract status
-            status_match = re.search(r'\*\*Status\*\*:\s*(\S+)', content)
-            status_str = status_match.group(1).lower() if status_match else "active"
-            
-            if "historical" in status_str:
+            # Parse status
+            if "historical" in status_str.lower():
                 status = EngineStatus.HISTORICAL
-            elif "deprecated" in status_str:
+            elif "deprecated" in status_str.lower():
                 status = EngineStatus.DEPRECATED
-            elif "experimental" in status_str:
+            elif "experimental" in status_str.lower():
                 status = EngineStatus.EXPERIMENTAL
             else:
                 status = EngineStatus.ACTIVE
