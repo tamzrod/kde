@@ -8,41 +8,53 @@ triggers:
   - preflight check
 ---
 
-# KDE Investigation Framework
+# KDE Investigation Framework Skill
 
 This repository operates under the Knowledge-Driven Engineering (KDE) Laboratory methodology.
 
-## Core Rules
+## Purpose
 
-1. **Laboratory Investigation**: Every prompt must be treated as a Laboratory Investigation when the KDE Engine is running.
+This skill provides guidance for conducting investigations and experiments within the KDE Laboratory framework.
 
-2. **File Protection**: No files outside the `/laboratory/` directory may be edited without explicit human approval. Exception: runtime operation files in `/runtime/` may be modified during engine operations. This rule is also governed by engine running state - protections end when the engine stops.
+## Authoritative Sources
 
-## Investigation Protocol
+| Content | Location | Purpose |
+|---------|----------|---------|
+| Five Core Principles | `runtime/principles_enforcer.py` | Actual enforcement code |
+| Laboratory Workflow | `laboratory/WORKFLOW.md` | Investigation lifecycle (9 stages) |
+| Investigation Templates | `laboratory/templates/investigation-template.md` | Investigation artifact template |
+| Experiment Templates | `laboratory/templates/experiment-template.md` | Experiment artifact template |
+| ECU Runtime | `runtime/ecu/` | Execution control and governance |
+| Pre-Flight Check | `runtime/preflight.py` | System readiness verification |
 
-When conducting investigations:
+## Investigation Workflow
 
-1. **Acknowledge the Five Core Principles** before any work
-2. **Follow the Bootstrap Sequence** for each session
-3. **Run Pre-Flight Check** to verify system readiness
-4. **Document findings** with proper evidence classification
-5. **Never auto-continue** without human authorization
-6. **Never self-approve** your own work
-7. **Never self-promote** knowledge without human approval
+When conducting investigations, follow the 9-stage workflow defined in `laboratory/WORKFLOW.md`:
 
-## Five Core Principles
+1. IDEA → 2. INVESTIGATION → 3. EVIDENCE COLLECTION → 4. OBSERVATION → 5. SYNTHESIS → 6. VALIDATION → 7. CANDIDATE KNOWLEDGE → 8. PROMOTION → 9. KNOWLEDGE REPOSITORY
 
-| Rule | Enforcement |
-|------|-------------|
-| No Auto-Continuation | Checkpoints block unauthorized continuation |
-| No Self-Approval | Blocks REVIEW → APPROVED for AI |
-| No Self-Promotion | Blocks VALIDATED → PROMOTED for AI |
-| Distinguish Evidence | Classifies content by evidence level |
-| Evidence-Based Changes | Requires evidence citations |
+## Required Artifacts
 
-## Startup Command
+For each investigation, create artifacts in `/laboratory/investigations/INV-XXX/`:
+- `investigation.md` - Research question and scope
+- `index.md` - Experiment index
+- `links/` - Links to experiments
 
-To initialize the KDE runtime, run:
+For each experiment, create artifacts in `/laboratory/experiments/LAB-XXX/`:
+- `experiment.md` - Experiment definition with hypothesis
+- `runs/` - Run records
+- `evidence/` - Evidence files
+
+## Version Stamping
+
+All investigation artifacts MUST include:
+- **Engine**: KDE-ENGINE-XXX (vX.Y.Z)
+- **Seed**: SEED-XXX (vX.Y.Z)
+- Timestamps in ISO-8601 UTC format
+
+## Quick Start
+
+To initialize the KDE runtime and verify system readiness:
 
 ```bash
 python3 -c "
@@ -51,3 +63,5 @@ report = run_preflight_check()
 print(format_report(report))
 "
 ```
+
+See `laboratory/WORKFLOW.md` for the complete investigation protocol.
