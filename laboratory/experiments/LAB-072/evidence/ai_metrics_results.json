@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-07-29T22:45:35.061324Z",
+  "token_comparison": {
+    "raw_md": {
+      "size": 14441,
+      "tokens": 13681
+    },
+    "pre_digested": {
+      "size": 16380,
+      "tokens": 13104
+    },
+    "fused": {
+      "size": 13891,
+      "tokens": 11112
+    },
+    "token_reduction_pct": -4.21752795848257
+  },
+  "response_time": {
+    "raw_md_ms": 0.051343983999686316,
+    "pre_digested_ms": 0.04450815499967575,
+    "fused_ms": 0.05062224499943113
+  },
+  "mutation_rate": {
+    "raw_md_drift_pct": 2.564102564102566,
+    "pre_digested_drift_pct": 0.0,
+    "improvement": 2.564102564102566
+  }
+}

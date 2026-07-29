@@ -1,0 +1,49 @@
+{
+  "source": "LAB-069 Pre-digested JSON",
+  "source_size_bytes": 13906,
+  "components": 10,
+  "formats": [
+    {
+      "name": "JSON",
+      "parse_ms": 0.040140076000170666,
+      "size_bytes": 13906,
+      "size_kb": 13.580078125,
+      "vs_json_pct": 0
+    },
+    {
+      "name": "YAML",
+      "parse_ms": 0.060210114000256,
+      "size_bytes": 14116,
+      "size_kb": 13.78515625,
+      "vs_json_pct": 1.510139508125996
+    },
+    {
+      "name": "INI",
+      "parse_ms": 0.0361260684001536,
+      "size_bytes": 13709,
+      "size_kb": 13.3876953125,
+      "vs_json_pct": -1.416654681432472
+    },
+    {
+      "name": "FUSED",
+      "parse_ms": 0.038133072200162134,
+      "size_bytes": 14143,
+      "size_kb": 13.8115234375,
+      "vs_json_pct": 1.7043003020279057
+    },
+    {
+      "name": "CSV",
+      "parse_ms": 0.03211206080013653,
+      "size_bytes": 79,
+      "size_kb": 0.0771484375,
+      "vs_json_pct": -99.43189989932402
+    },
+    {
+      "name": "XML",
+      "parse_ms": 0.10035019000042666,
+      "size_bytes": 17521,
+      "size_kb": 17.1103515625,
+      "vs_json_pct": 25.995972961311665
+    }
+  ]
+}
