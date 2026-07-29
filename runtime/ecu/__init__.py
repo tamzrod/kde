@@ -397,6 +397,68 @@ class RuntimeECU:
         
         return aggregated
     
+    def execute_with_auto_selection(
+        self,
+        request: ExecutionRequest,
+        execution_fn: Optional[callable] = None
+    ) -> AggregatedResult:
+        """
+        Execute a request with automatic engine and seed selection.
+        
+        This is the primary execution method that:
+        1. Automatically resolves the best engine for the request's capabilities
+        2. Automatically selects compatible seeds
+        3. Creates an execution plan
+        4. Executes the plan
+        
+        Args:
+            request: Execution request with required_capabilities and keywords
+            execution_fn: Optional function to execute engines
+            
+        Returns:
+            AggregatedResult from plan execution
+            
+        Raises:
+            NoSuitableEngineError: If no engine matches the required capabilities
+        """
+        # Step 1: Get available engines and seeds
+        engines = self.engine_registry.get_active_engines()
+        seeds = self.seed_registry.get_active_seeds()
+        
+        # Step 2: Auto-resolve engine selection
+        engine_selections = self.capability_resolver.resolve(request, engines, seeds)
+        
+        if not engine_selections:
+            # Fallback to default engine (GAMMA - most capable)
+            default_engine = self.engine_registry.get_engine("KDE-ENGINE-003")
+            if default_engine:
+                engine_selections = [EngineSelection(
+                    engine=default_engine,
+                    reason="default - no match found",
+                    confidence=0.5
+                )]
+            else:
+                raise RuntimeError("No suitable engine found and no default available")
+        
+        # Step 3: Auto-select compatible seeds
+        seed_selections = self.capability_resolver.select_seeds(
+            engine_selections,
+            request.preferred_seeds,
+            seeds
+        )
+        
+        # Step 4: Create execution plan
+        plan = self.execution_planner.create_plan(
+            request,
+            engine_selections,
+            seed_selections
+        )
+        
+        # Step 5: Execute the plan
+        result = self.execute_plan(plan, execution_fn)
+        
+        return result
+    
     def get_runtime_state(self) -> Dict[str, Any]:
         """
         Get current ECU runtime state.

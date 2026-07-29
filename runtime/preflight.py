@@ -49,6 +49,7 @@ class PreflightReport:
     governance_status: Dict[str, Any]
     mission_status: MissionStatus
     initialized_at: str
+    auto_selection_status: Dict[str, Any] = None
 
 
 def get_runtime_health(state: Dict) -> ComponentHealth:
@@ -198,6 +199,45 @@ def get_governance_status(ecu) -> Dict[str, Any]:
     }
 
 
+def get_auto_selection_status(ecu) -> Dict[str, Any]:
+    """Get automatic engine/seed selection capability status."""
+    from runtime.ecu.models import ExecutionRequest, CapabilityType
+    
+    # Test requests for different capabilities
+    test_cases = [
+        ("SYNTHESIS", [CapabilityType.SYNTHESIS], ["test"]),
+        ("VALIDATION", [CapabilityType.VALIDATION], ["test"]),
+        ("GENERATION", [CapabilityType.GENERATION], ["test"]),
+        ("ANALYSIS", [CapabilityType.ANALYSIS], ["test"]),
+    ]
+    
+    results = {}
+    engines = ecu.engine_registry.get_active_engines()
+    seeds = ecu.seed_registry.get_active_seeds()
+    
+    for name, caps, keywords in test_cases:
+        request = ExecutionRequest(
+            request_id=f"PREFLIGHT-{name}",
+            description=f"Test {name}",
+            required_capabilities=caps,
+            keywords=keywords
+        )
+        selections = ecu.capability_resolver.resolve(request, engines, seeds)
+        results[name] = {
+            "count": len(selections),
+            "top_engine": selections[0].engine.codename if selections else None,
+            "confidence": selections[0].confidence if selections else 0.0
+        }
+    
+    return {
+        "enabled": True,
+        "method": "execute_with_auto_selection()",
+        "test_results": results,
+        "engines_available": len(engines),
+        "seeds_available": len(seeds)
+    }
+
+
 def get_mission_status(runtime_health: ComponentHealth, ecu_health: ComponentHealth) -> MissionStatus:
     """Determine mission readiness status."""
     if runtime_health == ComponentHealth.FAILED or ecu_health == ComponentHealth.FAILED:
@@ -219,6 +259,7 @@ def run_preflight_check() -> PreflightReport:
     ecu_components, ecu_health = get_ecu_component_status(ecu)
     governance = get_governance_status(ecu)
     mission = get_mission_status(runtime_health, ecu_health)
+    auto_selection = get_auto_selection_status(ecu)
     
     return PreflightReport(
         runtime_health=runtime_health,
@@ -226,7 +267,8 @@ def run_preflight_check() -> PreflightReport:
         overall_ecu_health=ecu_health,
         governance_status=governance,
         mission_status=mission,
-        initialized_at=state.get('last_initialization', 'Unknown')
+        initialized_at=state.get('last_initialization', 'Unknown'),
+        auto_selection_status=auto_selection
     )
 
 
@@ -330,7 +372,28 @@ def format_report(report: PreflightReport) -> str:
     lines.append(f"  Checkpoints          {checkpoint.get('total', 0)} created, {checkpoint.get('authorized', 0)} authorized")
     lines.append("")
     
-    # Section 4: Mission Readiness
+    # Section 4: Auto Engine Selection (REWIRED)
+    lines.append("■ AUTO ENGINE SELECTION [REWIRED]")
+    lines.append(inner_sep)
+    
+    if report.auto_selection_status:
+        auto = report.auto_selection_status
+        lines.append(f"  Status               ✅ ENABLED")
+        lines.append(f"  Method              {auto.get('method')}")
+        lines.append(f"  Engines Available   {auto.get('engines_available')}")
+        lines.append(f"  Seeds Available    {auto.get('seeds_available')}")
+        lines.append("")
+        lines.append("  Capability Routing:")
+        for cap_name, result in auto.get('test_results', {}).items():
+            top = result.get('top_engine') or 'None'
+            conf = result.get('confidence', 0)
+            count = result.get('count', 0)
+            lines.append(f"    {cap_name:<12} → {top:<20} ({count} engines, {conf:.0%} confidence)")
+    else:
+        lines.append(f"  Status               ⚠️ NOT AVAILABLE")
+    lines.append("")
+    
+    # Section 5: Mission Readiness
     lines.append("■ MISSION READINESS")
     lines.append(inner_sep)
     

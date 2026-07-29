@@ -298,6 +298,70 @@ class RuntimeCommandHandler:
                 }
         
         return list(canonical_commands.values())
+    
+    def _run_auto_select(self, capability: str = None) -> str:
+        """
+        Execute auto engine selection demo.
+        
+        Args:
+            capability: Optional capability to test (SYNTHESIS, VALIDATION, etc.)
+        """
+        try:
+            from runtime.ecu import create_ecu
+            from runtime.ecu.models import ExecutionRequest, CapabilityType
+            
+            ecu = create_ecu('/workspace/project/kde')
+            engines = ecu.engine_registry.get_active_engines()
+            seeds = ecu.seed_registry.get_active_seeds()
+            
+            result_lines = ["=" * 60]
+            result_lines.append("AUTO ENGINE SELECTION DEMO")
+            result_lines.append("=" * 60)
+            result_lines.append("")
+            
+            # Test all capabilities if none specified
+            if capability:
+                caps = [getattr(CapabilityType, capability.upper(), None)]
+                if caps[0] is None:
+                    return f"Unknown capability: {capability}"
+            else:
+                caps = list(CapabilityType)
+            
+            for cap in caps:
+                if cap is None:
+                    continue
+                request = ExecutionRequest(
+                    request_id=f"DEMO-{cap.value}",
+                    description=f"Test {cap.value}",
+                    required_capabilities=[cap],
+                    keywords=["test"]
+                )
+                
+                selections = ecu.capability_resolver.resolve(request, engines, seeds)
+                
+                result_lines.append(f"Capability: {cap.value}")
+                result_lines.append("-" * 40)
+                
+                if selections:
+                    for i, sel in enumerate(selections[:3], 1):
+                        result_lines.append(
+                            f"  {i}. {sel.engine.codename} ({sel.engine.engine_id})"
+                        )
+                        result_lines.append(f"     Confidence: {sel.confidence:.0%}")
+                        result_lines.append(f"     Reason: {sel.reason}")
+                else:
+                    result_lines.append("  No matching engines")
+                
+                result_lines.append("")
+            
+            result_lines.append(f"Method: execute_with_auto_selection()")
+            result_lines.append(f"Engines: {len(engines)} available")
+            result_lines.append(f"Seeds: {len(seeds)} available")
+            
+            return "\n".join(result_lines)
+            
+        except Exception as e:
+            return f"Auto-select demo failed: {str(e)}"
 
 
 def create_parser() -> CommandParser:

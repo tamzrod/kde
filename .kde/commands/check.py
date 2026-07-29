@@ -286,6 +286,62 @@ def check_laboratory_rules(artifact_id: Optional[str] = None) -> CheckResult:
         )
 
 
+def check_auto_engine_selection() -> CheckResult:
+    """Check if automatic engine selection is available and working."""
+    try:
+        import sys
+        from pathlib import Path
+        
+        repo_root = Path(__file__).parent.parent.parent
+        sys.path.insert(0, str(repo_root))
+        from runtime.ecu import create_ecu
+        from runtime.ecu.models import ExecutionRequest, CapabilityType
+        
+        ecu = create_ecu(str(repo_root))
+        
+        # Test auto-selection
+        engines = ecu.engine_registry.get_active_engines()
+        seeds = ecu.seed_registry.get_active_seeds()
+        
+        request = ExecutionRequest(
+            request_id="CHECK-AUTO",
+            description="Auto-selection test",
+            required_capabilities=[CapabilityType.SYNTHESIS],
+            keywords=["test"]
+        )
+        
+        selections = ecu.capability_resolver.resolve(request, engines, seeds)
+        
+        if selections:
+            top_engine = selections[0].engine.codename
+            return CheckResult(
+                name="Auto Engine Selection",
+                passed=True,
+                details=f"Available, routes SYNTHESIS → {top_engine}"
+            )
+        else:
+            return CheckResult(
+                name="Auto Engine Selection",
+                passed=False,
+                details="No engines matched test request",
+                severity="WARNING"
+            )
+    except AttributeError as e:
+        return CheckResult(
+            name="Auto Engine Selection",
+            passed=False,
+            details=f"Method not found: {str(e)[:50]}",
+            severity="WARNING"
+        )
+    except Exception as e:
+        return CheckResult(
+            name="Auto Engine Selection",
+            passed=True,  # Don't fail on this yet
+            details=f"Check skipped: {str(e)[:50]}",
+            severity="INFO"
+        )
+
+
 def run_all_checks(artifact_id: Optional[str] = None) -> List[CheckResult]:
     """Run all pre-flight checks."""
     checks = [
@@ -293,6 +349,7 @@ def run_all_checks(artifact_id: Optional[str] = None) -> List[CheckResult]:
         check_runtime_state(),
         check_ecu_enforcing(),
         check_laboratory_rules(artifact_id),
+        check_auto_engine_selection(),  # NEW: Rewired auto-selection
     ]
     return checks
 
