@@ -1,0 +1,32 @@
+{
+  "scan_timestamp": "2026-07-29T23:25:00Z",
+  "skill_directory": "/workspace/project/kde/.agents/skills",
+  "discovered_skills": [
+    {
+      "file_path": "/workspace/project/kde/.agents/skills/kde-investigation-framework.md",
+      "skill_id": "skill-kde_investigation_framework",
+      "name": "kde-investigation-framework",
+      "description": "No description",
+      "triggers": ["investigation", "experiment", "start engine", "preflight check"],
+      "type": "repo",
+      "metadata": {
+        "front_matter": {
+          "name": "kde-investigation-framework",
+          "type": "repo",
+          "triggers": ["investigation", "experiment", "start engine", "preflight check"]
+        }
+      }
+    }
+  ],
+  "discovered_count": 1,
+  "total_size_bytes": 2211,
+  "registry_status": {
+    "kde-investigation-framework": "NOT_REGISTERED"
+  },
+  "gap_analysis": {
+    "skill_files_exist": true,
+    "in_runtime_registry": false,
+    "loadable_by_runtime": false,
+    "root_cause": "SkillLoader only reads from registry.json, does not scan .agents/skills/"
+  }
+}
