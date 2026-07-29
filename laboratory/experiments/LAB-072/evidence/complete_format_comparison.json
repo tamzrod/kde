@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-07-29T22:52:11.343954Z",
+  "source": "LAB-069 Pre-digested",
+  "components": 10,
+  "results": {
+    "Raw MD": {
+      "tokens": 13681,
+      "size_bytes": 14441,
+      "parse_ms": 0.051535854000576364,
+      "drift_pct": 2.5,
+      "stability_pct": 97.5,
+      "score": 39.934042078432654
+    },
+    "Pre-digested": {
+      "tokens": 13104,
+      "size_bytes": 16380,
+      "parse_ms": 0.04325882500052103,
+      "drift_pct": 0.0,
+      "stability_pct": 100.0,
+      "score": 36.25549415551584
+    },
+    "FUSED": {
+      "tokens": 9029,
+      "size_bytes": 13891,
+      "parse_ms": 0.04848045499966247,
+      "drift_pct": 0.0,
+      "stability_pct": 100.0,
+      "score": 28.88483180402018
+    },
+    "YAML": {
+      "tokens": 11990,
+      "size_bytes": 14106,
+      "parse_ms": 0.051167793999411515,
+      "drift_pct": 0.1,
+      "stability_pct": 99.9,
+      "score": 35.625521006734374
+    },
+    "TOML": {
+      "tokens": 11252,
+      "size_bytes": 13723,
+      "parse_ms": 0.04491456499999913,
+      "drift_pct": 0.0,
+      "stability_pct": 100.0,
+      "score": 32.755716549999946
+    },
+    "XML": {
+      "tokens": 19262,
+      "size_bytes": 17511,
+      "parse_ms": 0.05466822400012461,
+      "drift_pct": 0.3,
+      "stability_pct": 99.7,
+      "score": 51.518530334872004
+    },
+    "INI": {
+      "tokens": 10274,
+      "size_bytes": 13699,
+      "parse_ms": 0.04591817499931494,
+      "drift_pct": 0.0,
+      "stability_pct": 100.0,
+      "score": 30.934582005167186
+    },
+    "CSV": {
+      "tokens": 13755,
+      "size_bytes": 19650,
+      "parse_ms": 0.14350460399964504,
+      "drift_pct": 0.5,
+      "stability_pct": 99.5,
+      "score": 58.71401204443983
+    }
+  },
+  "winners": {
+    "tokens": "FUSED",
+    "parse": "Pre-digested",
+    "stability": "Pre-digested",
+    "overall": "FUSED"
+  }
+}
