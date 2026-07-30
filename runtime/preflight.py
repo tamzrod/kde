@@ -6,6 +6,8 @@ Separates operational state from historical governance information.
 Includes Five Core Principles enforcement verification.
 """
 
+import importlib
+import subprocess
 import sys
 from typing import Dict, List, Any, Tuple
 from dataclasses import dataclass
@@ -13,6 +15,78 @@ from enum import Enum
 
 sys.path.insert(0, '/workspace/project/kde')
 
+# ============================================================================
+# DEPENDENCY CHECK - Must be first to ensure required packages are installed
+# This code is embedded directly to avoid import chain issues
+# ============================================================================
+
+PACKAGE_TO_PIP: Dict[str, str] = {
+    'yaml': 'pyyaml',
+}
+
+REQUIRED_DEPENDENCIES: Dict[str, List[str]] = {
+    'yaml': [
+        'runtime.ecu.registry.engine_registry',
+        'runtime.ecu.registry.seed_registry',
+    ],
+}
+
+
+def check_and_fix_dependencies() -> Tuple[bool, List[str]]:
+    """Check dependencies and auto-install if missing."""
+    auto_installed = []
+    still_missing = []
+    
+    for package, importers in REQUIRED_DEPENDENCIES.items():
+        try:
+            importlib.import_module(package)
+            print(f"✓ {package} - available")
+        except ImportError:
+            pip_name = PACKAGE_TO_PIP.get(package, package)
+            print(f"📦 {package} not found, attempting auto-install...")
+            
+            try:
+                result = subprocess.run(
+                    [sys.executable, '-m', 'pip', 'install', pip_name, '-q'],
+                    capture_output=True,
+                    text=True,
+                    timeout=120
+                )
+                
+                if result.returncode == 0:
+                    print(f"   ✅ Successfully installed {pip_name}")
+                    # Verify import now works
+                    try:
+                        importlib.import_module(package)
+                    except ImportError:
+                        still_missing.append(package)
+                else:
+                    print(f"   ❌ Failed to install {pip_name}")
+                    still_missing.append(package)
+                    
+            except subprocess.TimeoutExpired:
+                print(f"   ❌ Installation timed out")
+                still_missing.append(package)
+            except Exception as e:
+                print(f"   ❌ Error: {str(e)}")
+                still_missing.append(package)
+    
+    return len(still_missing) == 0, still_missing
+
+
+# Run dependency check BEFORE any other imports
+all_present, missing = check_and_fix_dependencies()
+print()  # blank line for readability
+
+if not all_present:
+    print("❌ PRE-FLIGHT CHECK FAILED: Missing required dependencies")
+    print(f"   Missing: {', '.join(missing)}")
+    print()
+    print("Please install missing dependencies and retry:")
+    print(f"   pip install {' '.join(missing)}")
+    sys.exit(1)
+
+# Now safe to import the rest
 from runtime.ecu import create_ecu
 from runtime.principles_enforcer import FivePrinciplesEnforcer
 

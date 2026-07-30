@@ -1,0 +1,4 @@
+# KDE Runtime Dependencies
+# These packages are required for the KDE investigation framework
+
+pyyaml>=6.0
