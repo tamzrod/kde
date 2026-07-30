@@ -18,9 +18,10 @@ from ..models import (
 class SeedRegistry:
     """
     Runtime registry for KDE seeds with automatic discovery.
+    Uses FUSED format by default.
     
     Responsibilities:
-    - Discover seeds from the seeds/ directory (MODE 1) or fused-runtime/seeds/ (MODE 2)
+    - Discover seeds from the fused-runtime/seeds/ directory
     - Parse seed specifications and metadata
     - Maintain seed registry
     - Support capability queries

@@ -19,9 +19,10 @@ from ..models import (
 class EngineRegistry:
     """
     Runtime registry for KDE engines with automatic discovery.
+    Uses FUSED format by default.
     
     Responsibilities:
-    - Discover engines from the engines/ directory (MODE 1) or fused-runtime/engines/ (MODE 2)
+    - Discover engines from the fused-runtime/engines/ directory
     - Parse engine specifications and metadata
     - Maintain engine registry
     - Support capability queries
@@ -34,42 +35,28 @@ class EngineRegistry:
         Args:
             kde_root: Root path to the KDE runtime directory
         """
-        from . import get_mode_paths, get_kde_mode
+        from . import get_mode_paths
         
         self.kde_root = kde_root
         engines_path, _, _ = get_mode_paths(kde_root)
         self.engines_dir = engines_path
-        self.mode = get_kde_mode()
         self.engines: Dict[str, EngineMetadata] = {}
         self._discovery_complete = False
     
     def _get_spec_path(self, engine_path: str, directory: str) -> Optional[str]:
-        """Get the correct specification file path based on mode."""
-        if self.mode == 2:
-            # FUSED mode: look for .fused files
-            paths = [
-                os.path.join(engine_path, "specification.fused"),
-                os.path.join(engine_path, "SPEC.fused"),
-            ]
-        else:
-            # Markdown mode: look for .md files
-            paths = [
-                os.path.join(engine_path, "specification.md"),
-                os.path.join(engine_path, "SPEC.md"),
-            ]
-        
+        """Get the specification file path (FUSED format)."""
+        paths = [
+            os.path.join(engine_path, "specification.fused"),
+            os.path.join(engine_path, "SPEC.fused"),
+        ]
         for path in paths:
             if os.path.exists(path):
                 return path
         return None
     
     def _get_methodology_path(self, engine_path: str) -> Optional[str]:
-        """Get the correct methodology file path based on mode."""
-        if self.mode == 2:
-            methodology_path = os.path.join(engine_path, "methodology.fused")
-        else:
-            methodology_path = os.path.join(engine_path, "methodology.md")
-        
+        """Get the methodology file path (FUSED format)."""
+        methodology_path = os.path.join(engine_path, "methodology.fused")
         return methodology_path if os.path.exists(methodology_path) else None
     
     def discover(self) -> List[EngineMetadata]:
