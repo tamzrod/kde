@@ -8,6 +8,7 @@ Uses 'python3 -m' for proper package imports.
 import os
 import sys
 import subprocess
+import argparse
 from pathlib import Path
 
 # Determine kde-core base directory
@@ -19,44 +20,92 @@ RUNTIME_DIR = KDE_CORE_DIR / "runtime"
 # Set KDE_BASE for runtime configuration
 os.environ["KDE_BASE"] = str(KDE_CORE_DIR)
 
-def main():
-    args = sys.argv[1:]  # Remove script name
-    
-    if not args:
-        # Default: run preflight
-        args = ["runtime.preflight"]
-    
-    command = args[0]
-    
-    if command == "help":
-        print("""kde-core Commands:
-  kde preflight    Run pre-flight check
-  kde doctor       Alias for preflight  
-  kde help         Show this help
-  kde <module>     Run any runtime module
-
-Examples:
-  kde preflight
-  kde runtime.preflight
-  kde doctor
-""")
-        return 0
-    
-    # Map commands
-    if command == "doctor":
-        command = "runtime.preflight"
-    
-    # Run as module using -m flag
+def run_preflight():
+    """Run preflight check."""
     try:
         result = subprocess.run(
-            [sys.executable, "-m"] + command.split("."),
+            [sys.executable, "-m", "runtime.preflight"],
             cwd=str(KDE_CORE_DIR),
             env={**os.environ, "PYTHONPATH": str(KDE_CORE_DIR)}
         )
         return result.returncode
     except Exception as e:
-        print(f"Error running {command}: {e}")
+        print(f"Error running preflight: {e}")
         return 1
+
+def run_sync(args):
+    """Run sync script."""
+    sync_script = SCRIPT_DIR / "sync.sh"
+    
+    cmd = [str(sync_script)]
+    if args.dry_run:
+        cmd.append("--dry-run")
+    if args.auto_commit:
+        cmd.append("--auto-commit")
+    if args.force:
+        cmd.append("--force")
+    if args.remote:
+        cmd.extend(["--remote", args.remote])
+    if args.branch:
+        cmd.extend(["--branch", args.branch])
+    
+    try:
+        result = subprocess.run(cmd, cwd=str(KDE_CORE_DIR.parent))
+        return result.returncode
+    except Exception as e:
+        print(f"Error running sync: {e}")
+        return 1
+
+def main():
+    parser = argparse.ArgumentParser(
+        prog="kde",
+        description="kde-core Launcher"
+    )
+    subparsers = parser.add_subparsers(dest="command", help="Commands")
+    
+    # preflight command
+    preflight_parser = subparsers.add_parser("preflight", help="Run pre-flight check")
+    
+    # doctor alias
+    doctor_parser = subparsers.add_parser("doctor", help="Alias for preflight")
+    
+    # sync command
+    sync_parser = subparsers.add_parser("sync", help="Sync kde-core with main repository")
+    sync_parser.add_argument("--dry-run", "-d", action="store_true", help="Preview without applying")
+    sync_parser.add_argument("--auto-commit", "-a", action="store_true", help="Auto commit changes")
+    sync_parser.add_argument("--force", "-f", action="store_true", help="Force sync with uncommitted changes")
+    sync_parser.add_argument("--remote", "-r", default="origin", help="Remote name (default: origin)")
+    sync_parser.add_argument("--branch", "-b", default="main", help="Branch name (default: main)")
+    
+    # help command
+    help_parser = subparsers.add_parser("help", help="Show this help")
+    
+    args = parser.parse_args(sys.argv[1:] if len(sys.argv) > 1 else ["help"])
+    
+    if args.command == "preflight" or args.command == "doctor":
+        return run_preflight()
+    elif args.command == "sync":
+        return run_sync(args)
+    elif args.command == "help":
+        parser.print_help()
+        print("""
+Commands:
+  kde preflight         Run pre-flight check
+  kde doctor            Alias for preflight
+  kde sync              Sync kde-core with main repository
+  kde sync --dry-run    Preview sync without applying
+  kde sync --help      Show sync help
+
+Examples:
+  kde preflight
+  kde sync
+  kde sync --dry-run
+  kde sync --remote upstream
+""")
+        return 0
+    else:
+        parser.print_help()
+        return 0
 
 if __name__ == "__main__":
     sys.exit(main())

@@ -47,6 +47,7 @@ class FileBoundaryGuard:
     
     Checks all file write operations against permitted boundaries:
     - /laboratory/** - Allowed (Laboratory Rules apply)
+    - /kde-core/laboratory/** - Allowed (Laboratory Rules apply)
     - /runtime/logs/** - Allowed (exempt)
     - Everything else - Requires human approval
     """
@@ -57,6 +58,7 @@ class FileBoundaryGuard:
     # Allowed path prefixes
     ALLOWED_PREFIXES = [
         "/workspace/project/kde/laboratory/",
+        "/workspace/project/kde/kde-core/laboratory/",
         "/workspace/project/kde/runtime/logs/",
     ]
     
@@ -110,16 +112,24 @@ class FileBoundaryGuard:
         
         # Check if inside /laboratory/ (dynamic check)
         lab_path = os.path.join(self.kde_root, "laboratory")
+        kde_core_lab_path = os.path.join(self.kde_root, "kde-core", "laboratory")
+        
         if path.startswith(lab_path + "/") or path == lab_path:
             return self._allowed_result(
                 path, operation,
                 f"Inside /laboratory/: {path}"
             )
         
+        if path.startswith(kde_core_lab_path + "/") or path == kde_core_lab_path:
+            return self._allowed_result(
+                path, operation,
+                f"Inside /kde-core/laboratory/: {path}"
+            )
+        
         # VIOLATION - Outside all allowed paths
         return self._violation_result(
             path, operation,
-            f"Outside /laboratory/: {path}"
+            f"Outside /laboratory/ or /kde-core/laboratory/: {path}"
         )
     
     def check_operation(self, operation: str, path: str) -> BoundaryCheckResult:
@@ -218,7 +228,8 @@ class FileBoundaryGuard:
 ║                                                                              ║
 ║  ─────────────────────────────────────────────────────────────────────────── ║
 ║                                                                              ║
-║  Rule: No files written outside /laboratory/ without human approval         ║
+║  Rule: No files written outside /laboratory/ or /kde-core/laboratory/        ║
+║         without human approval                                                ║
 ║                                                                              ║
 ║  Reason: {result.reason:<60}          ║
 ║                                                                              ║
