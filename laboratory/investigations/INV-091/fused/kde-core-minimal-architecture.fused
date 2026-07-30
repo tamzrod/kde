@@ -1,0 +1,206 @@
+# FUSEDv1.0
+
+# name: kde-core-minimal-architecture
+# type: architecture
+# timestamp: 2026-07-30T00:40:00Z
+|inv-091
+  |status=ACTIVE
+  |authority=SEED-001
+  |title="Minimal kde-core Footprint Analysis"
+|baseline
+  |current_files=161
+  |current_size="2.0MB"
+  |runtime_files=61
+  |seeds_files=27
+  |fused_files=65
+|rq1_required_files
+  |answer="~50 core files minimum"
+  |required_components
+    |runtime
+      |preflight.py="Entry point"
+      |runtime.py="ECU factory"
+      |principles_enforcer.py="Five Core Principles"
+      |ecu/__init__.py="ECU initialization"
+      |ecu/registry/="Engine/seed discovery"
+      |ecu/policy/="Blocking rule enforcement"
+      |ecu/governance/="Rule loading"
+      |ecu/bootstrap/="ECU bootstrap"
+    |fused
+      |engines/="5 engine directories"
+      |governance/="26 governance documents"
+      |seeds/seed-001/="SEED-001 authority"
+    |meta
+      |MODE.md="Mode selection"
+  |confidence=HIGH
+|rq2_development_only
+  |files_to_remove=~30
+  |removal_list
+    |runtime/__pycache__/="Python bytecode cache"
+    |runtime/logs/="Generated at runtime"
+    |runtime/install/="Build-time only"
+    |runtime/aliases/tests/="Unit tests"
+    |runtime/validators/="Optional"
+    |runtime/orchestrator/="Optional"
+    |seeds/seed-002/="Secondary seed"
+    |seeds/seed-003/="Experimental seed"
+    |seeds/evolution/="SEED evolution history"
+    |docs/="Documentation"
+    |config/="Generated at install"
+    |seeds/.agents/="OpenHands internal"
+    |.agents/="OpenHands internal"
+  |savings="~165KB"
+|rq3_generatable
+  |files
+    |.kde/config.yaml="Generated from template"
+    |MODE.md="Created at install"
+    |runtime/logs/="Generated at runtime"
+    |runtime/state.json="Generated at runtime"
+    |__pycache__/="Python cache"
+  |strategy="Ship as template, not content"
+|rq4_shared_components
+  |should_be_shared
+    |fused/engines/="Centralized updates"
+    |fused/governance/="Centralized updates"
+    |seeds/seed-002/="Frozen, secondary"
+    |seeds/seed-003/="Experimental"
+  |should_be_embedded
+    |runtime/="Must execute locally"
+    |fused/seeds/seed-001/="Authority must be local"
+    |bin/="Installation tooling"
+|rq5_dynamic_discovery
+  |answer="YES"
+  |current_behavior
+    |engine_registry="Auto-discovers from fused/engines/"
+    |seed_registry="Auto-discovers from fused/seeds/"
+    |governance="Loads from fused/governance/"
+  |proposed_enhancement
+    |fallback_paths="['fused/engines/', 'engines/', 'KDE_ENGINES_PATH env var']"
+    |graceful_degradation="Return empty list, don't fail"
+  |confidence=HIGH
+|rq6_size_reduction
+  |potential_savings="~165KB"
+  |breakdown
+    |table
+      ||['Category', 'Savings']
+      ||['Python cache', '50KB']
+      ||['Logs', '10KB']
+      ||['Install scripts', '5KB']
+      ||['Tests', '15KB']
+      ||['Secondary seeds', '50KB']
+      ||['Docs', '20KB']
+      ||['Config template', '5KB']
+      ||['OpenHands skills', '10KB']
+  |new_size="~1.8MB → ~1.6MB"
+|rq7_minimal_architecture
+  |proposed_layout
+    |runtime/="~15 files, core execution"
+    |fused/engines/="5 engine directories"
+    |fused/governance/="26 files, rules"
+    |fused/seeds/="SEED-001 only"
+    |bin/="2 scripts"
+    |MODE.md="1 file"
+    |README.md="1 file"
+  |estimated_files=~65
+  |estimated_size="~332KB"
+  |confidence=MEDIUM
+|proposed_minimal_layout
+  |kde-core/
+    |runtime/
+      |__init__.py
+      |__main__.py
+      |preflight.py
+      |runtime.py
+      |principles_enforcer.py
+      |ecu/
+        |__init__.py
+        |bootstrap/
+        |governance/
+        |policy/
+        |registry/
+        |models/
+        |aggregator/
+        |consensus/
+        |planner/
+        |resolver/
+      |file_boundary_guard.py
+      |state_verifier.py
+      |violation_handler.py
+      |attribution.py
+    |fused/
+      |engines/
+        |alpha/
+        |beta/
+        |gamma/
+        |delta/
+        |epsilon/
+      |governance/
+        |"*.fused (26 files)"
+      |seeds/
+        |seed-001/
+    |bin/
+      |install.sh
+      |kde
+    |MODE.md
+    |README.md
+|installation_strategy
+  |embedded
+    |runtime/="Must execute locally"
+    |fused/seeds/seed-001/="Authority must be local"
+    |bin/="Installation tooling"
+  |shared
+    |fused/engines/="Centralized updates"
+    |fused/governance/="Centralized updates"
+  |generated
+    |MODE.md="Created at install"
+    |.kde/config.yaml="From template"
+|risk_assessment
+  |risks
+    |table
+      ||['Risk', 'Likelihood', 'Impact', 'Mitigation']
+      ||['Missing dependency', 'LOW', 'HIGH', 'Pre-flight check validates']
+      ||['Update mechanism broken', 'MEDIUM', 'MEDIUM', 'Shared components auto-update']
+      ||['Governance drift', 'LOW', 'HIGH', 'SEED-001 always embedded']
+      ||['Performance regression', 'LOW', 'LOW', 'Fewer files = faster load']
+      ||['Backward incompatibility', 'LOW', 'HIGH', 'Version check on install']
+|migration_strategy
+  |steps
+    |1="Backup: cp -r kde-core kde-core.backup"
+    |2="Remove development files"
+    |3="Re-verify with preflight"
+  |verification
+    |1="python3 -m runtime.preflight"
+    |2="Verify engines discovered"
+    |3="Verify seed loaded"
+|implementation_phases
+  |phase1_cleanup
+    |description="Immediate cleanup"
+    |actions
+      - "Remove __pycache__/ directories"
+      - "Remove runtime/logs/"
+      - "Remove runtime/install/"
+      - "Remove test directories"
+  |phase2_reorganize
+    |description="Next sprint"
+    |actions
+      - "Move shared components to external reference"
+      - "Create --minimal install option"
+      - "Add dynamic discovery with fallbacks"
+  |phase3_optimize
+    |description="Future"
+    |actions
+      - "Consider embedding as single .fused file"
+      - "Implement update mechanism"
+      - "Create versioned releases"
+|findings_summary
+  |table
+    ||['RQ', 'Answer', 'Confidence']
+    ||['RQ-1: Required files', '~50 core files', 'HIGH']
+    ||['RQ-2: Development-only', '~30 files (tests, cache, etc.)', 'HIGH']
+    ||['RQ-3: Generatable', '3 files (config, MODE, state)', 'HIGH']
+    ||['RQ-4: Shared', 'Engines, governance, secondary seeds', 'HIGH']
+    ||['RQ-5: Dynamic discovery', 'YES, with fallback', 'HIGH']
+    ||['RQ-6: Size reduction', '~165KB removable', 'HIGH']
+    ||['RQ-7: Minimal architecture', '~65 files, ~332KB', 'MEDIUM']
+|status=ACTIVE
+|checkpoint="Awaiting human review"
+|authority=SEED-001

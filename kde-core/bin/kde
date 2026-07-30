@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+"""
+kde-core Launcher
+Provides portable entry point for kde-core from any directory.
+Uses 'python3 -m' for proper package imports.
+"""
+
+import os
+import sys
+import subprocess
+from pathlib import Path
+
+# Determine kde-core base directory
+# This script is in kde-core/bin/, so parent.parent is kde-core/
+SCRIPT_DIR = Path(__file__).resolve().parent
+KDE_CORE_DIR = SCRIPT_DIR.parent
+RUNTIME_DIR = KDE_CORE_DIR / "runtime"
+
+# Set KDE_BASE for runtime configuration
+os.environ["KDE_BASE"] = str(KDE_CORE_DIR)
+
+def main():
+    args = sys.argv[1:]  # Remove script name
+    
+    if not args:
+        # Default: run preflight
+        args = ["runtime.preflight"]
+    
+    command = args[0]
+    
+    if command == "help":
+        print("""kde-core Commands:
+  kde preflight    Run pre-flight check
+  kde doctor       Alias for preflight  
+  kde help         Show this help
+  kde <module>     Run any runtime module
+
+Examples:
+  kde preflight
+  kde runtime.preflight
+  kde doctor
+""")
+        return 0
+    
+    # Map commands
+    if command == "doctor":
+        command = "runtime.preflight"
+    
+    # Run as module using -m flag
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m"] + command.split("."),
+            cwd=str(KDE_CORE_DIR),
+            env={**os.environ, "PYTHONPATH": str(KDE_CORE_DIR)}
+        )
+        return result.returncode
+    except Exception as e:
+        print(f"Error running {command}: {e}")
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -47,7 +47,7 @@ def get_mode_paths(kde_root: str) -> Tuple[str, str, str]:
     mode = get_kde_mode()
     
     if mode == 2:
-        # Mode 2: FUSED format uses /fused-runtime/
+        # Mode 2: FUSED format uses /fused/
         return (
             os.path.join(kde_root, "fused", "engines"),
             os.path.join(kde_root, "fused", "seeds"),
