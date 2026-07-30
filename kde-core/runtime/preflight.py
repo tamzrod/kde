@@ -14,15 +14,17 @@ from enum import Enum
 
 # Determine base directory (support portable kde-core)
 # Check KDE_BASE env var first, then use script location
+# SCRIPT_DIR is kde-core/runtime, so KDE_BASE should be kde-core (one level up)
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-KDE_BASE = os.environ.get("KDE_BASE", os.path.dirname(os.path.dirname(SCRIPT_DIR)))
-RUNTIME_DIR = os.path.join(KDE_BASE, "runtime")
+if "KDE_BASE" in os.environ:
+    KDE_BASE = os.environ["KDE_BASE"]
+else:
+    # One level up from runtime/ gives kde-core root
+    KDE_BASE = os.path.dirname(SCRIPT_DIR)
 
-# Remove any existing kde runtimes from path to avoid conflicts
-sys.path = [p for p in sys.path if '/workspace/project/kde/runtime' not in p and '/kde-core/runtime' not in p]
-
-# Add kde-core runtime to path FIRST (highest priority)
-sys.path.insert(0, RUNTIME_DIR)
+# Add kde-core base to sys.path so 'runtime' package is found
+if KDE_BASE not in sys.path:
+    sys.path.insert(0, KDE_BASE)
 
 # Imports must come AFTER sys.path modification
 from runtime.ecu import create_ecu
