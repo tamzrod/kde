@@ -1,7 +1,8 @@
 # Laboratory Rules
 
 **Document Version**: 1.0.0
-**Date**: 2026-07-20
+**created**: 2026-07-20T00:00:00Z
+**modified**: 2026-07-29T23:59:00Z
 **Status**: PRODUCTION
 **Authority**: SEED-001 (Five Core Principles)
 
@@ -374,7 +375,8 @@ Before beginning any Experiment or Investigation, verify:
 ```markdown
 # Runtime Initialization Error
 
-**Date**: YYYY-MM-DDTHH:MM:SSZ
+**created**: YYYY-MM-DDTHH:MM:SSZ
+**modified**: YYYY-MM-DDTHH:MM:SSZ
 **Status**: FAILED
 
 ## Missing Artifact
@@ -499,13 +501,14 @@ INV-001/
 
 ## Revision History
 
-| Version | Date | Changes | Authority |
-|---------|------|---------|-----------|
-| 1.0.0 | 2026-07-20 | Initial production release | SEED-001 |
-| 1.1.0 | 2026-07-23 | Added Rule 6 (Experiment ID Permanence) and Rule 7 (Historical Experiment Protection) | Human Review, LAB-040 |
-| 1.2.0 | 2026-07-24 | Added timestamp standard reference | INV-TEMPORAL-PROVENANCE |
-| 1.3.0 | 2026-07-28 | Added Rule 8 (Authenticity Enforcement) | Human Review, INV-074 |
-| 1.4.0 | 2026-07-28 | Added Rule 9 (Investigation Identifier Naming) | Human Review, INV-INCIDENT-001 |
+| Version | Timestamp | Changes | Authority |
+|---------|-----------|---------|-----------|
+| 1.0.0 | 2026-07-20T00:00:00Z | Initial production release | SEED-001 |
+| 1.1.0 | 2026-07-23T00:00:00Z | Added Rule 6 (Experiment ID Permanence) and Rule 7 (Historical Experiment Protection) | Human Review, LAB-040 |
+| 1.2.0 | 2026-07-24T00:00:00Z | Added timestamp standard reference | INV-TEMPORAL-PROVENANCE |
+| 1.3.0 | 2026-07-28T00:00:00Z | Added Rule 8 (Authenticity Enforcement) | Human Review, INV-074 |
+| 1.4.0 | 2026-07-28T00:00:00Z | Added Rule 9 (Investigation Identifier Naming) | Human Review, INV-INCIDENT-001 |
+| 1.5.0 | 2026-07-29T23:59:00Z | Updated to use ISO-8601 timestamps (date → timestamp) | Human Review |
 
 ---
 
