@@ -1,0 +1,157 @@
+# FUSEDv1.0
+
+# name: kde-core-architecture
+# type: architecture
+# timestamp: 2026-07-30T00:20:00Z
+|kde-core
+  |status=ACTIVE
+  |authority=SEED-001
+  |investigation=INV-090
+|overview
+  |name=kde-core
+  |definition="Minimum KDE runtime for attaching to existing repositories"
+  |purpose="Provide KDE methodology as portable, detachable companion"
+|rq1_minimum_footprint
+  |question="What is the minimum footprint to attach kde-core to an existing repository?"
+  |answer="30-50 files depending on mode"
+  |mode_comparison
+    |table
+      ||['Mode', 'Min Files', 'Min Tokens']
+      ||['MODE 1 (Markdown)', '~50 files', '~15K tokens']
+      ||['MODE 2 (Fused)', '~30 files', '~8K tokens']
+  |confidence=HIGH
+|rq2_target_repository_files
+  |question="Which files belong inside the target repository?"
+  |embedded
+    |table
+      ||['File/Dir', 'Purpose', 'Required']
+      ||['`.kde/`', 'Installation config', 'YES']
+      ||['`MODE.md`', 'Mode selection', 'YES']
+      ||['`runtime/`', 'Python execution', 'YES']
+      ||['`seeds/seed-001/`', 'Authority seed', 'YES']
+      ||['`.agents/skills/`', 'Skill definitions', 'YES']
+    |shared_referenced
+      |table
+        ||['Component', 'Location', 'Shared']
+        ||['Engines', '`engines/` or `fused-runtime/engines/`', 'YES (referenced)']
+        ||['Governance', '`governance/`', 'YES (referenced)']
+        ||['Knowledge', '`knowledge/`', 'YES (referenced)']
+  |confidence=HIGH
+|rq3_shared_components
+  |question="Which components remain shared?"
+  |coupling_model
+    |embedded
+      |runtime="Must execute in target context"
+      |seeds="Authority must be local"
+      |kde_config="Installation-specific"
+    |shared
+      |engines="Can be updated centrally"
+      |governance="Rules versioned separately"
+      |knowledge="Evolves independently"
+  |confidence=HIGH
+|rq4_update_management
+  |question="How are updates managed?"
+  |update_strategy
+    |table
+      ||['Update Type', 'Scope', 'Impact', 'Strategy']
+      ||['Runtime Bugfix', '`runtime/`', 'Low', 'Semantic versioning, patch releases']
+      ||['Engine Update', '`engines/`', 'Medium', 'Version check, backward compat']
+      ||['Governance Change', '`governance/`', 'Medium', 'Human review required']
+      ||['Seed Update', '`seeds/`', 'HIGH', 'Frozen after SEED-001']
+      ||['Major Version', 'All', 'High', 'Migration guide required']
+  |version_constraints
+    |table
+      ||['Target kde-core Version', 'Compatible Engine Versions']
+      ||['1.0.x', '1.0.x, 1.1.x (backward compat)']
+      ||['1.1.x', '1.1.x, 1.2.x']
+      ||['2.0.x', '2.0.x (breaking changes)']
+  |confidence=HIGH
+|rq5_version_compatibility
+  |question="How is version compatibility maintained?"
+  |component_dependencies
+    |table
+      ||['Component', 'Depends On', 'Constraint']
+      ||['`runtime/`', 'Python 3.8+', 'MINIMUM']
+      ||['`runtime/`', 'pyyaml', 'REQUIRED']
+      ||['`runtime/`', 'Seed compatibility', 'SEED-001']
+      ||['Engine', 'Runtime version', 'Engine spec']
+    |engine_compatibility
+      |table
+        ||['Engine', 'Runtime Required', 'Mode Support']
+        ||['Alpha', '1.0+', 'MODE 1']
+        ||['Beta', '1.0+', 'MODE 1']
+        ||['Gamma', '1.1+', 'MODE 1, MODE 2']
+        ||['Delta', '1.2+', 'MODE 2']
+        ||['Epsilon', '1.5+', 'MODE 2']
+  |confidence=HIGH
+|rq6_detachment
+  |question="Can kde-core be detached cleanly?"
+  |answer="YES"
+  |files_to_remove
+    |remove
+      |=".kde/"
+      |=".agents/skills/kde-investigation-framework.md"
+      |="MODE.md (only if created by kde-core)"
+      |="runtime/ (only if embedded)"
+      |="seeds/ (only if embedded)"
+    |preserve
+      |="All target repository files"
+      |="Git history (if using git submodule)"
+  |detachment_options
+    |table
+      ||['Option', 'Description', 'Cleanliness']
+      ||['Uninstall', 'Remove all kde-core files', 'PERFECT']
+      ||['Disable', 'Keep files, disable in config', 'CLEAN']
+      ||['Migrate', 'Keep investigations in target', 'DEPENDS']
+  |confidence=HIGH
+|rq7_mode_impact
+  |question="How does MODE 1 and MODE 2 affect installation?"
+  |mode_comparison
+    |table
+      ||['Aspect', 'MODE 1 (Markdown)', 'MODE 2 (Fused)']
+      ||['Files', 'More (scattered .md)', 'Fewer (consolidated .fused)']
+      ||['Tokens', '+34% overhead', 'Baseline']
+      ||['Parse Speed', '-16% slower', 'Baseline (faster)']
+      ||['Readability', 'Excellent', 'Functional']
+      ||['Installation Size', '~50 files', '~30 files']
+      ||['Human Editing', 'Easy', 'Requires tooling']
+      ||['AI Processing', 'Slower', 'Faster']
+  |recommendation="MODE 2 for AI operations, MODE 1 for human debugging"
+  |confidence=MEDIUM
+|architecture_diagram
+  |target_repo_components
+    |=".kde/ (config, state)"
+    |="MODE.md"
+    |=".agents/skills/"
+    |="runtime/ (embedded)"
+    |="seeds/seed-001/ (embedded)"
+  |shared_components
+    |="engines/ (referenced)"
+    |="governance/ (referenced)"
+    |="knowledge/ (referenced)"
+|installation_options
+  |table
+    ||['Option', 'Pros', 'Cons', 'Use Case']
+    ||['npm package', 'Easy install, versioned', 'Requires Node', 'Quick start']
+    ||['git submodule', 'Full control', 'Manual updates', 'Development']
+    ||['pip install', 'Python native', 'Limited scope', 'Runtime only']
+    ||['Docker', 'Isolated', 'Heavy', 'Production']
+|installation_sequence
+  |="1. Create KDE config directory: mkdir -p .kde"
+  |="2. Initialize configuration: kde-core init --mode MODE_2"
+  |="3. Link or install components: kde-core link --components engines governance knowledge"
+  |="4. Verify installation: kde-core doctor"
+  |="5. Run first pre-flight: kde-core preflight"
+|findings_summary
+  |table
+    ||['RQ', 'Answer', 'Confidence']
+    ||['RQ-1: Minimum footprint', '30-50 files (MODE 2 smaller)', 'HIGH']
+    ||['RQ-2: Target repo files', 'runtime, seeds, .kde, MODE.md', 'HIGH']
+    ||['RQ-3: Shared components', 'engines, governance, knowledge (referenced)', 'HIGH']
+    ||['RQ-4: Update management', 'Semantic versioning + compatibility checks', 'HIGH']
+    ||['RQ-5: Version compatibility', 'Constraints matrix + engine specs', 'HIGH']
+    ||['RQ-6: Detachment', 'YES - clean removal possible', 'HIGH']
+    ||['RQ-7: MODE impact', 'MODE 2 = 40% fewer files, faster AI', 'MEDIUM']
+|status=ACTIVE
+|checkpoint="Awaiting human review"
+|authority=SEED-001
