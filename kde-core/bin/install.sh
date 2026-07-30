@@ -135,11 +135,7 @@ install_files() {
     # Copy mode-specific files
     if [[ "$MODE" == "MODE_2" ]]; then
         log_info "Installing MODE 2 (Fused)..."
-        cp -r "$KDE_CORE_DIR/fused" "$INSTALL_DIR/"
-        mkdir -p "$INSTALL_DIR/engines" "$INSTALL_DIR/governance"
-        cp -r "$KDE_CORE_DIR/fused/engines/"* "$INSTALL_DIR/engines/"
-        cp -r "$KDE_CORE_DIR/fused/governance/"* "$INSTALL_DIR/governance/"
-        cp -r "$KDE_CORE_DIR/fused/seeds/"* "$INSTALL_DIR/seeds/"
+        cp -r "$KDE_CORE_DIR/fused-runtime" "$INSTALL_DIR/"
     else
         log_info "Installing MODE 1 (Markdown)..."
         cp -r "$KDE_CORE_DIR/engines" "$INSTALL_DIR/" 2>/dev/null || true

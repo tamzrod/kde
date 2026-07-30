@@ -49,9 +49,9 @@ def get_mode_paths(kde_root: str) -> Tuple[str, str, str]:
     if mode == 2:
         # Mode 2: FUSED format uses /fused-runtime/
         return (
-            os.path.join(kde_root, "fused", "engines"),
-            os.path.join(kde_root, "fused", "seeds"),
-            os.path.join(kde_root, "fused", "governance")
+            os.path.join(kde_root, "fused-runtime", "engines"),
+            os.path.join(kde_root, "fused-runtime", "seeds"),
+            os.path.join(kde_root, "fused-runtime", "governance")
         )
     else:
         # Mode 1: Markdown format uses standard directories
@@ -88,9 +88,9 @@ def get_mode_info() -> dict:
             "mode_num": 2,
             "format": "FUSED (.fused)",
             "status": "ACTIVE",
-            "engines_path": "fused/engines/",
-            "seeds_path": "fused/seeds/",
-            "governance_path": "fused/governance/",
+            "engines_path": "fused-runtime/engines/",
+            "seeds_path": "fused-runtime/seeds/",
+            "governance_path": "fused-runtime/governance/",
             "use_case": "AI operations, production, tokens"
         }
     else:
