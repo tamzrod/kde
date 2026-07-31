@@ -1,8 +1,13 @@
 # Scientific Learning Loop
 
-**Status**: VALIDATED PATTERN
+**Knowledge ID**: PAT-001
+**Type**: pattern
+**Status**: promoted
 **Source**: archive/laboratories/laboratory/scientific-loop.md
-**Preserved**: Yes (proven effective)
+**Authority**: Human (proven effective)
+**Version**: 1.0.0
+**Created**: 2026-07-31
+**Updated**: 2026-07-31
 
 ---
 
