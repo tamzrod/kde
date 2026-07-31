@@ -9,7 +9,7 @@
 ## Current Stage
 
 ```
-Stage 2: Define the Knowledge Layer
+Stage 4: Populate Initial Knowledge
 ```
 
 ---
@@ -123,14 +123,39 @@ knowledge/
 
 ## Stage 3: Establish AI Consumption Protocol
 
-**Status**: PENDING
+**Status**: ✅ COMPLETE
+**Started**: 2026-07-31
+**Completed**: 2026-07-31
 
 ### Objective
 Define how AI consumes the Knowledge Layer.
 
 ### Deliverables
-- `knowledge/schemas/CONSUMPTION-PROTOCOL.md`
-- `operations/session/AI-INTERFACE.md`
+- [x] `knowledge/schemas/CONSUMPTION-PROTOCOL.md` - How AI reads and uses knowledge
+- [x] `operations/session/AI-INTERFACE.md` - Session procedures for AI
+
+### Documents Created
+
+```
+knowledge/schemas/CONSUMPTION-PROTOCOL.md  # AI consumption rules
+operations/session/AI-INTERFACE.md        # Session procedures
+```
+
+### Key Definitions
+
+**Consumption Hierarchy**:
+1. Consult Knowledge Layer first
+2. Apply knowledge with citation
+3. Flag gaps when no match
+4. Use general reasoning only for gaps
+
+**Session Protocol**:
+1. Read ROADMAP.md
+2. Check current stage
+3. Load relevant knowledge
+4. Acknowledge principles
+5. Work with citations
+6. End with authorization request
 
 ---
 
@@ -176,18 +201,21 @@ None at this stage.
 | 2026-07-31 | Initial | Repository restructured, archive created |
 | 2026-07-31 | Stage 2 | Started Knowledge Layer definition |
 | 2026-07-31 | Stage 2 | Completed all 5 Knowledge Layer documents |
+| 2026-07-31 | Stage 3 | Created AI Consumption Protocol and Session Interface |
 
 ---
 
 ## Next Recommended Action
 
-**Stage 3: Establish AI Consumption Protocol**
+**Stage 4: Populate Initial Knowledge**
 
-The next stage defines how AI consumes the Knowledge Layer. Deliverables:
-- `knowledge/schemas/CONSUMPTION-PROTOCOL.md` - How AI reads and uses knowledge
-- `operations/session/AI-INTERFACE.md` - Session procedures for AI
+The next stage migrates validated knowledge from archive. Sources:
+- Archive: `INV-001` → knowledge/definitions/WHAT-IS-KNOWLEDGE.md
+- Archive: `INV-002` → knowledge/definitions/WHAT-IS-EVIDENCE.md
+- Archive: `INV-003` → knowledge/definitions/WHAT-IS-AMBIGUITY.md
+- Archive: `5-principles.md` → knowledge/principles/5-CORE-PRINCIPLES.md
 
-**Note**: Human authorization required to proceed beyond Stage 2.
+**Note**: Human authorization required to proceed.
 
 ---
 
