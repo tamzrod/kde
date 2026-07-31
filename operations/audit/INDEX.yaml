@@ -1,0 +1,92 @@
+# Audit Trail Index
+
+**Location**: `operations/audit/`
+**Format**: YAML
+**Last Updated**: 2026-07-31
+
+---
+
+## Overview
+
+This index tracks all sessions and authorizations. Every significant action is logged here.
+
+---
+
+## Session Logs
+
+Location: `operations/audit/sessions/`
+
+Format: `SESSION-YYYY-MM-DD-NNN.yaml`
+
+---
+
+## Authorization Records
+
+Location: `operations/audit/authorizations/`
+
+Format: `AUTH-YYYY-MM-DD-NNN.yaml`
+
+---
+
+## Index
+
+```yaml
+index:
+  version: 1.0
+  last_updated: 2026-07-31
+  
+  sessions:
+    total: 0
+    by_status:
+      complete: 0
+      pending_authorization: 0
+    by_type:
+      investigation: 0
+      validation: 0
+      population: 0
+      review: 0
+      maintenance: 0
+      
+  authorizations:
+    total: 0
+    by_type:
+      proceed: 0
+      approve: 0
+      promote: 0
+      deprecate: 0
+      revise: 0
+      emergency_override: 0
+      
+  knowledge:
+    total_promotions: 0
+    total_deprecations: 0
+    
+  recent_sessions:
+    # Most recent 10 sessions
+    - id: null
+      date: null
+      type: null
+      status: null
+      
+  recent_authorizations:
+    # Most recent 10 authorizations
+    - id: null
+      date: null
+      type: null
+      granted: null
+```
+
+---
+
+## Maintenance
+
+This index is updated:
+- After each session ends
+- After each authorization is recorded
+- Weekly review of completeness
+
+---
+
+**Format**: YAML
+**Authority**: System (automated updates)
+**Manual Review**: Weekly
