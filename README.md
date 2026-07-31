@@ -1,100 +1,73 @@
-# Knowledge Discovery Engine (KDE) Research
+# Knowledge Discovery Engine (KDE)
 
-## Overview
+**Version**: 2.0 (Architected from First Principles)
+**Philosophy**: Knowledge as the primary asset, simplicity as the method
 
-This repository contains research aimed at defining **Knowledge Discovery Engine**.
+---
 
-Our fundamental question is:
+## What is KDE?
 
-> **"What must we understand before we can define Knowledge Discovery Engine?"**
+KDE is a research framework for discovering, validating, and maintaining engineering knowledge through systematic investigation.
 
-This is a research-first initiative. We do not know what KDE will become. This roadmap helps us find out.
+**Core Question**: What must we understand before we can define an AI-assisted knowledge discovery system?
 
-## Getting Started
+---
 
-**For new sessions, start here:** [`laboratory/BOOTSTRAP.md`](./laboratory/BOOTSTRAP.md)
-
-The BOOTSTRAP.md is the canonical entry point for all KDE sessions. It provides the Runtime initialization procedure and ensures consistent session startup across all experiments and investigations.
-
-## Canonical Architecture
-
-KDE follows a five-directory canonical structure representing the scientific foundation:
+## Architecture
 
 ```
 kde/
-├── seeds/           # Immutable reasoning DNA
-├── engines/        # Methodology implementations
-├── laboratory/     # Scientific workflow (questions, experiments, evidence)
-├── knowledge/      # Validated knowledge
-└── governance/      # Repository governance
+├── knowledge/          # PRIMARY ASSET - Validated knowledge
+│   ├── foundation/    # Foundational definitions (immutable)
+│   ├── domain/        # Domain-specific knowledge
+│   └── patterns/      # Reusable patterns (validated)
+├── operations/         # HOW WE WORK
+│   ├── session/       # Session procedures
+│   ├── rules/         # Operational rules
+│   └── audit/         # Audit trail
+└── archive-reference/ # Historical reference (read-only)
 ```
 
-## Repository Structure
+**Principle**: Every directory must justify its existence. If something doesn't fit, it belongs in archive-reference.
+
+---
+
+## Five Core Principles (PRESERVED)
+
+These principles govern all AI behavior within KDE:
+
+1. **No Auto-Continuation** - AI must wait for explicit human authorization
+2. **No Self-Approval** - Only humans can set APPROVED state
+3. **No Self-Promotion** - Only humans can promote knowledge
+4. **Distinguish Evidence, Inference, Hypothesis** - Clear epistemic markers
+5. **Evidence-Based Changes** - All claims require evidence
+
+---
+
+## Knowledge Lifecycle
 
 ```
-/kde/
-├── /seeds/           # Immutable reasoning artifacts
-│   ├── seed-001/    # Genesis seed (frozen)
-│   └── seed-002/    # Evolution seed (frozen)
-├── /engines/         # Methodology implementations
-│   ├── alpha/       # KDE-ENGINE-001 (historical)
-│   ├── beta/        # KDE-ENGINE-002 (active)
-│   ├── gamma/       # KDE-ENGINE-003 (experimental)
-│   └── delta/       # KDE-ENGINE-004 (candidate)
-├── /knowledge/       # Validated concepts
-├── /governance/      # Repository rules and standards
-└── /laboratory/     # Scientific workflow
-    ├── BOOTSTRAP.md       # Session entry point (NEW)
-    ├── LABORATORY-RULES.md # Runtime initialization (NEW)
-    ├── questions/   # Research questions tracker
-    ├── investigations/  # Investigation-centric organization
-    ├── experiments/  # Laboratory experiments
-    └── evidence/    # Collected evidence
+Question → Investigation → Evidence → Validation → Promotion
+                ↓                              ↓
+           Lessons Learned              Knowledge (permanent)
 ```
 
-## Research Questions
+**Key Rule**: Knowledge promotion requires human authorization.
 
-Research is organized into four tiers and conducted within the Laboratory:
+---
 
-| Tier | Questions | Status |
-|------|-----------|--------|
-| **Tier 1: Foundational** | What is Knowledge? What is Evidence? What is Ambiguity? | Pending |
-| **Tier 2: Relational** | What is Context? What is Authority? | Pending |
-| **Tier 3: Engineering** | What is Engineering? What is an Engineering Subject? What is a Methodology? | Pending |
-| **Tier 4: Process** | How does knowledge become validated? How should knowledge evolve? | Pending |
+## Getting Started
 
-## Scientific Lifecycle
+For session initialization, see `operations/session/BOOTSTRAP.md`
 
-KDE follows a complete scientific lifecycle:
+---
 
-```
-Seed (Immutable Reasoning DNA)
-    ↓
-Engine (Methodology Implementation)
-    ↓
-Investigation (Question → Hypothesis → Experiment Plan)
-    ↓
-Experiments (LAB-XXX under Engine)
-    ↓
-Evidence (Empirical Data)
-    ↓
-Analysis (Pattern Recognition)
-    ↓
-Conclusion (Validated Knowledge)
-    ↓
-Knowledge (Promoted Definitions)
-    ↓
-Lessons Learned (Seed Evolution)
-```
+## Historical Archive
 
-## How to Contribute
+Previous architecture and all accumulated knowledge is preserved in:
+- `/archive/` - Complete historical repository snapshot (245MB)
+- Contains: 114 investigations, 77 experiments, 4 seeds, 81 knowledge documents
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines on participating in this research.
+---
 
-## Simplicity Principles
-
-- **Do not speculate** - If we don't know, say so
-- **Do not over-engineer** - Simple structure, simple process
-- **Do not assume** - Every concept must be researched, not assumed
-- **Do not rush** - Understanding takes time
-- **Document the unknown** - Future research is a valid output
+**Design Philosophy**: Knowledge over implementation. Simplicity over complexity. Evidence over assumption.
