@@ -1,31 +1,55 @@
 # Knowledge Discovery Engine (KDE)
 
-**Architecture**: Hive Model v1.1
-**Philosophy**: Knowledge as the primary asset
+**Architecture**: Autonomous Worker Model
+**Philosophy**: The Foundry creates Workers. Workers live independently.
 
 ---
 
 ## Hive Model
 
-KDE is organized as a Hive with one **Core** (Queen) and multiple **Workers**.
+KDE is organized as a Hive with one **Foundry** (Queen) and multiple **Workers**.
 
 ```
-                    Core (Queen)
-                        │
-        ┌───────────────┼───────────────┐
-        │               │               │
-     Worker         Worker          Worker
-        │               │               │
-    Observation    Observation    Observation
+         Foundry (Queen)
+              │
+    ┌─────────┼─────────┐
+    │         │         │
+ Creates   Evolves   Publishes
+  │         │         │
+  ▼         ▼         ▼
+ Worker   Worker   Worker
+    │         │         │
+    └─────────┴─────────┘
+              │
+         Workers Live
+        Independently
 ```
 
 ---
 
-## Core Principles
+## Foundry (Queen) Responsibilities
 
-1. **Workers only observe** - Workers produce observations, not knowledge
-2. **Core promotes knowledge** - Only Core can promote to Knowledge Layer
-3. **Knowledge is permanent** - Never deleted, only archived
+The Foundry is responsible for:
+- **Creating Workers** - Designing and building new Workers
+- **Evolving Workers** - Improving Worker designs over time
+- **Preserving Knowledge** - Maintaining the Knowledge Layer
+- **Defining Standards** - Establishing Worker requirements
+- **Publishing Releases** - Distributing Worker versions
+
+The Foundry **NEVER** performs production work or executes Worker responsibilities.
+
+---
+
+## Worker Responsibilities
+
+Every Worker is responsible for:
+- **Observing** its domain independently
+- **Processing** raw data with own plugins
+- **Producing** observations
+- **Learning** from local experience
+- **Operating** without the Foundry
+
+Workers are **independent deployable products**.
 
 ---
 
@@ -33,24 +57,46 @@ KDE is organized as a Hive with one **Core** (Queen) and multiple **Workers**.
 
 ```
 kde/
-├── core/           # Core (Queen) runtime
-├── workers/        # Domain workers
-├── capabilities/   # Shared capabilities
-├── plugins/        # Format handlers
-├── knowledge/      # PRIMARY ASSET - Validated knowledge
-├── archive/        # Historical memory (read-only)
-└── docs/           # Templates and documentation
+├── foundry/               # The Foundry (Queen)
+│   ├── knowledge/         # The permanent Knowledge Layer
+│   ├── templates/         # Worker creation templates
+│   ├── standards/         # Worker requirements
+│   ├── releases/          # Published Worker versions
+│   ├── protocols/         # Worker-Foundry interaction
+│   ├── capabilities/      # Shared capability definitions
+│   ├── plugins/          # Shared plugin interfaces
+│   └── audit/             # Audit trail
+│
+├── workers/               # Workers (independent deployable packages)
+│   └── [domain]-worker/  # Example: os-worker, git-worker
+│       ├── deploy/        # Docker deployment
+│       ├── src/           # Source code
+│       ├── plugins/       # Own plugins
+│       ├── capabilities/  # Own capabilities
+│       ├── models/        # Own AI models
+│       ├── docs/          # Worker documentation
+│       └── worker.yaml    # Worker metadata
+│
+├── docs/                  # Human documentation
+│   ├── tutorials/         # How-to guides
+│   ├── guides/           # In-depth guides
+│   └── api/               # API documentation
+│
+├── archive/               # Historical memory (read-only)
+│
+└── README.md
 ```
 
 ---
 
-## Key Rules
+## Key Principles
 
-- **Knowledge Layer** is the permanent memory - never modified by Workers
-- **Core** manages sessions, authorization, and knowledge promotion
-- **Workers** observe sources and produce observations
-- **Archive** preserves all historical investigations
+1. **Workers deploy independently** - Can be copied and deployed anywhere
+2. **Workers run without the Foundry** - No runtime dependency
+3. **Knowledge is permanent** - Survives all architectural changes
+4. **Foundry creates Workers** - But does not operate them
+5. **Archive is sacred** - Never delete historical knowledge
 
 ---
 
-**Design Philosophy**: Knowledge over implementation. Architecture serves knowledge.
+**The Foundry creates Workers. Workers live independently.**
